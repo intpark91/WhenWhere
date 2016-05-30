@@ -12,8 +12,23 @@ public class UserController {
 		return "home/main";
 	}
 	
-	@RequestMapping(value="/test")
-	public String notice(){
-		return "board/noticeBoard";
+	@RequestMapping(value="/epilogue")
+	public String epilogue(){
+		return "board/epilogueBoard";
+	}
+	
+	@RequestMapping(value="/boardlist")
+	public String boardlist(){
+		return "board/noticeboard";
+	}
+	
+	@RequestMapping(value="/boardwrite")
+	public String boardwrite(){
+		return "board/boardwrite";
+	}
+	
+	@RequestMapping(value="/eventboardwrite")
+	public String eventboardwrite(){
+		return "board/eventboardwrite";
 	}
 }
