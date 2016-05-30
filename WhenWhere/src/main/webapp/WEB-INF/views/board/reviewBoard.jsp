@@ -66,8 +66,7 @@
 												</a></li>
 												<li><a
 													href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=20746">[전주]
-														전주한지문화축제</a><br>
-												<span class="bandi_list_date">2016.05.05~05.08</span></li>
+														전주한지문화축제</a><br> <span class="bandi_list_date">2016.05.05~05.08</span></li>
 											</ul>
 										</li>
 
@@ -82,8 +81,7 @@
 												</a></li>
 												<li><a
 													href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=20743">[전주]
-														전주국제영화제</a><br>
-												<span class="bandi_list_date">2016.04.28~05.07</span></li>
+														전주국제영화제</a><br> <span class="bandi_list_date">2016.04.28~05.07</span></li>
 											</ul>
 										</li>
 
@@ -98,8 +96,7 @@
 												</a></li>
 												<li><a
 													href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=23903">[남원]
-														바래봉 철쭉제</a><br>
-												<span class="bandi_list_date">2016.04.23~05.22</span></li>
+														바래봉 철쭉제</a><br> <span class="bandi_list_date">2016.04.23~05.22</span></li>
 											</ul>
 										</li>
 
@@ -232,18 +229,14 @@
 							<ul class="order">
 								<li><a
 									href="http://tour.jb.go.kr/travel/info/list.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22#none"
-									onclick="$(&#39;input[name=order_by]&#39;).val(1);$(&#39;#travelSearchForm&#39;).submit();"
 									class="on">인기순</a></li>
 								<li><a
-									href="http://tour.jb.go.kr/travel/info/list.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22#none"
-									onclick="$(&#39;input[name=order_by]&#39;).val(2);$(&#39;#travelSearchForm&#39;).submit();">가나다순</a></li>
+									href="http://tour.jb.go.kr/travel/info/list.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22#none">가나다순</a>
+								</li>
 							</ul>
 						</div>
 
 						<div class="serchList">
-
-
-
 							<div class="photoWrap">
 								<a
 									href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=150">

@@ -14,22 +14,22 @@ public class BoardController {
 
 	@RequestMapping(value = "/review")
 	public String review() {
-		return "board/noticeBoard";
+		return "board/reviewBoard";
 	}
 
 	@RequestMapping(value = "/event")
 	public String event() {
-		return "board/noticeBoard";
+		return "board/eventBoard";
 	}
 
 	@RequestMapping(value = "/eventWrite")
 	public String eventWrite() {
-		return "board/noticeBoard";
+		return "board/writeEvent";
 	}
 
 	@RequestMapping(value = "/write")
 	public String write() {
-		return "board/noticeBoard";
+		return "board/write";
 	}
 
 }
