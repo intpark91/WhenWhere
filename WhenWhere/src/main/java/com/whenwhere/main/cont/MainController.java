@@ -14,11 +14,11 @@ public class MainController {
 	
 	@RequestMapping(value = "/join")
 	public String join() {
-		return "home/home_join";
+		return "home/join";
 	}
 	
 	@RequestMapping(value = "/login")
 	public String login() {
-		return "home/home_login";
+		return "home/login";
 	}
 }

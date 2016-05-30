@@ -18,16 +18,22 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script src="../js/jqBootstrapValidation.js"></script>
 <script type="text/javascript">
+var status = "${status}";
+	$(function(){
+		if(status=="true"){
+			
+		}	
+	})
 	
 	function checkEmail(){
 	
-		var emailObj = new Object();
-		emailObj.email = $('#inputEmail').val();
+		var email = new Object();
+		email.receiver= $('#inputEmail').val();
 		
 		$.ajax({
 			url : '../user/sendEmail',
 			type : 'POST',
-			data : emailObj ,
+			data : email ,
 			success : function(check) {
 				if(check.ok){
 					alert('이메일 인증을 위한 메일보내기 성공');
@@ -70,8 +76,7 @@
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">비밀번호</label>
 				<div class="col-sm-6">
-					<input type="password" class="form-control" id="inputPassword"
-						placeholder="비밀번호">
+					<input type="password" class="form-control disabled-form" id="inputPassword" placeholder="비밀번호">
 					<p class="help-block">숫자, 특수문자 포함 8자 이상</p>
 				</div>
 			</div>
@@ -79,16 +84,14 @@
 				<label for="inputPasswordCheck" class="col-sm-2 control-label">비밀번호
 					확인</label>
 				<div class="col-sm-6">
-					<input type="password" class="form-control" id="inputPasswordCheck"
-						placeholder="비밀번호 확인">
+					<input type="password" class="form-control disabled-form" id="inputPasswordCheck" placeholder="비밀번호 확인">
 					<p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputName" class="col-sm-2 control-label">닉네임</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" id="inputName"
-						placeholder="닉네임">
+					<input type="text" class="form-control disabled-form" id="inputName" placeholder="닉네임">
 				</div>
 			</div>
 			<div class="form-group">
@@ -108,12 +111,6 @@
 		</form>
 		</article>
 	</div>
-	<footer class="footer" id="page_footer">
-	<div class="container">
-		<center>
-			<p class="footer_text">WHEN & WHERE | 자주 묻는 질문 | WHEN WHERE 이용</p>
-		</center>
-	</div>
-	</footer>
+	<jsp:include page="../component/footer.jsp" />
 </body>
 </html>

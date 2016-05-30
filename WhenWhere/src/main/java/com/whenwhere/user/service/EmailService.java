@@ -19,7 +19,10 @@ public class EmailService {
 	public boolean sendMail(EmailVO email) throws Exception {
 		try {
 			MimeMessage msg = mailSender.createMimeMessage();
-			msg.setFrom("someone@paran.com"); // 송신자를 설정해도 소용없지만 없으면 오류가 발생한다
+			
+			email.setSubject("WhenWhereTeam에서 알립니다. WhenWhere회원 가입 인증 링크 입니다.");
+			
+			msg.setFrom("some@one.com");
 			msg.setSubject(email.getSubject());
 			msg.setText(email.getContent());
 			msg.setRecipient(RecipientType.TO, new InternetAddress(email.getReceiver()));
@@ -35,8 +38,8 @@ public class EmailService {
 	public boolean certifyEmail(String receiver, HttpSession session) throws Exception {
 		EmailVO email = new EmailVO();
 		email.setReceiver(receiver);
-		email.setSubject("Email 인증 요청입니다.");
-		email.setContent("http://192.168.8.13:8088/myBoard_spring/join/certify?sessid=" + session.getId());
+		email.setSubject("WhenWhereTeam에서 알립니다. WhenWhere회원 가입 인증 링크 입니다.");
+		email.setContent("http://192.168.8.13:8088/WhenWhere/home/certify?sessid=" + session.getId());
 		return sendMail(email);
 	}
 }

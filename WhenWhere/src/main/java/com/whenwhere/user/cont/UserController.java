@@ -1,9 +1,15 @@
 package com.whenwhere.user.cont;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.whenwhere.user.service.EmailService;
@@ -23,20 +29,27 @@ public class UserController {
 	@RequestMapping("/join")
 	@ResponseBody
 	public String join(MemberVO member){
-		
 		return null;
 	}
 	
 	@RequestMapping("/sendEmail")
 	@ResponseBody
-	public String sendEmail(EmailVO email) throws Exception{
-		System.out.println("in send");
-    	System.out.println("!!!" + email.getReceiver());
-       
-        boolean result = emailService.sendMail(email);
+	public String sendEmail(String receiver, HttpSession session) throws Exception{
+		session.setAttribute("receiver", receiver);
+		boolean ok = emailService.certifyEmail(receiver, session);
         JSONObject jobj = new JSONObject();
-        jobj.put("ok", result);
+        jobj.put("ok", ok);
         return jobj.toJSONString();
-	}
+    }
 
+	@RequestMapping("certify")
+	public String certified(Model model, HttpServletRequest request, @RequestParam String sessid){
+		ServletContext application = request.getServletContext();
+		if(application.getAttribute(sessid) == null) return "join/form?error=true";
+		HttpSession sess = (HttpSession) application.getAttribute(sessid);
+		application.removeAttribute(sessid);
+		model.addAttribute("email", sess.getAttribute("email"));
+		model.addAttribute("status", true);
+		return "home/join";
+	}
 }
