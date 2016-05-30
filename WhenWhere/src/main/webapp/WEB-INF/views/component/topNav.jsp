@@ -20,6 +20,9 @@
 				<li><a class="page-scroll" href="#">WITH ME</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+				<li>
+				<input type="checkbox" checked data-toggle="toggle" data-on="<i class='fa fa-play'></i> Play" data-off="<i class='fa fa-pause'></i> Pause">
+				</li>
 				<li><a href="#video-background" id="toggleVideo"
 					data-toggle="collapse">stop</a></li>
 				<li><a class="page-scroll" data-toggle="modal"

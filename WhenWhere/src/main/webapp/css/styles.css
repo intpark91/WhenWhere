@@ -496,7 +496,9 @@ fieldset[disabled] .btn-default.active {
     border-radius: 290px;
     font-family: 'Helvetica Neue',Arial,sans-serif;
 }
-
+.toggle-on{
+	border-radius: 0;
+}
 .btn-xl {
     padding: 15px 30px;
     font-size: 20px;

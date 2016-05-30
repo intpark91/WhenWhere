@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="../css/slider.css" />
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
 <link rel="stylesheet" href="../css/jquery-ui-slider-pips.css" />
-
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -55,5 +55,7 @@
 	<script src="../js/scripts.js"></script>
 	<script src="../js/jquery-ui-slider-pips.js"></script>
 	<script src="../js/slider.js"></script>
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+	
 </body>
 </html>
