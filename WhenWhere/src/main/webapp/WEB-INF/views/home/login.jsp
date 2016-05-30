@@ -31,9 +31,7 @@
 <script type="text/javascript">
 	
 	function checkLogin(){
-	
 		var loginSer = $('form').serialize();
-		
 		$.ajax({
 			url : '../user/login',
 			type : 'POST',
@@ -93,9 +91,7 @@
 							125651 <br /> <span>FOLLOWERS</span>
 						</h3>
 					</div>
-
 					<div class="col-md-12 col-xs-12 login_control">
-
 						<div class="control">
 							<div class="label">Email Address</div>
 							<input type="text" class="form-control" value="admin@gmail.com" />
@@ -108,10 +104,7 @@
 						<div align="center">
 							<button class="btn btn-orange" onclick="checkLogin();">LOGIN</button>
 						</div>
-
 					</div>
-
-
 				</div>
 			</div>
 		</form>

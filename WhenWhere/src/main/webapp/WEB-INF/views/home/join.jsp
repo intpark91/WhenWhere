@@ -22,12 +22,12 @@ var error = "${error}"
 var status = "${status}";
 	$(function(){
 		if(status=="true"){
-			$(".disabled-form").attr("readonly", "false");
-			$("input#inputEmail").text("${email}");
+			$(".disabled-form").removeAttr("readonly");
+			$("input#inputEmail").val("${email}");
 		}
 		if(error=="true"){
 			alert("잘못된 접근입니다.");
-		}
+		}	
 	})
 	
 	function checkEmail(){

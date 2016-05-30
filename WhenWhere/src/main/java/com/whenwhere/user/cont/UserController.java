@@ -45,12 +45,10 @@ public class UserController {
 	@RequestMapping("/certify")
 	public String certified(Model model, HttpServletRequest request, @RequestParam String sessid){
 		ServletContext application = request.getServletContext();
-		System.out.println(sessid);
 		if(application.getAttribute(sessid) == null){model.addAttribute("error", true); return "home/join";}
-		
 		HttpSession sess = (HttpSession) application.getAttribute(sessid);
 		application.removeAttribute(sessid);
-		model.addAttribute("email", sess.getAttribute("email"));
+		model.addAttribute("email", sess.getAttribute("receiver"));
 		model.addAttribute("status", true);
 		return "home/join";
 	}

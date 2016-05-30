@@ -34,7 +34,6 @@ public class EmailService {
 	}
 
 	public boolean certifyEmail(String receiver, HttpSession session) throws Exception {
-		System.out.println("????");
 		EmailVO email = new EmailVO();
 		email.setReceiver(receiver);
 		email.setSubject("WhenWhereTeam에서 알립니다. WhenWhere회원 가입 인증 링크 입니다.");
