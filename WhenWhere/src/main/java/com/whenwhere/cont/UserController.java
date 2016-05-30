@@ -16,4 +16,11 @@ public class UserController {
 	public String notice(){
 		return "board/noticeBoard";
 	}
+	
+	@RequestMapping(value="/search")
+	public String search(){
+		return "board/searchBoard";
+	}
+	
+	
 }

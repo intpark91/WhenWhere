@@ -8,12 +8,12 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand page-scroll" href="#first"><i
+			<a class="navbar-brand page-scroll" href="main"><i
 				class="ion-ios-analytics-outline"></i> WhenWhere</a>
 		</div>
 		<div class="navbar-collapse collapse" id="bs-navbar">
 			<ul class="nav navbar-nav">
-				<li><a class="page-scroll" href="#">WHEN?</a></li>
+				<li><a class="page-scroll" href="search">WHEN?</a></li>
 				<li><a class="page-scroll" href="#">ÇÑ±Û</a></li>
 				<li><a class="page-scroll" href="#">TOGETHER</a></li>
 				<li><a class="page-scroll" href="#">REVIEW</a></li>
