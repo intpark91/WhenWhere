@@ -4,45 +4,49 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>WhenWhereTest</title>
+<title>WhenWhere</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Codeply">
 
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" />
-<link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+<link rel="stylesheet"
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" />
+<link rel="stylesheet"
+	href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
 <link rel="stylesheet" href="../css/home/join.css" />
 <!-- 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script src="../js/jqBootstrapValidation.js"></script>
 <script type="text/javascript">
-var error = "${error}"
-var status = "${status}";
-	$(function(){
+	var error = "${error}";
+	var status = "${status}";
+
+	$(function() {
+		$("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
 		if(status=="true"){
 			$(".disabled-form").removeAttr("readonly");
 			$("input#inputEmail").val("${email}");
 		}
-		if(error=="true"){
+		if (error == "true") {
 			alert("잘못된 접근입니다.");
-		}	
+		}
 	})
-	
-	function checkEmail(){
-	
+
+	function checkEmail() {
 		var email = new Object();
-		email.receiver= $('#inputEmail').val();
-		
+		email.receiver = $('#inputEmail').val();
 		$.ajax({
 			url : '../user/sendEmail',
 			type : 'POST',
-			data : email ,
+			data : email,
 			success : function(check) {
-				if(check.ok){
+				if (check.ok) {
 					alert('이메일 인증을 위한 메일보내기 성공');
-				}else{
+				} else {
 					alert('이메일 인증을 위한 메일보내기 실패');
 				}
 			},
@@ -67,44 +71,56 @@ var status = "${status}";
 				회원가입 <small>일반회원가입</small>
 			</h1>
 		</div>
+
 		<form class="form-horizontal">
-			<div class="form-group">
+			<div class="form-group control-group">
 				<label for="inputNumber" class="col-sm-2 control-label">이메일</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control" id="inputEmail" placeholder="id @ ~.com">
-					<p class="help-block">@ 포함 적어주세요.</p>
+				<div class="col-sm-4 controls">
+					<input type="email" class="form-control" id="inputEmail"
+						placeholder="id @ ~.com"
+						data-validator-validemail-message="이메일 형식이 아닙니다.">
+					<p class="help-block"></p>
 				</div>
 				<div class="col-sm-2">
 					<a class="btn btn-default" onclick="checkEmail();" role="button">이메일인증</a>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group control-group">
 				<label for="inputPassword" class="col-sm-2 control-label">비밀번호</label>
-				<div class="col-sm-6">
-					<input type="password" class="form-control disabled-form" id="inputPassword" placeholder="비밀번호" readonly>
-					<p class="help-block">숫자, 특수문자 포함 8자 이상</p>
+				<div class="col-sm-6 controls">
+					<input type="password" class="form-control disabled-form"
+						data-validation-password-regex="(^.(?=.*[0-9])(?=.*[a-zA-Z]).*$)"
+						data-validation-password-message="알파벳과 숫자를 포함하여야 합니다."
+						minlength="8" data-validation-minlength-message="8자 이상 이어야합니다."
+						name="password" placeholder="숫자, 특수문자 포함 8자 이상" readonly>
+					<p class="help-block"></p>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group control-group">
 				<label for="inputPasswordCheck" class="col-sm-2 control-label">비밀번호
 					확인</label>
-				<div class="col-sm-6">
-					<input type="password" class="form-control disabled-form" id="inputPasswordCheck" placeholder="비밀번호 확인" readonly>
-					<p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
+				<div class="col-sm-6 controls">
+					<input type="password" class="form-control disabled-form"
+						placeholder="비밀번호를 한번더 입력 하세요."
+						data-validation-matches-match="password"
+						data-validation-matches-message="두 비밀번호가 일치하지 않습니다." readonly>
+					<p class="help-block"></p>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group control-group">
 				<label for="inputName" class="col-sm-2 control-label">닉네임</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control disabled-form" id="inputName" placeholder="닉네임" readonly>
+				<div class="col-sm-6 controls">
+					<input type="text" class="form-control disabled-form"
+						name="nickname" placeholder="닉네임" readonly>
+					<p class="help-block"></p>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="inputAgree" class="col-sm-2 control-label">약관 동의</label>
-				<div class="col-sm-6 checkbox">
-					<label> <input id="agree" type="checkbox"> <a
-						href="/agreement"> 이용약관</a>에 동의합니다.
-					</label>
+			<div class="form-group control-group">
+				<label for="inputName" class="col-sm-2 control-label">전화번호</label>
+				<div class="col-sm-6 controls">
+					<input type="text" class="form-control disabled-form"
+						name="phoneNumber" placeholder="010-1234-5678" readonly>
+					<p class="help-block"></p>
 				</div>
 			</div>
 			<div class="form-group">
