@@ -317,7 +317,7 @@ footer {
     }
     
     section {
-        min-height: 600px;
+        min-height: 100px;
         padding: 100px 0;
     }
 

@@ -494,14 +494,15 @@ body {
 }
 
 #one{
-	height: 100px;
+	top:50%;
+	height: 400px;
 	
 }
 
 #scrollDiv{
 	background: red;
-	display:none;
 	height: 500px;
 }
+
 
 
