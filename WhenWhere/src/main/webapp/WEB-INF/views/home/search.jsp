@@ -18,7 +18,7 @@
 	href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
 <link rel="stylesheet" href="../css/styles.css" />
 
-<link rel="stylesheet" href="../css/datepicker.css">
+<link rel="stylesheet" href="../css/search.css">
 
 </head>
 <body>
@@ -36,7 +36,7 @@
 			</div>
 		</div>
 	</section>
-	<div style="background: black; display:none; height: 500px;" id="scoll">scroll</div>
+	<div id="scrollDiv">scroll</div>
 	<jsp:include page="../component/footer.jsp" />
 
 	<!-- Load jQuery and bootstrap datepicker scripts -->
@@ -51,7 +51,12 @@
                 });
                 
                 $('.input-small').on('click', function() {
-					$('#scoll').slideDown();
+					
+					if($('#scrollDiv').css('display') == 'none'){
+						$('#scrollDiv').slideDown();
+					}else{
+						$('#scrollDiv').slideUp();
+					}
 				})
             
             });
