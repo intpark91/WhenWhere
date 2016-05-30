@@ -31,5 +31,10 @@ public class BoardController {
 	public String write() {
 		return "board/write";
 	}
+	
+	@RequestMapping(value = "/noticeRead")
+	public String noticeRead() {
+		return "board/noticeBoardRead";
+	}
 
 }
