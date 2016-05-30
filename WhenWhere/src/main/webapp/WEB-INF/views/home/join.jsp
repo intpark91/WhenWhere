@@ -18,12 +18,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script src="../js/jqBootstrapValidation.js"></script>
 <script type="text/javascript">
+var error = "${error}"
 var status = "${status}";
 	$(function(){
 		if(status=="true"){
 			$(".disabled-form").attr("readonly", "false");
 			$("input#inputEmail").text("${email}");
-		}	
+		}
+		if(error=="true"){
+			alert("잘못된 접근입니다.");
+		}
 	})
 	
 	function checkEmail(){

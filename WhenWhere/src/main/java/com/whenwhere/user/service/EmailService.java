@@ -37,7 +37,7 @@ public class EmailService {
 		System.out.println("????");
 		EmailVO email = new EmailVO();
 		email.setReceiver(receiver);
-		email.setSubject("WhenWhereTeam¿¡¼­ ¾Ë¸³´Ï´Ù. WhenWhereÈ¸¿ø °¡ÀÔ ÀÎÁõ ¸µÅ© ÀÔ´Ï´Ù.");
+		email.setSubject("WhenWhereTeamì—ì„œ ì•Œë¦½ë‹ˆë‹¤. WhenWhereíšŒì› ê°€ì… ì¸ì¦ ë§í¬ ì…ë‹ˆë‹¤.");
 		email.setContent("http://192.168.8.13:8088/WhenWhere/user/certify?sessid=" + session.getId());
 		return sendMail(email);
 	}
