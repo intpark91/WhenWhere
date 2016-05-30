@@ -1,5 +1,7 @@
 package com.whenwhere.user.dao;
 
-public class MemberDAO {
+import com.whenwhere.user.vo.MemberVO;
 
+public interface MemberDAO {
+	public void joinMember(MemberVO member);
 }
