@@ -21,7 +21,7 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#video-background" id="toggleVideo"
-					data-toggle="collapse">배경정지</a></li>
+					data-toggle="collapse">stop</a></li>
 				<li><a class="page-scroll" data-toggle="modal"
 					title="A free Bootstrap video landing theme" href="#aboutModal">로그인</a>
 				</li>
