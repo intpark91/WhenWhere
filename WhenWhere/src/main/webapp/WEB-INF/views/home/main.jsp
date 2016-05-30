@@ -23,8 +23,12 @@
 </head>
 <body>
 	<jsp:include page="../component/topNav.jsp" />
+				
 	<header id="first">
+	
+	
 		<div class="header-content">
+		
 			<div class="inner">
 				<h1 class="cursive">
 					When? <br>Where!
@@ -34,7 +38,12 @@
 			
 		<div id="body-flat-fliter">
 			<div id="flat-slider"></div>
+			
+			
 		</div>
+
+		
+
 		
 		</div>
 		<video autoplay loop class="fillWidth fadeIn wow collapse in"
@@ -45,7 +54,11 @@
 			Your browser does not support the video tag. I suggest you upgrade
 			your browser.
 		</video>
+
 	</header>
+	
+	
+	
 	<jsp:include page="../component/footer.jsp" />
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
