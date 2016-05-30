@@ -20,8 +20,6 @@ public class EmailService {
 		try {
 			MimeMessage msg = mailSender.createMimeMessage();
 			
-			email.setSubject("WhenWhereTeam에서 알립니다. WhenWhere회원 가입 인증 링크 입니다.");
-			
 			msg.setFrom("some@one.com");
 			msg.setSubject(email.getSubject());
 			msg.setText(email.getContent());
@@ -36,10 +34,11 @@ public class EmailService {
 	}
 
 	public boolean certifyEmail(String receiver, HttpSession session) throws Exception {
+		System.out.println("????");
 		EmailVO email = new EmailVO();
 		email.setReceiver(receiver);
 		email.setSubject("WhenWhereTeam에서 알립니다. WhenWhere회원 가입 인증 링크 입니다.");
-		email.setContent("http://192.168.8.13:8088/WhenWhere/home/certify?sessid=" + session.getId());
+		email.setContent("http://192.168.8.13:8088/WhenWhere/user/certify?sessid=" + session.getId());
 		return sendMail(email);
 	}
 }

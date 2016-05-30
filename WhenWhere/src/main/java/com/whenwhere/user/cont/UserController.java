@@ -42,10 +42,11 @@ public class UserController {
         return jobj.toJSONString();
     }
 
-	@RequestMapping("certify")
+	@RequestMapping("/certify")
 	public String certified(Model model, HttpServletRequest request, @RequestParam String sessid){
+		System.out.println("´©¸§!");
 		ServletContext application = request.getServletContext();
-		if(application.getAttribute(sessid) == null) return "join/form?error=true";
+		if(application.getAttribute(sessid) == null) return "home/join?error=true";
 		HttpSession sess = (HttpSession) application.getAttribute(sessid);
 		application.removeAttribute(sessid);
 		model.addAttribute("email", sess.getAttribute("email"));

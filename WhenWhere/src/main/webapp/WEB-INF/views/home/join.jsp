@@ -21,7 +21,8 @@
 var status = "${status}";
 	$(function(){
 		if(status=="true"){
-			
+			$(".disabled-form").attr("readonly", "false");
+			$("input#inputEmail").text("${email}");
 		}	
 	})
 	
@@ -76,7 +77,7 @@ var status = "${status}";
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label">비밀번호</label>
 				<div class="col-sm-6">
-					<input type="password" class="form-control disabled-form" id="inputPassword" placeholder="비밀번호">
+					<input type="password" class="form-control disabled-form" id="inputPassword" placeholder="비밀번호" readonly>
 					<p class="help-block">숫자, 특수문자 포함 8자 이상</p>
 				</div>
 			</div>
@@ -84,14 +85,14 @@ var status = "${status}";
 				<label for="inputPasswordCheck" class="col-sm-2 control-label">비밀번호
 					확인</label>
 				<div class="col-sm-6">
-					<input type="password" class="form-control disabled-form" id="inputPasswordCheck" placeholder="비밀번호 확인">
+					<input type="password" class="form-control disabled-form" id="inputPasswordCheck" placeholder="비밀번호 확인" readonly>
 					<p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputName" class="col-sm-2 control-label">닉네임</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control disabled-form" id="inputName" placeholder="닉네임">
+					<input type="text" class="form-control disabled-form" id="inputName" placeholder="닉네임" readonly>
 				</div>
 			</div>
 			<div class="form-group">
