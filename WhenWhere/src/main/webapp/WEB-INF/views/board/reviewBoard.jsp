@@ -17,7 +17,7 @@
 <link rel="stylesheet"
 	href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
 <link rel="stylesheet" href="../css/styles.css" />
-<link rel="stylesheet" href="../css/epilogueboard.css" type="text/css">
+<link rel="stylesheet" href="../css/reviewBoard.css" type="text/css">
 
 
 <script>
