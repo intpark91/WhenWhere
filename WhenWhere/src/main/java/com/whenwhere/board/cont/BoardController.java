@@ -11,4 +11,25 @@ public class BoardController {
 	public String notice() {
 		return "board/noticeBoard";
 	}
+
+	@RequestMapping(value = "/review")
+	public String review() {
+		return "board/noticeBoard";
+	}
+
+	@RequestMapping(value = "/event")
+	public String event() {
+		return "board/noticeBoard";
+	}
+
+	@RequestMapping(value = "/eventWrite")
+	public String eventWrite() {
+		return "board/noticeBoard";
+	}
+
+	@RequestMapping(value = "/write")
+	public String write() {
+		return "board/noticeBoard";
+	}
+
 }
