@@ -30,6 +30,9 @@
 		if(status=="true"){
 			$(".disabled-form").removeAttr("readonly");
 			$("input#inputEmail").val("${email}");
+		}else{
+			console.log("접근");
+			$(".disabled-form").attr("placeholder", "이메일 인증을 먼저 받으세요");
 		}
 		if (error == "true") {
 			alert("잘못된 접근입니다.");
@@ -38,7 +41,7 @@
 
 	function checkEmail() {
 		var email = new Object();
-		email.receiver = $('#inputEmail').val();
+		email.receiver = $('#email').val();
 		$.ajax({
 			url : '../user/sendEmail',
 			type : 'POST',
@@ -76,9 +79,9 @@
 			<div class="form-group control-group">
 				<label for="inputNumber" class="col-sm-2 control-label">이메일</label>
 				<div class="col-sm-4 controls">
-					<input type="email" class="form-control" id="inputEmail"
+					<input type="EMAIL" class="form-control" id="email"
 						placeholder="id @ ~.com"
-						data-validator-validemail-message="이메일 형식이 아닙니다.">
+						data-validation-email-message="이메일 형식이 아닙니다.">
 					<p class="help-block"></p>
 				</div>
 				<div class="col-sm-2">
@@ -89,10 +92,11 @@
 				<label for="inputPassword" class="col-sm-2 control-label">비밀번호</label>
 				<div class="col-sm-6 controls">
 					<input type="password" class="form-control disabled-form"
+						placeholder="숫자, 특수문자 포함 8자 이상"
+						name="password"  readonly
 						data-validation-password-regex="(^.(?=.*[0-9])(?=.*[a-zA-Z]).*$)"
 						data-validation-password-message="알파벳과 숫자를 포함하여야 합니다."
-						minlength="8" data-validation-minlength-message="8자 이상 이어야합니다."
-						name="password" placeholder="숫자, 특수문자 포함 8자 이상" readonly>
+						minlength="8" data-validation-minlength-message="8자 이상 이어야합니다.">
 					<p class="help-block"></p>
 				</div>
 			</div>
