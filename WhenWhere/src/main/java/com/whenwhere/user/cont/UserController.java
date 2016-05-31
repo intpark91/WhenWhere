@@ -4,6 +4,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,14 +33,11 @@ public class UserController {
 		return null;
 	}
 	
+	/*******************************email validator***************************************/
 	@RequestMapping("/sendEmail")
 	@ResponseBody
 	public String sendEmail(String receiver, HttpSession session) throws Exception{
-		session.setAttribute("receiver", receiver);
-		boolean ok = emailService.certifyEmail(receiver, session);
-        JSONObject jobj = new JSONObject();
-        jobj.put("ok", ok);
-        return jobj.toJSONString();
+        return emailService.certifyEmail(receiver, session);
     }
 
 	@RequestMapping("/certify")
@@ -52,4 +50,13 @@ public class UserController {
 		model.addAttribute("status", true);
 		return "home/join";
 	}
+	/*************************************************************************************/
+	
+	@RequestMapping("/nicknameDupCk")
+	@ResponseBody
+	public String nicknameCk(@RequestParam String nickname) throws Exception{
+        return userService.nicknameCk(nickname);
+    }
+	
+	
 }

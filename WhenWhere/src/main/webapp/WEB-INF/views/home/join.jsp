@@ -27,11 +27,12 @@
 <script type="text/javascript">
 	var error = "${error}";
 	var status = "${status}";
-
+	var checkAjaxSetTimeout;
+	
 	$(function() {
 		$("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
 		/* if(status=="true"){ */
-			$(".disabled-form").removeAttr("readonly");
+		$(".disabled-form").removeAttr("readonly");
 		/*	$("input#inputEmail").val("${email}");
 		}else{
 			$(".disabled-form").attr("placeholder", "이메일 인증을 먼저 받으세요");
@@ -39,6 +40,15 @@
 		if (error == "true") {
 			alert("잘못된 접근입니다.");
 		}
+
+		$("#nickname").keyup(function() {
+			clearTimeout(checkAjaxSetTimeout);
+			checkAjaxSetTimeout = setTimeout(function() {
+				if ($("#nickname").val() != "") {
+					nicknameDupCk();
+				}
+			}, 500);
+		});
 	})
 
 	function checkEmail() {
@@ -62,6 +72,30 @@
 				//alert('요청처리 완료');
 			}
 		});
+	}
+
+	function nicknameDupCk() {
+		jobj = {};
+		jobj.nickname = $("#nickname").val();
+		$.ajax({
+			type : "post",
+			url : "../user/nicknameDupCk",
+			data : jobj,
+			dataType : "json",
+			success : function(data) {
+				if (data.ok) {
+					$("#nicknameCk").html($("input[name=nickname]").val() + '는 사용중인 닉네임 입니다.');
+					$("#nicknameCk").css("color", "red");
+					$("#nickname").css("border", "red 1px solid");
+					$("#nickname").css("color", "red");
+				} else {
+					$("#nicknameCk").html($("input[name=nickname]").val() + '는 사용가능한 닉네임 입니다.');
+					$("#nicknameCk").css("color", "green");
+					$("#nickname").css("border", "green 1px solid");
+					$("#nickname").css("color", "green");
+				}
+			}
+		})
 	}
 </script>
 
@@ -116,13 +150,13 @@
 			<div class="form-group control-group">
 				<label for="inputName" class="col-sm-2 control-label">닉네임</label>
 				<div class="col-sm-6 controls">
-					<input type="text" class="form-control disabled-form"
+					<input type="text" class="form-control disabled-form" id="nickname"
 							name="nickname" placeholder="닉네임 10자 이내" readonly
 							minlength="2" data-validation-minlength-message="2자 이상 이어야합니다."
 							maxlength="10" data-validation-maxlength-message="10자 이하 이어야합니다."
 							data-validation-spaceCK-regex="(\S*)"
 							data-validation-spaceCK-message="공백은 없어야 합니다.">
-					<p class="help-block"></p>
+					<p class="help-block"><span id="nicknameCk"></span></p>
 				</div>
 			</div>
 			<div class="form-group control-group">
