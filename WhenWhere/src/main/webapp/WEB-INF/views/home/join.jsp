@@ -14,7 +14,10 @@
 	href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" />
 <link rel="stylesheet"
 	href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+<!-- <link rel="stylesheet" href="../css/home/join.css" /> -->
 <link rel="stylesheet" href="../css/home/join.css" />
+
+
 <!-- 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
@@ -27,13 +30,12 @@
 
 	$(function() {
 		$("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
-		if(status=="true"){
+		/* if(status=="true"){ */
 			$(".disabled-form").removeAttr("readonly");
-			$("input#inputEmail").val("${email}");
+		/*	$("input#inputEmail").val("${email}");
 		}else{
-			console.log("접근");
 			$(".disabled-form").attr("placeholder", "이메일 인증을 먼저 받으세요");
-		}
+		} */
 		if (error == "true") {
 			alert("잘못된 접근입니다.");
 		}
@@ -115,7 +117,11 @@
 				<label for="inputName" class="col-sm-2 control-label">닉네임</label>
 				<div class="col-sm-6 controls">
 					<input type="text" class="form-control disabled-form"
-						name="nickname" placeholder="닉네임" readonly>
+							name="nickname" placeholder="닉네임 10자 이내" readonly
+							minlength="2" data-validation-minlength-message="2자 이상 이어야합니다."
+							maxlength="10" data-validation-maxlength-message="10자 이하 이어야합니다."
+							data-validation-spaceCK-regex="(\S*)"
+							data-validation-spaceCK-message="공백은 없어야 합니다.">
 					<p class="help-block"></p>
 				</div>
 			</div>
