@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whenwhere.user.dao.MessageDAO">
+
+	<insert id="joinMember" parameterType="com.whenwhere.user.vo.MessageVO">
+		insert into values(SEQ_MSG.NEXTVAL, #{sender}, #{receiver}, #{title}, #{content}, '0', sysdate)
+	</insert>
+</mapper>

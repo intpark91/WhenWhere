@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.whenwhere.user.dao.MemberDAO;
+import com.whenwhere.user.vo.MemberVO;
 
 @Service
 public class UserService {
@@ -44,6 +45,16 @@ public class UserService {
 		if(rows>0){
 			ok = true;
 		}
+		JSONObject jobj = new JSONObject();
+		jobj.put("ok", ok);
+		return jobj.toJSONString();
+	}
+	
+	public String joinMember(MemberVO member){
+		MemberDAO dao = sqlSessionTemplate.getMapper(MemberDAO.class);
+		boolean ok = true;
+		dao.joinMember(member);
+		
 		JSONObject jobj = new JSONObject();
 		jobj.put("ok", ok);
 		return jobj.toJSONString();

@@ -1,5 +1,5 @@
 package com.whenwhere.user.dao;
 
-public class MessageDAO {
-
+public interface MessageDAO {
+	public void sendMsg();
 }

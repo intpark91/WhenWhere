@@ -26,12 +26,12 @@
 	
 	$(function() {
 		$("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
-		/* if(status=="true"){ */
-		$(".disabled-form").removeAttr("readonly");
-		/*	$("input#inputEmail").val("${email}");
+		if(status=="true"){
+			$(".disabled-form").removeAttr("readonly");
+			$("input#inputEmail").val("${email}");
 		}else{
 			$(".disabled-form").attr("placeholder", "이메일 인증을 먼저 받으세요");
-		} */
+		}
 		if (error == "true") {
 			alert("잘못된 접근입니다.");
 		}
@@ -142,7 +142,7 @@
 			<div class="form-group control-group">
 				<label for="inputNumber" class="col-sm-2 control-label">이메일</label>
 				<div class="col-sm-4 controls">
-					<input type="email" class="form-control" id="email"
+					<input type="email" class="form-control" id="email" name="email"
 						placeholder="id @ ~.com"
 						data-validation-email-message="이메일 형식이 아닙니다.">
 					<p class="help-block"><span id="emailCk"></span></p>
@@ -165,8 +165,7 @@
 				</div>
 			</div>
 			<div class="form-group control-group">
-				<label for="inputPasswordCheck" class="col-sm-2 control-label">비밀번호
-					확인</label>
+				<label for="inputPasswordCheck" class="col-sm-2 control-label">비밀번호	확인</label>
 				<div class="col-sm-6 controls">
 					<input type="password" class="form-control disabled-form"
 						placeholder="비밀번호를 한번더 입력 하세요."

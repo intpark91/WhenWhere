@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.whenwhere.user.service.EmailService;
+import com.whenwhere.user.service.MessageService;
 import com.whenwhere.user.service.UserService;
 import com.whenwhere.user.vo.EmailVO;
 import com.whenwhere.user.vo.MemberVO;
+import com.whenwhere.user.vo.MessageVO;
 
 @Controller
 @RequestMapping(value="/user")
@@ -26,12 +28,8 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private EmailService emailService;
-	
-	@RequestMapping("/join")
-	@ResponseBody
-	public String join(MemberVO member){
-		return null;
-	}
+	@Autowired
+	private MessageService msgService;
 	
 	/*******************************email validator***************************************/
 	@RequestMapping("/sendEmail")
@@ -50,8 +48,8 @@ public class UserController {
 		model.addAttribute("status", true);
 		return "home/join";
 	}
-	/*************************************************************************************/
-	
+
+	/**********************************Duplication check**********************************/
 	@RequestMapping("/nicknameDupCk")
 	@ResponseBody
 	public String nicknameCk(@RequestParam String nickname) throws Exception{
@@ -63,6 +61,18 @@ public class UserController {
 	public String emailDupCk(@RequestParam String email) throws Exception{
         return userService.emailCk(email);
     }
+
+	@RequestMapping("/join")
+	@ResponseBody
+	public String join(MemberVO member){
+		return userService.joinMember(member);
+	}
+	
+	@RequestMapping("/sendMsg")
+	@ResponseBody
+	public String sendMsg(MessageVO msg){
+		return sendMsg(msg);
+	}
 	
 	
 }

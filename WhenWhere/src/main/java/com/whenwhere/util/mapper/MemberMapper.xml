@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.whenwhere.user.dao.MemberDAO">
 
 	<insert id="joinMember" parameterType="com.whenwhere.user.vo.MemberVO">
-		insert into		
+		insert into member values(#{email}, #{nickname}, #{password}, #{phoneNumber}, 'member');
 	</insert>
 	<select id="matchNickname" resultType="Integer">
 		select count(*) from member where nickname=#{nickname}
