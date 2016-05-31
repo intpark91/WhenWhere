@@ -168,6 +168,7 @@
 }
 .lSAction > a:hover {
     opacity: 1;
+    border: red;
 }
 .lSAction > .lSPrev {
     background-position: 0 0;
@@ -427,4 +428,9 @@ ul {
 	visibility: hidden;
 }
 
-
+.searchBtn{
+	background-color: rgba(255, 255, 255, 0);
+    border: 3px solid white;
+    color: white;
+    font-size: 40px;
+}

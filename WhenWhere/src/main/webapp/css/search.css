@@ -461,7 +461,7 @@
 .input-daterange input:last-child {
   -webkit-border-radius: 0 3px 3px 0;
   -moz-border-radius: 0 3px 3px 0;
-  border-radius: 0 3px 3px 0;
+  border-radius: 10px;
 }
 .input-daterange .add-on {
      display: inline-block;
@@ -488,17 +488,169 @@ button, input, optgroup, select, textarea {
 
 body {
     font-family: 'Questrial','Helvetica Neue',Arial,sans-serif;
-    background-color: #282828;
+    background-color: rgba(6, 212, 255, 0.39);
     color: #222;
     webkit-tap-highlight-color: #222;
 }
 
-#one{
-	top:50%;
-	height: 400px;
-	
+.section1, .section2, .section3{
+	background-color: rgb(91, 192, 222);
+	padding: 0px;
+}
+
+.section1{
+	padding-top: 100px;	
+}
+
+.section2{
+}
+
+.section3{
+	padding-bottom: 60px;
+	margin-bottom: 10px;
+}
+
+/* tab css----------------------------------------------------------------------------- */
+
+* { box-sizing: border-box; }
+
+.tabs {
+  position: relative;
+  background: #1abc9c;
+  height: 25rem;
+  margin-bottom:10px;
+}
+
+.tabs::before,
+.tabs::after {
+  content: "";
+  display: table;
+}
+
+.tabs::after { clear: both; }
+
+.tab { float: left; }
+
+.tab-switch { display: none; }
+
+.tab-label {
+  position: relative;
+  display: block;
+  line-height: 2.75em;
+  height: 3em;
+  padding: 0 1.618em;
+  background: #1abc9c;
+  border-right: 0.125rem solid #16a085;
+  color: #fff;
+  cursor: pointer;
+  top: 0;
+  transition: all 0.25s;
+}
+
+.tab-label:hover {
+  top: -0.25rem;
+  transition: all 0.25s;
+}
+
+.tab-content {
+  padding: 1.618rem;
+  background: #fff;
+  color: #2c3e50;
+  border-bottom: 0.25rem solid #bdc3c7;
+  height: 12rem;
+  position: absolute;
+  z-index: 1;
+  top: 2.75em;
+  left: 0;
+  opacity: 0;
+  transition: all 0.35s;
+  width: 100%;
+  height: 80%;
+  text-align: left;
 }
 
 
+/* Make the radio inputs act as tabs. */
+.tab-switch:checked + .tab-label {
+  background: #fff;
+  color: #2c3e50;
+  border-bottom: 0;
+  border-right: 0.0625rem solid #fff;
+  transition: all 0.35s;
+  z-index: 2;
+  top: -0.0625rem;
+}
+
+.tab-switch:checked + .tab-label:hover { top: -0.0625rem; }
+
+.tab-switch:checked + .tab-label + .tab-content {
+  opacity: 1;
+  transition: all 0.35s;
+  z-index: 3;
+}
+
+
+.locationSearchBtn{
+	position: relative;
+    display: block;
+    line-height: 2.75em;
+    height: 3em;
+    padding: 0 1.618em;
+    background: #1abc9c;
+    border-right: 0.125rem solid #16a085;
+    color: #fff;
+    cursor: pointer;
+    top: 0;
+    transition: all 0.25s;
+ 	width: 100%;
+}
+
+.locationSearchDiv{
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+.tabs{
+	display: none;
+}
+
+/*location checkbox---------------------------------------------------------*/
+
+input[type="checkbox"].checkbox {
+    display: none;
+}
+input[type="checkbox"].checkbox + label {
+    display: inline;
+    position: relative;
+    background-color: white;
+    border:1px solid rgb(26, 188, 156);
+    
+    /*label styling*/
+    padding: 2px 4px;
+    font-size: large;
+    line-height: 14px;
+    color: rgb(26, 188, 156);
+    vertical-align: baseline;
+    white-space: nowrap;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+input[type="checkbox"].checkbox:checked + label {
+    background-color: rgb(26, 188, 156);
+    color:white;
+    border:1px solid white;
+    border-radius: 3px;
+}
+
+.locationTable{
+	width: 100%;
+}
+
+.locationTable td{
+	padding: 10px;
+	background-color: white;
+}
 
 

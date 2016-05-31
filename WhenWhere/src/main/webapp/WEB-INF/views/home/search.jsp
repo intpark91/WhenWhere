@@ -19,95 +19,132 @@
 <link rel="stylesheet" href="../css/styles.css" />
 
 <link rel="stylesheet" href="../css/search.css">
-<link rel="stylesheet"  href="../css/lightslider.css"/>
- 
+<link rel="stylesheet" href="../css/lightslider.css" />
+
 </head>
 <body>
 	<jsp:include page="../component/topNav.jsp" />
-	<section class="bg-primary" id="one">
+
+	<section class="bg-primary section1">
 		<div class="container" align="center">
 			<div class="row center">
 				<div class="hero-unit">
-					<h1 class="page-scroll">
-					기간을 선택하세요
-					</h1>
 					<div class="input-daterange" id="datepicker">
-						<input type="text" class="input-small" name="start" /> <span
-							class="add-on" style="vertical-align: top; height: 27px">to</span>
-						<input type="text" class="input-small" name="end" />
-						<button class="btn btn-orange">SEARCH</button>
+						<div class="col-sm-offset-3 col-sm-2">
+							<h1>
+								<span class="label label-info">시작일</span>
+							</h1>
+							<input type="text" class="input-small" name="start" />
+						</div>
+
+						<div class="col-sm-offset-2 col-sm-2">
+							<h1>
+								<span class="label label-info">종료일</span>
+							</h1>
+							<input type="text" class="input-small" name="end" />
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+
+
+	<section class="section2">
+		<div class="container" align="center">
+			<div class="row center locationSearchDiv">
+				<div class="tabs col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">
+					<div class="tab">
+						<input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
+						<label for="tab-1" class="tab-label">서울·경기</label>
+						<div class="tab-content">
+							<table class="locationTable">
+								<tr>
+									<td><input type="checkbox" id="가평" class="checkbox" /> <label for="가평">가평</label></td>
+									<td><input type="checkbox" id="강화" class="checkbox" /> <label for="강화">강화</label></td>
+									<td><input type="checkbox" id="고양" class="checkbox" /> <label for="고양">고양</label></td>
+									<td><input type="checkbox" id="과천" class="checkbox" /> <label for="과천">과천</label></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="tab">
+						<input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
+						<label for="tab-2" class="tab-label">영서</label>
+						<div class="tab-content">
+						</div>
+					</div>
+					<div class="tab">
+						<input type="radio" name="css-tabs" id="tab-3" class="tab-switch">
+						<label for="tab-3" class="tab-label">영동</label>
+						<div class="tab-content">
+						</div>
+					</div>
+					
+				</div>
+				<div class="row">
+					<div class="col-sm-offset-3 col-sm-6 col-xs-offset-3 col-xs-6">
+						<button type="button" class="locationSearchBtn btn">상세검색∨</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+
+	<section class="section3">
+		<div class="container" align="center">
+			<div class="row">
+				<div class="col-sm-offset-3 col-sm-6">
+					<button class="searchBtn btn btn-orange">SEARCH</button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
 	<div id="scrollDiv demo">
 		<div class="item">
-		<h1><span class="label label-info">행사</span></h1>
+			<h1>
+				<span class="label label-info">행사</span>
+			</h1>
 			<ul id="content-slider1" class="content-slider1">
-				<li>
-					<a href="#"><img class="img-thumbnail" src="../resources/img/bg_img.jpg"/></a>
-				</li>
-				<li>
-					<a href="#"><img class="img-thumbnail" src="../resources/img/test.JPG"/></a>
-				</li>
-				<li>
-					<a href="#" >3_event</a>
-				</li>
-				<li>
-					<a href="#">4_event</a>
-				</li>
-				<li>
-					<a href="#">5_event</a>
-				</li>
-				<li>
-					<a href="#">6_event</a>
-				</li>
+				<li><a href="#"><img class="img-thumbnail"
+						src="../resources/img/bg_img.jpg" /></a></li>
+				<li><a href="#"><img class="img-thumbnail"
+						src="../resources/img/test.JPG" /></a></li>
+				<li><a href="#">3_event</a></li>
+				<li><a href="#">4_event</a></li>
+				<li><a href="#">5_event</a></li>
+				<li><a href="#">6_event</a></li>
 			</ul>
 		</div>
-		
+
 		<div class="item">
-		<h1><span class="label label-info">특산물</span></h1>
+			<h1>
+				<span class="label label-info">특산물</span>
+			</h1>
 			<ul id="content-slider2" class="content-slider2">
-				<li>
-					<a href="#"><img src="../resources/img/cd-icon-email.svg" /></a>
-				</li>
-				<li>
-					<a href="#">2_region</a>
-				</li>
-				<li>
-					<a href="#">3_region</a>
-				</li>
-				<li>
-					<a href="#">4_region</a>
-				</li>
-				<li>
-					<a href="#">5_region</a>
-				</li>
-				<li>
-					<a href="#">6_region</a>
-				</li>
+				<li><a href="#"><img
+						src="../resources/img/cd-icon-email.svg" /></a></li>
+				<li><a href="#">2_region</a></li>
+				<li><a href="#">3_region</a></li>
+				<li><a href="#">4_region</a></li>
+				<li><a href="#">5_region</a></li>
+				<li><a href="#">6_region</a></li>
 			</ul>
 		</div>
-		
+
 		<div class="item">
-		<h1><span class="label label-info">숙박</span></h1>
+			<h1>
+				<span class="label label-info">숙박</span>
+			</h1>
 			<ul id="content-slider3" class="content-slider3">
-				<li>
-					<a href="#"><img src="../resources/img/cd-icon-email.svg" /></a>
-				</li>
-				<li>
-					<a href="#">2_food</a>
-				</li>
-				<li>
-					<a href="#">3_food</a>
-				</li>
-				<li>
-					<a href="#">4_food</a>
-				</li>
-				<li>
-					<a href="#">5_food</a>
-				</li>
+				<li><a href="#"><img src="../resources/img/cd-icon-email.svg" /></a></li>
+				<li><a href="#">2_food</a></li>
+				<li><a href="#">3_food</a></li>
+				<li><a href="#">4_food</a></li>
+				<li><a href="#">5_food</a></li>
 			</ul>
 		</div>
 
@@ -117,7 +154,7 @@
 	<!-- Load jQuery and bootstrap datepicker scripts -->
 	<script src="../js/jquery-1.9.1.min.js"></script>
 	<script src="../js/bootstrap-datepicker.js"></script>
-	<script src="../js/lightslider.js"></script> 
+	<script src="../js/lightslider.js"></script>
 	<script type="text/javascript">
             // When the document is ready
             $(document).ready(function () {
@@ -128,15 +165,25 @@
                     todayBtn: "linked"
                 });
                 
+                $('.locationSearchBtn').on('click', function() {
+                	if($('.tabs').css('display') == 'none'){
+                		$(this).text('상세검색∧');
+                		$('.tabs').slideDown();
+                	}else{
+                		$('.tabs').slideUp();
+                		$(this).text('상세검색∨');
+                		
+                	}
+                		
+				});
                 
-                $('.btn').on('click', function() {
+                $('.searchBtn').on('click', function() {
 					if($('.item').css('visibility') == 'hidden'){
-						$('.item').slideUp();
 						$('.item').slideDown();
 						
 						setTimeout(function () {
 							$('.item').css('visibility','visible');
-						}, 1000);
+						}, 500);
 						
 						$('#content-slider1').lightSlider({
 							loop:true,
