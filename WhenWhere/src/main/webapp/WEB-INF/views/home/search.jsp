@@ -81,6 +81,30 @@
 						<div class="tab-content">
 						</div>
 					</div>
+					<div class="tab">
+						<input type="radio" name="css-tabs" id="tab-4" class="tab-switch">
+						<label for="tab-4" class="tab-label">충복</label>
+						<div class="tab-content">
+						</div>
+					</div>
+					<div class="tab">
+						<input type="radio" name="css-tabs" id="tab-5" class="tab-switch">
+						<label for="tab-5" class="tab-label">충남</label>
+						<div class="tab-content">
+						</div>
+					</div>
+					<div class="tab">
+						<input type="radio" name="css-tabs" id="tab-6" class="tab-switch">
+						<label for="tab-6" class="tab-label">경북</label>
+						<div class="tab-content">
+						</div>
+					</div>
+					<div class="tab">
+						<input type="radio" name="css-tabs" id="tab-7" class="tab-switch">
+						<label for="tab-7" class="tab-label">경남</label>
+						<div class="tab-content">
+						</div>
+					</div>
 					
 				</div>
 				<div class="row">
@@ -169,10 +193,12 @@
                 	if($('.tabs').css('display') == 'none'){
                 		$(this).text('상세검색∧');
                 		$('.tabs').slideDown();
+                		
+                		
+                		
                 	}else{
                 		$('.tabs').slideUp();
                 		$(this).text('상세검색∨');
-                		
                 	}
                 		
 				});
