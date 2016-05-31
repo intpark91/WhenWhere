@@ -20,31 +20,26 @@
 <link rel="stylesheet" href="../css/reviewBoard.css" type="text/css">
 
 
-<script>
-	$(function(){
-		$(".lang").on("click", function(){
-			var lan = $(this).children("a").attr("id");
-			var language = "";
-			if("eng" == lan){
-				language = "kte";
-			} else if("chn" == lan){
-				language = "ktc";
-			} else if("jpn" == lan){
-				language = "ktj";
-			}
-			CSLI_ETGI_TRANS(location.href, language, 'web_3');
-		});
-	});
-</script>
-
 </head>
 <body>
 	<jsp:include page="../component/topNav.jsp" />
 	<section class="bg-primary" id="one">
-		<div class="container">
+					<div id="main_bg" class="info_main_bg" >
+					<div class="mainWrap">
+<!-- 						<h1>WHEN?WHERE!</h1>
+						<br>REVIEW<br>
+						<h1>생생한 REVIEW를 통해 간접적 체험해 보세요!</h1>	 -->
+					</div>
+					</div>
+	
+		<div class="container">				
 			<div class="row">
+
 				<div
 					class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2 text-center">
+					
+
+					
 					<div class="con_area">
 						<div class="festivalWrap">
 							<div class="thisMonth">
@@ -189,19 +184,37 @@
 							</div>
 
 							<script type="text/javascript">
-  var date=new Date();
-  /* MonthPicker 옵션 */
-  var options = {pattern: 'yyyy.mm',selectedYear: date.getFullYear(),startYear: date.getFullYear(),finalYear: date.getFullYear()+1,monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']};
-  $('#thisMonthBtn').monthpicker(options);
-  $('#thisMonthBtn').monthpicker().bind('monthpicker-click-month', function (e, month) {
-    var year = $('.mtz-monthpicker.mtz-monthpicker-year').val();
-    if(month <= 9){
-      month = '0'+month
-    }
-    $('input[name=this_month]').val(year+'.'+month);
-    fnAjaxThisMonthTravelInfomationEventList(1);
-  });
-</script>
+								var date = new Date();
+								/* MonthPicker 옵션 */
+								var options = {
+									pattern : 'yyyy.mm',
+									selectedYear : date.getFullYear(),
+									startYear : date.getFullYear(),
+									finalYear : date.getFullYear() + 1,
+									monthNames : [ '1월', '2월', '3월', '4월',
+											'5월', '6월', '7월', '8월', '9월',
+											'10월', '11월', '12월' ]
+								};
+								$('#thisMonthBtn').monthpicker(options);
+								$('#thisMonthBtn')
+										.monthpicker()
+										.bind(
+												'monthpicker-click-month',
+												function(e, month) {
+													var year = $(
+															'.mtz-monthpicker.mtz-monthpicker-year')
+															.val();
+													if (month <= 9) {
+														month = '0' + month
+													}
+													$('input[name=this_month]')
+															.val(
+																	year
+																			+ '.'
+																			+ month);
+													fnAjaxThisMonthTravelInfomationEventList(1);
+												});
+							</script>
 						</div>
 
 
@@ -603,11 +616,11 @@
 
 							</ul>
 						</div>
-					</div>
+					</div>					
 				</div>
 			</div>
 		</div>
-		</div>
+		
 	</section>
 	<jsp:include page="../component/footer.jsp" />
 	<script

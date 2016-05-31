@@ -18,6 +18,8 @@
 	href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
 <link rel="stylesheet" href="../css/styles.css" />
 <link rel="stylesheet" href="../css/board.css" type="text/css">
+<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <style>
 h2 {
 	padding-top: 10px;
