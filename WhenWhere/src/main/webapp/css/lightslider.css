@@ -10,7 +10,10 @@
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
+    margin-left: 5px;
+    margin-right: 5px;
+    
 }
 .lightSlider:before, .lightSlider:after {
     content: " ";
@@ -400,17 +403,28 @@ ul {
 	margin-bottom: 60px;
 }
 
-.content-slider li {
-	background-color: #ed3020;
+.content-slider1 li, .content-slider2 li, .content-slider3 li {
+	background-color: white;
 	text-align: center;
 	color: #FFF;
 }
 
-.content-slider h3 {
+.content-slider1 h3, .content-slider2 h3, .content-slider3 h3 {
 	margin: 0;
 	padding: 70px 0;
 }
 
 .demo {
-	width: 800px;
+	width: 300px;
 }
+
+.item li > a{
+	width: 100%;
+	height: 100%;
+}
+
+.item{
+	visibility: hidden;
+}
+
+

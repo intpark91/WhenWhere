@@ -66,7 +66,7 @@ p {
 }
 
 .bg-primary {
-    background-color: #333;
+    background-color: rgb(91, 192, 222);
 }
 
 .bg-dark {
@@ -278,7 +278,7 @@ header .header-content .inner p {
 }
 
 footer {
-    background-color:#2d2d2d;
+    background-color:#93ffff;
 }
 
 @media(min-width:768px) {

@@ -20,7 +20,7 @@
 
 <link rel="stylesheet" href="../css/search.css">
 <link rel="stylesheet"  href="../css/lightslider.css"/>
-    
+ 
 </head>
 <body>
 	<jsp:include page="../component/topNav.jsp" />
@@ -28,6 +28,9 @@
 		<div class="container" align="center">
 			<div class="row center">
 				<div class="hero-unit">
+					<h1 class="page-scroll">
+					기간을 선택하세요
+					</h1>
 					<div class="input-daterange" id="datepicker">
 						<input type="text" class="input-small" name="start" /> <span
 							class="add-on" style="vertical-align: top; height: 27px">to</span>
@@ -40,24 +43,70 @@
 	</section>
 	<div id="scrollDiv demo">
 		<div class="item">
-			<ul id="content-slider" class="content-slider">
+		<h1><span class="label label-info">행사</span></h1>
+			<ul id="content-slider1" class="content-slider1">
 				<li>
-					<h3><img src="../resources/img/cd-icon-email.svg" /></h3>
+					<a href="#"><img class="img-thumbnail" src="../resources/img/bg_img.jpg"/></a>
 				</li>
 				<li>
-					<h3>2</h3>
+					<a href="#"><img class="img-thumbnail" src="../resources/img/test.JPG"/></a>
 				</li>
 				<li>
-					<h3>3</h3>
+					<a href="#" >3_event</a>
 				</li>
 				<li>
-					<h3>4</h3>
+					<a href="#">4_event</a>
 				</li>
 				<li>
-					<h3>5</h3>
+					<a href="#">5_event</a>
 				</li>
 				<li>
-					<h3>6</h3>
+					<a href="#">6_event</a>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="item">
+		<h1><span class="label label-info">특산물</span></h1>
+			<ul id="content-slider2" class="content-slider2">
+				<li>
+					<a href="#"><img src="../resources/img/cd-icon-email.svg" /></a>
+				</li>
+				<li>
+					<a href="#">2_region</a>
+				</li>
+				<li>
+					<a href="#">3_region</a>
+				</li>
+				<li>
+					<a href="#">4_region</a>
+				</li>
+				<li>
+					<a href="#">5_region</a>
+				</li>
+				<li>
+					<a href="#">6_region</a>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="item">
+		<h1><span class="label label-info">숙박</span></h1>
+			<ul id="content-slider3" class="content-slider3">
+				<li>
+					<a href="#"><img src="../resources/img/cd-icon-email.svg" /></a>
+				</li>
+				<li>
+					<a href="#">2_food</a>
+				</li>
+				<li>
+					<a href="#">3_food</a>
+				</li>
+				<li>
+					<a href="#">4_food</a>
+				</li>
+				<li>
+					<a href="#">5_food</a>
 				</li>
 			</ul>
 		</div>
@@ -81,24 +130,59 @@
                 
                 
                 $('.btn').on('click', function() {
-					if($('.item').css('display') == 'none'){
+					if($('.item').css('visibility') == 'hidden'){
+						$('.item').slideUp();
 						$('.item').slideDown();
-						$("#content-slider").lightSlider({
-			                loop:true,
-			                keyPress:true
-			            });
+						
+						setTimeout(function () {
+							$('.item').css('visibility','visible');
+						}, 1000);
+						
+						$('#content-slider1').lightSlider({
+							loop:true,
+					        keyPress:true
+						});
+						
+						$('#content-slider2').lightSlider({
+							loop:true,
+					        keyPress:true
+						});
+						
+						$('#content-slider3').lightSlider({
+							loop:true,
+					        keyPress:true
+						});
+						
+						
 					}else{
 						$('.item').slideUp();
 						$('.item').slideDown();
-						$(".content-slider").empty();
-						var ul = $('<ul/>').attr('id','content-slider').attr('class','content-slider');
-						ul.append("<li><h3><img src='../resources/img/cd-icon-email.jpg' /></h3></li><li><h3>2</h3></li><li><h3>3</h3></li><li><h3>4</h3></li><li><h3>5</h3></li><li><h3>6</h3></li><li><h3>7</h3></li>");
 						
-						$(".item").html(ul);
-						$("#content-slider").lightSlider({
+						$(".content-slider1").empty();
+						$(".content-slider2").empty();
+						$(".content-slider3").empty();
+						
+						$(".item").each(function(k, v) {
+							var ul = $('<ul/>').attr('id','content-slider'+(k+1)).attr('class','content-slider'+(k+1));
+							ul.append("<li><a href='#'><img src='../resources/img/cd-icon-email.svg' /></a></li><li><a href='#'>2</a></li><li><a href='#'>3</a></li><li><a href='#'>4</a></li><li><a href='#'>5</a></li><li><a href='#'>6</a></li><li><a href='#'>7</a></li>");
+							$(this).html(ul);
+						});
+						
+						$("#content-slider1").lightSlider({
 			                loop:true,
 			                keyPress:true
 			            });
+						
+						$("#content-slider2").lightSlider({
+			                loop:true,
+			                keyPress:true
+			            });
+						
+						$("#content-slider3").lightSlider({
+			                loop:true,
+			                keyPress:true
+			            });
+						
 					}
 				});
 				
