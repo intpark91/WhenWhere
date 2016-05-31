@@ -14,13 +14,8 @@
 	href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" />
 <link rel="stylesheet"
 	href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
-<!-- <link rel="stylesheet" href="../css/home/join.css" /> -->
 <link rel="stylesheet" href="../css/home/join.css" />
 
-
-<!-- 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script src="../js/jqBootstrapValidation.js"></script>
@@ -40,7 +35,16 @@
 		if (error == "true") {
 			alert("잘못된 접근입니다.");
 		}
-
+		
+		$("#email").keyup(function() {
+			clearTimeout(checkAjaxSetTimeout);
+			checkAjaxSetTimeout = setTimeout(function() {
+				if ($("#email").val() != "") {
+					emailDupCk();
+				}
+			}, 500);
+		});
+		
 		$("#nickname").keyup(function() {
 			clearTimeout(checkAjaxSetTimeout);
 			checkAjaxSetTimeout = setTimeout(function() {
@@ -73,7 +77,30 @@
 			}
 		});
 	}
-
+	
+	function emailDupCk() {
+		jobj = {};
+		jobj.email = $("#email").val();
+		$.ajax({
+			type : "post",
+			url : "../user/emailDupCk",
+			data : jobj,
+			dataType : "json",
+			success : function(data) {
+				if (data.ok) {
+					$("#emailCk").html($("#email").val() + '는 이미 가입 된 이메일 입니다.');
+					$("#emailCk").css("color", "red");
+					$("#email").css("border", "red 1px solid");
+					$("#email").css("color", "red");
+				} else {
+					$("#emailCk").html($("#email").val() + '는 사용가능한 이메일 입니다.');
+					$("#emailCk").css("color", "green");
+					$("#email").css("border", "green 1px solid");
+					$("#email").css("color", "green");
+				}
+			}
+		})
+	}
 	function nicknameDupCk() {
 		jobj = {};
 		jobj.nickname = $("#nickname").val();
@@ -115,10 +142,10 @@
 			<div class="form-group control-group">
 				<label for="inputNumber" class="col-sm-2 control-label">이메일</label>
 				<div class="col-sm-4 controls">
-					<input type="EMAIL" class="form-control" id="email"
+					<input type="email" class="form-control" id="email"
 						placeholder="id @ ~.com"
 						data-validation-email-message="이메일 형식이 아닙니다.">
-					<p class="help-block"></p>
+					<p class="help-block"><span id="emailCk"></span></p>
 				</div>
 				<div class="col-sm-2">
 					<a class="btn btn-default" onclick="checkEmail();" role="button">이메일인증</a>
@@ -128,11 +155,12 @@
 				<label for="inputPassword" class="col-sm-2 control-label">비밀번호</label>
 				<div class="col-sm-6 controls">
 					<input type="password" class="form-control disabled-form"
-						placeholder="숫자, 특수문자 포함 8자 이상"
+						placeholder="숫자, 특수문자 포함 8자 이상 20자 이하"
 						name="password"  readonly
 						data-validation-password-regex="(^.(?=.*[0-9])(?=.*[a-zA-Z]).*$)"
 						data-validation-password-message="알파벳과 숫자를 포함하여야 합니다."
-						minlength="8" data-validation-minlength-message="8자 이상 이어야합니다.">
+						minlength="8" data-validation-minlength-message="8자 이상 이어야합니다."
+						maxlength="20">
 					<p class="help-block"></p>
 				</div>
 			</div>

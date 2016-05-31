@@ -10,6 +10,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="matchNickname" resultType="Integer">
 		select count(*) from member where nickname=#{nickname}
 	</select>
+	<select id="matchEmail" resultType="Integer">
+		select count(*) from member where email=#{email}
+	</select>
 	<!-- <select id="totalCnt" parameterType="my.board.vo.Search" resultType="Integer">
 		select count(*) from MYBOARD
 		<where>

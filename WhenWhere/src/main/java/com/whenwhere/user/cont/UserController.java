@@ -58,5 +58,11 @@ public class UserController {
         return userService.nicknameCk(nickname);
     }
 	
+	@RequestMapping("/emailDupCk")
+	@ResponseBody
+	public String emailDupCk(@RequestParam String email) throws Exception{
+        return userService.emailCk(email);
+    }
+	
 	
 }

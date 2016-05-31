@@ -19,7 +19,24 @@ public class UserService {
 		boolean ok = false;
 		try {
 			rows = dao.matchNickname(nickname);
-			System.out.println(rows);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(rows>0){
+			ok = true;
+		}
+		JSONObject jobj = new JSONObject();
+		jobj.put("ok", ok);
+		return jobj.toJSONString();
+	}
+	
+	public String emailCk(String email){
+		MemberDAO dao = sqlSessionTemplate.getMapper(MemberDAO.class);
+		int rows=0;
+		boolean ok = false;
+		try {
+			rows = dao.matchEmail(email);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
