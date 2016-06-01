@@ -1,136 +1,172 @@
 <%@ page contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-<nav id="topNav" class="navbar navbar-default navbar-fixed-top">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#bs-navbar">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand page-scroll" href="#first"><i
-				class="ion-ios-analytics-outline"></i> WhenWhere</a>
-		</div>
-		<div class="navbar-collapse collapse" id="bs-navbar">
-			<ul class="nav navbar-nav">
-				<li><a class="page-scroll" href="#">WHEN?</a></li>
-				<li><a class="page-scroll" href="#">한글</a></li>
-				<li><a class="page-scroll" href="#">TOGETHER</a></li>
-				<li><a class="page-scroll" href="#">REVIEW</a></li>
-				<li><a class="page-scroll" href="#">WITH ME</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a class="page-scroll" data-toggle="modal"
-					title="A free Bootstrap video landing theme" href="#aboutModal">로그인</a>
-				</li>
+ <header class="main-header">
 
+    <!-- Logo -->
+    <a href="starter.html" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b>WW</b></span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>W</b>hen<b>W</b>here</span>
+	
+    </a>
 
-				<li><a href="#video-background" id="toggleVideo"
-					data-toggle="collapse"> <span id="span"> <input
-							type="checkbox" id="toggleVideo" checked data-toggle="toggle"
-							data-on="<i class='fa fa-play' aria-expanded='true'></i> Play"
-							data-off="<i class='collapsed' aria-expanded='false'></i> Pause">
-					</span>
-				</a></li>
-			</ul>
-		</div>
-	</div>
-</nav>
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+      <!-- Navbar Right Menu -->
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- Messages: style can be found in dropdown.less-->
+          <li class="dropdown messages-menu">
+            <!-- Menu toggle button -->
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-envelope-o"></i>
+              <span class="label label-success">4</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">You have 2 new messages</li>
+              <li>
+                <!-- inner menu: contains the messages -->
+                <ul class="menu">
+                  <li><!-- start message -->
+                    <a href="#">
+                      <div class="pull-left">
+                        <!-- User Image -->
+                        <img src="https://live.namuwikiusercontent.com/81/8141a5ed37a563c4142f1a65aca1c5ff7e213ea9e429ecc2cae2ac9c11bb1d63.jpg" class="img-circle" alt="User Image">
+                      </div>
+                      <!-- Message title and timestamp -->
+                      <h4>
+                        WhenWhereTeam
+                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                      </h4>
+                      <!-- The message -->
+                      <p>안녕하세요 WhenWhereTeam입니다.</p>
+                    </a>
+                  </li>
+                  <!-- end message -->
+                   <li><!-- start message -->
+                    <a href="#">
+                      <div class="pull-left">
+                        <!-- User Image -->
+                        <img src="https://live.namuwikiusercontent.com/81/8141a5ed37a563c4142f1a65aca1c5ff7e213ea9e429ecc2cae2ac9c11bb1d63.jpg" class="img-circle" alt="User Image">
+                      </div>
+                      <!-- Message title and timestamp -->
+                      <h4>
+                        WhenWhereTeam
+                        <small><i class="fa fa-clock-o"></i> 6 mins</small>
+                      </h4>
+                      <!-- The message -->
+                      <p>안녕하세요 WhenWhereTeam입니다.2</p>
+                    </a>
+                  </li>
+                  <!-- end message -->
+                </ul>
+                <!-- /.menu -->
+              </li>
+              <li class="footer"><a href="#">See All Messages</a></li>
+            </ul>
+          </li>
+          <!-- /.messages-menu -->
 
+          <!-- Notifications Menu -->
+          <li class="dropdown notifications-menu">
+            <!-- Menu toggle button -->
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-warning">10</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">You have 10 notifications</li>
+              <li>
+                <!-- Inner Menu: contains the notifications -->
+                <ul class="menu">
+                  <li><!-- start notification -->
+                    <a href="#">
+                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                    </a>
+                  </li>
+                  <!-- end notification -->
+                </ul>
+              </li>
+              <li class="footer"><a href="#">View all</a></li>
+            </ul>
+          </li>
+        
+          <!-- User Account Menu -->
+          <li class="dropdown user user-menu">
+            <!-- Menu Toggle Button -->
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <!-- The user image in the navbar-->
+              <img src="https://www.dog-zzang.co.kr/dog_sale/photo/201603/1457282732_13629600.jpg" class="user-image" alt="User Image">
+              <!-- hidden-xs hides the username on small devices so only the image appears. -->
+              <span class="hidden-xs">NICKNAME</span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- The user image in the menu -->
+              <li class="user-header">
+                <img src="https://www.dog-zzang.co.kr/dog_sale/photo/201603/1457282732_13629600.jpg" class="img-circle" alt="User Image">
 
-<div id="aboutModal" class="modal fade" tabindex="-1" role="dialog"
-	aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-body">
-				<h2 class="text-center">로그인</h2>
-				<h5 class="text-center">로그인창이야</h5>
-				<p class="text-justify"></p>
-				<div class="cd-login">
-					<form class="cd-form text-center">
-						<p class="fieldset">
-							<label class="image-replace cd-email" for="signin-email">E-mail</label>
-							<input class="full-width has-padding has-border"
-								id="signin-email" type="email" placeholder="E-mail">
-						</p>
+                <p>
+                 NICKNAME
+                  <small>WhenWhereTeam@gmail.com</small>
+                </p>
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="#" class="btn btn-default btn-flat">개인정보 수정</a>
+                </div>
+                <div class="pull-right">
+                  <a href="#" class="btn btn-default btn-flat">Log out</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+          <li>
+            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+	
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
 
-						<p class="fieldset">
-							<label class="image-replace cd-password" for="signin-password">Password</label>
-							<input class="full-width has-padding has-border"
-								id="signin-password" type="password" placeholder="Password">
-						</p>
+      <!-- search form (Optional) -->
+      <!-- <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form> -->
+      <!-- /.search form -->
 
-						<p class="fieldset">
-							<input type="checkbox" id="remember-me" checked> <label
-								for="remember-me">Remember me</label> <a href="#0">Forgot
-								your password?</a>
-
-						</p>
-
-						<p class="fieldset top_fieldset">
-							<button class="btn btn-primary btn-lg center-block" type="submit"
-								data-dismiss="modal" aria-hidden="true" data-dismiss="modal">login</button>
-							<br/>
-							<a href="#joinModal" data-toggle="modal"><button class="btn btn-primary btn-lg center-block" type="submit"
-								data-toggle="modal" aria-hidden="true" data-dismiss="modal">join us</button></a>
-						</p>
-					</form>
-				</div>
-				<br />
-			</div>
-		</div>
-	</div>
-</div>
-
-<div id="joinModal" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-join cd-form-join">
-				<h2 class="text-center"> 회원가입 </h2>
-				<h5 class="text-center"> 회원가입을 위한 페이지 입니다.</h5>
-				<p class="text-justify"></p>
-				<div class="contentwrap">
-				    <form class="form-horizontal">
-					    <div class="form-group">
-					    	<label for="inputEmail" class="col-sm-3 control-label">이메일</label>
-						    <div class="col-sm-5">
-						    	<input type="email" class="full-width has-padding has-border" id="inputEmail" placeholder="이메일">
-						    </div>
-						    <div class="col-sm-1">
-					      		<a class="btn btn-default" href="#" role="button">이메일 인증</a>
-					      	</div>
-					    </div>
-					    <div class="form-group">
-					    	<label for="inputNumberCheck" class="col-sm-3 control-label">인증번호 확인</label>
-					    	<div class="col-sm-6">
-					    		<input type="text" class="full-width has-padding has-border" id="inputNumberCheck" placeholder="인증번호입력">
-					    		<p class="join-help-block">전송된 인증번호를 입력해주세요.</p>
-					    	</div>
-					    </div>
-					    <div class="form-group">
-						    <label for="inputPassword" class="col-sm-3 control-label">비밀번호</label>
-						    <div class="col-sm-6">
-						    	<input type="password" class="full-width has-padding has-border" id="inputPassword" placeholder="비밀번호">
-						    </div>
-					    </div>
-					    <div class="form-group">
-					    	<label for="inputPasswordCheck" class="col-sm-3 control-label">비밀번호 확인</label>
-					   		<div class="col-sm-6">
-					    		<input type="password" class="full-width has-padding has-border" id="inputPasswordCheck" placeholder="비밀번호 확인">
-					    		<p class="join-help-block">숫자, 특수문자 포함 8자 이상</p>
-					    	</div>
-					    </div>
-					    <div class="form-group join-group">
-					    	<label for="inputName" class="col-sm-3 control-label"></label>
-					    	<div class="col-sm-6">
-					      		<button type="submit" class="btn btn-primary">회원가입</button> 
-					      		<button type="reset" data-dismiss="modal" class="btn btn-primary">취소</button>
-					    	</div>
-					    </div>
-				    </form>
-				</div>
-				<br />
-			</div>
-		</div>
-	</div>
-</div>
+      <!-- Sidebar Menu -->
+      <ul class="sidebar-menu">
+        <!-- Optionally, you can add icons to the links -->
+        <li class="active"><a href="#"><i class="fa fa-search" aria-hidden="true"></i> <span>Search</span></a></li>
+        <li><a href="#"><i class="fa fa-bullhorn" aria-hidden="true"></i><span>Notice</span></a></li>
+		 <li><a href="#"><i class="fa fa-gift" aria-hidden="true"></i><span>Event</span></a></li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-users" aria-hidden="true"></i><span>Communitiy</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a href="#"><i class="fa fa-book" aria-hidden="true"></i>Board</a></li>
+            <li><a href="#"><i class="fa fa-comments" aria-hidden="true"></i>Chat</a></li>
+			 <li><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></i>Review</a></li>
+          </ul>
+        </li>
+      </ul>
+      <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+  </aside>

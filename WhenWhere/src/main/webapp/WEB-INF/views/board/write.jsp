@@ -91,9 +91,9 @@
 													<tr>
 														<td colspan="2" class="bbs_write">
 															<div class="bbs_write_wrap">
-																<textarea name="dataContent" id="dataContent"
-																	style="width: 100%; height: 300px;" rows="10" cols="50"></textarea>
-
+																<!-- <textarea name="dataContent" id="dataContent"
+																	style="width: 100%; height: 300px;" rows="10" cols="50"></textarea> -->
+																<jsp:include page="smart.jsp" />
 
 															</div>
 														</td>

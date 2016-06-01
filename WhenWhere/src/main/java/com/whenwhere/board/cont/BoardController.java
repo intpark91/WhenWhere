@@ -36,5 +36,14 @@ public class BoardController {
 	public String noticeRead() {
 		return "board/noticeBoardRead";
 	}
-
+	
+	@RequestMapping(value = "/smart")
+	public String smart() {
+		return "board/smart";
+	}
+	
+	@RequestMapping(value = "/photo_uploader")
+	public String photo_uploader() {
+		return "board/photo_uploader";
+	}
 }
