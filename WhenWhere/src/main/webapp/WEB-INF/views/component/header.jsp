@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- Main Header -->
 <header class="main-header">
 
@@ -41,7 +41,7 @@
 											WhenWhereTeam <small><i class="fa fa-clock-o"></i> 5
 												mins</small>
 										</h4> <!-- The message -->
-										<p>¾È³çÇÏ¼¼¿ä WhenWhereTeamÀÔ´Ï´Ù.</p>
+										<p>ì•ˆë…•í•˜ì„¸ìš” WhenWhereTeamì…ë‹ˆë‹¤.</p>
 								</a>
 								</li>
 								<!-- end message -->
@@ -57,7 +57,7 @@
 											WhenWhereTeam <small><i class="fa fa-clock-o"></i> 6
 												mins</small>
 										</h4> <!-- The message -->
-										<p>¾È³çÇÏ¼¼¿ä WhenWhereTeamÀÔ´Ï´Ù.2</p>
+										<p>ì•ˆë…•í•˜ì„¸ìš” WhenWhereTeamì…ë‹ˆë‹¤.2</p>
 								</a>
 								</li>
 								<!-- end message -->
@@ -90,12 +90,21 @@
 						<li class="footer"><a href="#">View all</a></li>
 					</ul>
 				</li>
-
+				
+				<!-- login -->
+				<li class="login" display="none">
+				<a href="login">
+					<i class="fa fa-sign-in" aria-hidden="true" style="font-size: 20px;"></i>
+					<span class="hidden-xs" style="font-size: 20px;">&nbsp;LOGIN</span>
+				</a>
+				</li>
+				
 				<!-- User Account Menu -->
-				<li class="dropdown user user-menu">
-					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
-					data-toggle="dropdown"> <!-- The user image in the navbar--> <img
-						src="https://www.dog-zzang.co.kr/dog_sale/photo/201603/1457282732_13629600.jpg"
+				<li class="dropdown user user-menu logined" display="none">
+					<!-- Menu Toggle Button  -->
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+						<!-- The user image in the navbar  -->
+						<img src="https://www.dog-zzang.co.kr/dog_sale/photo/201603/1457282732_13629600.jpg"
 						class="user-image" alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
 						<span class="hidden-xs">NICKNAME</span>
 				</a>
@@ -107,10 +116,10 @@
 							<p>
 								NICKNAME <small>WhenWhereTeam@gmail.com</small>
 							</p></li>
-						<!-- Menu Footer-->
+						<!-- Menu Footer -->
 						<li class="user-footer">
 							<div class="pull-left">
-								<a href="#" class="btn btn-default btn-flat">°³ÀÎÁ¤º¸ ¼öÁ¤</a>
+								<a href="#" class="btn btn-default btn-flat">ê°œì¸ì •ë³´ ìˆ˜ì •</a>
 							</div>
 							<div class="pull-right">
 								<a href="#" class="btn btn-default btn-flat">Log out</a>
@@ -118,6 +127,7 @@
 						</li>
 					</ul>
 				</li>
+				
 				<!-- Control Sidebar Toggle Button -->
 				<li><a href="#" data-toggle="control-sidebar"><i
 						class="fa fa-gears"></i></a></li>
@@ -125,10 +135,19 @@
 		</div>
 	</nav>
 	<script type="text/javascript">
-		function msgPopup(){
-			var popup="../user/msgPopup.jsp";
-			var popOption="width=700, height=400";
-			window.open(popup,"",popOption);
+		$(function() {
+			if ("${userid}" == "username") {
+				$(".logined").css("display", "none");
+				$(".login").css("display", "block");
+			} else {
+				$(".login").css("display", "none");
+				$(".logined").css("display", "block");
+			}
+		});
+		function msgPopup() {
+			var popup = "../user/msgPopup";
+			var popOption = "width=700, height=400, top=200, left=200";
+			window.open(popup, "", popOption);
 		}
 	</script>
 </header>

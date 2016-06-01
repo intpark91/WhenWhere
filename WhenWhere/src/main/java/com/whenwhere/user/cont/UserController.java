@@ -68,6 +68,11 @@ public class UserController {
 		return userService.joinMember(member);
 	}
 	
+	@RequestMapping("/msgPopup")
+	public String msgPopup(){
+		return "component/msgPopup";
+	}
+	
 	@RequestMapping("/sendMsg")
 	@ResponseBody
 	public String sendMsg(MessageVO msg){

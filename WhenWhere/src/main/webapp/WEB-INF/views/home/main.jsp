@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="../css/main/skin-blue.css">
 <link rel="stylesheet" href="../css/jquery-ui-slider-pips.css" />
 <link rel="stylesheet" href="../css/slider.css" />
-
+<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
 <style type="text/css">
 body {
 	margin: 0;
