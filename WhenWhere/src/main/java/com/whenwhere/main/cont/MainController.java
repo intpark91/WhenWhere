@@ -28,4 +28,10 @@ public class MainController {
 		
 		return "home/login";
 	}
+	
+	@RequestMapping(value = "/search")
+	public String search() {
+		
+		return "home/search";
+	}
 }
