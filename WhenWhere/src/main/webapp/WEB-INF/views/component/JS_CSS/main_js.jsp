@@ -1,4 +1,3 @@
-<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
 <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 <script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script	src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
