@@ -17,8 +17,8 @@
 body {
 	margin: 0;
 	padding: 0;
-	background: url(../resources/img/bg_img.jpg) center center fixed
-		no-repeat;
+	/* background: url(../resources/img/bg_img.jpg) center center fixed
+		no-repeat; */
 }
 
 video {

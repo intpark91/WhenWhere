@@ -8,12 +8,15 @@
 	
 <jsp:include page="../component/JS_CSS/main_css.jsp" />
 
+<link rel="stylesheet" href="../css/modal.css">
+
 <link rel="stylesheet" href="../css/search.css">
 <link rel="stylesheet" href="../css/lightslider.css" />
 <link rel="stylesheet" href="../css/locationTab.css" />
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
+
 	<div class="wrapper">
 		<!-- include -->
 		<jsp:include page="../component/header.jsp" />
@@ -40,8 +43,8 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
+
 		</section>
 
 
@@ -114,6 +117,13 @@
 				</div>
 			</div>
 		</section>
+		
+		<ul class="cd-items cd-container">
+				<li class="cd-item"><img src="img/item-1.jpg"
+					alt="Item Preview"> <a href="#0" class="cd-trigger">Quick
+						View</a></li>
+				<!-- cd-item -->
+		</ul>
 
 
 		<div id="scrollDiv demo" class="scrollDiv">
@@ -121,8 +131,8 @@
 				<h1>
 					<span class="label label-info">행사</span>
 				</h1>
-				<ul id="content-slider1" class="content-slider1">
-					<li><a href="#"><img class="img-thumbnail"
+				<ul id="content-slider1" class="content-slider1 ">
+					<li><a href="#" class="cd-trigger"><img class="img-thumbnail"
 							src="../resources/img/bg_img.jpg" /></a></li>
 					<li><a href="#"><img class="img-thumbnail"
 							src="../resources/img/test.JPG" /></a></li>
@@ -164,6 +174,47 @@
 
 		</div>
 		<!-- /.content-wrapper -->
+
+		<div class="cd-quick-view">
+			<div class="cd-slider-wrapper">
+				<ul class="cd-slider">
+					<li class="selected"><img src="img/item-1.jpg" alt="Product 1"></li>
+					<li><img src="img/item-2.jpg" alt="Product 2"></li>
+					<li><img src="img/item-3.jpg" alt="Product 3"></li>
+				</ul>
+				<!-- cd-slider -->
+
+				<ul class="cd-slider-navigation">
+					<li><a class="cd-next" href="#0">Prev</a></li>
+					<li><a class="cd-prev" href="#0">Next</a></li>
+				</ul>
+				<!-- cd-slider-navigation -->
+			</div>
+			<!-- cd-slider-wrapper -->
+
+			<div class="cd-item-info">
+				<h2>Produt Title</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+					Officia, omnis illo iste ratione. Numquam eveniet quo, ullam itaque
+					expedita impedit. Eveniet, asperiores amet iste repellendus
+					similique reiciendis, maxime laborum praesentium.</p>
+
+				<ul class="cd-item-action">
+					<li><button class="add-to-cart">Add to cart</button></li>
+					<li><a href="#0">Learn more</a></li>
+				</ul>
+				<!-- cd-item-action -->
+			</div>
+			<!-- cd-item-info -->
+			<a href="#0" class="cd-close">Close</a>
+		</div>
+		<!-- cd-quick-view -->
+
+
+
+
+
+
 		<!-- include -->
 		<jsp:include page="../component/footer.jsp" />
 		<jsp:include page="../component/controlSidebar.jsp" />
@@ -182,6 +233,10 @@
 	<script src="../js/bootstrap-datepicker.js"></script>
 	<script src="../js/lightslider.js"></script>
 	<script src="../js/locationTab.js"></script>
+	
+	<script src="../js/velocity.min.js"></script>
+	<script src="../js/modal.js"></script>
+	
 	<script type="text/javascript">
             // When the document is ready
             $(document).ready(function () {
