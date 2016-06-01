@@ -63,7 +63,7 @@
 								<!-- end message -->
 							</ul> <!-- /.menu -->
 						</li>
-						<li class="footer"><a href="javascript:msgPopup();">See All Messages</a></li>
+						<li class="footer"><a href="#">See All Messages</a></li>
 					</ul>
 				</li>
 				<!-- /.messages-menu -->
@@ -124,11 +124,4 @@
 			</ul>
 		</div>
 	</nav>
-	<script type="text/javascript">
-		function msgPopup(){
-			var popup="../user/msgPopup.jsp";
-			var popOption="width=700, height=400";
-			window.open(popup,"",popOption);
-		}
-	</script>
 </header>
