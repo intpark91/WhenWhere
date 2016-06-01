@@ -39,6 +39,7 @@
 	<resources mapping="/js/**" location="/js/" />
 	<resources mapping="/images/**" location="/images/" />
 	<resources mapping="/smartEditor/**" location="/smartEditor/" />
+	<resources mapping="/img/**" location="/img/" />
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
@@ -73,12 +74,12 @@
 		<beans:property name="password" value="whenwhere" />
 	</beans:bean>
 
-<!-- 	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="mapperLocations" value="classpath:com/whenwhere/util/mapper/*.xml" />
 		<beans:property name="dataSource" ref="dataSource" />
-	</beans:bean> -->
+	</beans:bean>
 
-<!-- 	<beans:bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+	<beans:bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg index="0" ref="sqlSessionFactory" />
-	</beans:bean> -->
+	</beans:bean>
 </beans:beans>

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 	<script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -14,7 +14,10 @@
 	<script src="../js/jquery-ui-slider-pips.js"></script>
 	<script src="../js/slider.js"></script>
 	<script src="../js/app.js"></script>
-	
+	<link rel="stylesheet" href="../css/main/AdminLTE.css" type="text/css">
+	<link rel="stylesheet" href="../css/main/bootstrap.css" type="text/css">
+	<link rel="stylesheet" href="../css/main/skin-blue.css" type="text/css">
+	<link rel="stylesheet" href="../css/main/bootstrap.min.css" type="text/css">
 	<style type="text/css">
 	  body {
 		  margin : 0;

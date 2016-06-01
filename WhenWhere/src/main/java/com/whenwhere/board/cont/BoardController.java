@@ -39,11 +39,12 @@ public class BoardController {
 	
 	@RequestMapping(value = "/smart")
 	public String smart() {
-		return "board/smart";
+		return "board/smarteditor";
 	}
 	
-	@RequestMapping(value = "/photo_uploader")
-	public String photo_uploader() {
-		return "board/photo_uploader";
+	@RequestMapping(value = "/insert")
+	public String insert() {
+		return "board/insert";
 	}
+	
 }

@@ -9,11 +9,12 @@
 	content="This is a free Bootstrap landing page theme created for BootstrapZero. Feature video background and one page design." />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Codeply">
-<link rel="stylesheet"
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+
 <link rel="stylesheet" href="../css/board/boardwrite.css" type="text/css">
 
 
+<link rel="stylesheet"
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>	
@@ -49,6 +50,14 @@ jQuery.browser = {};
 <body>
 	
 	<section class="bg-primary" id="one">
+		<div id="main_bg" class="info_main_bg" >
+					<div class="mainWrap">
+<!-- 						<h1>WHEN?WHERE!</h1>
+						<br>REVIEW<br>
+						<h1>생생한 REVIEW를 통해 간접적 체험해 보세요!</h1>	 -->
+					</div>
+					</div>
+	
 		<div class="container">
 			<div class="row">
 				<div
@@ -97,7 +106,7 @@ jQuery.browser = {};
 									<div class="board_box">
 										<div class="bbs_write">
 											<table class="write_1">
-												<caption>행사 글 쓰기</caption>
+												<h3>행사 글 쓰기</h3>
 												<tbody>
 													<tr>
 														<th scope="row"><label for="dataTitle">제 목</label></th>
@@ -112,8 +121,8 @@ jQuery.browser = {};
 													<tr>
 														<th scope="row"><label for="dataTitle">행사
 																시작일-종료일</label></th>
-														<td><input type="text" id="Datepicker">-<input
-															type="text" id="Datepicker2"></td>
+														<td><input type="text" id="Datepicker">----<input
+															type="text"  id="Datepicker2"></td>
 													</tr>
 													<tr>
 														<td colspan="2" class="bbs_write">

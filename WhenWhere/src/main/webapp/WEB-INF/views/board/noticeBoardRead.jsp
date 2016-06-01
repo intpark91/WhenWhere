@@ -28,6 +28,13 @@ h2 {
 <body>
 	
 	<section class="bg-primary" id="one">
+				<div id="main_bg" class="info_main_bg" >
+					<div class="mainWrap">
+<!-- 						<h1>WHEN?WHERE!</h1>
+						<br>REVIEW<br>
+						<h1>생생한 REVIEW를 통해 간접적 체험해 보세요!</h1>	 -->
+					</div>
+					</div>
 		<div class="container">
 			<div class="row">
 				<div

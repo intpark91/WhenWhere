@@ -9,18 +9,25 @@
 	content="This is a free Bootstrap landing page theme created for BootstrapZero. Feature video background and one page design." />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Codeply">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
-<link
-	href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css"
-	rel="stylesheet" />
-
-<link rel="stylesheet" href="../css/board/boardwrite.css" type="text/css">
+<link rel="stylesheet" href="../css/board/boardwrite.css"
+	type="text/css">
 
 </head>
 <body>
-	
+
 	<section class="bg-primary" id="one">
+		
+		<div id="main_bg" class="info_main_bg" >
+					<div class="mainWrap">
+<!-- 						<h1>WHEN?WHERE!</h1>
+						<br>REVIEW<br>
+						<h1>생생한 REVIEW를 통해 간접적 체험해 보세요!</h1>	 -->
+					</div>
+					</div>
+	
 		<div class="container">
 			<div class="row">
 				<div
@@ -69,7 +76,7 @@
 									<div class="board_box">
 										<div class="bbs_write">
 											<table class="write_1">
-												<caption>게시판 글 쓰기</caption>
+												<h3>게시판 글 쓰기</h3>
 												<tbody>
 													<tr>
 														<th scope="row"><label for="dataTitle">제 목</label></th>
@@ -92,11 +99,11 @@
 																<!-- <textarea name="dataContent" id="dataContent"
 																	style="width: 100%; height: 300px;" rows="10" cols="50"></textarea> -->
 																<jsp:include page="smarteditor.jsp" />
-							
+
 															</div>
 														</td>
 													</tr>
-													
+
 
 													<!-- 에디터영역 끝.-->
 												</tbody>
@@ -124,7 +131,7 @@
 		</div>
 
 	</section>
-	
+
 
 </body>
 </html>
