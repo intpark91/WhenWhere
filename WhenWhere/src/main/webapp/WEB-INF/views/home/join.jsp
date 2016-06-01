@@ -3,10 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<jsp:include page="../component/JS_CSS/join_css.jsp" />
+	<jsp:include page="../component/core_head.jsp" />
 	<title>WhenWhere</title>
 	<script type="text/javascript">
-	
 	var error = "${error}";
 	var status = "${status}";
 	var checkAjaxSetTimeout;
@@ -210,6 +209,7 @@
 		<jsp:include page="../component/controlSidebar.jsp" />
 	</div>
 	<!-- scripts -->
-	<jsp:include page="../component/JS_CSS/join_js.jsp" />
+	<jsp:include page="../component/core_js.jsp" />
+	<script src="../js/jqBootstrapValidation.js"></script>
 </body>
 </html>

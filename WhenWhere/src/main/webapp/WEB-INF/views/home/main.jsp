@@ -3,9 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<jsp:include page="../component/core_head.jsp" />
 	<title>WhenWhereTest</title>
-	<jsp:include page="../component/JS_CSS/main_css.jsp" />
-	<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
+	<link rel="stylesheet" href="../css/jquery-ui-slider-pips.css" />
+	<link rel="stylesheet" href="../css/slider.css" />
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -55,6 +57,8 @@ desired effect
 		<jsp:include page="../component/controlSidebar.jsp" />
 	</div>
 	<!-- scripts -->
-	<jsp:include page="../component/JS_CSS/main_js.jsp" />
+	<jsp:include page="../component/core_js.jsp" />
+	<script src="../js/jquery-ui-slider-pips.js"></script>
+	<script src="../js/slider.js"></script>
 </body>
 </html>

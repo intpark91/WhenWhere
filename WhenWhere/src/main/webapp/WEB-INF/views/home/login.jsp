@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<jsp:include page="../component/core_head.jsp" />
 	<title>WhenWhereTest</title>
-	<jsp:include page="../component/JS_CSS/login_css.jsp" />
-	<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+	<link rel="stylesheet" href="../css/home/login.css" /> 
+	<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 	<script type="text/javascript">
-		
 		function login(){
 			alert("login try");
 			var loginSer = $('form').serialize();
@@ -102,6 +102,7 @@
 		<jsp:include page="../component/controlSidebar.jsp" />
 	</div>
 	<!-- scripts -->
-	<jsp:include page="../component/JS_CSS/login_js.jsp" />
+	<jsp:include page="../component/core_js.jsp" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
 </body>
 </html>

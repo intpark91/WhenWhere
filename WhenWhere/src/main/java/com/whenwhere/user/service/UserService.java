@@ -74,10 +74,8 @@ public class UserService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-		System.out.println("decoded email : "  + member.getEmail());
 		MemberVO loginedMember = dao.login(member);
 		if(loginedMember!=null){
-			System.out.println("loginedMember is not null");
 			ok=true;
 			session.setAttribute("member", loginedMember);
 		}
