@@ -41,7 +41,7 @@
 											WhenWhereTeam <small><i class="fa fa-clock-o"></i> 5
 												mins</small>
 										</h4> <!-- The message -->
-										<p>안녕하세요 WhenWhereTeam입니다.</p>
+										<p>�������몄�� WhenWhereTeam������.</p>
 								</a>
 								</li>
 								<!-- end message -->
@@ -57,13 +57,13 @@
 											WhenWhereTeam <small><i class="fa fa-clock-o"></i> 6
 												mins</small>
 										</h4> <!-- The message -->
-										<p>안녕하세요 WhenWhereTeam입니다.2</p>
+										<p>�������몄�� WhenWhereTeam������.2</p>
 								</a>
 								</li>
 								<!-- end message -->
 							</ul> <!-- /.menu -->
 						</li>
-						<li class="footer"><a href="javascript:msgPopup();">See All Messages</a></li>
+						<li class="footer"><a href="#">See All Messages</a></li>
 					</ul>
 				</li>
 				<!-- /.messages-menu -->
@@ -119,7 +119,7 @@
 						<!-- Menu Footer -->
 						<li class="user-footer">
 							<div class="pull-left">
-								<a href="#" class="btn btn-default btn-flat">개인정보 수정</a>
+								<a href="#" class="btn btn-default btn-flat">My Page</a>
 							</div>
 							<div class="pull-right">
 								<a href="#" class="btn btn-default btn-flat">Log out</a>
