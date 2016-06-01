@@ -106,9 +106,17 @@ video{
 				<form method="post">
 					<h3 class="control-sidebar-heading">설정</h3>
 					<div class="form-group">
-						<label class="control-sidebar-subheading"> 배경 화면 정지 <input
-							type="checkbox" class="pull-right" checked>
+						<label class="control-sidebar-subheading"> 배경 화면 정지 
+						
+						<a href="#video-background" id="toggleVideo" data-toggle="collapse"> 
+						<span id="span"> 
+						<input type="checkbox" id="toggleVideo" checked data-toggle="toggle"
+							data-on="<i class='fa fa-play' aria-expanded='true'></i> Play"
+							data-off="<i class='collapsed' aria-expanded='false'></i> Pause">
+						</span>
+						</a>
 						</label>
+						
 						<p>배경화면을 멈춥니다.</p>
 					</div>
 				</form>
