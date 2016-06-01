@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/home")
@@ -18,20 +19,19 @@ public class MainController {
 		return "home/main";
 	}
 	
-	@RequestMapping(value = "/join")
+	@RequestMapping(value = "/joinForm")
 	public String join(HttpSession session, HttpServletRequest request) {
 		ServletContext application = request.getServletContext();
 		application.setAttribute(session.getId(), session);
 		return "home/join";
 	}
 	
-	@RequestMapping(value = "/login")
+	@RequestMapping(value = "/loginForm")
 	public String login() {
-		
 		return "home/login";
 	}
 	
-	@RequestMapping(value = "/search")
+	@RequestMapping(value = "/searchForm")
 	public String search() {
 		
 		return "home/search";

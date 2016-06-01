@@ -93,7 +93,7 @@
 				
 				<!-- login -->
 				<li class="login" display="none">
-				<a href="login">
+				<a href="loginForm">
 					<i class="fa fa-sign-in" aria-hidden="true" style="font-size: 20px;"></i>
 					<span class="hidden-xs" style="font-size: 20px;">&nbsp;LOGIN</span>
 				</a>
@@ -136,7 +136,7 @@
 	</nav>
 	<script type="text/javascript">
 		$(function() {
-			if ("${userid}" == "") {
+			if ("${sessionScope.member.email}" == "") {
 				$(".logined").css("display", "none");
 				$(".login").css("display", "block");
 			} else {
