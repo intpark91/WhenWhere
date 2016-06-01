@@ -11,18 +11,12 @@
 <meta name="generator" content="Codeply">
 <link rel="stylesheet"
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
-<link
-	href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css"
-	rel="stylesheet" />
-<link rel="stylesheet"
-	href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
-<link rel="stylesheet" href="../css/styles.css" />
-<link rel="stylesheet" href="../css/reviewBoard.css" type="text/css">
+
+<link rel="stylesheet" href="../css/board/reviewBoard.css" type="text/css">
 
 
 </head>
 <body>
-	<jsp:include page="../component/topNav.jsp" />
 	<section class="bg-primary" id="one">
 					<div id="main_bg" class="info_main_bg" >
 					<div class="mainWrap">
@@ -31,30 +25,23 @@
 						<h1>생생한 REVIEW를 통해 간접적 체험해 보세요!</h1>	 -->
 					</div>
 					</div>
-	
 		<div class="container">				
 			<div class="row">
 
 				<div
 					class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2 text-center">
-					
-
-					
 					<div class="con_area">
 						<div class="festivalWrap">
 							<div class="thisMonth">
 								<h3>Focus</h3>
 								<h4>이달의 행사</h4>
-
 								<div class="thisMonth2" style="position: relative;">5월</div>
 								<div class="festival">
 									<ul class="festival_list">
-
 										<li class="festival_list_child">
 											<ul class="bandi_list">
 												<li class="bandi_img"><a
 													href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=20746">
-
 														<img
 														src="./전라북도 토탈관광 - 여행정보_문화•축제_files/20160426153420145.jpg"
 														alt="">
@@ -64,7 +51,6 @@
 														전주한지문화축제</a><br> <span class="bandi_list_date">2016.05.05~05.08</span></li>
 											</ul>
 										</li>
-
 										<li class="festival_list_child">
 											<ul class="bandi_list">
 												<li class="bandi_img"><a
@@ -94,8 +80,6 @@
 														바래봉 철쭉제</a><br> <span class="bandi_list_date">2016.04.23~05.22</span></li>
 											</ul>
 										</li>
-
-
 									</ul>
 									<ul class="festival_page">
 										<li><a
@@ -270,17 +254,6 @@
 
 									<li>기간: 2015.05.30~06.01</li> 조선조 숙종대의 마상궁술대회 및 영조대의 물놀이와 판소리,
 									백일장 등 민속무예놀이를 종합 대사습이라 합니다.
-
-
-
-
-
-
-
-
-
-
-
 								</ul>
 							</div>
 
@@ -300,25 +273,8 @@
 									</a>
 								</h3>
 								<ul class="stay_infobox">
-
-
-
-
 									<li>대한민국을 대표하는 철새들의 휴식지 금강호 일원및 철새조망대에서 "군산세계철새축제"가 매년
 										11월에 개최됩니다. 국내 최대 규모의 철새 전문시설인 철새조망대는 ...</li>
-
-
-
-
-
-
-
-
-
-
-
-
-
 								</ul>
 							</div>
 
@@ -328,8 +284,6 @@
 
 									<img src="./전라북도 토탈관광 - 여행정보_문화•축제_files/20160118160814204.jpg"
 									alt="197518_image2_1.jpg" class="photo_img">
-
-
 								</a>
 								<h3>
 									<a
@@ -338,27 +292,9 @@
 									</a>
 								</h3>
 								<ul class="stay_infobox">
-
-
 									<li>기간: 2015.10.23~10.25</li>
-
-
-
 									<li>전북 부안지역 특산품인 곰소젓갈과 청정 수산물을 즐길 수 있는 &lt;곰소젓갈수산물축제&gt;가
 										10월 23일부터 25일까지 진서면 곰소젓갈마을 일원에서 열린다. 곰소젓갈은 서해 ...</li>
-
-
-
-
-
-
-
-
-
-
-
-
-
 								</ul>
 							</div>
 
@@ -378,27 +314,9 @@
 									</a>
 								</h3>
 								<ul class="stay_infobox">
-
-
 									<li>기간: 2016.09.30~10.02</li>
-
-
-
 									<li>즐거운 체험거리, 공연, 먹을거리가 가득한 군산의 대표축제로써 일제강점기 수탈의 역사 속 군산
 										사람들의 항거와 저항을 기억하고 현재 우리모습을 돌아보는 장으로 당시를 살았던 사람 ...</li>
-
-
-
-
-
-
-
-
-
-
-
-
-
 								</ul>
 							</div>
 
@@ -408,8 +326,6 @@
 
 									<img src="./전라북도 토탈관광 - 여행정보_문화•축제_files/20160106044727979.png"
 									alt="1771479_image2_1.png" class="photo_img">
-
-
 								</a>
 								<h3>
 									<a
@@ -418,38 +334,17 @@
 									</a>
 								</h3>
 								<ul class="stay_infobox">
-
-
 									<li>기간: 2016.01.01~02.14</li>
-
-
-
 									<li><span style="font-size: 14px;">제5회 지리산남원 바래봉
 											눈꽃축제&gt;가 2016년 1월 1일(금)부터 2월 14일(일)까지 남원시 운봉읍 지리산 바래봉 ... </span></li>
-
-
-
-
-
-
-
-
-
-
-
-
-
 								</ul>
 							</div>
-
 							<div class="photoWrap">
 								<a
 									href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=165">
 
 									<img src="./전라북도 토탈관광 - 여행정보_문화•축제_files/20160106055630188.jpg"
 									alt="2028703_image2_1.jpg" class="photo_img">
-
-
 								</a>
 								<h3>
 									<a
@@ -458,38 +353,16 @@
 									</a>
 								</h3>
 								<ul class="stay_infobox">
-
-
 									<li>기간: 2015.08.22~12.31</li>
-
-
-
 									<li><span style="font-size: 14px;">"산속여우빛" 축제는 1만여
 											평의 허브가 있는 정원에 &lt;어린 왕자&gt; 이야기를 테마로, 정원 곳곳 ... </span></li>
-
-
-
-
-
-
-
-
-
-
-
-
-
 								</ul>
 							</div>
-
 							<div class="photoWrap">
 								<a
 									href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=24057">
-
 									<img src="./전라북도 토탈관광 - 여행정보_문화•축제_files/20160415174801821.jpg"
 									alt="마이산배경꽃잔디.jpg" class="photo_img">
-
-
 								</a>
 								<h3>
 									<a
@@ -498,27 +371,9 @@
 									</a>
 								</h3>
 								<ul class="stay_infobox">
-
-
 									<li>기간: 2016.04.29~05.01</li>
-
-
-
 									<li>진안 연장리의 독특한 꽃잔디를 테마로 체험형 축제로 승화시켜 연장리의 브랜드 가치를 극대화
 										시키며, 지역축제를 전국적인 자연 관광 축제로 발전시켜 나아감으로써 관광자원 개발과 대 ...</li>
-
-
-
-
-
-
-
-
-
-
-
-
-
 								</ul>
 							</div>
 
@@ -528,8 +383,6 @@
 
 									<img src="./전라북도 토탈관광 - 여행정보_문화•축제_files/20160113232544821.jpg"
 									alt="139408010009584.jpg" class="photo_img">
-
-
 								</a>
 								<h3>
 									<a
@@ -538,38 +391,17 @@
 									</a>
 								</h3>
 								<ul class="stay_infobox">
-
-
 									<li>기간: 2016.10.05~10.09</li>
-
-
-
 									<li>고창읍성(모양성)은 조선 단종 원년(1453년) 외침을 막기 위해 당시 전라도와 제주도 21개현의
 										백성들이 힘을 합쳐 축성한 성곽으로 우리나라에서 가장 원형이 잘 보존된 자연석 ...</li>
-
-
-
-
-
-
-
-
-
-
-
-
-
 								</ul>
 							</div>
 
 							<div class="photoWrap">
 								<a
 									href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=13433">
-
 									<img src="./전라북도 토탈관광 - 여행정보_문화•축제_files/20160113231700831.jpg"
 									alt="139407885641689.jpg" class="photo_img">
-
-
 								</a>
 								<h3>
 									<a
@@ -578,30 +410,13 @@
 									</a>
 								</h3>
 								<ul class="stay_infobox">
-
-
 									<li>기간: 2016.08.27~08.28</li> 제19회 고창 해풍 고추 축제
 									<br> 청정 해풍 고추
 									<br> 그 참맛과 참빛 체험
 									<br>
-
-
-
-
-
-
-
-
-
-
-
-
 								</ul>
 							</div>
-
-
 						</div>
-
 						<div id="count">
 							<ul>
 								<li><a onclick="fnCtntSearchForm(1); ">&lt;&lt;</a></li>
@@ -622,7 +437,7 @@
 		</div>
 		
 	</section>
-	<jsp:include page="../component/footer.jsp" />
+	
 	<script
 		src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script

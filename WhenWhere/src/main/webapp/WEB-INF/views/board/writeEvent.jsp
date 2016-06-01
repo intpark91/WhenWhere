@@ -11,18 +11,12 @@
 <meta name="generator" content="Codeply">
 <link rel="stylesheet"
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
-<link
-	href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css"
-	rel="stylesheet" />
-<link rel="stylesheet"
-	href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
-<link rel="stylesheet" href="../css/styles.css" />
-<link rel="stylesheet" href="../css/boardwrite.css" type="text/css">
+<link rel="stylesheet" href="../css/board/boardwrite.css" type="text/css">
 
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>	
-	
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>	
 <script type="text/javascript">
 jQuery.browser = {};
 (function () {
@@ -53,7 +47,7 @@ jQuery.browser = {};
 
 </head>
 <body>
-	<jsp:include page="../component/topNav.jsp" />
+	
 	<section class="bg-primary" id="one">
 		<div class="container">
 			<div class="row">
@@ -121,34 +115,13 @@ jQuery.browser = {};
 														<td><input type="text" id="Datepicker">-<input
 															type="text" id="Datepicker2"></td>
 													</tr>
-
-
-													<!-- 에디터영역 시작-->
-
 													<tr>
 														<td colspan="2" class="bbs_write">
 															<div class="bbs_write_wrap">
-																<textarea name="dataContent" id="dataContent"
-																	style="width: 100%; height: 300px;" rows="10" cols="50"></textarea>
-
-
+																<jsp:include page="smarteditor.jsp" />
 															</div>
 														</td>
 													</tr>
-													<tr>
-														<th scope="row">첨부파일</th>
-														<td class="bbs_flie">
-															<div id="uploadfield">
-																<input type="file" name="upload" title="첨부파일"><br>
-																<input type="file" name="upload" title="첨부파일"><br>
-																<input type="file" name="upload" title="첨부파일"><br>
-																<input type="file" name="upload" title="첨부파일"><br>
-																<input type="file" name="upload" title="첨부파일"><br>
-															</div>
-														</td>
-													</tr>
-
-													<!-- 에디터영역 끝.-->
 												</tbody>
 											</table>
 										</div>
@@ -174,14 +147,5 @@ jQuery.browser = {};
 		</div>
 
 	</section>
-	
-	<jsp:include page="../component/footer.jsp" />
-	
-	<script
-		src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<script
-		src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
-	<script src="../js/scripts.js"></script>
 </body>
 </html>
