@@ -12,3 +12,23 @@
 <link rel="stylesheet" href="../css/main/skin-blue.css">
 <link rel="stylesheet" href="../css/jquery-ui-slider-pips.css" />
 <link rel="stylesheet" href="../css/slider.css" />
+
+<style>
+body {
+	margin: 0;
+	padding: 0;
+	background: url(../resources/img/bg_img.jpg) center center fixed
+		no-repeat;
+}
+
+video {
+	position: fixed;
+	top: 0;
+	left: 0;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	z-index: -1;
+}
+</style>
