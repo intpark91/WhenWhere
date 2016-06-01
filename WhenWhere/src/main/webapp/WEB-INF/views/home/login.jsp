@@ -5,23 +5,27 @@
 <head>
 	<title>WhenWhereTest</title>
 	<jsp:include page="../component/JS_CSS/login_css.jsp" />
+	<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
 	<script type="text/javascript">
 		
-		function checkLogin(){
+		function login(){
+			alert("login try");
 			var loginSer = $('form').serialize();
+			alert(loginSer);
 			$.ajax({
 				url : '../user/login',
 				type : 'POST',
 				data : loginSer ,
+				dataType : "json",
 				success : function(check) {
 					if(check.ok){
-						alert('이메일 인증을 위한 메일보내기 성공');
-						location.href = "";
+						alert('로그인 성공');
+						location.href="../home/main";
 					}else{
-						alert('이메일 인증을 위한 메일보내기 실패');
+						alert('로그인 실패');
 					}
 				},
-				error : function(hxr, data, error) {
+				error : function(xhr, data, error) {
 					console.log(error);
 				},
 				complete : function() {
@@ -74,15 +78,15 @@
 							<div class="col-md-12 col-xs-12 login_control">
 								<div class="control">
 									<div class="label">Email Address</div>
-									<input type="text" class="form-control" value="admin@gmail.com" />
+									<input type="text" class="form-control"  name="email" value="whenwhere@gmail.com" />
 								</div>
 
 								<div class="control">
 									<div class="label">Password</div>
-									<input type="password" class="form-control" value="123456" />
+									<input type="password" class="form-control" name="password" value="whenwhere" />
 								</div>
 								<div align="center">
-									<button class="btn btn-orange" onclick="checkLogin();">LOGIN</button>
+									<button type="button" class="btn btn-orange" onclick="login();">LOGIN</button>
 								</div>
 							</div>
 						</div>

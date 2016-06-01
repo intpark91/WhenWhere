@@ -1,5 +1,10 @@
 package com.whenwhere.user.service;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONObject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +62,28 @@ public class UserService {
 		
 		JSONObject jobj = new JSONObject();
 		jobj.put("ok", ok);
+		return jobj.toJSONString();
+	}
+	
+	public String login(MemberVO member, HttpSession session){
+		MemberDAO dao = sqlSessionTemplate.getMapper(MemberDAO.class);
+		boolean ok = false;
+		try {
+			member.setEmail(URLDecoder.decode(member.getEmail(), "UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		System.out.println("decoded email : "  + member.getEmail());
+		MemberVO loginedMember = dao.login(member);
+		if(loginedMember!=null){
+			System.out.println("loginedMember is not null");
+			ok=true;
+			session.setAttribute("member", loginedMember);
+		}
+		JSONObject jobj = new JSONObject();
+		jobj.put("ok", ok);
+		System.out.println(jobj.toJSONString());
 		return jobj.toJSONString();
 	}
 }

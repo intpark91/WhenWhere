@@ -68,6 +68,19 @@ public class UserController {
 		return userService.joinMember(member);
 	}
 	
+	@RequestMapping("/login")
+	@ResponseBody
+	public String login(MemberVO member, HttpSession session){
+		String str = userService.login(member, session);
+		System.out.println(str);
+		return str;
+	}
+	
+	@RequestMapping("/msgPopup")
+	public String msgPopup(){
+		return "component/msgPopup";
+	}
+	
 	@RequestMapping("/sendMsg")
 	@ResponseBody
 	public String sendMsg(MessageVO msg){

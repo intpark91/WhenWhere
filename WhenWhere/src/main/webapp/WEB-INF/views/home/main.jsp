@@ -5,6 +5,7 @@
 <head>
 	<title>WhenWhereTest</title>
 	<jsp:include page="../component/JS_CSS/main_css.jsp" />
+	<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
 </head>
 <!--
 BODY TAG OPTIONS:
