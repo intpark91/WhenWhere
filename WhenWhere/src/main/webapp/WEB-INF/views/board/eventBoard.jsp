@@ -16,26 +16,9 @@
 	rel="stylesheet" />
 <link rel="stylesheet"
 	href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
-<link rel="stylesheet" href="../css/styles.css" />
+
 <link rel="stylesheet" href="../css/eventboard.css" type="text/css">
 
-
-<script>
-	$(function(){
-		$(".lang").on("click", function(){
-			var lan = $(this).children("a").attr("id");
-			var language = "";
-			if("eng" == lan){
-				language = "kte";
-			} else if("chn" == lan){
-				language = "ktc";
-			} else if("jpn" == lan){
-				language = "ktj";
-			}
-			CSLI_ETGI_TRANS(location.href, language, 'web_3');
-		});
-	});
-</script>
 <style>
 	h2{
 		padding-top : 10px;

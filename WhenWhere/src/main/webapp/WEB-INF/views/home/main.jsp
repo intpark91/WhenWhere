@@ -21,7 +21,7 @@
         apply the skin class to the body tag so the changes take effect.
   -->
   <link rel="stylesheet" href="../css/skin-blue.css">
-	
+  <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />	
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -51,7 +51,7 @@ video{
 </head>
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
 	<div class="wrapper">
-		<video autoplay loop poster = "img.jpg">
+		<video autoplay loop poster = "img.jpg" id="video-background">
 		<source src = "../resources/video/test3.mp4" type = "video/mp4">
 		</video>
 	<jsp:include page="../component/topNav.jsp" />
