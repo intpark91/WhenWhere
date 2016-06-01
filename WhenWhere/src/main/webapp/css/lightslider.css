@@ -424,6 +424,10 @@ ul {
 	height: 100%;
 }
 
+.item li{
+	height: 100%;
+}
+
 .item{
 	visibility: hidden;
 }

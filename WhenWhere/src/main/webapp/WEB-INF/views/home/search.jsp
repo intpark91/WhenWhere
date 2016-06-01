@@ -16,7 +16,6 @@
 	rel="stylesheet" />
 <link rel="stylesheet"
 	href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
-<link rel="stylesheet" href="../css/styles.css" />
 
 <link rel="stylesheet" href="../css/search.css">
 <link rel="stylesheet" href="../css/lightslider.css" />
@@ -136,11 +135,9 @@
 				<span class="label label-info">행사</span>
 			</h1>
 			<ul id="content-slider1" class="content-slider1">
-				<li><a href="#"><img class="img-thumbnail"
-						src="../resources/img/bg_img.jpg" /></a></li>
-				<li><a href="#"><img class="img-thumbnail"
-						src="../resources/img/test.JPG" /></a></li>
-				<li><a href="#">3_event</a></li>
+				<li><a href="#"><img class="img-thumbnail" src="../resources/img/bg_img.jpg" /></a></li>
+				<li><a href="#"><img class="img-thumbnail" src="../resources/img/test.JPG" /></a></li>
+				<li><a href="#">aa</a><div class="test">test</div></li>
 				<li><a href="#">4_event</a></li>
 				<li><a href="#">5_event</a></li>
 				<li><a href="#">6_event</a></li>
@@ -152,8 +149,7 @@
 				<span class="label label-info">특산물</span>
 			</h1>
 			<ul id="content-slider2" class="content-slider2">
-				<li><a href="#"><img
-						src="../resources/img/cd-icon-email.svg" /></a></li>
+				<li><a href="#"><img src="../resources/img/cd-icon-email.svg" class="img-thumbnail"/></a></li>
 				<li><a href="#">2_region</a></li>
 				<li><a href="#">3_region</a></li>
 				<li><a href="#">4_region</a></li>
@@ -167,7 +163,7 @@
 				<span class="label label-info">숙박</span>
 			</h1>
 			<ul id="content-slider3" class="content-slider3">
-				<li><a href="#"><img src="../resources/img/cd-icon-email.svg" /></a></li>
+				<li><a href="#"><img src="../resources/img/cd-icon-email.svg" class="img-thumbnail"/></a></li>
 				<li><a href="#">2_food</a></li>
 				<li><a href="#">3_food</a></li>
 				<li><a href="#">4_food</a></li>
@@ -183,85 +179,11 @@
 	<script src="../js/bootstrap-datepicker.js"></script>
 	<script src="../js/lightslider.js"></script>
 	<script src="../js/locationTab.js"></script>
+	
 	<script type="text/javascript">
-            // When the document is ready
-            $(document).ready(function () {
-                
-            	$('.item').css('display','none');
-            	
-                $('.input-daterange').datepicker({
-                    todayBtn: "linked"
-                });
-                
-                $('.locationSearchBtn').on('click', function() {
-                	if($('.tabs').css('display') == 'none'){
-                		$(this).text('상세검색∧');
-                		$('.tabs').slideDown();
-                	}else{
-                		$('.tabs').slideUp();
-                		$(this).text('상세검색∨');
-                	}
-				});
-                
-                $('.searchBtn').on('click', function() {
-					if($('.item').css('visibility') == 'hidden'){
-						$('.item').slideDown();
-						
-						setTimeout(function () {
-							$('.item').css('visibility','visible');
-						}, 500);
-						
-						$('#content-slider1').lightSlider({
-							loop:true,
-					        keyPress:true
-						});
-						
-						$('#content-slider2').lightSlider({
-							loop:true,
-					        keyPress:true
-						});
-						
-						$('#content-slider3').lightSlider({
-							loop:true,
-					        keyPress:true
-						});
-						
-						
-					}else{
-						$('.item').slideUp();
-						$('.item').slideDown();
-						
-						$(".content-slider1").empty();
-						$(".content-slider2").empty();
-						$(".content-slider3").empty();
-						
-						$(".item").each(function(k, v) {
-							var ul = $('<ul/>').attr('id','content-slider'+(k+1)).attr('class','content-slider'+(k+1));
-							ul.append("<li><a href='#'><img src='../resources/img/cd-icon-email.svg' /></a></li><li><a href='#'>2</a></li><li><a href='#'>3</a></li><li><a href='#'>4</a></li><li><a href='#'>5</a></li><li><a href='#'>6</a></li><li><a href='#'>7</a></li>");
-							$(this).html(ul);
-						});
-						
-						$("#content-slider1").lightSlider({
-			                loop:true,
-			                keyPress:true
-			            });
-						
-						$("#content-slider2").lightSlider({
-			                loop:true,
-			                keyPress:true
-			            });
-						
-						$("#content-slider3").lightSlider({
-			                loop:true,
-			                keyPress:true
-			            });
-						
-					}
-				});
-				
-				
-            
-            });
-    </script>
+		$('.input-daterange').datepicker({
+			todayBtn : "linked"
+		});
+	</script>
 </body>
 </html>

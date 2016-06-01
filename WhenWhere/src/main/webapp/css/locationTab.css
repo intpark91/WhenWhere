@@ -178,6 +178,7 @@ Main components
   -moz-animation: cd-fade-in 0.5s;
   animation: cd-fade-in 0.5s;
   overflow: auto;
+  padding: 10px;
 }
 .cd-tabs-content li p {
   font-size: 14px;
