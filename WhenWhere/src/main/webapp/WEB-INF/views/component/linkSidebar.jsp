@@ -21,7 +21,7 @@
 		<!-- Sidebar Menu -->
 		<ul class="sidebar-menu">
 			<!-- Optionally, you can add icons to the links -->
-			<li class="active"><a href="#"><i class="fa fa-search"
+			<li class="active"><a href="search"><i class="fa fa-search"
 					aria-hidden="true"></i> <span>Search</span></a></li>
 			<li><a href="#"><i class="fa fa-bullhorn" aria-hidden="true"></i><span>Notice</span></a></li>
 			<li><a href="#"><i class="fa fa-gift" aria-hidden="true"></i><span>Event</span></a></li>
