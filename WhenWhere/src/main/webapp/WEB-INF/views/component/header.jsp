@@ -136,7 +136,7 @@
 	</nav>
 	<script type="text/javascript">
 		$(function() {
-			if ("${userid}" == "username") {
+			if ("${userid}" == "") {
 				$(".logined").css("display", "none");
 				$(".login").css("display", "block");
 			} else {

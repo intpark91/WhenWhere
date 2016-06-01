@@ -14,7 +14,7 @@ public class MainController {
 
 	@RequestMapping(value = "/main")
 	public String main(Model model) {
-		model.addAttribute("userid", "username");
+		model.addAttribute("userid", null);
 		return "home/main";
 	}
 	
