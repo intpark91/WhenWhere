@@ -20,6 +20,7 @@
 
 <link rel="stylesheet" href="../css/search.css">
 <link rel="stylesheet" href="../css/lightslider.css" />
+<link rel="stylesheet" href="../css/locationTab.css" />
 
 </head>
 <body>
@@ -55,57 +56,59 @@
 		<div class="container" align="center">
 			<div class="row center locationSearchDiv">
 				<div class="tabs col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">
-					<div class="tab">
-						<input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
-						<label for="tab-1" class="tab-label">서울·경기</label>
-						<div class="tab-content">
-							<table class="locationTable">
-								<tr>
-									<td><input type="checkbox" id="가평" class="checkbox" /> <label for="가평">가평</label></td>
-									<td><input type="checkbox" id="강화" class="checkbox" /> <label for="강화">강화</label></td>
-									<td><input type="checkbox" id="고양" class="checkbox" /> <label for="고양">고양</label></td>
-									<td><input type="checkbox" id="과천" class="checkbox" /> <label for="과천">과천</label></td>
-								</tr>
-							</table>
-						</div>
-					</div>
-					<div class="tab">
-						<input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
-						<label for="tab-2" class="tab-label">영서</label>
-						<div class="tab-content">
-						</div>
-					</div>
-					<div class="tab">
-						<input type="radio" name="css-tabs" id="tab-3" class="tab-switch">
-						<label for="tab-3" class="tab-label">영동</label>
-						<div class="tab-content">
-						</div>
-					</div>
-					<div class="tab">
-						<input type="radio" name="css-tabs" id="tab-4" class="tab-switch">
-						<label for="tab-4" class="tab-label">충복</label>
-						<div class="tab-content">
-						</div>
-					</div>
-					<div class="tab">
-						<input type="radio" name="css-tabs" id="tab-5" class="tab-switch">
-						<label for="tab-5" class="tab-label">충남</label>
-						<div class="tab-content">
-						</div>
-					</div>
-					<div class="tab">
-						<input type="radio" name="css-tabs" id="tab-6" class="tab-switch">
-						<label for="tab-6" class="tab-label">경북</label>
-						<div class="tab-content">
-						</div>
-					</div>
-					<div class="tab">
-						<input type="radio" name="css-tabs" id="tab-7" class="tab-switch">
-						<label for="tab-7" class="tab-label">경남</label>
-						<div class="tab-content">
-						</div>
-					</div>
+					<div class="cd-tabs">
 					
+						<nav>
+							<ul class="cd-tabs-navigation">
+								<li><a data-content="서울·경기" class="selected" href="#0">서울·경기</a></li>
+								<li><a data-content="영서" href="#0">영서</a></li>
+								<li><a data-content="영동" href="#0">영동</a></li>
+								<li><a data-content="충복" href="#0">충복</a></li>
+								<li><a data-content="충남" href="#0">충남</a></li>
+								<li><a data-content="경북" href="#0">경북</a></li>
+								<li><a data-content="경남" href="#0">경남</a></li>
+								<li><a data-content="전북" href="#0">전북</a></li>
+								<li><a data-content="전남" href="#0">전남</a></li>
+								<li><a data-content="제주" href="#0">제주</a></li>
+
+							</ul>
+							<!-- cd-tabs-navigation -->
+						</nav>
+
+						<ul class="cd-tabs-content">
+							<li data-content="서울·경기" class="selected">
+								<ul class="locationUL">
+									<li>
+										<input type="checkbox" id="가평" class="checkbox" /> <label
+											for="가평">가평</label>
+									</li>
+									<li>
+										<input type="checkbox" id="강화" class="checkbox" /> <label
+											for="강화">강화</label>
+									</li>
+									<li>
+										<input type="checkbox" id="고양" class="checkbox" /> <label
+											for="고양">고양</label>
+									</li>
+									<li>
+										<input type="checkbox" id="과천" class="checkbox" /> <label
+											for="과천">과천</label>
+									</li>
+							
+								</ul>
+								
+								
+							</li>
+							<li data-content="영서"></li>
+							<li data-content="영동"></li>
+							<li data-content="충복"></li>
+							<li data-content="충남"></li>
+						</ul>
+						<!-- cd-tabs-content -->
+					</div>
+					<!-- cd-tabs -->
+
+
 				</div>
 				<div class="row">
 					<div class="col-sm-offset-3 col-sm-6 col-xs-offset-3 col-xs-6">
@@ -179,6 +182,7 @@
 	<script src="../js/jquery-1.9.1.min.js"></script>
 	<script src="../js/bootstrap-datepicker.js"></script>
 	<script src="../js/lightslider.js"></script>
+	<script src="../js/locationTab.js"></script>
 	<script type="text/javascript">
             // When the document is ready
             $(document).ready(function () {
@@ -193,14 +197,10 @@
                 	if($('.tabs').css('display') == 'none'){
                 		$(this).text('상세검색∧');
                 		$('.tabs').slideDown();
-                		
-                		
-                		
                 	}else{
                 		$('.tabs').slideUp();
                 		$(this).text('상세검색∨');
                 	}
-                		
 				});
                 
                 $('.searchBtn').on('click', function() {
