@@ -493,9 +493,17 @@ body {
     webkit-tap-highlight-color: #222;
 }
 
-.section1, .section2, .section3{
+.section1, .section2, .section3, .scrollDiv{
 	background-color: rgb(91, 192, 222);
 	padding: 0px;
+}
+
+@media only screen and (min-width: 767px) {
+	.section1, .section2, .section3, .scrollDiv{
+	background-color: rgb(91, 192, 222);
+	padding: 0px;
+	margin-left: 50px;
+}
 }
 
 .section1{
@@ -508,6 +516,11 @@ body {
 .section3{
 	padding-bottom: 60px;
 	margin-bottom: 10px;
+}
+
+.label-info{
+	background-color: #5BC0DE !important;
+    border-radius: 50px;
 }
 
 
