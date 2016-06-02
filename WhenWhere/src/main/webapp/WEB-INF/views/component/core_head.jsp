@@ -9,5 +9,6 @@
 <link rel="stylesheet" href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css">
 <link rel="stylesheet" href="../css/main/AdminLTE.css">
 <link rel="stylesheet" href="../css/main/skin-blue.css">
+
 <link rel="shortcut icon" href="../resources/img/WWfavi.ico">
 <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
