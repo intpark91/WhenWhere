@@ -51,7 +51,7 @@
 							<div class="col-md-12 col-xs-12 login_control">
 								<div class="control">
 									<div class="label">Email Address</div>
-									<input type="text" class="form-control"  name="email" value="whenwhere@gmail.c" />
+									<input type="text" class="form-control"  name="email" value="whenwhere@gmail.com" />
 								</div>
 
 								<div class="control">
