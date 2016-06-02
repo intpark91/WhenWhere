@@ -8,6 +8,18 @@
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
 	<link rel="stylesheet" href="../css/jquery-ui-slider-pips.css" />
 	<link rel="stylesheet" href="../css/slider.css" />
+	<style type="text/css">
+	video {
+		position: fixed;
+		top: 0;
+		left: 0;
+		min-width: 100%;
+		min-height: 100%;
+		width: auto;
+		height: auto;
+		z-index: -1;
+	}
+</style>
 </head>
 <!--
 BODY TAG OPTIONS:
