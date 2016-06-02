@@ -21,6 +21,14 @@ h1,h2,h3,h4 {
 color:#ffffff;
 }
 </style>	
+
+<script type="text/javascript">
+	$(function(){
+		$('.noticewrite').on('click',function(){
+			location.href="write"	
+		});
+	});
+</script>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
@@ -103,7 +111,7 @@ color:#ffffff;
 											<tr>
 												<td>공지</td>
 												<td><a
-													href="http://tour.jb.go.kr/board/view.do?skinId=SKIN_0000002&amp;boardId=BBS_0000001&amp;menuCd=DOM_000000104005000000&amp;startPage=1&amp;dataSid=347">전라북도
+													href="noticeRead">전라북도
 														관광명예부지사 공개추천 안내</a></td>
 
 												<td>20</td>
@@ -113,7 +121,7 @@ color:#ffffff;
 											<tr>
 												<td>공지</td>
 												<td><a
-													href="http://tour.jb.go.kr/board/view.do?skinId=SKIN_0000002&amp;boardId=BBS_0000001&amp;menuCd=DOM_000000104005000000&amp;startPage=1&amp;dataSid=272">제13회
+													href="noticeRead">제13회
 														전라북도관광사진 전국공모전</a></td>
 												
 												<td>51</td>
@@ -123,7 +131,7 @@ color:#ffffff;
 											<tr>
 												<td>347</td>
 												<td><a
-													href="http://tour.jb.go.kr/board/view.do?skinId=SKIN_0000002&amp;boardId=BBS_0000001&amp;menuCd=DOM_000000104005000000&amp;startPage=1&amp;dataSid=365">아중호수,
+													href="noticeRead">아중호수,
 														자연친화적 휴양형 관광명소 된다!</a></td>
 												
 												<td>8</td>
@@ -133,7 +141,7 @@ color:#ffffff;
 											<tr>
 												<td>346</td>
 												<td><a
-													href="http://tour.jb.go.kr/board/view.do?skinId=SKIN_0000002&amp;boardId=BBS_0000001&amp;menuCd=DOM_000000104005000000&amp;startPage=1&amp;dataSid=355">미국
+													href="noticeRead">미국
 														웨스트포인트 사관생도와 함께하는 태권도원 글로벌캠프</a></td>
 	
 												<td>56</td>
@@ -143,7 +151,7 @@ color:#ffffff;
 											<tr>
 												<td>345</td>
 												<td><a
-													href="http://tour.jb.go.kr/board/view.do?skinId=SKIN_0000002&amp;boardId=BBS_0000001&amp;menuCd=DOM_000000104005000000&amp;startPage=1&amp;dataSid=350">가자!
+													href="noticeRead">가자!
 														대한민국 보물창고 유네스코 창의도시 전주로~</a></td>
 
 												<td>23</td>
@@ -153,7 +161,7 @@ color:#ffffff;
 											<tr>
 												<td>344</td>
 												<td><a
-													href="http://tour.jb.go.kr/board/view.do?skinId=SKIN_0000002&amp;boardId=BBS_0000001&amp;menuCd=DOM_000000104005000000&amp;startPage=1&amp;dataSid=345">[뉴스]대아수목원으로
+													href="noticeRead">[뉴스]대아수목원으로
 														금앙화 봄꽃 구경 오세요 !</a></td>
 											
 												<td>17</td>
@@ -163,7 +171,7 @@ color:#ffffff;
 											<tr>
 												<td>343</td>
 												<td><a
-													href="http://tour.jb.go.kr/board/view.do?skinId=SKIN_0000002&amp;boardId=BBS_0000001&amp;menuCd=DOM_000000104005000000&amp;startPage=1&amp;dataSid=344">[뉴스]
+													href="noticeRead">[뉴스]
 														전라북도, 봄철 여행주간(5.1.～14.) 농촌방문객 20% 할인서비스 제공</a></td>
 												
 												<td>14</td>
@@ -173,7 +181,7 @@ color:#ffffff;
 											<tr>
 												<td>342</td>
 												<td><a
-													href="http://tour.jb.go.kr/board/view.do?skinId=SKIN_0000002&amp;boardId=BBS_0000001&amp;menuCd=DOM_000000104005000000&amp;startPage=1&amp;dataSid=343">[뉴스]
+													href="noticeRead">[뉴스]
 														설렘 가득한 완주의 봄, 완주군 다양한 프로그램 진행</a></td>
 											
 												<td>9</td>
@@ -183,7 +191,7 @@ color:#ffffff;
 											<tr>
 												<td>341</td>
 												<td><a
-													href="http://tour.jb.go.kr/board/view.do?skinId=SKIN_0000002&amp;boardId=BBS_0000001&amp;menuCd=DOM_000000104005000000&amp;startPage=1&amp;dataSid=342">[뉴스]프러포즈는
+													href="noticeRead">[뉴스]프러포즈는
 														완주 모악산에서! ‘완주 프러포즈 축제’ 열린다.</a></td>
 												
 												<td>6</td>
@@ -193,7 +201,7 @@ color:#ffffff;
 											<tr>
 												<td>340</td>
 												<td><a
-													href="http://tour.jb.go.kr/board/view.do?skinId=SKIN_0000002&amp;boardId=BBS_0000001&amp;menuCd=DOM_000000104005000000&amp;startPage=1&amp;dataSid=341">[뉴스]제86회
+													href="noticeRead">[뉴스]제86회
 														춘향제 한눈에 보는 “관람팁”</a></td>
 												
 												<td>6</td>
@@ -203,7 +211,7 @@ color:#ffffff;
 											<tr>
 												<td>339</td>
 												<td><a
-													href="http://tour.jb.go.kr/board/view.do?skinId=SKIN_0000002&amp;boardId=BBS_0000001&amp;menuCd=DOM_000000104005000000&amp;startPage=1&amp;dataSid=340">[뉴스]옥정호
+													href="noticeRead">[뉴스]옥정호
 														근교 유채꽃 만발 </a></td>
 												
 												<td>4</td>
@@ -213,7 +221,7 @@ color:#ffffff;
 											<tr>
 												<td>338</td>
 												<td><a
-													href="http://tour.jb.go.kr/board/view.do?skinId=SKIN_0000002&amp;boardId=BBS_0000001&amp;menuCd=DOM_000000104005000000&amp;startPage=1&amp;dataSid=339">[뉴스]2016
+													href="noticeRead">[뉴스]2016
 														순창 세계소스박람회 구경 오세요</a></td>
 												
 												<td>8</td>
@@ -244,8 +252,13 @@ color:#ffffff;
 										<li><a onclick="linkPage(35); ">&gt;&gt;</a></li>
 
 									</ul>
-								</div>
+
+								</div>	
+									<div id="btnWrap">
+									<button class="noticewrite" id="noticewrite">글쓰기</button>
+									</div>				
 							</div>
+
 						</div>
 					</div>
 				</div>

@@ -150,12 +150,16 @@ h2 {
 											</table>
 											<div class="bbs_btn">
 												<p class="fl">
-													<a
-														href="http://tour.jb.go.kr/board/list.do?skinId=SKIN_0000002&amp;boardId=BBS_0000001&amp;menuCd=DOM_000000104005000000&amp;startPage=1">목록</a>
+													<a href="review"><h4></font>목록</h4></a>
 												</p>
-											</div>
+											</div>		
 										</div>
-									</div>
+
+									</div>									
+											<div id="btnWrap">
+												<button class="noticeboard" id="reviewwrite">삭제하기</button>
+												<button class="noticeboard" id="reviewwrite">수정하기</button>
+											</div>
 								</div>
 							</div>
 						</div>
@@ -164,7 +168,7 @@ h2 {
 			</div>
 		</div>
 		</div>
-
+			
 		<!-- /.content-wrapper -->
 		<!-- include -->
 		<jsp:include page="../component/footer.jsp" />
