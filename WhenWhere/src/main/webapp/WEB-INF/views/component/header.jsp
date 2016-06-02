@@ -163,9 +163,6 @@
 						danger : {
 							label : "아니요",
 							className : "btn-danger",
-							callback : function() {
-	
-							}
 						}
 					}
 				});

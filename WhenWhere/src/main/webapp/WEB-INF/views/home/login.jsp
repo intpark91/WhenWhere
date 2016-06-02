@@ -51,7 +51,7 @@
 							<div class="col-md-12 col-xs-12 login_control">
 								<div class="control">
 									<div class="label">Email Address</div>
-									<input type="text" class="form-control"  name="email" value="whenwhere@gmail.com" />
+									<input type="text" class="form-control"  name="email" value="whenwhere@gmail.c" />
 								</div>
 
 								<div class="control">
@@ -89,7 +89,7 @@
 					if(check.ok){
 						location.href="../home/main";
 					}else{
-						alert('로그인 실패');
+						bootbox.alert('아이디 또는 비밀번호를 다시 확인하세요.<br>등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다.');
 					}
 				},
 				error : function(xhr, data, error) {
