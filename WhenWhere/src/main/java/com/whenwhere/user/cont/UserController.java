@@ -74,6 +74,12 @@ public class UserController {
 		return userService.login(member, session);
 	}
 	
+	@RequestMapping("/logout")
+	@ResponseBody
+	public String logout(HttpSession session){
+		return userService.logout(session);
+	}
+	
 	@RequestMapping("/msgPopup")
 	public String msgPopup(){
 		return "component/msgPopup";

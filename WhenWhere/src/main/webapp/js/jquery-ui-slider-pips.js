@@ -10,9 +10,6 @@
 					._valueMin(), max = slider._valueMax(), pips = (max - min)
 					/ slider.options.step, $handles = slider.element
 					.find(".ui-slider-handle"), $pips;
-			console.log("max="+ max);
-			console.log("min="+ min);
-			console.log("pips="+ pips);
 			var options = {
 				first : "label",	/* "label", "pip", false */
 				last : "label",		/* "label", "pip", false */
@@ -277,7 +274,6 @@
 				if(labelValue > max) delValue = labelValue - max;
 				
 				if(delValue == todayDate){
-					console.log("라벨추가"+month2);
 					return "<span class=\"" + classes + "\" style=\"" + css + "\">"
 					+ "<span class=\"ui-slider-line\"></span>"
 					+ "<span class=\"ui-slider-label\" data-value=\""

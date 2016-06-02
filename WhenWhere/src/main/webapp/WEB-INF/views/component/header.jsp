@@ -19,7 +19,7 @@
 		<div class="navbar-custom-menu">
 			<ul class="nav navbar-nav">
 				<!-- Messages: style can be found in dropdown.less-->
-				<li class="dropdown messages-menu">
+				<li class="dropdown messages-menu logined">
 					<!-- Menu toggle button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <i class="fa fa-envelope-o"></i> <span
 						class="label label-success">4</span>
@@ -41,7 +41,7 @@
 											WhenWhereTeam <small><i class="fa fa-clock-o"></i> 5
 												mins</small>
 										</h4> <!-- The message -->
-										<p>�������몄�� WhenWhereTeam������.</p>
+										<p>안녕하세요 WhenWhereTeam에서 <br>알립니다.</p>
 								</a>
 								</li>
 								<!-- end message -->
@@ -57,7 +57,7 @@
 											WhenWhereTeam <small><i class="fa fa-clock-o"></i> 6
 												mins</small>
 										</h4> <!-- The message -->
-										<p>�������몄�� WhenWhereTeam������.2</p>
+										<p>안녕하세요 WhenWhereTeam입니다.</p>
 								</a>
 								</li>
 								<!-- end message -->
@@ -69,7 +69,7 @@
 				<!-- /.messages-menu -->
 
 				<!-- Notifications Menu -->
-				<li class="dropdown notifications-menu">
+				<li class="dropdown notifications-menu logined">
 					<!-- Menu toggle button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <span
 						class="label label-warning">10</span>
@@ -92,7 +92,7 @@
 				</li>
 				
 				<!-- login -->
-				<li class="login" display="none">
+				<li class="login" style="display: none">
 				<a href="loginForm">
 					<i class="fa fa-sign-in" aria-hidden="true" style="font-size: 20px;"></i>
 					<span class="hidden-xs" style="font-size: 20px;">&nbsp;LOGIN</span>
@@ -100,13 +100,13 @@
 				</li>
 				
 				<!-- User Account Menu -->
-				<li class="dropdown user user-menu logined" display="none">
+				<li class="dropdown user user-menu logined" style="display: none">
 					<!-- Menu Toggle Button  -->
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
 						<!-- The user image in the navbar  -->
 						<img src="https://www.dog-zzang.co.kr/dog_sale/photo/201603/1457282732_13629600.jpg"
 						class="user-image" alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
-						<span class="hidden-xs">NICKNAME</span>
+						<span class="hidden-xs" id="member_nickname"></span>
 				</a>
 					<ul class="dropdown-menu">
 						<!-- The user image in the menu -->
@@ -114,7 +114,8 @@
 							src="https://www.dog-zzang.co.kr/dog_sale/photo/201603/1457282732_13629600.jpg"
 							class="img-circle" alt="User Image">
 							<p>
-								NICKNAME <small>WhenWhereTeam@gmail.com</small>
+								<span id="member_nickname"></span> 
+								<small id="member_email"></small>
 							</p></li>
 						<!-- Menu Footer -->
 						<li class="user-footer">
@@ -122,7 +123,7 @@
 								<a href="#" class="btn btn-default btn-flat">My Page</a>
 							</div>
 							<div class="pull-right">
-								<a href="#" class="btn btn-default btn-flat">Log out</a>
+								<a href="#" id="logout" class="btn btn-default btn-flat">Log out</a>
 							</div>
 						</li>
 					</ul>
@@ -136,18 +137,61 @@
 	</nav>
 	<script type="text/javascript">
 		$(function() {
-			if ("${sessionScope.member.email}" == "") {
+			if ("${sessionScope.member.email}"=="") {
 				$(".logined").css("display", "none");
 				$(".login").css("display", "block");
 			} else {
 				$(".login").css("display", "none");
 				$(".logined").css("display", "block");
+				$("span#member_nickname").each(function(k, v){
+					$(this).append("${sessionScope.member.nickname}");
+				});
+				$("#member_email").append("${sessionScope.member.email}");
 			}
+				
+			$("#logout").on("click", function() {
+				bootbox.dialog({
+					message : "로그아웃 하시겠습니까?",
+					buttons : {
+						success : {
+							label : "네",
+							className : "btn-success",
+							callback : function() {
+								logout();
+							}
+						},
+						danger : {
+							label : "아니요",
+							className : "btn-danger",
+							callback : function() {
+	
+							}
+						}
+					}
+				});
+			});
 		});
 		function msgPopup() {
 			var popup = "../user/msgPopup";
 			var popOption = "width=700, height=400, top=200, left=200";
 			window.open(popup, "", popOption);
+		}
+		function logout() {
+			$.ajax({
+				url : "../user/logout",
+				type : "post",
+				dataType : "json",
+				success : function(result) {
+					if (result.ok) {
+						location.href = "main";
+					} else {
+						alert("server error");
+					}
+				},
+				error : function() {
+					alert("error")
+				}
+			});
 		}
 	</script>
 </header>

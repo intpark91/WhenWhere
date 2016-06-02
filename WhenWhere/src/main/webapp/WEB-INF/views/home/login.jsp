@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,33 +7,6 @@
 	<title>WhenWhereTest</title>
 	<link rel="stylesheet" href="../css/home/login.css" /> 
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-	<script type="text/javascript">
-		function login(){
-			alert("login try");
-			var loginSer = $('form').serialize();
-			alert(loginSer);
-			$.ajax({
-				url : '../user/login',
-				type : 'POST',
-				data : loginSer ,
-				dataType : "json",
-				success : function(check) {
-					if(check.ok){
-						alert('로그인 성공');
-						location.href="../home/main";
-					}else{
-						alert('로그인 실패');
-					}
-				},
-				error : function(xhr, data, error) {
-					console.log(error);
-				},
-				complete : function() {
-					//alert('요청처리 완료');
-				}
-			});
-		}
-	</script>
 </head>
 
 <!-- user/join -->
@@ -104,5 +77,26 @@
 	<!-- scripts -->
 	<jsp:include page="../component/core_js.jsp" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+	<script type="text/javascript">
+		function login(){
+			var loginSer = $('form').serialize();
+			$.ajax({
+				url : '../user/login',
+				type : 'POST',
+				data : loginSer ,
+				dataType : "json",
+				success : function(check) {
+					if(check.ok){
+						location.href="../home/main";
+					}else{
+						alert('로그인 실패');
+					}
+				},
+				error : function(xhr, data, error) {
+					console.log(error);
+				}
+			});
+		}
+	</script>
 </body>
 </html>
