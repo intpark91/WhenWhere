@@ -113,12 +113,12 @@
 			</div>
 		</section>
 		
-		<ul class="cd-items cd-container">
-				<li class="cd-item"><img src="img/item-1.jpg"
+		<!-- <ul class="cd-items cd-container">
+				<li class="cd-item"><img src="../resources/img/item-1.jpg"
 					alt="Item Preview"> <a href="#0" class="cd-trigger">Quick
 						View</a></li>
-				<!-- cd-item -->
-		</ul>
+				cd-item
+		</ul> -->
 
 
 		<div id="scrollDiv demo" class="scrollDiv">
@@ -126,12 +126,14 @@
 				<h1>
 					<span class="label label-info">행사</span>
 				</h1>
+				
 				<ul id="content-slider1" class="content-slider1 ">
-					<li><a href="#" class="cd-trigger"><img class="img-thumbnail"
-							src="../resources/img/bg_img.jpg" /></a></li>
+					<li class="cd-item"><a href="javascript:;" class="cd-trigger"><img class="img-thumbnail"
+							src="../resources/img/item-1.jpg" /></a></li>
 					<li><a href="#"><img class="img-thumbnail"
-							src="../resources/img/test.JPG" /></a></li>
-					<li><a href="#">3_event</a></li>
+							src="../resources/img/item-1.jpg" /></a></li>
+					<li><a href="#"><img
+							src="../resources/img/bg_img.jpg" class="img-thumbnail" /></a></li>
 					<li><a href="#">4_event</a></li>
 					<li><a href="#">5_event</a></li>
 					<li><a href="#">6_event</a></li>
@@ -144,7 +146,7 @@
 				</h1>
 				<ul id="content-slider2" class="content-slider2">
 					<li><a href="#"><img
-							src="../resources/img/cd-icon-email.svg" class="img-thumbnail" /></a></li>
+							src="../resources/img/bg_img.jpg" class="img-thumbnail" /></a></li>
 					<li><a href="#">2_region</a></li>
 					<li><a href="#">3_region</a></li>
 					<li><a href="#">4_region</a></li>
@@ -159,7 +161,7 @@
 				</h1>
 				<ul id="content-slider3" class="content-slider3">
 					<li><a href="#"><img
-							src="../resources/img/cd-icon-email.svg" class="img-thumbnail" /></a></li>
+							src="../resources/img/bg_img.jpg" class="img-thumbnail" /></a></li>
 					<li><a href="#">2_food</a></li>
 					<li><a href="#">3_food</a></li>
 					<li><a href="#">4_food</a></li>
@@ -173,9 +175,9 @@
 		<div class="cd-quick-view">
 			<div class="cd-slider-wrapper">
 				<ul class="cd-slider">
-					<li class="selected"><img src="img/item-1.jpg" alt="Product 1"></li>
-					<li><img src="img/item-2.jpg" alt="Product 2"></li>
-					<li><img src="img/item-3.jpg" alt="Product 3"></li>
+					<li class="selected"><img src="../resources/img/item-1.jpg" alt="Product 1"></li>
+					<li><img src="../resources/img/item-2.jpg" alt="Product 2"></li>
+					<li><img src="../resources/img/item-3.jpg" alt="Product 3"></li>
 				</ul>
 				<!-- cd-slider -->
 
