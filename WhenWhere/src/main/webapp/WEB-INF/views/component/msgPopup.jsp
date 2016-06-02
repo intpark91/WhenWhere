@@ -8,18 +8,19 @@
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
 	<link rel="stylesheet" href="../css/jquery-ui-slider-pips.css" />
 	<link rel="stylesheet" href="../css/slider.css" />
+	<style type="text/css">
+	.wrapper {
+		padding : 10px;
+	}
+	</style>
 </head>
 <body class="hold-transition skin-blue sidebar-collapse">
 	<div class="wrapper">
 		<div class="content-wrapper">
 			<section class="content-header">
 				<h1>
-					Mailbox <small>13 new messages</small>
+					Messages <small>13 new messages</small>
 				</h1>
-				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li class="active">Mailbox</li>
-				</ol>
 			</section>
 				<div class="row">
         <div class="col-md-3">
@@ -116,132 +117,6 @@
                     </td>
                     <td class="mailbox-attachment"></td>
                     <td class="mailbox-date">5 mins ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">28 mins ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">11 hours ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">15 hours ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">Yesterday</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">4 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">12 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">12 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">14 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">15 days ago</td>
                   </tr>
                   </tbody>
                 </table>
