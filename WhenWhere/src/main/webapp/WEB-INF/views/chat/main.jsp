@@ -33,7 +33,52 @@
 
 			<!-- --------------------------------------- Main content ------------------------------------------------------- -->
 			<!-- /.row -->
+			
+		          <!-- /.box -->
 			<div class="row chatTable">
+				 <div class="col-sx-12">
+		          <div class="box box-default collapsed-box">
+		            <div class="box-header with-border">
+		              <h3 class="box-title">채팅 방 만들기</h3>
+		
+		              <div class="box-tools pull-right">
+		                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+		                </button>
+		              </div>
+		              <!-- /.box-tools -->
+		            </div>
+		            <!-- /.box-header -->
+		            <div class="box-body">
+		             	<!-- 방만들기 폼 -->
+		             	<form class="form-horizontal">
+				         	<div class="box-body">
+				                <div class="form-group">
+				                  	<label for="inputEmail3" class="col-sm-3 control-label">방제목</label>
+				                 	 <div class="col-sm-9">
+				                    	<input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+				                  	</div>
+				                </div>
+				                <div class="form-group">
+				                 	 <label for="inputPassword3" class="col-sm-3 control-label">
+				                 	 	 비밀번호(선택)
+				                 	 	<input type="checkbox" class="flat-red" checked="checked">	
+				                 	 </label>
+					                 <div class="col-sm-9">
+					                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+					                 </div>
+				                </div>
+				              </div>
+				              <!-- /.box-body -->
+				              <div class="box-footer">
+				                <button type="submit" class="btn btn-default">Cancel</button>
+				                <button type="submit" class="btn btn-info pull-right">Sign in</button>
+				              </div>
+				              <!-- /.box-footer -->
+				            </form>
+		            </div>
+		            <!-- /.box-body -->
+		          </div>
+			
 				<div class="col-sx-12">
 					<div class="box">
 						<div class="box-header">
