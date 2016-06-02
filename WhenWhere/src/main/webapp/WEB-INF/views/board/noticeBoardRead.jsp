@@ -63,6 +63,7 @@ h2 {
 												</colgroup>
 												<tbody>
 													<tr>
+														<th scope="row">제 목</th>
 														<td scope="col" colspan="6" class="bbs_tit">
 															<div>아중호수, 자연친화적 휴양형 관광명소 된다!</div>
 														</td>
