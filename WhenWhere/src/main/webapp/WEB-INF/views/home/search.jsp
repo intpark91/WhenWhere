@@ -119,7 +119,7 @@
 		<div id="scrollDiv demo" class="scrollDiv">
 			<div class="container scrollDown">
 				<div class="carousel slide" id="myCarousel">
-					<h1>
+					<h1 class="slideLabel">
 						<span class="label label-info">행사지</span>
 					</h1>
 					<div class="carousel-inner">
@@ -128,7 +128,7 @@
 								<li class="col-sm-3">
 									<div class="fff">
 										<div class="thumbnail">
-											<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
+											<a href="#"><img src="../resources/img/item-1.jpg" alt=""></a>
 										</div>
 										<div class="caption">
 											<h4>Praesent commodo</h4>
@@ -140,7 +140,7 @@
 								<li class="col-sm-3">
 									<div class="fff">
 										<div class="thumbnail">
-											<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
+											<a href="#"><img src="../resources/img/bg_img.jpg" alt=""></a>
 										</div>
 										<div class="caption">
 											<h4>Praesent commodo</h4>
@@ -152,7 +152,7 @@
 								<li class="col-sm-3">
 									<div class="fff">
 										<div class="thumbnail">
-											<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
+											<a href="#"><img src="../resources/img/test.JPG" alt=""></a>
 										</div>
 										<div class="caption">
 											<h4>Praesent commodo</h4>
@@ -233,7 +233,7 @@
 				
 				<!-- #myCarousel2 -->
 				<div class="carousel slide" id="myCarousel2">
-					<h1>
+					<h1 class="slideLabel">
 						<span class="label label-info">먹거리</span>
 					</h1>
 					<div class="carousel-inner">
@@ -347,7 +347,7 @@
 				
 				<!-- #myCarousel3 -->
 				<div class="carousel slide" id="myCarousel2">
-					<h1>
+					<h1 class="slideLabel">
 						<span class="label label-info">숙박</span>
 					</h1>
 					<div class="carousel-inner">

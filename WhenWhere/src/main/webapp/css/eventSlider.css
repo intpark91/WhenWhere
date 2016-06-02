@@ -87,12 +87,18 @@ ul.thumbnails {
 @media (max-width: 767px) {
     .page-header, .control-box {
         text-align: center;
-    } 
+    }
+    .thumbnails li> .fff .caption {
+    margin-bottom: 20px;
+}
 }
 @media (max-width: 479px) {
     .caption {
         word-break: break-all;
     }
+    .thumbnails li> .fff .caption {
+    margin-bottom: 20px;
+}
 }
 
 
@@ -150,3 +156,13 @@ ul {
     color: white;
     font-size: 40px;
 }
+
+.thumbnail{
+	margin-bottom: 5px;
+}
+
+.slideLabel{
+	border-top: 5px solid white;
+	padding-top: 5px;
+}
+
