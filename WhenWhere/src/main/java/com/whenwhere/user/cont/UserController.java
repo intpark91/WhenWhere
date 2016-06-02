@@ -71,9 +71,13 @@ public class UserController {
 	@RequestMapping("/login")
 	@ResponseBody
 	public String login(MemberVO member, HttpSession session){
-		String str = userService.login(member, session);
-		System.out.println(str);
-		return str;
+		return userService.login(member, session);
+	}
+	
+	@RequestMapping("/logout")
+	@ResponseBody
+	public String logout(HttpSession session){
+		return userService.logout(session);
 	}
 	
 	@RequestMapping("/msgPopup")

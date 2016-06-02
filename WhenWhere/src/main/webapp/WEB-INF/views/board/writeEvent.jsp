@@ -3,26 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>행사게시판</title>
-<meta name="description"
-	content="This is a free Bootstrap landing page theme created for BootstrapZero. Feature video background and one page design." />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Codeply">
-<link rel="stylesheet"
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
-<link
-	href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css"
-	rel="stylesheet" />
-<link rel="stylesheet"
-	href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
-<link rel="stylesheet" href="../css/styles.css" />
-<link rel="stylesheet" href="../css/boardwrite.css" type="text/css">
-
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>	
+	<jsp:include page="../component/core_head.jsp" />
 	
+	<title>WhenWhereTest</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="../css/board/boardwrite.css" type="text/css">
+	<link rel="stylesheet" href="../css/datepicker/jquery-ui.css" type="text/css" />
+
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>	
 <script type="text/javascript">
 jQuery.browser = {};
 (function () {
@@ -39,23 +27,74 @@ jQuery.browser = {};
 <script>
 	$(function() {
 		$("#Datepicker").datepicker({
-			dateFormat : "yy-mm-dd"
+			 dateFormat: 'yy-mm-dd', // 데이터는 yyyy-MM-dd로 나옴
+	            closeText: '닫기',
+	            prevText: '이전달',
+	            nextText: '다음달',
+	            currentText: '오늘',
+	            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	            monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	            dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+	            dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+	            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+	            weekHeader: 'Wk',
+	            firstDay: 0,
+	            isRTL: false,
+	            duration: 200,
+	            showAnim: 'show',	      
+	            showMonthAfterYear: true,
+	            yearSuffix: '년',
+	            showOtherMonths: true,
+	            selectOtherMonths: true
+	            
+			
 		});
 	});
 	
 	$(function() {
 		$("#Datepicker2").datepicker({
-			dateFormat : "yy-mm-dd"
+			 dateFormat: 'yy-mm-dd', // 데이터는 yyyy-MM-dd로 나옴
+	            closeText: '닫기',
+	            prevText: '이전달',
+	            nextText: '다음달',
+	            currentText: '오늘',
+	            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	            monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	            dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+	            dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+	            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+	            weekHeader: 'Wk',
+	            firstDay: 0,
+	            isRTL: false,
+	            duration: 200,
+	            showAnim: 'show',	      
+	            showMonthAfterYear: true,
+	            yearSuffix: '년',
+	            showOtherMonths: true,
+	            selectOtherMonths: true
 		});
 	});
 </script>
 
 
 </head>
-<body>
-	<jsp:include page="../component/topNav.jsp" />
-	<section class="bg-primary" id="one">
-		<div class="container">
+
+<body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
+			<div id="main_bg" class="info_main_bg" >
+				<div class="mainWrap">
+				</div>
+			</div>
+	<div class="wrapper">
+		<!-- include -->
+		<jsp:include page="../component/header.jsp" />
+		<jsp:include page="../component/linkSidebar.jsp" />
+		<!-- Content Wrapper. Contains page content -->
+
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+			</section>
+			<div class="container">
 			<div class="row">
 				<div
 					class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2 text-center">
@@ -81,8 +120,7 @@ jQuery.browser = {};
 								$("#inForm").submit();
 							}
 						</script>
-						<script type="text/javascript"
-							src="./전라북도 토탈관광 - 여행도우미_참여마당_여행후기_files/HuskyEZCreator.js"></script>
+						
 						<div id="content01">
 							<!-- 2015.12.07 수정-->
 
@@ -103,7 +141,7 @@ jQuery.browser = {};
 									<div class="board_box">
 										<div class="bbs_write">
 											<table class="write_1">
-												<caption>행사 글 쓰기</caption>
+												<h3>행사 글 쓰기</h3>
 												<tbody>
 													<tr>
 														<th scope="row"><label for="dataTitle">제 목</label></th>
@@ -118,37 +156,16 @@ jQuery.browser = {};
 													<tr>
 														<th scope="row"><label for="dataTitle">행사
 																시작일-종료일</label></th>
-														<td><input type="text" id="Datepicker">-<input
-															type="text" id="Datepicker2"></td>
+														<td><input type="text" id="Datepicker">----<input
+															type="text"  id="Datepicker2"></td>
 													</tr>
-
-
-													<!-- 에디터영역 시작-->
-
 													<tr>
 														<td colspan="2" class="bbs_write">
 															<div class="bbs_write_wrap">
-																<textarea name="dataContent" id="dataContent"
-																	style="width: 100%; height: 300px;" rows="10" cols="50"></textarea>
-
-
+																<jsp:include page="smarteditor.jsp" />
 															</div>
 														</td>
 													</tr>
-													<tr>
-														<th scope="row">첨부파일</th>
-														<td class="bbs_flie">
-															<div id="uploadfield">
-																<input type="file" name="upload" title="첨부파일"><br>
-																<input type="file" name="upload" title="첨부파일"><br>
-																<input type="file" name="upload" title="첨부파일"><br>
-																<input type="file" name="upload" title="첨부파일"><br>
-																<input type="file" name="upload" title="첨부파일"><br>
-															</div>
-														</td>
-													</tr>
-
-													<!-- 에디터영역 끝.-->
 												</tbody>
 											</table>
 										</div>
@@ -170,18 +187,15 @@ jQuery.browser = {};
 
 
 				</div>
-			</div>
+			</div>	
 		</div>
-
-	</section>
-	
-	<jsp:include page="../component/footer.jsp" />
-	
-	<script
-		src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<script
-		src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
-	<script src="../js/scripts.js"></script>
+	</div>
+		<!-- /.content-wrapper -->
+		<!-- include -->
+		<jsp:include page="../component/footer.jsp" />
+		<jsp:include page="../component/controlSidebar.jsp" />
+	</div>
+	<!-- scripts -->
+	<script src="../js/slider.js"></script>
 </body>
 </html>

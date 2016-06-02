@@ -81,7 +81,17 @@ public class UserService {
 		}
 		JSONObject jobj = new JSONObject();
 		jobj.put("ok", ok);
-		System.out.println(jobj.toJSONString());
+		return jobj.toJSONString();
+	}
+
+	public String logout(HttpSession session) {
+		boolean ok = false;
+		if(session.getAttribute("member")!=null){
+			session.removeAttribute("member");
+			ok = true;
+		}
+		JSONObject jobj = new JSONObject();
+		jobj.put("ok", ok);
 		return jobj.toJSONString();
 	}
 }

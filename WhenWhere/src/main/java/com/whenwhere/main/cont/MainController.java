@@ -33,7 +33,11 @@ public class MainController {
 	
 	@RequestMapping(value = "/searchForm")
 	public String search() {
-		
 		return "home/search";
+	}
+	
+	@RequestMapping(value = "/chat")
+	public String chat() {
+		return "chat/main";
 	}
 }

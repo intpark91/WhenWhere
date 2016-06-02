@@ -1,6 +1,9 @@
 @charset "utf-8";
 /* CSS Document */
-			
+			#main_bg {text-align:center;width:100%;height:1080px;min-height:120px;margin-bottom:20px;padding-top:13px;padding-bottom:13px;background-position:center;font-size:14px;line-height:1.7em;display: inline-block;}
+			#main_bg { background-image: url(../../images/boardimg/ReviewMainVisual.png);
+		    position: fixed;	
+			}	
 			/*답변글*/
 
 			/* 스크롤박스 */
@@ -16,21 +19,21 @@
 		/* 페이지 수 */
 
 		/* 검색 */
-		.bbs_info .search {float:right; margin-top:10px;}
-		.bbs_info .search select {height:26px; padding:2px;}
-		.bbs_info .search input {height:20px; width:170px; padding:2px; vertical-align:middle; border:#cccccc solid 1px;}
+		.bbs_info .search {float:right; margin-top:-40px;}
+		.bbs_info .search select {height:26px; padding:2px; color:#666666;}
+		.bbs_info .search input {height:20px; width:170px; padding:2px; vertical-align:middle; border:#cccccc solid 1px; color:#666666;}
 		.bbs_info .search .searchBtn {display:inline-block; cursor:pointer; border-radius:2px;padding:0px 8px;line-height:20px;font-size:12px;vertical-align:middle;color:#fff; border:#6a6a6a solid 1px;height:25px;background-color:#777777;width:60px;}
 		/* 리스트 : 일반게시판 */
-		.bbs_list {margin-top:10px;float:left;width:99%;border-top:1px solid #777;padding-top:15px;}
+		.bbs_list { margin-top:10px;float:left;width:99%;border-top:1px solid #777;padding-top:15px;}
 		.bbs_list > table caption{display:none;}
 		.bbs_list > table.list_1 {width:100%;border-top:2px solid #444349;margin-top:15px;}
 		.bbs_list > table.list_1 > thead > tr > th,
 		.bbs_list > table.list_1 > tbody > tr > th,
 		.bbs_list > table.list_1 > thead > tr > td,
-		.bbs_list > table.list_1 > tbody  > tr > td { border-bottom:#e6e6e6 solid 1px; text-align:center;font-size:14px;padding:10px 0 10px 10px;line-height:1.3em;}
+		.bbs_list > table.list_1 > tbody  > tr > td {color:#ffffff; border-bottom:#e6e6e6 solid 1px; text-align:center;font-size:14px;padding:10px 0 10px 10px;line-height:1.3em;}
 		.bbs_list > table.list_1 > thead > tr > th,
-		.bbs_list > table.list_1 > tbody > tr > th {background-color:#f9f9f9; font-weight:bold;}
-		.bbs_list > table.list_1 > tbody > tr:hover > td {background-color:#eee;}
+		.bbs_list > table.list_1 > tbody > tr > th {background-color:#f9f9f9; font-weight:bold; color:#666666}
+		.bbs_list > table.list_1 > tbody > tr:hover > td {background-color:#337ab7; color:#ffffff}
 		.bbs_list > table.list_1 .notice {background-color:#4c4948; color:#fff; padding:2px 4px;}
 		.bbs_list > table.list_1 img{margin-top:12px;}
 		
@@ -58,7 +61,7 @@
 
 .board_photo .board_ebook{width:100%;}
 .board_photo .board_ebook h3{font-size:90%;}
-.board_photo .board_ebook h4{font-size:14px;font-weight:normal;padding-top:10px;height:60px;overflow:hidden;}
+.board_photo .board_ebook h4{font-size:80%;font-weight:normal;padding-top:10px;height:60px;overflow:hidden;}
 
 .board_photo .board_ebook li{display:block;float:none;width:98%;}
 .board_photo .board_ebook li img{outline:1px dashed #ddd;margin-top:10px;}
@@ -70,7 +73,7 @@
 .board_photo .board_ebook li figcaption h3 a{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:100%;}
 
 .board_photo .board_ebook li figcaption h3 img{position:absolute;margin-top:2px;margin-left:3px;}
-.board_photo .board_ebook li figcaption p {margin:0;padding:0;width:100%;color:#ffffff;font-size:14px;text-align:center;}
+.board_photo .board_ebook li figcaption p {margin:0;padding:0;width:100%;color:#333;font-size:14px;text-align:center;}
 .board_photo .board_ebook li .thump_img{position:relative;overflow:hidden;display:block;width:100%;height:115px;}
 .board_photo .board_ebook li .thum_photo{display:block;/*position:absolute;bottom:0;*/margin:0 auto;line-height:0;text-align:center;vertical-align:middle;width:90%;}
 .board_photo .board_ebook li .thum_photo img{margin:0 auto;text-align:center;vertical-align:middle;height:120px;width:100%;}
@@ -84,7 +87,7 @@
 	line-height:25px;
 	text-align:center;
 	border:1px solid #c3c3c3;
-	background-color:#1E2358;
+	background-color:#ebebeb;
 	color:#585858;
 }
 .board_photo .board_ebook .ebook_btn a:hover{
@@ -224,7 +227,7 @@ a{text-decoration:none;}
 a:link,
 a:visited{color:#ffffff;}
 a:hover,
-a:active{color:#777;}
+a:active{color:#ffffff; font-weight: bold;}
 
 /* align style */
 .clear {clear:both;}
@@ -252,24 +255,28 @@ button {cursor:pointer;border:none;}
 
 
 /*콘텐츠 외곽박스*/
-#content01 {float:left;width:100%;height:auto;margin:0 auto;border-top:1px solid #e3e3e3;color:#777;}
+#content01 {float:left;width:100%;height:auto;margin:0 auto;border-top:1px solid #e3e3e3;color:#ffffff;}
 .con_area {width:1120px;margin:0 auto;padding:0;}
 /*게시물*/
-.board_box{float:left;width:100%;margin-top:0px;display:inline-block;}
+.board_box{background-image: url(../../images/boardimg/background2.png); float:left;width:100%;margin-top:60px; margin-bottom:60px; display:inline-block;}
 
 /*contents_wrap*/
 @media screen and (min-width:1120px){
-.con_area {width:1120px;margin:0 -290px auto;padding:0;}
+.con_area {width:1120px;margin:0 -270px auto;padding:0;}
 }
 @media screen and (min-width:980px) and (max-width:1119px){
-.con_area {width:970px;margin:0 -190px auto;padding:0;}
+.con_area {width:970px;margin:0 -180px auto;padding:0;}
 }
 @media screen and (min-width:1px) and (max-width:979px){
 body{overflow-x:hidden;}
 .con_area {width:100%;margin:0 auto;padding:0;}
 }
 
-#searchType{
-	background-color: black;
-}
+#count{width:100%;border-top:1px solid #777;margin-top:70px;display:inline-block;}
+#count ul {display:table;margin:25px auto; width:auto;padding-top:10px;}
+#count ul li a {display:block;font-size:13px;text-align:center;line-height:35px;width:35px;height:35px;border:1px solid #dddddd;color:#999;cursor:pointer;}
+#count li {float:left;margin:0 2px 0 2px;}
+#count ul .page a:hover, #content01 #count ul .page a:focus{background-color:#eb060e;color:#fff;}
+#count ul .page strong{float:left;color:#fff;font-weight:bold;background-color:#eb060e;border:1px solid #ddd;padding:0px 13px 0px 13px;height:35px;line-height:35px;margin:0px 0 0 0;}
 
+ul, ol, dl {list-style:none;}

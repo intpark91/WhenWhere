@@ -3,24 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>행사게시판</title>
-<meta name="description"
-	content="This is a free Bootstrap landing page theme created for BootstrapZero. Feature video background and one page design." />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Codeply">
-<link rel="stylesheet"
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
-<link
-	href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css"
-	rel="stylesheet" />
-<link rel="stylesheet"
-	href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
-<link rel="stylesheet" href="../css/styles.css" />
- <link rel="stylesheet" href="../css/noticeBoardRead.css" type="text/css">  
-
-
-<style>
+	<jsp:include page="../component/core_head.jsp" />
+	<title>WhenWhereTest</title>
+	<link rel="stylesheet" href="../css/slider.css" />
+	<link rel="stylesheet" href="../css/board/noticeBoardRead.css" type="text/css">  
+	<style>
 h2 {
 	padding-top: 10px;
 }
@@ -29,12 +16,23 @@ h2 {
 	background-color: black;
 }
 </style>
-
 </head>
-<body>
-	<jsp:include page="../component/topNav.jsp" />
-	<section class="bg-primary" id="one">
-		<div class="container">
+<body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
+	<div id="main_bg" class="info_main_bg" >
+			<div class="mainWrap">
+			</div>
+	</div>
+	<div class="wrapper">
+		<!-- include -->
+		<jsp:include page="../component/header.jsp" />
+		<jsp:include page="../component/linkSidebar.jsp" />
+		<!-- Content Wrapper. Contains page content -->
+
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+			</section>
+			<div class="container">
 			<div class="row">
 				<div
 					class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2 text-center">
@@ -51,7 +49,7 @@ h2 {
 											<!--RFC 일반게시판 내가쓴글 시작-->
 											<table class="view_1"
 												summary="토론마당 제목, 토론기간, 진행상태와 조회를 표시하고 있다.">
-												<caption>공지사항 게시판</caption>
+												<h2>공지사항 상세 보기</h2>
 												<colgroup>
 													<col width="15%">
 													<col width="20%">
@@ -62,6 +60,7 @@ h2 {
 												</colgroup>
 												<tbody>
 													<tr>
+														<th scope="row">제 목</th>
 														<td scope="col" colspan="6" class="bbs_tit">
 															<div>아중호수, 자연친화적 휴양형 관광명소 된다!</div>
 														</td>
@@ -70,19 +69,12 @@ h2 {
 														<th scope="row">작 성 자</th>
 														<td>관리자</td>
 														<th scope="row">등록일</th>
-														<td>2016/05/24/</td>
+														<td>2016/05/24</td>
 														<th scope="row">조&nbsp;&nbsp;&nbsp;회</th>
 														<td>17</td>
 													</tr>
 
-													<tr>
-														<th scope="row">첨부파일</th>
-														<td colspan="5">
-															<!-- 문서변환 시작 스크립트--> <!-- 문서변환 종료 스크립트-->
-
-
-														</td>
-													</tr>
+	
 													<tr>
 														<td colspan="6" class="bbs_detail">
 															<div align="center" class="sub_title"
@@ -152,13 +144,6 @@ h2 {
 																<br>
 																<br>
 															</div>
-
-
-
-
-
-
-
 														</td>
 													</tr>
 												</tbody>
@@ -169,32 +154,23 @@ h2 {
 														href="http://tour.jb.go.kr/board/list.do?skinId=SKIN_0000002&amp;boardId=BBS_0000001&amp;menuCd=DOM_000000104005000000&amp;startPage=1">목록</a>
 												</p>
 											</div>
-
-
-
-
-
-
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-
-
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
-	<jsp:include page="../component/footer.jsp" />
-	<script
-		src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script
-		src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<script
-		src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
-	<script src="../js/scripts.js"></script>
+		</div>
+
+		<!-- /.content-wrapper -->
+		<!-- include -->
+		<jsp:include page="../component/footer.jsp" />
+		<jsp:include page="../component/controlSidebar.jsp" />
+	</div>
+	<!-- scripts -->
+	<jsp:include page="../component/core_js.jsp" />
 </body>
 </html>
