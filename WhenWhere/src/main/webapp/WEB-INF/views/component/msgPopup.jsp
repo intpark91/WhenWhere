@@ -29,10 +29,7 @@
 			</section>
 			<div class="row">
 				<div class="col-md-3">
-					<a href="compose.html"
-						class="btn btn-primary btn-block margin-bottom">Write new
-						message</a>
-
+					<a href="compose.html" class="btn btn-primary btn-block margin-bottom">Write new message</a>
 					<div class="box box-solid">
 						<div class="box-header with-border">
 							<h3 class="box-title">Folders</h3>
