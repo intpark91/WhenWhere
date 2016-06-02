@@ -28,12 +28,12 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="../board/notice">
 					<i class="fa fa-bullhorn" aria-hidden="true"></i>
 					<span>Notice</span></a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="../board/event">
 					<i class="fa fa-gift" aria-hidden="true"></i><span>Event</span>
 				</a>
 			</li>
@@ -44,7 +44,7 @@
 				</a>
 				<ul class="treeview-menu">
 					<li>
-						<a href="#">
+						<a href="../board/notice">
 							<i class="fa fa-book" aria-hidden="true"></i>Board
 						</a>
 					</li>
@@ -53,7 +53,7 @@
 							<i class="fa fa-comments" aria-hidden="true"></i>Chat</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="../board/review">
 							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>Review
 						</a>
 					</li>
