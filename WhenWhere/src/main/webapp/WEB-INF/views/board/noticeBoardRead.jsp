@@ -52,7 +52,7 @@ h2 {
 											<!--RFC 일반게시판 내가쓴글 시작-->
 											<table class="view_1"
 												summary="토론마당 제목, 토론기간, 진행상태와 조회를 표시하고 있다.">
-												<caption>공지사항 게시판</caption>
+												<h2>공지사항 상세 보기</h2>
 												<colgroup>
 													<col width="15%">
 													<col width="20%">
@@ -71,16 +71,12 @@ h2 {
 														<th scope="row">작 성 자</th>
 														<td>관리자</td>
 														<th scope="row">등록일</th>
-														<td>2016/05/24/</td>
+														<td>2016/05/24</td>
 														<th scope="row">조&nbsp;&nbsp;&nbsp;회</th>
 														<td>17</td>
 													</tr>
 
-													<tr>
-														<th scope="row">첨부파일</th>
-														<td colspan="5">
-														</td>
-													</tr>
+	
 													<tr>
 														<td colspan="6" class="bbs_detail">
 															<div align="center" class="sub_title"

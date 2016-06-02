@@ -15,7 +15,7 @@
 
 <link rel="stylesheet"
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+<link rel="stylesheet" href="../css/datepicker/jquery-ui.css" type="text/css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>	
 <script type="text/javascript">
@@ -34,13 +34,51 @@ jQuery.browser = {};
 <script>
 	$(function() {
 		$("#Datepicker").datepicker({
-			dateFormat : "yy-mm-dd"
+			 dateFormat: 'yy-mm-dd', // 데이터는 yyyy-MM-dd로 나옴
+	            closeText: '닫기',
+	            prevText: '이전달',
+	            nextText: '다음달',
+	            currentText: '오늘',
+	            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	            monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	            dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+	            dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+	            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+	            weekHeader: 'Wk',
+	            firstDay: 0,
+	            isRTL: false,
+	            duration: 200,
+	            showAnim: 'show',	      
+	            showMonthAfterYear: true,
+	            yearSuffix: '년',
+	            showOtherMonths: true,
+	            selectOtherMonths: true
+	            
+			
 		});
 	});
 	
 	$(function() {
 		$("#Datepicker2").datepicker({
-			dateFormat : "yy-mm-dd"
+			 dateFormat: 'yy-mm-dd', // 데이터는 yyyy-MM-dd로 나옴
+	            closeText: '닫기',
+	            prevText: '이전달',
+	            nextText: '다음달',
+	            currentText: '오늘',
+	            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	            monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	            dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+	            dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+	            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+	            weekHeader: 'Wk',
+	            firstDay: 0,
+	            isRTL: false,
+	            duration: 200,
+	            showAnim: 'show',	      
+	            showMonthAfterYear: true,
+	            yearSuffix: '년',
+	            showOtherMonths: true,
+	            selectOtherMonths: true
 		});
 	});
 </script>
@@ -84,8 +122,7 @@ jQuery.browser = {};
 								$("#inForm").submit();
 							}
 						</script>
-						<script type="text/javascript"
-							src="./전라북도 토탈관광 - 여행도우미_참여마당_여행후기_files/HuskyEZCreator.js"></script>
+						
 						<div id="content01">
 							<!-- 2015.12.07 수정-->
 

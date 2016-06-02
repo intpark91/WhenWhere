@@ -64,6 +64,7 @@
 							</div>
 							<div class="bbs_list">
 								<!-- 게시판리스트 -->
+								<h2>행사 게시판 리스트</h2>
 								<section class="board_photo">
 									<!-- 게시판리스트 -->
 									<ul class="board_ebook">
@@ -390,7 +391,25 @@
 
 							</div>
 						</div>
-						<div id="count"></div>
+														<div id="count">
+									<ul>
+										<li><a onclick="linkPage(1); ">&lt;&lt;</a></li>
+										<li><a onclick="linkPage(1); ">&lt;</a></li>
+										<li class="page"><strong>1</strong></li>
+										<li class="page"><a onclick="linkPage(2); ">2</a></li>
+										<li class="page"><a onclick="linkPage(3); ">3</a></li>
+										<li class="page"><a onclick="linkPage(4); ">4</a></li>
+										<li class="page"><a onclick="linkPage(5); ">5</a></li>
+										<li class="page"><a onclick="linkPage(6); ">6</a></li>
+										<li class="page"><a onclick="linkPage(7); ">7</a></li>
+										<li class="page"><a onclick="linkPage(8); ">8</a></li>
+										<li class="page"><a onclick="linkPage(9); ">9</a></li>
+										<li class="page"><a onclick="linkPage(10); ">10</a></li>
+										<li><a onclick="linkPage(11); ">&gt;</a></li>
+										<li><a onclick="linkPage(35); ">&gt;&gt;</a></li>
+
+									</ul>
+								</div>
 					</div>
 				</div>
 			</div>

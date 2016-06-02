@@ -223,14 +223,7 @@
 								</li>
 								<li class="result_my"></li>
 							</ul>
-							<ul class="order">
-								<li><a
-									href="http://tour.jb.go.kr/travel/info/list.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22#none"
-									class="on">인기순</a></li>
-								<li><a
-									href="http://tour.jb.go.kr/travel/info/list.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22#none">가나다순</a>
-								</li>
-							</ul>
+
 						</div>
 
 						<div class="serchList">
