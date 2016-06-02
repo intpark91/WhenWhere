@@ -10,4 +10,5 @@
 <link rel="stylesheet" href="../css/main/AdminLTE.css">
 <link rel="stylesheet" href="../css/main/skin-blue.css">
 
+<link rel="shortcut icon" href="../resources/img/WWfavi.ico">
 <script src="https://code.jquery.com/jquery-2.1.1.js"></script>

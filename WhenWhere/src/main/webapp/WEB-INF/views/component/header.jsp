@@ -63,7 +63,7 @@
 								<!-- end message -->
 							</ul> <!-- /.menu -->
 						</li>
-						<li class="footer"><a href="#">See All Messages</a></li>
+						<li class="footer"><a href="javascript:msgPopup();">See All Messages</a></li>
 					</ul>
 				</li>
 				<!-- /.messages-menu -->

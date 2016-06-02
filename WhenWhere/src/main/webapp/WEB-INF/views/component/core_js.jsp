@@ -4,4 +4,5 @@
 <script	src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 <script	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script src="../js/bootbox.min.js"></script>
+<script src="../js/jquery.bootstrap-growl.min.js"></script>
 <script src="../js/app.js"></script>
