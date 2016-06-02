@@ -41,7 +41,7 @@
 											WhenWhereTeam <small><i class="fa fa-clock-o"></i> 5
 												mins</small>
 										</h4> <!-- The message -->
-										<p>안녕하세요 WhenWhereTeam에서 알립니다.</p>
+										<p>안녕하세요 WhenWhereTeam에서 알립니다.알쟈ㅓ레ㅑㅈ더레ㅓㅈㄷ레ㅑㅓㅈ레ㅓㅔㅂㅈ덜</p>
 								</a>
 								</li>
 								<!-- end message -->
