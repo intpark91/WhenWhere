@@ -169,7 +169,7 @@
 			});
 		});
 		function msgPopup() {
-			var popup = "../user/msgPopup?page=1";
+			var popup = "../user/msgbox?page=1";
 			var popOption = "width=992, height=525, top=200, left=200";
 			window.open(popup, "", popOption);
 		}

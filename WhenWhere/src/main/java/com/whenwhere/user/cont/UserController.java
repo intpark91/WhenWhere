@@ -80,10 +80,15 @@ public class UserController {
 		return userService.logout(session);
 	}
 	
-	@RequestMapping("/msgPopup")
+	@RequestMapping("/msgbox")
 	public String msgPopup(Model model, HttpSession session,@RequestParam int page){
 		msgService.getMsgList(model, session, page);
-		return "msg/msgPopup";
+		return "msg/msgbox";
+	}
+	
+	@RequestMapping("/sendMsgForm")
+	public String sendMsgForm(){
+		return "msg/sendMsgForm";
 	}
 	
 	@RequestMapping("/sendMsg")

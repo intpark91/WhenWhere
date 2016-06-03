@@ -34,7 +34,7 @@
 			<div class="row">
 				<div class="col-md-3">
 					<!--메시지 작성 -->
-					<a href="compose.html"
+					<a href="../user/sendMsgForm"
 						class="btn btn-primary btn-block margin-bottom">Write new
 						message</a>
 					<div class="box box-solid">
