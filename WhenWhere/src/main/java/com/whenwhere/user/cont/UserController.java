@@ -81,7 +81,8 @@ public class UserController {
 	}
 	
 	@RequestMapping("/msgPopup")
-	public String msgPopup(){
+	public String msgPopup(HttpSession session){
+		session.setAttribute("msgList", msgService.getMsgList(session));
 		return "component/msgPopup";
 	}
 	
@@ -90,6 +91,4 @@ public class UserController {
 	public String sendMsg(MessageVO msg){
 		return sendMsg(msg);
 	}
-	
-	
 }

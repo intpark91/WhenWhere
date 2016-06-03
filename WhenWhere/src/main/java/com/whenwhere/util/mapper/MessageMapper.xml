@@ -4,7 +4,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.whenwhere.user.dao.MessageDAO">
 
-	<insert id="joinMember" parameterType="com.whenwhere.user.vo.MessageVO">
+	<insert id="sendMsg" parameterType="com.whenwhere.user.vo.MessageVO">
 		insert into values(SEQ_MSG.NEXTVAL, #{sender}, #{receiver}, #{title}, #{content}, '0', sysdate)
 	</insert>
+	
+	<select id="getMsgList" resultType="com.whenwhere.user.vo.MessageVO">
+		select receiver, m_title as title, m_content as content,
+			   m_receive_ck as receive_ck, M_wdate as wdate 
+	 	  from MESSAGE 
+	     where receiver =#{email} order by M_NO desc
+
+	</select>
 </mapper>

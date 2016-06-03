@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,11 +30,14 @@
 			</section>
 			<div class="row">
 				<div class="col-md-3">
-					<a href="compose.html" class="btn btn-primary btn-block margin-bottom">Write new message</a>
+					<!--메시지 작성 -->
+					<a href="compose.html"
+						class="btn btn-primary btn-block margin-bottom">Write new
+						message</a>
 					<div class="box box-solid">
+						<!--매뉴 -->
 						<div class="box-header with-border">
-							<h3 class="box-title">Folders</h3>
-
+							<h3 class="box-title">Menu</h3>
 							<div class="box-tools">
 								<button type="button" class="btn btn-box-tool"
 									data-widget="collapse">
@@ -56,6 +60,7 @@
 				<!-- /.col -->
 				<div class="col-md-9">
 					<div class="box box-primary">
+						<!--inbox -->
 						<div class="box-header with-border">
 							<h3 class="box-title">Inbox</h3>
 							<div class="box-tools pull-right">
@@ -85,18 +90,18 @@
 								</div>
 								<!-- /.btn-group -->
 							</div>
+							<!-- message list -->
 							<div class="table-responsive mailbox-messages">
 								<table class="table table-hover table-striped">
-									<tbody>
-										<tr>
-											<td><input type="checkbox"></td>
-											<td class="mailbox-star"><a href="#"><i
-													class="fa fa-star text-yellow"></i></a></td>
-											<td class="mailbox-name"><a href="read-mail.html">WhenWhere</a></td>
-											<td class="mailbox-subject"><b>WhenWhere</b>팀입니다.</td>
-											<td class="mailbox-attachment"></td>
-											<td class="mailbox-date">5 mins ago</td>
-										</tr>
+									<tbody id="msgList">
+										<c:forEach var="msg" items="${msgList}">
+											<tr>
+												<td><input type="checkbox"></td>
+												<td class="mailbox-name"><a href="read-mail.html">${msg.sender}</a></td>
+												<td class="mailbox-subject">${msg.title}</td>
+												<td class="mailbox-date">${msg.wdate}</td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 								<!-- /.table -->
@@ -106,12 +111,9 @@
 						<!-- /.box-body -->
 						<div class="box-footer no-padding">
 							<div class="mailbox-controls">
-								<button type="button" class="btn btn-default btn-sm">
-									<i class="fa fa-refresh"></i>
-								</button>
 								<div class="pull-right">
 									1-10/50
-									<div class="btn-group">
+									<div class="btn-group" style="margin-bottom: 5px;">
 										<button type="button" class="btn btn-default btn-sm">
 											<i class="fa fa-chevron-left"></i>
 										</button>
