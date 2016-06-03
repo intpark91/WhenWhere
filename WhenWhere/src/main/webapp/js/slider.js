@@ -1,10 +1,11 @@
 var min = new Date().getDate();
+
 $("#flat-slider").slider({
-	max : min+14,
+	max : min+dateLength,
 	min : min,
 	range : true,
 	values : [ min, min+4 ],
-	orientation : "vertical"
+	//orientation : applyToDevice
 }).slider("pips", {
 	first : "pip",
 	last : "pip"
