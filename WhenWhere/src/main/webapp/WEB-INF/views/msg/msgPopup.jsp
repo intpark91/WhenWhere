@@ -20,10 +20,7 @@
 	padding-top: 0px;
 	margin-bottom: 10px;
 }
-ul#pn{
-	text-align: center;
-	margin: 0px auto;
-}
+
 </style>
 </head>
 <body class="hold-transition skin-blue sidebar-collapse">
