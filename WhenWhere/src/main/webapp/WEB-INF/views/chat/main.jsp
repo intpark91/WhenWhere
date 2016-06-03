@@ -6,6 +6,8 @@
 	<jsp:include page="../component/core_head.jsp" />
 	<title>WhenWhereTest</title>
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+	<!-- Select2 -->
+    <link rel="stylesheet" href="../../plugins/select2/select2.min.css">
 	<style type="text/css">
 		.row.chatTable {
 			margin: 1px;
@@ -15,6 +17,13 @@
 			border-top: 0px solid #f4f4f4; 
 			padding: 10px;
 			background-color: #ffffff;
+		}
+		table{
+			text-align: center;
+		}
+		
+		table th{
+			text-align: center;
 		}
 </style>
 </head>
@@ -55,19 +64,31 @@
 				                <div class="form-group">
 				                  	<label for="inputEmail3" class="col-sm-3 control-label">방제목</label>
 				                 	 <div class="col-sm-9">
-				                    	<input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+				                    	<input type="email" class="form-control" id="inputEmail3" placeholder="방 제목을 입력해주세요">
 				                  	</div>
 				                </div>
 				                <div class="form-group">
 				                 	 <label for="inputPassword3" class="col-sm-3 control-label">
 				                 	 	 비밀번호(선택)
-				                 	 	<input type="checkbox" class="flat-red" checked="checked">	
+				                 	 	<input type="checkbox" class="flat-red">	
 				                 	 </label>
 					                 <div class="col-sm-9">
-					                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+					                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password" disabled>
 					                 </div>
 				                </div>
-				              </div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">말머리</label>
+									<div class="col-sm-9">
+										<select class="form-control select2" style="width: 100%;">
+											<option selected="selected">동행</option>
+											<option>숙박</option>
+											<option>예약</option>
+											<option>단체</option>
+											<option>기타</option>
+										</select>
+									</div>
+								</div>
+								</div>
 				              <!-- /.box-body -->
 				              <div class="box-footer">
 				                <button type="submit" class="btn btn-default">Cancel</button>
@@ -79,18 +100,21 @@
 		            <!-- /.box-body -->
 		          </div>
 			
-				<div class="col-sx-12">
-					<div class="box">
+				<div class="col-sx-12 " >
+					<div class="box box-default">
 						<div class="box-header">
 							<h3 class="box-title">채팅 방 리스트</h3>
 
 							<div class="box-tools">
-								<div class="input-group input-group-sm" style="width: 150px;">
+								<div class="input-group input-group-sm " style="width: 150px;">
 									<input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-									<div class="input-group-btn">
+									<div class="input-group-btn ">
 										<button type="submit" class="btn btn-default">
 											<i class="fa fa-search"></i>
 										</button>
+										<button type="button" class="btn btn-box-tool " data-widget="collapse">
+											<i class="fa fa-minus"></i>
+		               					</button>
 									</div>
 								</div>
 							</div>
@@ -99,67 +123,86 @@
 						<div class="box-body table-responsive no-padding">
 							<table class="table table-hover">
 								<tr>
-									<th>#</th>
-									<th class="hidden-xs">개설</th>
-									<th>말머리</th>
+									<th style="width: 10px;">#</th>
+									<th style="width: 80px;" class="hidden-xs">개설</th>
+									<th style="max-width: 20px;">
+					                    <select>
+						                    <option>전체</option>
+						                    <option>동행</option>
+						                    <option>숙박</option>
+						                    <option>예약</option>
+						                    <option>단체</option>
+						                    <option>기타</option>
+					                    </select>
+                					</th>
+                					<th style="width: 80px;" class="hidden-xs">방정보</th>
 									<th>방제목</th>
 								</tr>
 								<tr>
 									<td>183</td>
 									<td class="hidden-xs">5분전</td>
 									<td><span class="label label-success">동행</span></td>
+									<td class="hidden-xs">4/4</td>
 									<td>프랑스 여행 동행하실분 구합니다.</td>
 								</tr>
 								<tr>
 									<td>219</td>
 									<td class="hidden-xs">6분전</td>
 									<td><span class="label label-warning">예약</span></td>
+									<td class="hidden-xs">2/4</td>
 									<td>전주 한옥마을 단체예약 하실분 모집!</td>
 								</tr>
 								<tr>
 									<td>657</td>
 									<td class="hidden-xs">11-7-2014</td>
 									<td><span class="label label-primary">기타</span></td>
+									<td class="hidden-xs">3/4</td>
 									<td>솔로라 할 일 없는 분들! 다같이 강원도로 놀러가요</td>
 								</tr>
 								<tr>
 									<td>175</td>
 									<td class="hidden-xs">11-7-2014</td>
 									<td><span class="label label-danger">숙박</span></td>
+									<td class="hidden-xs">3/4</td>
 									<td>가족여행 패키지로 예약하실분 모집합니다.</td>
 								</tr>
 								<tr>
 									<td>175</td>
 									<td class="hidden-xs">11-7-2014</td>
 									<td><span class="label label-danger">숙박</span></td>
+									<td class="hidden-xs">3/4</td>
 									<td>가족여행 패키지로 예약하실분 모집합니다.</td>
 								</tr>
 								<tr>
 									<td>175</td>
 									<td class="hidden-xs">11-7-2014</td>
 									<td><span class="label label-danger">숙박</span></td>
+									<td class="hidden-xs">3/4</td>
 									<td>가족여행 패키지로 예약하실분 모집합니다.</td>
 								</tr>
 								<tr>
 									<td>175</td>
 									<td class="hidden-xs">11-7-2014</td>
 									<td><span class="label label-danger">숙박</span></td>
+									<td class="hidden-xs">3/4</td>
 									<td>가족여행 패키지로 예약하실분 모집합니다.</td>
 								</tr>
 								<tr>
 									<td>175</td>
 									<td class="hidden-xs">11-7-2014</td>
 									<td><span class="label label-danger">숙박</span></td>
+									<td class="hidden-xs">3/4</td>
 									<td>가족여행 패키지로 예약하실분 모집합니다.</td>
 								</tr>
 								<tr>
 									<td>175</td>
 									<td class="hidden-xs">11-7-2014</td>
 									<td><span class="label label-danger">숙박</span></td>
+									<td class="hidden-xs">3/4</td>
 									<td>가족여행 패키지로 예약하실분 모집합니다.</td>
 								</tr>
 								<tr>
-									<td colspan="4">
+									<td colspan="5">
 										<div class="box-footer clearfix">
 											<ul class="pagination pagination-sm no-margin pull-right">
 												<li><a href="#">&laquo;</a></li>
