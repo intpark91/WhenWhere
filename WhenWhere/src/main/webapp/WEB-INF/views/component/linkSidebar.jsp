@@ -22,7 +22,7 @@
 		<ul class="sidebar-menu">
 			<!-- Optionally, you can add icons to the links -->
 			<li class="active">
-				<a href="searchForm">
+				<a href="../main/searchForm">
 					<i class="fa fa-search"	aria-hidden="true"></i> 
 					<span>Search</span>
 				</a>
@@ -49,7 +49,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="chat">
+						<a href="../home/chat">
 							<i class="fa fa-comments" aria-hidden="true"></i>Chat</a>
 					</li>
 					<li>

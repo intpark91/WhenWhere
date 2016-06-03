@@ -96,13 +96,12 @@ ul#pn{
 									</tbody>
 								</table>
 							</div>
-							<!-- /.mail-box-messages -->
 						</div>
-						<!-- /.box-body -->
+						<!-- box-footer -->
 						<div class="box-footer no-padding">
 							<div class="box-footer no-padding">
 								<div class="row">
-									<div style="text-align: center">
+									<div style="text-align: center;">
 										<ul class="pagination pagination-sm no-margin"></ul>
 									</div>
 								</div>
@@ -119,13 +118,13 @@ ul#pn{
 		$(function() {
 			var str = ""
 			for (var i = "${pagination.getLinkBegin()}"; i <= "${pagination.getLinkEnd()}"; i++) {
-				str += "<li><a href='#'>"+i+"</li>";
+				str += "<li><a href='../user/msgPopup?page="+i+"'>"+i+"</li>";
 			}
 			if ("${pagination.isPrev()}"=="true") {
-				str = "<li><a href='#'>&laquo;</a></li>" + str;
+				str = "<li><a href='../user/msgPopup?page="+${pagination.getLinkBegin()-1}+"'>PREV</a></li>" + str;
 			}
 			if ("${pagination.isNext()}"=="true") {
-				str += "<li><a href='#'>&raquo;</a></li>"
+				str += "<li><a href='../user/msgPopup?page="+${pagination.getLinkEnd()+1}+"'>NEXT</a></li>"
 			}
 			$("ul.pagination").html(str);
 		})
