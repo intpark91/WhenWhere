@@ -93,7 +93,7 @@
 				
 				<!-- login -->
 				<li class="login" style="display: none">
-				<a href="loginForm">
+				<a href="../home/loginForm">
 					<i class="fa fa-sign-in" aria-hidden="true" style="font-size: 20px;"></i>
 					<span class="hidden-xs" style="font-size: 20px;">&nbsp;LOGIN</span>
 				</a>

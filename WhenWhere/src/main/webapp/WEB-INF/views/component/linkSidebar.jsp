@@ -22,7 +22,7 @@
 		<ul class="sidebar-menu">
 			<!-- Optionally, you can add icons to the links -->
 			<li class="active">
-				<a href="../main/searchForm">
+				<a href="../home/searchForm">
 					<i class="fa fa-search"	aria-hidden="true"></i> 
 					<span>Search</span>
 				</a>
