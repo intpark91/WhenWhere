@@ -32,7 +32,6 @@
 	}
 	
 	.sliderDiv{
-		text-align: center;
 		margin-top:10px;
 		margin-bottom:150px;
 	}
@@ -72,10 +71,10 @@ desired effect
 
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
-			<section class="content-header">
-				<div class="row center">
-					<div class="col-sm-offset-3 col-sm-6 col-sx-offset-3 col-sx-6 titleDiv">
-						<span class="label hidden-xs">WhenWhere</span>
+			<section class="content-header hidden-xs">
+				<div class="row center ">
+					<div class="col-sm-offset-3 col-sm-6 col-sx-3 col-sx-6 titleDiv">
+						<span class="label">WhenWhere</span>
 					</div>
 				</div>
 			</section>
@@ -83,7 +82,7 @@ desired effect
 			<section class="content">
 				<!-- Your Page Content Here -->
 				<div class="row center">
-					<div class="col-sm-offset-1 col-sm-10 col-sx-offset-1 col-sx-10 sliderDiv">
+					<div class="col-sm-offset-3 col-sm-6 col-sx-12 sliderDiv">
 						<div id="flat-slider"></div>
 					</div>
 				</div>
