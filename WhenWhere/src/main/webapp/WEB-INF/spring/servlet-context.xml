@@ -31,7 +31,7 @@
 	<context:component-scan base-package="com.whenwhere.user.service" />
 	<context:component-scan base-package="com.whenwhere.user.vo" />
 	<context:component-scan base-package="com.whenwhere.user.util" />
-	
+	<context:component-scan base-package="com.whenwhere.websocket" />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
@@ -82,4 +82,15 @@
 	<beans:bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg index="0" ref="sqlSessionFactory" />
 	</beans:bean>
+	
+	<!-- 웹 소켓 사용 위한 handler 및 빈 객체지정 -->
+	<websocket:handlers>
+		<websocket:mapping handler="echoHandler" path="/wsclient" />
+		<websocket:handshake-interceptors>
+			<beans:bean class="com.whenwhere.websocket.HandshakeInterceptor"/>
+		</websocket:handshake-interceptors>
+	</websocket:handlers>
+	
+	<beans:bean id="echoHandler" class="com.whenwhere.websocket.HelloWebSocketHandler" />
+	
 </beans:beans>

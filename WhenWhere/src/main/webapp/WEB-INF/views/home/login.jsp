@@ -89,7 +89,12 @@
 					if(check.ok){
 						location.href="../home/main";
 					}else{
-						bootbox.alert('아이디 또는 비밀번호를 다시 확인하세요.<br>등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다.');
+						$.bootstrapGrowl("아이디 또는 비밀번호를 다시 확인하세요.", {
+				            type: 'danger',
+				            align: 'center',
+				            width: 'auto',
+				            allow_dismiss: false
+				        });
 					}
 				},
 				error : function(xhr, data, error) {
