@@ -25,7 +25,36 @@
 		table th{
 			text-align: center;
 		}
-</style>
+		input.form-control.pull-right {
+   			 width: 150px;
+		}
+	</style>
+	
+	<script type="text/javascript">
+		function sendMsg(){
+		 
+		    var ws = new WebSocket("ws://localhost:8088/WhenWhere/wsclient?id=1234");
+		    ws.onopen = function () {
+		        $('#msgBoard').text('Info: connection opened.');
+		 
+		        $('input[name=chatInput]').on('keydown', function(evt){
+		            if(evt.keyCode==13){
+		            	console.log('보냄버튼누름');
+		                var msg = $('input[name=chatInput]').val();
+		                console.log('보낸메세지'+msg);
+		                ws.send(msg);
+		                $('input[name=chatInput]').val('');
+		            }
+		        });
+		    };
+		    ws.onmessage = function (event) {
+		        $('#msgBoard').prepend(event.data+'\n');
+		    };
+		    ws.onclose = function (event) {
+		        $('#msgBoard').text('Info: connection closed.');
+		    };
+		}
+	</script>
 </head>
 
 <!-- user/join -->
@@ -234,7 +263,7 @@
 				
 					<!-- chat item -->
 					<div class="item">
-						<img src="dist/img/user4-128x128.jpg" alt="user image" class="online">
+						<img src="../resources/img/test.JPG" alt="user image" class="online">
 
 						<p class="message">
 							<a href="#" class="name"> 
@@ -249,58 +278,15 @@
 						</p>
 					</div>
 					<!-- /.item -->
+					<div id="msgBoard">
 					
-					<div class="item">
-						<img src="dist/img/user4-128x128.jpg" alt="user image" class="offline">
-
-						<p class="message">
-							<a href="#" class="name"> 
-								<small class="text-muted pull-right">
-									<i class="fa fa-clock-o"></i>
-									2:15
-								</small> Mike Doe
-							</a> 
-							I would like to meet you to discuss the latest news about the
-							arrival of the new theme. They say it is going to be one the best
-							themes on the market
-						</p>
-					</div>
-					<div class="item">
-						<img src="dist/img/user4-128x128.jpg" alt="user image" class="online">
-
-						<p class="message">
-							<a href="#" class="name"> 
-								<small class="text-muted pull-right">
-									<i class="fa fa-clock-o"></i>
-									2:15
-								</small> Mike Doe
-							</a> 
-							I would like to meet you to discuss the latest news about the
-							arrival of the new theme. They say it is going to be one the best
-							themes on the market
-						</p>
-					</div>
-					<div class="item">
-						<img src="dist/img/user4-128x128.jpg" alt="user image" class="online">
-
-						<p class="message">
-							<a href="#" class="name"> 
-								<small class="text-muted pull-right">
-									<i class="fa fa-clock-o"></i>
-									2:15
-								</small> Mike Doe
-							</a> 
-							I would like to meet you to discuss the latest news about the
-							arrival of the new theme. They say it is going to be one the best
-							themes on the market
-						</p>
 					</div>
 					<div class="box-footer">
 			              <div class="input-group">
-			                <input class="form-control" placeholder="Type message...">
+			                <input class="form-control" placeholder="Type message..." name="chatInput">
 			
 			                <div class="input-group-btn">
-			                  <button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>
+			                  <button type="button" class="btn btn-success" onclick="sendMsg();"><i class="fa fa-plus"></i></button>
 			                </div>
 			              </div>
 			            </div>
