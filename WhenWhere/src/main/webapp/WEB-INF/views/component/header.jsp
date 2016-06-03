@@ -3,7 +3,7 @@
 <header class="main-header">
 
 	<!-- Logo -->
-	<a href="main" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+	<a href="../home/main" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 		<span class="logo-mini"><b>WW</b></span> <!-- logo for regular state and mobile devices -->
 		<span class="logo-lg"><b>W</b>hen<b>W</b>here</span>
 
@@ -63,7 +63,7 @@
 								<!-- end message -->
 							</ul> <!-- /.menu -->
 						</li>
-						<li class="footer"><a href="#">See All Messages</a></li>
+						<li class="footer"><a href="javascript:msgPopup();">See All Messages</a></li>
 					</ul>
 				</li>
 				<!-- /.messages-menu -->
@@ -93,7 +93,7 @@
 				
 				<!-- login -->
 				<li class="login" style="display: none">
-				<a href="loginForm">
+				<a href="../home/loginForm">
 					<i class="fa fa-sign-in" aria-hidden="true" style="font-size: 20px;"></i>
 					<span class="hidden-xs" style="font-size: 20px;">&nbsp;LOGIN</span>
 				</a>
@@ -169,8 +169,8 @@
 			});
 		});
 		function msgPopup() {
-			var popup = "../user/msgPopup";
-			var popOption = "width=700, height=400, top=200, left=200";
+			var popup = "../user/msgbox?page=1";
+			var popOption = "width=992, height=525, top=200, left=200";
 			window.open(popup, "", popOption);
 		}
 		function logout() {

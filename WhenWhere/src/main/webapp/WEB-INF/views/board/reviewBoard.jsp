@@ -8,6 +8,14 @@
 	<link rel="stylesheet" href=../css/board/reviewBoard.css>
 	<style type="text/css">
 </style>
+<script type="text/javascript">
+	$(function(){
+		$('.reviewwrite').on('click',function(){
+			location.href="eventWrite"	
+		});
+	});
+</script>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
 						<div id="main_bg" class="info_main_bg" >
@@ -41,44 +49,41 @@
 									<ul class="festival_list">
 										<li class="festival_list_child">
 											<ul class="bandi_list">
-												<li class="bandi_img"><a
-													href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=20746">
-														<img
-														src="./전라북도 토탈관광 - 여행정보_문화•축제_files/20160426153420145.jpg"
-														alt="">
-												</a></li>
-												<li><a
-													href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=20746">[전주]
-														전주한지문화축제</a><br> <span class="bandi_list_date">2016.05.05~05.08</span></li>
+												<li class="bandi_img">
+													<a href="#">
+														<img src="../images/reviewimg/reviewDemo.JPG"alt="">
+													</a>
+												</li>
+												<li>
+												<a href="noticeRead">[전주] 전주한지문화축제</a><br> <span class="bandi_list_date">2016.05.05~05.08</span></li>
 											</ul>
 										</li>
+										
 										<li class="festival_list_child">
 											<ul class="bandi_list">
-												<li class="bandi_img"><a
-													href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=20743">
-
-														<img
-														src="./전라북도 토탈관광 - 여행정보_문화•축제_files/20160113234214131.jpg"
-														alt="">
-												</a></li>
-												<li><a
-													href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=20743">[전주]
-														전주국제영화제</a><br> <span class="bandi_list_date">2016.04.28~05.07</span></li>
+												<li class="bandi_img">
+													<a href="#">
+														<img src="../images/reviewimg/reviewDemo.JPG" alt="">
+													</a>
+												</li>
+												<li>
+													<a href="#">[전주] 전주국제영화제</a><br> 
+													<span class="bandi_list_date">2016.04.28~05.07</span>
+												</li>
 											</ul>
 										</li>
 
 										<li class="festival_list_child">
 											<ul class="bandi_list">
-												<li class="bandi_img"><a
-													href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=23903">
-
-														<img
-														src="./전라북도 토탈관광 - 여행정보_문화•축제_files/6c46c754-f4aa-4289-8efa-c41bc32ee4df.jpg.png"
-														alt="#">
-												</a></li>
-												<li><a
-													href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=23903">[남원]
-														바래봉 철쭉제</a><br> <span class="bandi_list_date">2016.04.23~05.22</span></li>
+												<li class="bandi_img">
+													<a href="#">
+														<img src="../images/reviewimg/reviewDemo.JPG" alt="#">
+													</a>
+												</li>
+												<li>
+													<a href="#">[남원] 바래봉 철쭉제</a> 
+													<br> <span class="bandi_list_date">2016.04.23~05.22</span>
+												</li>
 											</ul>
 										</li>
 									</ul>
@@ -106,21 +111,14 @@
 								<div class="this_month_event_view" style="display: block;">
 									<div class="bandi">
 										<h2>전주한지문화축제</h2>
-										<p class="term">
-											<img src="./전라북도 토탈관광 - 여행정보_문화•축제_files/calendar_small.png"
-												alt="달력이모티">&nbsp;&nbsp;2016.05.05~05.08(4일간)
-										</p>
+				
 										<p>장소 : 전라북도 전주시 덕진구 덕진동 1가 1220</p>
 										<p>주최/주관 : 전주시/전주한지문화축제 조직위원회</p>
 										<p>연락처 : 063-271-2503</p>
-										<a
-											href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=20746">상세보기</a>
+										<a href="#">상세보기</a>
 									</div>
 									<p class="bandi_img">
-
-										<img
-											src="./전라북도 토탈관광 - 여행정보_문화•축제_files/20160426153420145.jpg"
-											alt="한지문화축제.jpg">
+										<img src="../images/reviewimg/reviewDemo.JPG" alt="한지문화축제.jpg">
 									</p>
 								</div>
 
@@ -128,20 +126,17 @@
 									<div class="bandi">
 										<h2>전주국제영화제</h2>
 										<p class="term">
-											<img src="./전라북도 토탈관광 - 여행정보_문화•축제_files/calendar_small.png"
+											<img src="../images/reviewimg/reviewDemo.JPG"
 												alt="달력이모티">&nbsp;&nbsp;2016.04.28~05.07(10일간)
 										</p>
 										<p>장소 : 전라북도 전주시 완산구 고사동 155-1</p>
 										<p>주최/주관 : 전주국제영화제조직위원회/전주국제영화제집행위원회</p>
 										<p>연락처 : 063-288-5433</p>
-										<a
-											href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=20743">상세보기</a>
+										<a href="#">상세보기</a>
 									</div>
 									<p class="bandi_img">
 
-										<img
-											src="./전라북도 토탈관광 - 여행정보_문화•축제_files/20160113234214131.jpg"
-											alt="festival_img.jpg">
+										<img src="../images/reviewimg/reviewDemo.JPG" alt="festival_img.jpg">
 									</p>
 								</div>
 
@@ -149,73 +144,22 @@
 									<div class="bandi">
 										<h2>바래봉 철쭉제</h2>
 										<p class="term">
-											<img src="./전라북도 토탈관광 - 여행정보_문화•축제_files/calendar_small.png"
-												alt="달력이모티">&nbsp;&nbsp;2016.04.23~05.22(30일간)
+											<img src="../images/reviewimg/reviewDemo.JPG" alt="달력이모티">&nbsp;&nbsp;2016.04.23~05.22(30일간)
 										</p>
 										<p>장소 :</p>
 										<p>주최/주관 : 남원시/운봉읍</p>
 										<p>연락처 : 063-634-0024</p>
-										<a
-											href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=23903">상세보기</a>
+										<a href="#">상세보기</a>
 									</div>
 									<p class="bandi_img">
 
 										<img
-											src="./전라북도 토탈관광 - 여행정보_문화•축제_files/6c46c754-f4aa-4289-8efa-c41bc32ee4df.jpg.png"
-											alt="1.jpg">
+											src="../images/reviewimg/reviewDemo.JPG" alt="1.jpg">
 									</p>
 								</div>
-
 							</div>
-
-							<script type="text/javascript">
-								var date = new Date();
-								/* MonthPicker 옵션 */
-								var options = {
-									pattern : 'yyyy.mm',
-									selectedYear : date.getFullYear(),
-									startYear : date.getFullYear(),
-									finalYear : date.getFullYear() + 1,
-									monthNames : [ '1월', '2월', '3월', '4월',
-											'5월', '6월', '7월', '8월', '9월',
-											'10월', '11월', '12월' ]
-								};
-								$('#thisMonthBtn').monthpicker(options);
-								$('#thisMonthBtn')
-										.monthpicker()
-										.bind(
-												'monthpicker-click-month',
-												function(e, month) {
-													var year = $(
-															'.mtz-monthpicker.mtz-monthpicker-year')
-															.val();
-													if (month <= 9) {
-														month = '0' + month
-													}
-													$('input[name=this_month]')
-															.val(
-																	year
-																			+ '.'
-																			+ month);
-													fnAjaxThisMonthTravelInfomationEventList(1);
-												});
-							</script>
+	
 						</div>
-
-
-
-						<div class="banner">
-							<p class="banner_img">
-								<img src="./전라북도 토탈관광 - 여행정보_문화•축제_files/info_banner.png"
-									alt="후기">
-							</p>
-							<a href="http://www.myjb.kr/" target="_blank" title="새창에서 열림">바로가기</a>
-						</div>
-
-
-
-
-
 						<div class="serchResult">
 							<ul class="result">
 								<li>검색결과</li>
@@ -229,40 +173,27 @@
 
 						<div class="serchList">
 							<div class="photoWrap">
-								<a
-									href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=150">
-
-									<img src="./전라북도 토탈관광 - 여행정보_문화•축제_files/20160114003450588.jpg"
-									alt="576742363_632913ee_z29.jpg" class="photo_img">
-
-
+								<a href="#">
+									<img src="../images/reviewimg/reviewDemo.JPG" alt="576742363_632913ee_z29.jpg" class="photo_img">
 								</a>
 								<h3>
-									<a
-										href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=150">
+									<a href="#">
 										<span class="jb_area">전주</span> 전주대사습놀이 전국대회
 									</a>
 								</h3>
 								<ul class="stay_infobox">
-
-
-									<li>기간: 2015.05.30~06.01</li> 조선조 숙종대의 마상궁술대회 및 영조대의 물놀이와 판소리,
+									<li>기간: 2015.05.30~06.01</li> 
+									조선조 숙종대의 마상궁술대회 및 영조대의 물놀이와 판소리,
 									백일장 등 민속무예놀이를 종합 대사습이라 합니다.
 								</ul>
 							</div>
 
 							<div class="photoWrap">
-								<a
-									href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=9547">
-
-									<img src="./전라북도 토탈관광 - 여행정보_문화•축제_files/20160115113208230.JPG"
-									alt="20160114004001393.JPG" class="photo_img">
-
-
+								<a href="#">
+									<img src="../images/reviewimg/reviewDemo.JPG" alt="20160114004001393.JPG" class="photo_img">
 								</a>
 								<h3>
-									<a
-										href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=9547">
+									<a href="#">
 										<span class="jb_area">군산</span> 군산세계철새축제
 									</a>
 								</h3>
@@ -273,15 +204,11 @@
 							</div>
 
 							<div class="photoWrap">
-								<a
-									href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=24021">
-
-									<img src="./전라북도 토탈관광 - 여행정보_문화•축제_files/20160118160814204.jpg"
-									alt="197518_image2_1.jpg" class="photo_img">
+								<a href="#">
+									<img src="../images/reviewimg/reviewDemo.JPG" alt="197518_image2_1.jpg" class="photo_img">
 								</a>
 								<h3>
-									<a
-										href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=24021">
+									<a href="#">
 										<span class="jb_area">부안</span> 곰소젓갈수산물축제
 									</a>
 								</h3>
@@ -293,17 +220,12 @@
 							</div>
 
 							<div class="photoWrap">
-								<a
-									href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=9546">
-
-									<img src="./전라북도 토탈관광 - 여행정보_문화•축제_files/140082530082063.jpg"
+								<a href="#">
+									<img src="../images/reviewimg/reviewDemo.JPG"
 									alt="대한아놀자2.jpg" class="photo_img">
-
-
 								</a>
 								<h3>
-									<a
-										href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=9546">
+									<a href="#">
 										<span class="jb_area">군산</span> 군산시간여행축제
 									</a>
 								</h3>
@@ -315,15 +237,11 @@
 							</div>
 
 							<div class="photoWrap">
-								<a
-									href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=164">
-
-									<img src="./전라북도 토탈관광 - 여행정보_문화•축제_files/20160106044727979.png"
-									alt="1771479_image2_1.png" class="photo_img">
+								<a href="#">
+									<img src="../images/reviewimg/reviewDemo.JPG" alt="1771479_image2_1.png" class="photo_img">
 								</a>
 								<h3>
-									<a
-										href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=164">
+									<a href="#">
 										<span class="jb_area">남원</span> 제 5회 지리산 바래봉 눈꽃축제
 									</a>
 								</h3>
@@ -335,14 +253,11 @@
 							</div>
 							<div class="photoWrap">
 								<a
-									href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=165">
-
-									<img src="./전라북도 토탈관광 - 여행정보_문화•축제_files/20160106055630188.jpg"
-									alt="2028703_image2_1.jpg" class="photo_img">
+									href="#">
+									<img src="../images/reviewimg/reviewDemo.JPG" alt="2028703_image2_1.jpg" class="photo_img">
 								</a>
 								<h3>
-									<a
-										href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=165">
+									<a href="#">
 										<span class="jb_area">완주</span> 산속여우빛축제
 									</a>
 								</h3>
@@ -353,14 +268,12 @@
 								</ul>
 							</div>
 							<div class="photoWrap">
-								<a
-									href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=24057">
-									<img src="./전라북도 토탈관광 - 여행정보_문화•축제_files/20160415174801821.jpg"
+								<a href="#">
+									<img src="../images/reviewimg/reviewDemo.JPG"
 									alt="마이산배경꽃잔디.jpg" class="photo_img">
 								</a>
 								<h3>
-									<a
-										href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=24057">
+									<a href="#">
 										<span class="jb_area">진안</span> 원연장 꽃잔디 축제
 									</a>
 								</h3>
@@ -373,14 +286,12 @@
 
 							<div class="photoWrap">
 								<a
-									href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=13429">
+									href="#">
 
-									<img src="./전라북도 토탈관광 - 여행정보_문화•축제_files/20160113232544821.jpg"
-									alt="139408010009584.jpg" class="photo_img">
+									<img src="../images/reviewimg/reviewDemo.JPG" alt="139408010009584.jpg" class="photo_img">
 								</a>
 								<h3>
-									<a
-										href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=13429">
+									<a href="#">
 										<span class="jb_area">고창</span> 고창 모양성제
 									</a>
 								</h3>
@@ -392,14 +303,12 @@
 							</div>
 
 							<div class="photoWrap">
-								<a
-									href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=13433">
-									<img src="./전라북도 토탈관광 - 여행정보_문화•축제_files/20160113231700831.jpg"
+								<a href="#">
+									<img src="../images/reviewimg/reviewDemo.JPG"
 									alt="139407885641689.jpg" class="photo_img">
 								</a>
 								<h3>
-									<a
-										href="http://tour.jb.go.kr/travel/info/view.do?category_top_id=c&amp;menuCd=DOM_000000103001000000&amp;contentsSid=22&amp;ctnt_id=13433">
+									<a href="#">
 										<span class="jb_area">고창</span> 해풍고추 축제
 									</a>
 								</h3>
@@ -425,6 +334,12 @@
 
 							</ul>
 						</div>
+						
+						<div id="btnWrap">
+							<button class="reviewwrite" id="reviewwrite">글쓰기</button>
+						</div>
+						
+						
 					</div>					
 				</div>
 			</div>

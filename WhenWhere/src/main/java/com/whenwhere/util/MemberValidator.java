@@ -1,4 +1,4 @@
-package com.whenwhere.user.util;
+package com.whenwhere.util;
 
 public class MemberValidator {
 

@@ -24,8 +24,8 @@
 
 #flat-slider.ui-slider.ui-slider-horizontal {
 	height: 10px;
-    width: 60%;
-    margin-left: 20%;
+    width: 100%;
+    /* margin-left: 20%; */
     text-align: center;
     margin-top: 100px;
 }
@@ -59,10 +59,10 @@
 }
 
 #flat-slider.ui-slider.ui-slider-vertical {
-	width: 6px;
-	height: 125px;
-	display: inline-block;
-	margin: 0 15%;
+    width: 16px;
+    height: 400px;
+    display: inline-block;
+    margin: 0 15%;
 }
 
 #flat-slider.ui-slider.ui-slider-vertical .ui-slider-handle {
@@ -147,14 +147,14 @@
 
 /* 월 label 태그 코드추가 */
 .ui-month-label {
-    position: absolute;
-    top: 45px;
-    left: 50%;
-    margin-left: -1em;
-    width: 2.5em;
-    font-size: 15px;
-    background: white;
-    padding: 5px;
-    color: black;
-    border-radius: 50%;
+   	position: relative;
+    top: 48px;
+    /* left: 50%; */
+    /* margin-left: -3em; */
+    /* width: 14px; */
+    /* font-size: 16px; */
+    /* background: white; */
+    /* padding: 0px; */
+    color: #FFFFFF;
+    font-size: 16px;
 }
