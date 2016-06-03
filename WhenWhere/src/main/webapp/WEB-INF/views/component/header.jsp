@@ -169,8 +169,8 @@
 			});
 		});
 		function msgPopup() {
-			var popup = "../user/msgPopup";
-			var popOption = "width=700, height=400, top=200, left=200";
+			var popup = "../user/msgPopup?page=1";
+			var popOption = "width=992, height=525, top=200, left=200";
 			window.open(popup, "", popOption);
 		}
 		function logout() {

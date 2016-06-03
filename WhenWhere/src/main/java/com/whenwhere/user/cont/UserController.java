@@ -81,8 +81,8 @@ public class UserController {
 	}
 	
 	@RequestMapping("/msgPopup")
-	public String msgPopup(HttpSession session){
-		session.setAttribute("msgList", msgService.getMsgList(session));
+	public String msgPopup(Model model, HttpSession session,@RequestParam int page){
+		msgService.getMsgList(model, session, page);
 		return "component/msgPopup";
 	}
 	

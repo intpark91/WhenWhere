@@ -2,6 +2,8 @@ package com.whenwhere.user.vo;
 
 import java.sql.Date;
 
+import com.whenwhere.util.PaginationVO;
+
 public class MessageVO {
 	private int no;
 	private String sender;
@@ -66,5 +68,4 @@ public class MessageVO {
 	public void setWdate(Date wdate) {
 		this.wdate = wdate;
 	}
-
 }

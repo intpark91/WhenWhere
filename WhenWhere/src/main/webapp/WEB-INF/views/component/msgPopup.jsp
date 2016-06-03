@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,11 +12,17 @@
 <link rel="stylesheet" href="../css/slider.css" />
 <style type="text/css">
 .wrapper {
-	padding: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .content-header {
+	padding-top: 0px;
 	margin-bottom: 10px;
+}
+ul#pn{
+	text-align: center;
+	margin: 0px auto;
 }
 </style>
 </head>
@@ -35,22 +41,12 @@
 						class="btn btn-primary btn-block margin-bottom">Write new
 						message</a>
 					<div class="box box-solid">
-						<!--매뉴 -->
-						<div class="box-header with-border">
-							<h3 class="box-title">Menu</h3>
-							<div class="box-tools">
-								<button type="button" class="btn btn-box-tool"
-									data-widget="collapse">
-									<i class="fa fa-minus"></i>
-								</button>
-							</div>
-						</div>
 						<div class="box-body no-padding">
 							<ul class="nav nav-pills nav-stacked">
 								<li class="active"><a href="#"><i class="fa fa-inbox"></i>
-										Inbox <span class="label label-primary pull-right">3</span></a></li>
-								<li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a></li>
-								<li><a href="#"><i class="fa fa-envelope"></i> Save</a></li>
+										받은 쪽지함 <span class="label label-primary pull-right">3</span></a></li>
+								<li><a href="#"><i class="fa fa-envelope-o"></i> 보낸 쪽지함</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i> 보관함</a></li>
 							</ul>
 						</div>
 						<!-- /.box-body -->
@@ -60,27 +56,15 @@
 				<!-- /.col -->
 				<div class="col-md-9">
 					<div class="box box-primary">
-						<!--inbox -->
-						<div class="box-header with-border">
-							<h3 class="box-title">Inbox</h3>
-							<div class="box-tools pull-right">
-								<div class="has-feedback">
-									<input type="text" class="form-control input-sm"
-										placeholder="Search Mail"> <span
-										class="glyphicon glyphicon-search form-control-feedback"></span>
-								</div>
-							</div>
-						</div>
-
 						<!-- /.box-header -->
 						<div class="box-body no-padding">
 							<div class="mailbox-controls">
 								<!-- Check all button -->
-								<button type="button"
-									class="btn btn-default btn-sm checkbox-toggle">
-									<i class="fa fa-square-o"></i>
-								</button>
 								<div class="btn-group">
+									<button type="button"
+										class="btn btn-default btn-sm checkbox-toggle">
+										<i class="fa fa-square-o"></i>
+									</button>
 									<button type="button" class="btn btn-default btn-sm">
 										<span class="glyphicon glyphicon-eye-open"></span>
 									</button>
@@ -89,8 +73,15 @@
 									</button>
 								</div>
 								<!-- /.btn-group -->
+								<div class="box-tools pull-right">
+									<div class="has-feedback">
+										<input type="text" class="form-control input-sm"
+											placeholder="Search Mail"> <span
+											class="glyphicon glyphicon-search form-control-feedback"></span>
+									</div>
+								</div>
 							</div>
-							<!-- message list -->
+							<!-- box-messages -->
 							<div class="table-responsive mailbox-messages">
 								<table class="table table-hover table-striped">
 									<tbody id="msgList">
@@ -104,35 +95,40 @@
 										</c:forEach>
 									</tbody>
 								</table>
-								<!-- /.table -->
 							</div>
 							<!-- /.mail-box-messages -->
 						</div>
 						<!-- /.box-body -->
 						<div class="box-footer no-padding">
-							<div class="mailbox-controls">
-								<div class="pull-right">
-									1-10/50
-									<div class="btn-group" style="margin-bottom: 5px;">
-										<button type="button" class="btn btn-default btn-sm">
-											<i class="fa fa-chevron-left"></i>
-										</button>
-										<button type="button" class="btn btn-default btn-sm">
-											<i class="fa fa-chevron-right"></i>
-										</button>
+							<div class="box-footer no-padding">
+								<div class="row">
+									<div style="text-align: center">
+										<ul class="pagination pagination-sm no-margin"></ul>
 									</div>
-									<!-- /.btn-group -->
 								</div>
-								<!-- /.pull-right -->
 							</div>
 						</div>
+						<!-- /.box-footer-->
 					</div>
-					<!-- /. box -->
 				</div>
 			</div>
-			<section class="content"></section>
 		</div>
 	</div>
 	<jsp:include page="../component/core_js.jsp" />
+	<script type="text/javascript">
+		$(function() {
+			var str = ""
+			for (var i = "${pagination.getLinkBegin()}"; i <= "${pagination.getLinkEnd()}"; i++) {
+				str += "<li><a href='#'>"+i+"</li>";
+			}
+			if ("${pagination.isPrev()}"=="true") {
+				str = "<li><a href='#'>&laquo;</a></li>" + str;
+			}
+			if ("${pagination.isNext()}"=="true") {
+				str += "<li><a href='#'>&raquo;</a></li>"
+			}
+			$("ul.pagination").html(str);
+		})
+	</script>
 </body>
 </html>

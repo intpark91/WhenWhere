@@ -8,11 +8,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into values(SEQ_MSG.NEXTVAL, #{sender}, #{receiver}, #{title}, #{content}, '0', sysdate)
 	</insert>
 	
-	<select id="getMsgList" resultType="com.whenwhere.user.vo.MessageVO">
-		select receiver, m_title as title, m_content as content,
-			   m_receive_ck as receive_ck, M_wdate as wdate 
-	 	  from MESSAGE 
-	     where receiver =#{email} order by M_NO desc
-
+	<select id="getRowsByReceiver" resultType="Integer">
+		select count(*) from message where receiver = #{receiver}
 	</select>
+	
+	<select id="getMsgList" parameterType="map" resultType="com.whenwhere.user.vo.MessageVO">
+		select sender, m_title as title, m_content as content, m_receive_ck as receive_ck, M_wdate as wdate
+		  from (SELECT *
+			      FROM (select ROWNUM as rnum, sender, m_title, m_content, m_receive_ck, M_wdate
+	                      from MESSAGE
+	                     where receiver = #{receiver}
+	                     order by M_NO desc
+			           ) board
+			     where rnum <![CDATA[ <= ]]> #{page}*#{rows}
+			   )
+		 where rnum >= (#{page} -1)*(#{rows} + 1)
+	</select>
+	
 </mapper>
