@@ -50,8 +50,7 @@
 								$("#inForm").submit();
 							}
 						</script>
-						<script type="text/javascript"
-							src="./전라북도 토탈관광 - 여행도우미_참여마당_여행후기_files/HuskyEZCreator.js"></script>
+						
 						<div id="content01">
 							<!-- 2015.12.07 수정-->
 
@@ -84,7 +83,7 @@
 														<td class="bbs_name"><input type="text"
 															name="userNick" id="userNick" value="이동현"></td>
 													</tr>
-
+	
 
 
 													<!-- 에디터영역 시작-->
@@ -94,7 +93,7 @@
 															<div class="bbs_write_wrap">
 																<!-- <textarea name="dataContent" id="dataContent"
 																	style="width: 100%; height: 300px;" rows="10" cols="50"></textarea> -->
-																<jsp:include page="smarteditor.jsp" />
+																<jsp:include page="JSeditor.jsp" />
 
 															</div>
 														</td>
