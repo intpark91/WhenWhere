@@ -6,3 +6,4 @@
 <script src="../js/bootbox.min.js"></script>
 <script src="../js/jquery.bootstrap-growl.min.js"></script>
 <script src="../js/app.js"></script>
+<script src="../js/detect-device.js"></script>

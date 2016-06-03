@@ -59,10 +59,10 @@
 }
 
 #flat-slider.ui-slider.ui-slider-vertical {
-	width: 6px;
-	height: 125px;
-	display: inline-block;
-	margin: 0 15%;
+    width: 16px;
+    height: 400px;
+    display: inline-block;
+    margin: 0 15%;
 }
 
 #flat-slider.ui-slider.ui-slider-vertical .ui-slider-handle {

@@ -24,6 +24,20 @@
 		height: auto;
 		z-index: -1;
 	}
+	
+	.titleDiv{
+		text-align: center;
+		font-size: 70px;
+		margin-top:60px;
+	}
+	
+	.sliderDiv{
+		text-align: center;
+		margin-top:10px;
+		margin-bottom:150px;
+	}
+	
+	
 </style>
 </head>
 <!--
@@ -59,11 +73,21 @@ desired effect
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
+				<div class="row center">
+					<div class="col-sm-offset-3 col-sm-6 col-sx-offset-3 col-sx-6 titleDiv">
+						<span class="label hidden-xs">WhenWhere</span>
+					</div>
+				</div>
 			</section>
 			<!-- Main content -->
 			<section class="content">
 				<!-- Your Page Content Here -->
-				<div id="flat-slider"></div>
+				<div class="row center">
+					<div class="col-sm-offset-1 col-sm-10 col-sx-offset-1 col-sx-10 sliderDiv">
+						<div id="flat-slider"></div>
+					</div>
+				</div>
+				
 			</section>
 			<!-- /.content -->
 		</div>
