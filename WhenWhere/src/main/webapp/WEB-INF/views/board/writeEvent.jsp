@@ -183,8 +183,6 @@ jQuery.browser = {};
 						</div>
 
 					</div>
-
-
 				</div>
 			</div>	
 		</div>
