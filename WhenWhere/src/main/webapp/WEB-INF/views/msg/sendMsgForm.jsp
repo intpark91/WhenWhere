@@ -60,18 +60,18 @@
 							<div class="form-group">
 								<input class="form-control" placeholder="Subject:">
 							</div>
-							<div class="form-group">
-								<textarea id="compose-textarea" class="form-control" style="height: 300px"></textarea>
+							<div class="form-group" style="margin-bottom: 0px;">
+								<textarea id="compose-textarea" class="form-control" style="height: 300px; margin-bottom: 0px;"></textarea>
 							</div>
 						</div>
-						<div class="box-footer">
+						<div class="box-footer" style="padding-top: 0px;">
 							<div class="pull-right">
-								<button type="submit" class="btn btn-primary">
-									<i class="fa fa-envelope-o"></i> Send
+								<button type="botton" onclick="javascript:sendMsg();" class="btn btn-primary">
+									<i class="fa fa-envelope-o"></i> 보내기
 								</button>
 							</div>
 							<button type="reset" class="btn btn-default">
-								<i class="fa fa-times"></i> Discard
+								<i class="fa fa-times"></i> 취소
 							</button>
 						</div>
 					</div>
@@ -80,5 +80,10 @@
 		</div>
 	</div>
 	<jsp:include page="../component/core_js.jsp" />
+	<script type="text/javascript">
+	function sendMsg(){
+		alert("msg전송");
+	}
+	</script>
 </body>
 </html>
