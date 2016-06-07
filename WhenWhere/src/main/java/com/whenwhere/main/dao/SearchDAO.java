@@ -1,5 +1,7 @@
 package com.whenwhere.main.dao;
 
-public class SearchDAO {
+import java.util.List;
 
+public interface SearchDAO {
+	public List<String> getLocationList(String sub_loc);
 }
