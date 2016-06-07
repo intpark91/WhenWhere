@@ -26,9 +26,12 @@ public class MessageService {
 
 	public String sendMsg(MessageVO msg) {
 		MessageDAO dao = sqlSessionTemplate.getMapper(MessageDAO.class);
-		dao.sendMsg();
-
 		boolean ok = true;
+		try {
+			dao.sendMsg();
+		} catch (Exception e) {
+			ok = false;
+		}
 		JSONObject jobj = new JSONObject();
 		jobj.put("ok", ok);
 		return jobj.toJSONString();
