@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whenwhere.main.dao.SearchDAO">
+
+	<select id="getLocationList" resultType="String">
+		select LOC_NAME from location where LOC_SUBNAME=#{sub_loc}
+	</select>
+	
+</mapper>
