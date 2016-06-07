@@ -84,11 +84,18 @@
 	<jsp:include page="../component/core_js.jsp" />
 	<script type="text/javascript">
 	function sendMsg(){
-		console.log($("form[name=msgForm]").serialize());
 		$.ajax({
 			type : "post",
-			
-		})
+			url: "../user/sendMsg",
+			data: $("form[name=msgForm]").serialize(),
+			dataType: "json",
+			success: function(){
+				alert("good");
+			},
+			error: function(){
+				alert("fail");
+			}
+		});
 	}
 	</script>
 </body>

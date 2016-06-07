@@ -94,6 +94,7 @@ public class UserController {
 	@RequestMapping("/sendMsg")
 	@ResponseBody
 	public String sendMsg(MessageVO msg){
-		return sendMsg(msg);
+		msgService.sendMsg(msg);
+		return null;
 	}
 }
