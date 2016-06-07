@@ -35,7 +35,7 @@
 		 
 		    var ws = new WebSocket("ws://localhost:8088/WhenWhere/wsclient?id=1234");
 		    ws.onopen = function () {
-		        $('#msgBoard').text('Info: connection opened.');
+		        $('#msgBoard').text('Info: 채팅방이 개설되었습니다.');
 		 
 		        $('input[name=chatInput]').on('keydown', function(evt){
 		            if(evt.keyCode==13){
@@ -53,6 +53,31 @@
 		    ws.onclose = function (event) {
 		        $('#msgBoard').text('Info: connection closed.');
 		    };
+		}
+		
+		function makeRoom() {
+			 $.ajax({
+		           type:"POST",
+		           url:"../chat/makeRoom",
+		           dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+		           data :$('form').serialize(),
+		           success : function(data) {
+		        	   if(data.ok){
+		        		   alert('방만들기 성공')
+		        		   $('input[name=title]').val('');
+		        	   	   $('#roomMakeDiv').addClass('collapsed-box');
+		        		   $('#roomListDiv').addClass('collapsed-box');
+		        		   
+		        		   sendMsg();
+		        	   }
+		           },
+		           complete : function(data) {
+		        	   
+		           },
+		           error : function(xhr, status, error) {
+		                 console.log(error);
+		           }
+		     });
 		}
 	</script>
 </head>
@@ -75,7 +100,7 @@
 		          <!-- /.box -->
 			<div class="row chatTable">
 				 <div class="col-sx-12">
-		          <div class="box box-default collapsed-box">
+		          <div id="roomMakeDiv"class="box box-default collapsed-box">
 		            <div class="box-header with-border">
 		              <h3 class="box-title">채팅 방 만들기</h3>
 		
@@ -93,35 +118,46 @@
 				                <div class="form-group">
 				                  	<label for="inputEmail3" class="col-sm-3 control-label">방제목</label>
 				                 	 <div class="col-sm-9">
-				                    	<input type="email" class="form-control" id="inputEmail3" placeholder="방 제목을 입력해주세요">
+				                    	<input name="title" type="text" class="form-control" id="inputEmail3" placeholder="방 제목을 입력해주세요">
 				                  	</div>
 				                </div>
 				                <div class="form-group">
 				                 	 <label for="inputPassword3" class="col-sm-3 control-label">
 				                 	 	 비밀번호(선택)
-				                 	 	<input type="checkbox" class="flat-red">	
+				                 	 	<input name="pwdChk" type="checkbox" class="flat-red">	
 				                 	 </label>
 					                 <div class="col-sm-9">
-					                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password" disabled>
+					                    <input name="pwd" type="password" class="form-control" id="inputPassword3" placeholder="Password" disabled>
 					                 </div>
 				                </div>
 								<div class="form-group">
-									<label class="col-sm-3 control-label">말머리</label>
-									<div class="col-sm-9">
-										<select class="form-control select2" style="width: 100%;">
-											<option selected="selected">동행</option>
-											<option>숙박</option>
-											<option>예약</option>
-											<option>단체</option>
-											<option>기타</option>
+									<label class="col-sm-2 control-label">말머리</label>
+									<div class="col-sm-4">
+										<select name="type" class="form-control select2" style="width: 100%;">
+											<option value="0" selected="selected">전체</option>
+											<option value="1">동행</option>
+											<option value="2">숙박</option>
+											<option value="3">예약</option>
+											<option value="4">단체</option>
+											<option value="5">기타</option>
+										</select>
+									</div>
+									<label class="col-sm-2 control-label">인원수</label>
+									<div class="col-sm-4">
+										<select name="userNum" class="form-control select2" style="width: 100%;">
+											<option value="2" selected="selected">2</option>
+											<option value="4">4</option>
+											<option value="6">6</option>
+											<option value="8">8</option>
+											<option value="10">10</option>
 										</select>
 									</div>
 								</div>
 								</div>
 				              <!-- /.box-body -->
 				              <div class="box-footer">
-				                <button type="submit" class="btn btn-default">Cancel</button>
-				                <button type="submit" class="btn btn-info pull-right">Sign in</button>
+				                <button type="submit" class="btn btn-default">취소</button>
+				                <button type="button" onclick="makeRoom();" class="btn btn-info pull-right">방만들기</button>
 				              </div>
 				              <!-- /.box-footer -->
 				            </form>
@@ -130,7 +166,7 @@
 		          </div>
 			
 				<div class="col-sx-12 " >
-					<div class="box box-default">
+					<div id="roomListDiv" class="box box-default">
 						<div class="box-header">
 							<h3 class="box-title">채팅 방 리스트</h3>
 
@@ -263,8 +299,6 @@
 				
 					<!-- chat item -->
 					<div class="item">
-						<img src="../resources/img/test.JPG" alt="user image" class="online">
-
 						<p class="message">
 							<a href="#" class="name"> 
 								<small class="text-muted pull-right">
@@ -286,7 +320,7 @@
 			                <input class="form-control" placeholder="Type message..." name="chatInput">
 			
 			                <div class="input-group-btn">
-			                  <button type="button" class="btn btn-success" onclick="sendMsg();"><i class="fa fa-plus"></i></button>
+			                  <button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>
 			                </div>
 			              </div>
 			            </div>
