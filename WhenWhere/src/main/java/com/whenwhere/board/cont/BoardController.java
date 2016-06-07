@@ -89,7 +89,7 @@ public class BoardController {
             String callback = request.getParameter("CKEditorFuncNum");
             System.out.println(request.getServletContext().getContextPath());
             printWriter = response.getWriter();
-            String fileUrl = "http://localhost:8888//img/" + year+""+monthStr +time + fileName;
+            String fileUrl = "http://localhost:8888/img/" + year+""+monthStr +time + fileName;
             printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("
                     + callback
                     + ",'"
