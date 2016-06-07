@@ -54,19 +54,21 @@
 					<div class="box box-primary">
 						<!-- /.box-header -->
 						<div class="box-body">
+						<form name="msgForm">
 							<div class="form-group">
-								<input class="form-control" placeholder="To:">
+								<input name="receiver" class="form-control"  placeholder="To:">
 							</div>
 							<div class="form-group">
-								<input class="form-control" placeholder="Subject:">
+								<input name="title" class="form-control" placeholder="Subject:">
 							</div>
 							<div class="form-group" style="margin-bottom: 0px;">
-								<textarea id="compose-textarea" class="form-control" style="height: 300px; margin-bottom: 0px;"></textarea>
+								<textarea name="content" class="form-control" style="height: 300px; margin-bottom: 0px;"></textarea>
 							</div>
+						</form>
 						</div>
 						<div class="box-footer" style="padding-top: 0px;">
 							<div class="pull-right">
-								<button type="botton" onclick="javascript:sendMsg();" class="btn btn-primary">
+								<button type="button" onclick="javascript:sendMsg();" class="btn btn-primary">
 									<i class="fa fa-envelope-o"></i> 보내기
 								</button>
 							</div>
@@ -82,7 +84,11 @@
 	<jsp:include page="../component/core_js.jsp" />
 	<script type="text/javascript">
 	function sendMsg(){
-		alert("msg전송");
+		console.log($("form[name=msgForm]").serialize());
+		$.ajax({
+			type : "post",
+			
+		})
 	}
 	</script>
 </body>
