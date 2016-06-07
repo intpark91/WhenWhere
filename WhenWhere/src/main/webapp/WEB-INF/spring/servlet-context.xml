@@ -40,7 +40,7 @@
 	<resources mapping="/js/**" location="/js/" />
 	<resources mapping="/images/**" location="/images/" />
 	<resources mapping="/smartEditor/**" location="/smartEditor/" />
-	
+	<resources mapping="/ckEditor/**" location="/ckEditor/" />
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
 	<beans:bean
@@ -66,7 +66,9 @@
 			</beans:props>
 		</beans:property>
 	</beans:bean>
-
+	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	
 	<beans:bean id="dataSource" class="oracle.jdbc.pool.OracleDataSource">
 		<beans:property name="dataSourceName" value="ds" />
 		<beans:property name="URL" value="jdbc:oracle:thin:@192.168.9.189:1521:xe" />

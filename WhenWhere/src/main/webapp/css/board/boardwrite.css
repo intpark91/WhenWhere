@@ -300,8 +300,8 @@ ul, ol, dl {list-style:none;}
 		.bbs_write > table.write_1 > tbody > tr > th { font-weight:bold; width:15%;}
 		.bbs_write > table.write_1 > tbody > tr > td.bbs_tit input[type="text"]{color:#666666; float:left; width:97%; padding:0.5%; border:#d9d9d9 solid 1px;}
 		#Datepicker{color:#666666; float:left; width:30%; padding:0.5%; border:#d9d9d9 solid 1px;}
-		#Datepicker2{color:#666666; width:30%; margin-right: 350px; padding:0.5%; border:#d9d9d9 solid 1px;}
-		.bbs_write > table.write_1 > tbody > tr > td.bbs_name input[type="text"]{color:#666666; float:left; width:50%; padding:0.5%; border:#d9d9d9 solid 1px;}
+		#Datepicker2{color:#666666; float:left; width:30%;  padding:0.5%; border:#d9d9d9 solid 1px;}
+		.bbs_write > table.write_1 > tbody > tr > td.bbs_name input[type="text"]{color:#666666; float:left; width:60%; padding:0.5%; border:#d9d9d9 solid 1px;}
 		.bbs_write > table.write_1 > tbody > tr > td.bbs_tit input[type="password"] {float:left; width:25%; padding:0.5%; border:#d9d9d9 solid 1px;}
 		.bbs_write > table.write_1 > tbody > tr > td.bbs_write {padding-left:0px; border-bottom:none;}
 		.bbs_write > table.write_1 > tbody > tr > td.bbs_write > div {margin-top:30px;}
