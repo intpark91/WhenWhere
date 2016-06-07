@@ -1,7 +1,5 @@
 package com.whenwhere.board.vo;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class ImageVO {
 	private String fileName;
 	private int no;
