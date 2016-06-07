@@ -3,6 +3,8 @@ package com.whenwhere.main.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,22 +30,22 @@ public class SearchService {
    
    public List<List<String>> getAllLocationList(){
       List<List<String>> list = new ArrayList<List<String>>();
-      list.add(getLocationList("º≠øÔ"));
-      list.add(getLocationList("∞Ê±‚"));
-      list.add(getLocationList("øµº≠"));
-      list.add(getLocationList("øµµø"));
-      list.add(getLocationList("√Ê∫œ"));
-      list.add(getLocationList("√Ê≥≤"));
-      list.add(getLocationList("∞Ê∫œ"));
-      list.add(getLocationList("∞Ê≥≤"));
-      list.add(getLocationList("¿¸∫œ"));
-      list.add(getLocationList("¿¸≥≤"));
-      list.add(getLocationList("¡¶¡÷"));
+      list.add(getLocationList("ÏÑúÏö∏"));
+      list.add(getLocationList("Í≤ΩÍ∏∞"));
+      list.add(getLocationList("ÏòÅÏÑú"));
+      list.add(getLocationList("ÏòÅÎèô"));
+      list.add(getLocationList("Ï∂©Î∂Å"));
+      list.add(getLocationList("Ï∂©ÎÇ®"));
+      list.add(getLocationList("Í≤ΩÎ∂Å"));
+      list.add(getLocationList("Í≤ΩÎÇ®"));
+      list.add(getLocationList("Ï†ÑÎ∂Å"));
+      list.add(getLocationList("Ï†ÑÎÇ®"));
+      list.add(getLocationList("Ï†úÏ£º"));
       
       return list;
    }
    
-   public List<SearchVO> getSearchList(){
+   public List<SearchVO> getSearchList(HttpServletRequest request){
       SearchDAO dao = sqlSessionTemplate.getMapper(SearchDAO.class);
       return null;
    }

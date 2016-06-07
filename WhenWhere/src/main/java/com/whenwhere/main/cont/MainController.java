@@ -5,11 +5,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.whenwhere.main.service.SearchService;
+
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
 
 @Controller
 @RequestMapping("/home")
@@ -39,6 +43,13 @@ public class MainController {
 	@RequestMapping(value = "/searchForm")
 	public String searchForm(Model model) {
 		model.addAttribute("locationList", searchSerive.getAllLocationList());
+		return "home/search";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/search")
+	public String search(Model model, HttpServletRequest request) {
+		searchSerive.getSearchList(request);
 		return "home/search";
 	}
 	
