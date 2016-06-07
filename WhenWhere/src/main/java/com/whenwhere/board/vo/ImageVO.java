@@ -9,9 +9,6 @@ public class ImageVO {
 	private String imageUrl;
 	private MultipartFile upload;
 	
-	
-	
-
 	public String getImageUrl() {
 		return imageUrl;
 	}

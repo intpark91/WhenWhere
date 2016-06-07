@@ -152,7 +152,7 @@
 		.bbs_view > table.view_1 > tbody > tr > th {background-color:#f9f9f9; font-weight:bold; color:#666666}
 		.bbs_view > table.view_1 > tbody > tr > td.bbs_tit {font-weight:bold;font-size:15px;height:30px;width:100%;}
 		.bbs_view > table.view_1 > tbody > tr > td.bbs_tit .bbs_tit_r{float:right;width:40%;margin:0px;padding:0px;text-align:right;}
-		.bbs_view > table.view_1 > tbody > tr > td.bbs_tit > div {line-height:1.7em; margin:0px 0px;height:30px;float:left;width:60%;}
+		.bbs_view > table.view_1 > tbody > tr > td.bbs_tit > div {width:88%; margin-right:115px; text-align:center; line-height:1.7em; margin:0px 0px;}
 		.bbs_view > table.view_1 > tbody > tr > td.bbs_detail{min-height:200px; margin:15px 0px; line-height:1.7em;font-size:13px;}
 		.bbs_view > table.view_1 > tbody > tr > td img {max-width:100%;}
 		.bbs_view > table.view_1 table {width:100%;}

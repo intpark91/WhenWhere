@@ -32,10 +32,6 @@
                        		
                     </textarea>
               </form>
-             
-            </div>
-             <button type="button" id="btn">파일업로드</button>
-          </div>		
       </div>
     </section>
     	
@@ -65,13 +61,15 @@
 </script>
     <script>
 	$(function(){
-		$('#btn').on('click',function(){	
-			
+		$('#btn').on('click',function(){			
 			window.open('../smartEditor/photo_uploader/popup/fileupload.html','win2','scrollbars=yes width=380, height=350');
 		});
 	});
   </script>
-
+<!-- 	<script type="text/javascript">
+		window.parent.CKEDITOR.tools.callFunction(${vo.no} ,'${vo.imageUrl}','이미지를 업로드 하였습니다.');
+	
+	</script> -->
 
 </body>
 </html>
