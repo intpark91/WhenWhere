@@ -154,15 +154,14 @@ jQuery.browser = {};
 															name="userNick" id="userNick" value="이동현"></td>
 													</tr>
 													<tr>
-														<th scope="row"><label for="dataTitle">행사
-																시작일-종료일</label></th>
-														<td><input type="text" id="Datepicker">----<input
-															type="text"  id="Datepicker2"></td>
+														<th scope="row"><label for="dataTitle">행사 날짜</label></th>
+														<td><input type="text" id="Datepicker">
+														<input type="text"  id="Datepicker2"></td>
 													</tr>
 													<tr>
 														<td colspan="2" class="bbs_write">
 															<div class="bbs_write_wrap">
-																<jsp:include page="smarteditor.jsp" />
+																<jsp:include page="JSeditor.jsp" />
 															</div>
 														</td>
 													</tr>

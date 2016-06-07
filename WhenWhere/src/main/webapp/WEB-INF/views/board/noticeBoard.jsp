@@ -18,6 +18,7 @@ h1,h2,h3,h4 {
 }
 
 .page{
+margin-bottom:45px;
 color:#ffffff;
 }
 </style>	
@@ -64,7 +65,7 @@ color:#ffffff;
 										<form action="http://tour.jb.go.kr/board/list.do"
 											name="rfc_bbs_searchForm" class="rfc_bbs_searchForm"
 											method="get" id="searchForm">
-											<h4>전체검색</h4>
+											
 											<input type="hidden" name="orderBy" value=""> <input
 												type="hidden" name="boardId" value="BBS_0000001">
 

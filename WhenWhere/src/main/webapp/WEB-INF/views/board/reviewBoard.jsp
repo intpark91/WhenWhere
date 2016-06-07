@@ -16,6 +16,14 @@
 	});
 </script>
 
+<style type="text/css">
+	.ellip {
+		white-space:nowrap;
+		overflow:hidden;
+		text-overflow:ellipsis;
+	}
+</style>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
 						<div id="main_bg" class="info_main_bg" >
@@ -172,21 +180,7 @@
 						</div>
 
 						<div class="serchList">
-							<div class="photoWrap">
-								<a href="#">
-									<img src="../images/reviewimg/reviewDemo.JPG" alt="576742363_632913ee_z29.jpg" class="photo_img">
-								</a>
-								<h3>
-									<a href="#">
-										<span class="jb_area">전주</span> 전주대사습놀이 전국대회
-									</a>
-								</h3>
-								<ul class="stay_infobox">
-									<li>기간: 2015.05.30~06.01</li> 
-									조선조 숙종대의 마상궁술대회 및 영조대의 물놀이와 판소리,
-									백일장 등 민속무예놀이를 종합 대사습이라 합니다.
-								</ul>
-							</div>
+							
 
 							<div class="photoWrap">
 								<a href="#">
@@ -198,6 +192,7 @@
 									</a>
 								</h3>
 								<ul class="stay_infobox">
+									<li>기간: 2015.05.30~06.01</li> 
 									<li>대한민국을 대표하는 철새들의 휴식지 금강호 일원및 철새조망대에서 "군산세계철새축제"가 매년
 										11월에 개최됩니다. 국내 최대 규모의 철새 전문시설인 철새조망대는 ...</li>
 								</ul>
@@ -302,23 +297,7 @@
 								</ul>
 							</div>
 
-							<div class="photoWrap">
-								<a href="#">
-									<img src="../images/reviewimg/reviewDemo.JPG"
-									alt="139407885641689.jpg" class="photo_img">
-								</a>
-								<h3>
-									<a href="#">
-										<span class="jb_area">고창</span> 해풍고추 축제
-									</a>
-								</h3>
-								<ul class="stay_infobox">
-									<li>기간: 2016.08.27~08.28</li> 제19회 고창 해풍 고추 축제
-									<br> 청정 해풍 고추
-									<br> 그 참맛과 참빛 체험
-									<br>
-								</ul>
-							</div>
+							
 						</div>
 						<div id="count">
 							<ul>

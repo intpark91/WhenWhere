@@ -17,6 +17,7 @@ h1,h2,h3,h4 {
 }
 
 .page{
+margin-bottom : -35px;
 color:#ffffff;
 }
 </style>
@@ -90,10 +91,8 @@ color:#ffffff;
 														<a href="noticeRead">2016년05월</a>
 													</h3>
 													<h4>
-														<p>떠나세요</p>
-														<p>
-															봄이 있는 이 땅으로<br>
-														</p>
+														떠나세요 봄이 있는 이 땅으로
+														
 													</h4>
 													<p class="ebook_btn">
 														<a href="noticeRead" >자세히보기</a>
@@ -114,8 +113,7 @@ color:#ffffff;
 														<a href="#">2016년 04월</a>
 													</h3>
 													<h4>
-														<p>꽃향기가 가득한 봄!</p>
-														<p>사랑하는 사람과 함께 전라북도에서 봄의 향기를 느껴보세요</p>
+														꽃향기가 가득한 봄! 사랑하는 사람과 함께 전라북도에서 봄의 향기를 느껴보세요
 													</h4>
 													<p class="ebook_btn">
 														<a href="#"
