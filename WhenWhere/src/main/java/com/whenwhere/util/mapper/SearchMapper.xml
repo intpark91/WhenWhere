@@ -8,4 +8,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select LOC_NAME from location where LOC_SUBJECT=#{sub_loc}
 	</select>
 	
+	<select id="getEventList" resultType="eventResultMap" parameterType="HashMap">
+		select * 
+		from (select * 
+		      from event
+		      where 
+		        E_SDATE >= #{sDate} and E_EDATE <![CDATA[<]]>= #{eDate} or
+		        E_SDATE <![CDATA[<]]>= #{sDate} and E_EDATE >= #{sDate} and E_EDATE <![CDATA[<]]>= #{eDate} or
+		        E_SDATE >= #{sDate} and E_SDATE <![CDATA[<]]>= #{eDate} and E_EDATE >= #{eDate} or
+		        E_SDATE <![CDATA[<]]>= #{sDate} and E_EDATE >= #{eDate}) e, board b, location l
+		where e.E_NO = b.E_NO and
+		e.LOC_CODE = l.LOC_CODE and
+		l.LOC_NAME = #{location}
+	</select>
+	
+	<resultMap id="eventResultMap" type="HashMap">
+	<!-- <result javaType="데이터타입" column="db컬럼명" property="맵에서 키값"/> -->
+        <result javaType="String" column="b_title" property="title"/>
+        <result javaType="String" column="e_sdate" property="sDate"/>
+	</resultMap> 
+	
+	
 </mapper>

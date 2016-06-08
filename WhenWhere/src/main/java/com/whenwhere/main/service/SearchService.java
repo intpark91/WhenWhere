@@ -1,7 +1,9 @@
 package com.whenwhere.main.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,7 +14,7 @@ import org.springframework.stereotype.Service;
 import com.whenwhere.main.dao.SearchDAO;
 import com.whenwhere.main.vo.SearchVO;
 
-@Service("searchService")
+@Service("searchServive")
 public class SearchService {
    
    @Autowired
@@ -45,10 +47,28 @@ public class SearchService {
       return list;
    }
    
-   public List<SearchVO> getSearchList(HttpServletRequest request){
-      SearchDAO dao = sqlSessionTemplate.getMapper(SearchDAO.class);
+   /*public List<SearchVO> getSearchList(HttpServletRequest request){
+	  SearchDAO dao = sqlSessionTemplate.getMapper(SearchDAO.class);
+	  
+	  String sDate = request.getParameter("sDate");
+	  String eDate = request.getParameter("eDate");
+	  String locations[] = request.getParameterValues("locations");
+	  
+	  List<Map<String, String>> searchList = new ArrayList<Map<String, String>>();
+	  for(int i=0; i<locations.length; i++){
+		  Map<String, String> map = new HashMap<String, String>();
+		  map.put("sDate", sDate);
+		  map.put("eDate", eDate);
+		  map.put("location", locations[i]);
+		  
+		  List<Map<String, String>> list = dao.getEventList(map);
+		  System.out.println(list.get(0).get("title"));
+		  for(int j=0; j<list.size(); j++){
+			  searchList.add(list.get(j));
+		  }
+	  }
       return null;
-   }
+   }*/
    
 
 }

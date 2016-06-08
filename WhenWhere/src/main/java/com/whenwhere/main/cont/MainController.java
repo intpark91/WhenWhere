@@ -20,7 +20,7 @@ import jdk.nashorn.internal.ir.RuntimeNode.Request;
 public class MainController {
 
 	@Autowired
-	private SearchService searchSerive;
+	private SearchService searchServive;
 	
 	@RequestMapping(value = "/main")
 	public String main(Model model) {
@@ -42,16 +42,16 @@ public class MainController {
 	
 	@RequestMapping(value = "/searchForm")
 	public String searchForm(Model model) {
-		model.addAttribute("locationList", searchSerive.getAllLocationList());
+		model.addAttribute("locationList", searchServive.getAllLocationList());
 		return "home/search";
 	}
 	
-	@ResponseBody
+	/*@ResponseBody
 	@RequestMapping(value = "/search")
 	public String search(Model model, HttpServletRequest request) {
-		searchSerive.getSearchList(request);
+		searchServive.getSearchList(request);
 		return "home/search";
-	}
+	}*/
 	
 	@RequestMapping(value = "/chat")
 	public String chat() {

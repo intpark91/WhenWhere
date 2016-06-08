@@ -2,11 +2,23 @@ package com.whenwhere.main.vo;
 
 import java.sql.Date;
 
+import com.whenwhere.board.vo.ImageVO;
+
 public class RegionalFoodVO {
 	private String name;
 	private String loc;
 	private Date sDate;
 	private Date eDate;
+	private ImageVO imgVO;
+	
+
+	public ImageVO getImgVO() {
+		return imgVO;
+	}
+
+	public void setImgVO(ImageVO imgVO) {
+		this.imgVO = imgVO;
+	}
 
 	public String getName() {
 		return name;

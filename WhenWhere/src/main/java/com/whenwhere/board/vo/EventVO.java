@@ -7,6 +7,15 @@ public class EventVO {
 	private Date sDate;
 	private Date eDate;
 	private String loc;
+	private ImageVO imgVO;
+	
+	public ImageVO getImgVO() {
+		return imgVO;
+	}
+
+	public void setImgVO(ImageVO imgVO) {
+		this.imgVO = imgVO;
+	}
 
 	public int getNo() {
 		return no;
