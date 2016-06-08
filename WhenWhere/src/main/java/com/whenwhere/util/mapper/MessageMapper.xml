@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.whenwhere.user.dao.MessageDAO">
 
 	<insert id="sendMsg" parameterType="com.whenwhere.user.vo.MessageVO">
-		insert into message (M_NO, sender, receiver, M_Title, M_Content, M_Receive_ck, M_Wdate) 
+		insert into message (M_NO, sender, receiver, M_Title, M_Content, M_status, M_Wdate) 
 		values(SEQ_MSG.NEXTVAL, #{sender}, #{receiver}, #{title}, #{content}, '0', sysdate)
 	</insert>
 	
@@ -14,11 +14,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getMsgList" parameterType="map" resultType="com.whenwhere.user.vo.MessageVO">
-		select sender, m_title as title, m_content as content, m_receive_ck as receive_ck, M_wdate as wdate
+		select M_no as no, sender, m_title as title, m_content as content, M_status as status, M_wdate as wdate
 		  from (SELECT *
-			      FROM (select ROWNUM as rnum, sender, m_title, m_content, m_receive_ck, M_wdate
+			      FROM (select ROWNUM as rnum, M_no, sender, m_title, m_content, M_status, M_wdate
 	                      from MESSAGE
 	                     where receiver = #{receiver}
+	                     and M_status != '2'
 	                     order by M_NO desc
 			           ) board
 			     where rnum <![CDATA[ <= ]]> #{page}*#{rows}
@@ -26,4 +27,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 where rnum >= (#{page} -1)*(#{rows} + 1)
 	</select>
 	
+	<select id="getNewMsg" parameterType="map" resultType="com.whenwhere.user.vo.MessageVO">
+		select no, sender, title, content, status, wdate, cnt
+		  from (select M_no as no, sender, m_title as title, m_content as content, M_status as status, M_wdate as wdate,
+			   	       RANK() OVER (ORDER BY M_No desc) as rk, COUNT(*) OVER() as cnt
+			    from message
+			    where M_status = '0'
+			    order by no desc
+			   )
+		where rk <![CDATA[ <= ]]> 5
+	</select>
 </mapper>

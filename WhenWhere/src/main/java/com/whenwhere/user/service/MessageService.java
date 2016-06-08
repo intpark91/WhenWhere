@@ -1,9 +1,11 @@
 package com.whenwhere.user.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +28,10 @@ public class MessageService {
 
 	public String sendMsg(MessageVO msg) {
 		MessageDAO dao = sqlSessionTemplate.getMapper(MessageDAO.class);
-		boolean ok = true;
-		try {
-			dao.sendMsg();
-		} catch (Exception e) {
-			ok = false;
+		boolean ok = false;
+		int rows = dao.sendMsg(msg);
+		if(rows > 0){
+			ok = true;
 		}
 		JSONObject jobj = new JSONObject();
 		jobj.put("ok", ok);
@@ -43,15 +44,12 @@ public class MessageService {
 		PaginationVO pagination = new PaginationVO();
 		
 		if (member == null) {
-			System.out.println("session에 로그인 된 회원이없음");
+			System.out.println("session에 로그인한 유저가 없습니다.");
 			return null;
 		}
 		
 		int totalRows = dao.getRowsByReceiver(member.getEmail());
-		
 		pagination.setTotalPage(totalRows/ROWCNT);
-		System.out.println(pagination.getTotalPage());
-		
 		
 		return pagination;
 	}
@@ -61,10 +59,10 @@ public class MessageService {
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		PaginationVO pn = new PaginationVO();
 		if (member == null) {
-			System.out.println("session에 로그인 된 회원이없음");
+			System.out.println("session에 로그인한 유저가 없습니다.");
 			return;
 		}
-		List<MessageVO> msgList = dao.getMsgList(member.getEmail(), ROWCNT, page);
+		List<MessageVO> msgList = dao.getMsgList(member.getNickname(), ROWCNT, page);
 		
 		
 		int totalRows = dao.getRowsByReceiver(member.getEmail());
@@ -87,5 +85,34 @@ public class MessageService {
 		
 		model.addAttribute("msgList", msgList);
 		model.addAttribute("pagination", pn);
+	}
+
+	public String getNewMsg(Model model, HttpSession session) {
+		MessageDAO dao = sqlSessionTemplate.getMapper(MessageDAO.class);
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		boolean ok = true;
+		
+		if (member == null) {
+			System.out.println("session에 로그인한 유저가 없습니다.");
+			return null;
+		}
+		
+		List<MessageVO> msgList = new ArrayList<MessageVO>();
+		try {
+			msgList = dao.getNewMsg(member.getNickname(), "0");
+		} catch (Exception e) {
+			e.printStackTrace();
+			ok = false;
+		}
+		
+		System.out.println("size : " + msgList.size());
+		model.addAttribute("newMsgs", msgList);
+		
+		JSONObject jobj = new JSONObject();
+		jobj.put("ok", ok);
+		jobj.put("cnt", msgList.get(0).getCnt());
+		System.out.println(jobj.toJSONString());
+		
+		return jobj.toJSONString();
 	}
 }

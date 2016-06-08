@@ -2,16 +2,15 @@ package com.whenwhere.user.vo;
 
 import java.sql.Date;
 
-import com.whenwhere.util.PaginationVO;
-
 public class MessageVO {
 	private int no;
 	private String sender;
 	private String receiver;
 	private String title;
 	private String content;
-	private String receive_ck;
+	private String status;
 	private Date wdate;
+	private int cnt;
 
 	public int getNo() {
 		return no;
@@ -53,12 +52,12 @@ public class MessageVO {
 		this.content = content;
 	}
 
-	public String getReceive_ck() {
-		return receive_ck;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setReceive_ck(String receive_ck) {
-		this.receive_ck = receive_ck;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Date getWdate() {
@@ -67,5 +66,13 @@ public class MessageVO {
 
 	public void setWdate(Date wdate) {
 		this.wdate = wdate;
+	}
+
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 }

@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- Main Header -->
 <header class="main-header">
 
@@ -25,44 +27,23 @@
 						class="label label-success">4</span>
 				</a>
 					<ul class="dropdown-menu">
-						<li class="header">You have 2 new messages</li>
-						<li>
-							<!-- inner menu: contains the messages -->
-							<ul class="menu">
-								<li>
-									<!-- start message --> <a href="#">
-										<div class="pull-left">
-											<!-- User Image -->
-											<img
-												src="https://live.namuwikiusercontent.com/81/8141a5ed37a563c4142f1a65aca1c5ff7e213ea9e429ecc2cae2ac9c11bb1d63.jpg"
-												class="img-circle" alt="User Image">
-										</div> <!-- Message title and timestamp -->
-										<h4>
-											WhenWhereTeam <small><i class="fa fa-clock-o"></i> 5
-												mins</small>
-										</h4> <!-- The message -->
-										<p>안녕하세요 WhenWhereTeam에서 알립니다.알쟈ㅓ레ㅑㅈ더레ㅓㅈㄷ레ㅑㅓㅈ레ㅓㅔㅂㅈ덜</p>
-								</a>
-								</li>
-								<!-- end message -->
-								<li>
-									<!-- start message --> <a href="#">
-										<div class="pull-left">
-											<!-- User Image -->
-											<img
-												src="https://live.namuwikiusercontent.com/81/8141a5ed37a563c4142f1a65aca1c5ff7e213ea9e429ecc2cae2ac9c11bb1d63.jpg"
-												class="img-circle" alt="User Image">
-										</div> <!-- Message title and timestamp -->
-										<h4>
-											WhenWhereTeam <small><i class="fa fa-clock-o"></i> 6
-												mins</small>
-										</h4> <!-- The message -->
-										<p>안녕하세요 WhenWhereTeam입니다.</p>
-								</a>
-								</li>
-								<!-- end message -->
-							</ul> <!-- /.menu -->
+						<li class="header">
+							<span id="newMsgCk"></span>
+									새로운 메시지가 ${fn:length(newMsgs) }개 있습니다.
 						</li>
+						
+						<c:forEach items="${newMsgs}" var="list">
+						<li>
+							<a href="#">
+								<div class="pull-left">
+							    	<img src="http://cfile2.uf.tistory.com/image/247D023455EE71460B2555" class="img-circle" alt="User Image">
+							    </div> 
+							    <h4>${list.getSender() }<small><i class="fa fa-clock-o"></i> 5 mins</small></h4>
+							    <p>${list.getTitle() }</p>
+							</a>
+						</li>
+						</c:forEach>
+						
 						<li class="footer"><a href="javascript:msgPopup();">See All Messages</a></li>
 					</ul>
 				</li>
@@ -104,14 +85,14 @@
 					<!-- Menu Toggle Button  -->
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
 						<!-- The user image in the navbar  -->
-						<img src="https://www.dog-zzang.co.kr/dog_sale/photo/201603/1457282732_13629600.jpg"
+						<img src=""
 						class="user-image" alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
 						<span class="hidden-xs" id="member_nickname"></span>
 				</a>
 					<ul class="dropdown-menu">
 						<!-- The user image in the menu -->
 						<li class="user-header"><img
-							src="https://www.dog-zzang.co.kr/dog_sale/photo/201603/1457282732_13629600.jpg"
+							src=""
 							class="img-circle" alt="User Image">
 							<p>
 								<span id="member_nickname"></span> 
@@ -137,6 +118,13 @@
 	</nav>
 	<script type="text/javascript">
 		$(function() {
+			loginCk();
+			if("${sessionScope.member}"!=""){
+				msgCk();
+			}
+		});
+		
+		function loginCk(){
 			if ("${sessionScope.member.email}"=="") {
 				$(".logined").css("display", "none");
 				$(".login").css("display", "block");
@@ -167,12 +155,37 @@
 					}
 				});
 			});
-		});
+		}
+		
+		function msgCk(){
+			$.ajax({
+				url : "../user/newMsgCk",
+				type : "post",
+				dataType : "json",
+				success : function(result){
+					if(result.ok){
+						console.log(result.newMsgs);
+						if(num <= 0){
+							$("#newMsgCk").text("새로운 메시지가 없습니다.");	
+						}else{
+							$("#newMsgCk").text("새로운 메시지가 ${newMsgs.size()}개 있습니다.");
+						}
+					}else{
+						alert("Server error (ajax is returned 'false', header.jsp)");
+					}
+				},
+				error : function(){
+					alert("error");
+				}
+			});
+		} 
+		
 		function msgPopup() {
 			var popup = "../user/msgbox?page=1";
 			var popOption = "width=992, height=525, top=200, left=200";
 			window.open(popup, "", popOption);
 		}
+		
 		function logout() {
 			$.ajax({
 				url : "../user/logout",

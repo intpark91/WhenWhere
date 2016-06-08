@@ -33,13 +33,13 @@
 			<div class="row">
 				<div class="col-md-3">
 					<!--메시지 작성 -->
-					<a href="compose.html"
+					<a href="../user/sendMsgForm"
 						class="btn btn-primary btn-block margin-bottom">Write new
 						message</a>
 					<div class="box box-solid">
 						<div class="box-body no-padding">
 							<ul class="nav nav-pills nav-stacked">
-								<li class="active"><a href="#"><i class="fa fa-inbox"></i>
+								<li class="active"><a href="../user/msgbox?page=1"><i class="fa fa-inbox"></i>
 										받은 쪽지함 <span class="label label-primary pull-right">3</span></a></li>
 								<li><a href="#"><i class="fa fa-envelope-o"></i> 보낸 쪽지함</a></li>
 								<li><a href="#"><i class="fa fa-envelope"></i> 보관함</a></li>
@@ -56,7 +56,8 @@
 						<div class="box-body">
 						<form name="msgForm">
 							<div class="form-group">
-								<input name="receiver" class="form-control"  placeholder="To:">
+								<input type="hidden" name=sender value="${sessionScope.member.getNickname()}">
+								<input name="receiver" class="form-control"  placeholder="To: ">
 							</div>
 							<div class="form-group">
 								<input name="title" class="form-control" placeholder="Subject:">
@@ -89,11 +90,14 @@
 			url: "../user/sendMsg",
 			data: $("form[name=msgForm]").serialize(),
 			dataType: "json",
-			success: function(){
-				alert("good");
+			success: function(result){
+				if(result.ok){
+					location.href="../user/sendMsgForm";
+				}else{
+					alert("??");
+				}
 			},
 			error: function(){
-				alert("fail");
 			}
 		});
 	}
