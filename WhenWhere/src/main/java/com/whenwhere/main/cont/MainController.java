@@ -46,12 +46,11 @@ public class MainController {
 		return "home/search";
 	}
 	
-	/*@ResponseBody
+	@ResponseBody
 	@RequestMapping(value = "/search")
 	public String search(Model model, HttpServletRequest request) {
-		searchServive.getSearchList(request);
-		return "home/search";
-	}*/
+		return searchServive.getSearchList(request);
+	}
 	
 	@RequestMapping(value = "/chat")
 	public String chat() {

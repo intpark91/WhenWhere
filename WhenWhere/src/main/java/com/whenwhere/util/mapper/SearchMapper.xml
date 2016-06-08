@@ -8,24 +8,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select LOC_NAME from location where LOC_SUBJECT=#{sub_loc}
 	</select>
 	
-	<select id="getEventList" resultType="eventResultMap" parameterType="HashMap">
-		select * 
+	<select id="getEventList" resultMap="eventResultMap" parameterType="java.util.HashMap">
+		select *
 		from (select * 
 		      from event
 		      where 
-		        E_SDATE >= #{sDate} and E_EDATE <![CDATA[<]]>= #{eDate} or
-		        E_SDATE <![CDATA[<]]>= #{sDate} and E_EDATE >= #{sDate} and E_EDATE <![CDATA[<]]>= #{eDate} or
-		        E_SDATE >= #{sDate} and E_SDATE <![CDATA[<]]>= #{eDate} and E_EDATE >= #{eDate} or
-		        E_SDATE <![CDATA[<]]>= #{sDate} and E_EDATE >= #{eDate}) e, board b, location l
-		where e.E_NO = b.E_NO and
+		        E_SDATE >= TO_DATE(#{sDate}, 'MM/DD/YYYY') and E_EDATE <![CDATA[<]]>= TO_DATE(#{eDate}, 'MM/DD/YYYY') or
+		        E_SDATE <![CDATA[<]]>= TO_DATE(#{sDate}, 'MM/DD/YYYY') and E_EDATE >= TO_DATE(#{sDate}, 'MM/DD/YYYY') and E_EDATE <![CDATA[<]]>= TO_DATE(#{eDate}, 'MM/DD/YYYY') or
+		        E_SDATE >= TO_DATE(#{sDate}, 'MM/DD/YYYY') and E_SDATE <![CDATA[<]]>= TO_DATE(#{eDate}, 'MM/DD/YYYY') and E_EDATE >= TO_DATE(#{eDate}, 'MM/DD/YYYY') or
+		        E_SDATE <![CDATA[<]]>= TO_DATE(#{sDate}, 'MM/DD/YYYY') and E_EDATE >= TO_DATE(#{eDate}, 'MM/DD/YYYY')) e, board b, location l, image i
+		where 
+		b.BOARDCODE = i.BOARDCODE and
+		e.E_NO = b.E_NO and
 		e.LOC_CODE = l.LOC_CODE and
 		l.LOC_NAME = #{location}
 	</select>
 	
-	<resultMap id="eventResultMap" type="HashMap">
+	<resultMap id="eventResultMap" type="java.util.HashMap">
 	<!-- <result javaType="데이터타입" column="db컬럼명" property="맵에서 키값"/> -->
+		<result javaType="integer" column="e_no" property="eNo"/>
+		<result javaType="String" column="boardcode" property="bCode"/>
         <result javaType="String" column="b_title" property="title"/>
+        <result javaType="String" column="b_wdate" property="bDate"/>
+        <result javaType="String" column="b_auth" property="bAuth"/>
+        <result javaType="integer" column="b_recommend" property="bRecommend"/>
         <result javaType="String" column="e_sdate" property="sDate"/>
+        <result javaType="String" column="e_edate" property="eDate"/>
+        <result javaType="String" column="loc_subject" property="locSubName"/>
+        <result javaType="String" column="loc_name" property="locName"/>
+        <result javaType="String" column="filename" property="imgName"/>
 	</resultMap> 
 	
 	

@@ -7,12 +7,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.codehaus.jackson.map.JsonSerializer;
+import org.json.simple.JSONObject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.whenwhere.main.dao.SearchDAO;
-import com.whenwhere.main.vo.SearchVO;
 
 @Service("searchServive")
 public class SearchService {
@@ -47,28 +48,37 @@ public class SearchService {
       return list;
    }
    
-   /*public List<SearchVO> getSearchList(HttpServletRequest request){
+   public String getSearchList(HttpServletRequest request){
 	  SearchDAO dao = sqlSessionTemplate.getMapper(SearchDAO.class);
 	  
 	  String sDate = request.getParameter("sDate");
 	  String eDate = request.getParameter("eDate");
 	  String locations[] = request.getParameterValues("locations");
+	  System.out.println(sDate+","+eDate+","+locations.length);
 	  
-	  List<Map<String, String>> searchList = new ArrayList<Map<String, String>>();
+	  List<Map<String, Object>> searchEventList = new ArrayList<Map<String, Object>>();
+	  List<Map<String, Object>> searchFoodList = new ArrayList<Map<String, Object>>();
 	  for(int i=0; i<locations.length; i++){
-		  Map<String, String> map = new HashMap<String, String>();
+		  HashMap<String, Object> map = new HashMap<String, Object>();
 		  map.put("sDate", sDate);
 		  map.put("eDate", eDate);
 		  map.put("location", locations[i]);
 		  
-		  List<Map<String, String>> list = dao.getEventList(map);
-		  System.out.println(list.get(0).get("title"));
+		  List<Map<String, Object>> list = dao.getEventList(map);
+		  
+		  System.out.println(list.size()+"::"+list.get(0).get("title")+","+list.get(0).get("sDate"));
+		  
 		  for(int j=0; j<list.size(); j++){
-			  searchList.add(list.get(j));
+			  searchEventList.add(list.get(j));
 		  }
 	  }
-      return null;
-   }*/
+	  
+	  JSONObject jsonObject = new JSONObject();
+	  jsonObject.put("searchEventList", searchEventList);
+	  jsonObject.put("searchFoodList", searchFoodList);
+	  System.out.println(jsonObject.toJSONString());
+      return jsonObject.toJSONString();
+   }
    
 
 }

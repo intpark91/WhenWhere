@@ -249,12 +249,14 @@
 
 		<div id="scrollDiv demo" class="scrollDiv">
 			<div class="container scrollDown">
-				<div class="carousel slide" id="myCarousel">
+				
+				<div class="carousel slide" id="myCarousel1">
 					<h1 class="slideLabel">
 						<span class="label label-info">행사지</span>
 					</h1>
 					<div class="carousel-inner">
-						<div class="item active">
+					
+						<!-- <div class="item active">
 							<ul class="thumbnails">
 
 								<li class="col-sm-3">
@@ -309,7 +311,7 @@
 								</li>
 							</ul>
 						</div>
-						<!-- /Slide1 -->
+						/Slide1
 
 						<div class="item">
 							<ul class="thumbnails">
@@ -351,13 +353,14 @@
 								</li>
 							</ul>
 						</div>
-						<!-- /Slide2 -->
-					</div>
+						/Slide2
+					</div> -->
+					
 					<nav>
 						<ul class="control-box pager">
-							<li><a data-slide="prev" href="#myCarousel" class=""><i
+							<li><a data-slide="prev" href="#myCarousel1" class=""><i
 									class="glyphicon glyphicon-chevron-left"></i></a></li>
-							<li><a data-slide="next" href="#myCarousel" class=""><i
+							<li><a data-slide="next" href="#myCarousel1" class=""><i
 									class="glyphicon glyphicon-chevron-right"></i></a></li>
 						</ul>
 					</nav>
