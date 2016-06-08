@@ -1,409 +1,426 @@
--- È¸¿ø
-DROP TABLE Member;
-
--- °Ô½ÃÆÇ
+-- ê²Œì‹œíŒ
 DROP TABLE Board;
 
--- Æ¯»ê¹°
+-- íŠ¹ì‚°ë¬¼
 DROP TABLE RegionalFood;
 
--- »çÁø
-DROP TABLE Image;
-
--- Áö¿ª
-DROP TABLE location;
-
--- ÂÊÁö
-DROP TABLE Message;
-
--- ÃßÃµ
-DROP TABLE recommend;
-
--- °Ô½ÃÆÇÁ¾·ù
+-- ê²Œì‹œíŒì¢…ë¥˜
 DROP TABLE BoardCategory;
 
--- ´ñ±Û
+-- íšŒì›
+DROP TABLE Member;
+
+-- ì§€ì—­
+DROP TABLE location;
+
+-- ìª½ì§€
+DROP TABLE Message;
+
+-- ì¶”ì²œ
+DROP TABLE recommend;
+
+-- ëŒ“ê¸€
 DROP TABLE BoardComment;
 
--- Çà»ç
+-- í–‰ì‚¬
 DROP TABLE Event;
 
--- È¸¿ø
+-- ì‚¬ì§„
+DROP TABLE Image;
+
+
+-- íšŒì›
 CREATE TABLE Member (
-	Email       varchar2(50) NOT NULL, -- ÀÌ¸ÞÀÏ
-	NickName    varchar2(10) NOT NULL, -- º°¸í
-	Password    varchar2(20) NOT NULL, -- ºñ¹Ð¹øÈ£
-	PhoneNumber varchar2(15) NULL,     -- ÇÚµåÆù¹øÈ£
-	Authority   varchar2(20) NOT NULL  -- ±ÇÇÑ
+	NickName    varchar2(24) NOT NULL, -- ë³„ëª…
+	Email       varchar2(50) NOT NULL, -- ì´ë©”ì¼
+	Password    varchar2(20) NOT NULL, -- ë¹„ë°€ë²ˆí˜¸
+	PhoneNumber varchar2(15) NULL,     -- í•¸ë“œí°ë²ˆí˜¸
+	Authority   varchar2(20) NOT NULL  -- ê¶Œí•œ
 );
 
--- È¸¿ø ±âº»Å°
+-- íšŒì› ê¸°ë³¸í‚¤
 CREATE UNIQUE INDEX PK_Member
-	ON Member ( -- È¸¿ø
-		Email ASC -- ÀÌ¸ÞÀÏ
+	ON Member ( -- íšŒì›
+		NickName ASC -- ë³„ëª…
 	);
 
--- È¸¿ø
+-- íšŒì›
 ALTER TABLE Member
 	ADD
-		CONSTRAINT PK_Member -- È¸¿ø ±âº»Å°
+		CONSTRAINT PK_Member -- íšŒì› ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			Email -- ÀÌ¸ÞÀÏ
+			NickName -- ë³„ëª…
 		);
 
--- °Ô½ÃÆÇ
+-- ê²Œì‹œíŒ
 CREATE TABLE Board (
-	B_no        number         NOT NULL, -- ¹øÈ£
-	BoardCode   varchar2(10)   NOT NULL, -- °Ô½ÃÆÇ ÄÚµå
-	B_title     varchar2(50)   NOT NULL, -- Á¦¸ñ
-	B_wdate     DATE           NOT NULL, -- ÀÛ¼ºÀÏ
-	B_auth      varchar2(50)   NOT NULL, -- ÀÛ¼ºÀÚ
-	B_content   varchar2(4000) NOT NULL, -- º»¹®
-	B_hit       number         NOT NULL, -- Á¶È¸¼ö
-	B_recommend number         NOT NULL, -- ÃßÃµ¼ö
-	E_no        number         NULL      -- Çà»ç¹øÈ£
+	B_no        number         NOT NULL, -- ë²ˆí˜¸
+	BoardCode   varchar2(10)   NOT NULL, -- ê²Œì‹œíŒ ì½”ë“œ
+	NickName    varchar2(24)   NULL,     -- ë³„ëª…
+	B_title     varchar2(50)   NOT NULL, -- ì œëª©
+	B_wdate     DATE           NOT NULL, -- ìž‘ì„±ì¼
+	B_content   varchar2(4000) NOT NULL, -- ë³¸ë¬¸
+	B_hit       number         NOT NULL, -- ì¡°íšŒìˆ˜
+	B_recommend number         NOT NULL, -- ì¶”ì²œìˆ˜
+	E_no        number         NULL      -- í–‰ì‚¬ë²ˆí˜¸
 );
 
--- °Ô½ÃÆÇ ±âº»Å°2
+-- ê²Œì‹œíŒ ê¸°ë³¸í‚¤2
 CREATE UNIQUE INDEX PK_Board
-	ON Board ( -- °Ô½ÃÆÇ
-		B_no      ASC, -- ¹øÈ£
-		BoardCode ASC  -- °Ô½ÃÆÇ ÄÚµå
+	ON Board ( -- ê²Œì‹œíŒ
+		B_no      ASC, -- ë²ˆí˜¸
+		BoardCode ASC  -- ê²Œì‹œíŒ ì½”ë“œ
 	);
 
--- °Ô½ÃÆÇ
+-- ê²Œì‹œíŒ
 ALTER TABLE Board
 	ADD
-		CONSTRAINT PK_Board -- °Ô½ÃÆÇ ±âº»Å°2
+		CONSTRAINT PK_Board -- ê²Œì‹œíŒ ê¸°ë³¸í‚¤2
 		PRIMARY KEY (
-			B_no,      -- ¹øÈ£
-			BoardCode  -- °Ô½ÃÆÇ ÄÚµå
+			B_no,      -- ë²ˆí˜¸
+			BoardCode  -- ê²Œì‹œíŒ ì½”ë“œ
 		);
 
--- Æ¯»ê¹°
+-- íŠ¹ì‚°ë¬¼
 CREATE TABLE RegionalFood (
-	f_name   VARCHAR2(20) NOT NULL, -- ÀÌ¸§
-	loc_code VARCHAR2(10) NOT NULL, -- Áö¿ªÄÚµå
-	f_sDate  DATE         NOT NULL, -- ½ÃÀÛÀÏ
-	f_eDate  DATE         NOT NULL  -- Á¾·áÀÏ
+	f_name   VARCHAR2(20) NOT NULL, -- ì´ë¦„
+	loc_code VARCHAR2(10) NOT NULL, -- ì§€ì—­ì½”ë“œ
+	f_sDate  DATE         NOT NULL, -- ì‹œìž‘ì¼
+	f_eDate  DATE         NOT NULL  -- ì¢…ë£Œì¼
 );
 
--- Æ¯»ê¹° ±âº»Å°
+-- íŠ¹ì‚°ë¬¼ ê¸°ë³¸í‚¤
 CREATE UNIQUE INDEX PK_RegionalFood
-	ON RegionalFood ( -- Æ¯»ê¹°
-		f_name   ASC, -- ÀÌ¸§
-		loc_code ASC  -- Áö¿ªÄÚµå
+	ON RegionalFood ( -- íŠ¹ì‚°ë¬¼
+		f_name   ASC, -- ì´ë¦„
+		loc_code ASC  -- ì§€ì—­ì½”ë“œ
 	);
 
--- Æ¯»ê¹°
+-- íŠ¹ì‚°ë¬¼
 ALTER TABLE RegionalFood
 	ADD
-		CONSTRAINT PK_RegionalFood -- Æ¯»ê¹° ±âº»Å°
+		CONSTRAINT PK_RegionalFood -- íŠ¹ì‚°ë¬¼ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			f_name,   -- ÀÌ¸§
-			loc_code  -- Áö¿ªÄÚµå
+			f_name,   -- ì´ë¦„
+			loc_code  -- ì§€ì—­ì½”ë“œ
 		);
 
--- »çÁø
+-- ì‚¬ì§„
 CREATE TABLE Image (
-	fileName  varchar2(50) NOT NULL, -- ÆÄÀÏÀÌ¸§
-	imgNo     number       NOT NULL, -- ¹øÈ£
-	BoardCode varchar2(10) NOT NULL  -- °Ô½ÃÆÇ ÄÚµå
+	fileName  varchar2(50) NOT NULL, -- íŒŒì¼ì´ë¦„
+	no        number       NOT NULL, -- ë²ˆí˜¸
+	BoardCode varchar2(10) NOT NULL, -- ê²Œì‹œíŒ ì½”ë“œ
+	f_name    VARCHAR2(20) NULL,     -- ì´ë¦„
+	loc_code  VARCHAR2(10) NULL      -- ì§€ì—­ì½”ë“œ
 );
 
--- »çÁø ±âº»Å°
+-- ì‚¬ì§„ ê¸°ë³¸í‚¤
 CREATE UNIQUE INDEX PK_Image
-	ON Image ( -- »çÁø
-		fileName ASC -- ÆÄÀÏÀÌ¸§
+	ON Image ( -- ì‚¬ì§„
+		fileName ASC -- íŒŒì¼ì´ë¦„
 	);
 
--- »çÁø
+-- ì‚¬ì§„
 ALTER TABLE Image
 	ADD
-		CONSTRAINT PK_Image -- »çÁø ±âº»Å°
+		CONSTRAINT PK_Image -- ì‚¬ì§„ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			fileName -- ÆÄÀÏÀÌ¸§
+			fileName -- íŒŒì¼ì´ë¦„
 		);
 
--- Áö¿ª
+-- ì§€ì—­
 CREATE TABLE location (
-	loc_code VARCHAR2(10) NOT NULL, -- Áö¿ªÄÚµå
-	loc_name VARCHAR2(50) NOT NULL  -- Áö¿ª¸í
+	loc_code    VARCHAR2(10) NOT NULL, -- ì§€ì—­ì½”ë“œ
+	loc_name    VARCHAR2(15) NOT NULL, -- ì§€ì—­ëª…
+	loc_subject VARCHAR2(12) NULL      -- ì§€ì—­êµ¬ë¶„
 );
 
--- Áö¿ª ±âº»Å°
+-- ì§€ì—­ ê¸°ë³¸í‚¤
 CREATE UNIQUE INDEX PK_location
-	ON location ( -- Áö¿ª
-		loc_code ASC -- Áö¿ªÄÚµå
+	ON location ( -- ì§€ì—­
+		loc_code ASC -- ì§€ì—­ì½”ë“œ
 	);
 
--- Áö¿ª
+-- ì§€ì—­
 ALTER TABLE location
 	ADD
-		CONSTRAINT PK_location -- Áö¿ª ±âº»Å°
+		CONSTRAINT PK_location -- ì§€ì—­ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			loc_code -- Áö¿ªÄÚµå
+			loc_code -- ì§€ì—­ì½”ë“œ
 		);
 
--- ÂÊÁö
+-- ìª½ì§€
 CREATE TABLE Message (
-	m_no         number        NOT NULL, -- ÂÊÁö¹øÈ£
-	sender       varchar2(50)  NOT NULL, -- º¸³½»ç¶÷
-	receiver     varchar2(50)  NOT NULL, -- ¹Þ´Â»ç¶÷
-	m_title      varchar2(50)  NOT NULL, -- Á¦¸ñ
-	m_content    varchar2(200) NOT NULL, -- ³»¿ë
-	m_receive_ck char(1)       NOT NULL, -- ¼ö½Å
-	m_wdate      DATE          NOT NULL  -- ¹ÞÀº³¯Â¥
+	m_no         number        NOT NULL, -- ìª½ì§€ë²ˆí˜¸
+	sender       varchar2(24)  NULL,     -- ë³´ë‚¸ì´
+	receiver     varchar2(24)  NULL,     -- ë°›ëŠ”ì´
+	m_title      varchar2(60)  NOT NULL, -- ì œëª©
+	m_content    varchar2(600) NOT NULL, -- ë‚´ìš©
+	m_receive_ck char(1)       NOT NULL, -- ìˆ˜ì‹ 
+	m_wdate      DATE          NOT NULL  -- ë°›ì€ë‚ ì§œ
 );
 
--- ÂÊÁö ±âº»Å°
+-- ìª½ì§€ ê¸°ë³¸í‚¤
 CREATE UNIQUE INDEX PK_MESSAGE
-	ON Message ( -- ÂÊÁö
-		m_no ASC -- ÂÊÁö¹øÈ£
+	ON Message ( -- ìª½ì§€
+		m_no ASC -- ìª½ì§€ë²ˆí˜¸
 	);
 
--- ÂÊÁö
+-- ìª½ì§€
 ALTER TABLE Message
 	ADD
-		CONSTRAINT PK_MESSAGE -- ÂÊÁö ±âº»Å°
+		CONSTRAINT PK_MESSAGE -- ìª½ì§€ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			m_no -- ÂÊÁö¹øÈ£
+			m_no -- ìª½ì§€ë²ˆí˜¸
 		);
 
--- ÃßÃµ
+-- ì¶”ì²œ
 CREATE TABLE recommend (
-	B_no      number       NOT NULL, -- ¹øÈ£
-	BoardCode varchar2(10) NOT NULL, -- °Ô½ÃÆÇ ÄÚµå
-	Email     varchar2(50) NULL      -- ÀÌ¸ÞÀÏ
+	B_no      number       NOT NULL, -- ë²ˆí˜¸
+	BoardCode varchar2(10) NOT NULL, -- ê²Œì‹œíŒ ì½”ë“œ
+	NickName  varchar2(24) NULL      -- ë³„ëª…
 );
 
--- ÃßÃµ ±âº»Å°
+-- ì¶”ì²œ ê¸°ë³¸í‚¤
 CREATE UNIQUE INDEX PK_recommend
-	ON recommend ( -- ÃßÃµ
-		B_no      ASC, -- ¹øÈ£
-		BoardCode ASC  -- °Ô½ÃÆÇ ÄÚµå
+	ON recommend ( -- ì¶”ì²œ
+		B_no      ASC, -- ë²ˆí˜¸
+		BoardCode ASC  -- ê²Œì‹œíŒ ì½”ë“œ
 	);
 
--- ÃßÃµ
+-- ì¶”ì²œ
 ALTER TABLE recommend
 	ADD
-		CONSTRAINT PK_recommend -- ÃßÃµ ±âº»Å°
+		CONSTRAINT PK_recommend -- ì¶”ì²œ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			B_no,      -- ¹øÈ£
-			BoardCode  -- °Ô½ÃÆÇ ÄÚµå
+			B_no,      -- ë²ˆí˜¸
+			BoardCode  -- ê²Œì‹œíŒ ì½”ë“œ
 		);
 
--- °Ô½ÃÆÇÁ¾·ù
+-- ê²Œì‹œíŒì¢…ë¥˜
 CREATE TABLE BoardCategory (
-	BoardCode varchar2(10) NOT NULL, -- °Ô½ÃÆÇ ÄÚµå
-	BoardName varchar2(20) NOT NULL  -- °Ô½ÃÆÇ ¸í
+	BoardCode varchar2(10) NOT NULL, -- ê²Œì‹œíŒ ì½”ë“œ
+	BoardName varchar2(20) NOT NULL  -- ê²Œì‹œíŒ ëª…
 );
 
--- °Ô½ÃÆÇÁ¾·ù ±âº»Å°
+-- ê²Œì‹œíŒì¢…ë¥˜ ê¸°ë³¸í‚¤
 CREATE UNIQUE INDEX PK_BoardCategory
-	ON BoardCategory ( -- °Ô½ÃÆÇÁ¾·ù
-		BoardCode ASC -- °Ô½ÃÆÇ ÄÚµå
+	ON BoardCategory ( -- ê²Œì‹œíŒì¢…ë¥˜
+		BoardCode ASC -- ê²Œì‹œíŒ ì½”ë“œ
 	);
 
--- °Ô½ÃÆÇÁ¾·ù
+-- ê²Œì‹œíŒì¢…ë¥˜
 ALTER TABLE BoardCategory
 	ADD
-		CONSTRAINT PK_BoardCategory -- °Ô½ÃÆÇÁ¾·ù ±âº»Å°
+		CONSTRAINT PK_BoardCategory -- ê²Œì‹œíŒì¢…ë¥˜ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			BoardCode -- °Ô½ÃÆÇ ÄÚµå
+			BoardCode -- ê²Œì‹œíŒ ì½”ë“œ
 		);
 
--- ´ñ±Û
+-- ëŒ“ê¸€
 CREATE TABLE BoardComment (
-	comm_no   number       NOT NULL, -- ´ñ±Û¹øÈ£
-	comm_auth varchar2(10) NOT NULL, -- ÀÛ¼ºÀÚ
-	B_no      number       NOT NULL, -- ¹øÈ£
-	BoardCode varchar2(10) NOT NULL, -- °Ô½ÃÆÇ ÄÚµå
-	ref       number       NULL,     -- ºÎ¸ð´ñ±Û¹øÈ£
-	Email     varchar2(50) NULL      -- ÀÌ¸ÞÀÏ
+	comm_no      number        NOT NULL, -- ëŒ“ê¸€ë²ˆí˜¸
+	NickName     varchar2(24)  NULL,     -- ìž‘ì„±ìž
+	B_no         number        NOT NULL, -- ë²ˆí˜¸
+	comm_content VARCHAR2(600) NULL,     -- ìƒˆ ì»¬ëŸ¼
+	BoardCode    varchar2(10)  NOT NULL, -- ê²Œì‹œíŒ ì½”ë“œ
+	ref          number        NULL      -- ë¶€ëª¨ëŒ“ê¸€ë²ˆí˜¸
 );
 
--- ´ñ±Û ±âº»Å°
+-- ëŒ“ê¸€ ê¸°ë³¸í‚¤
 CREATE UNIQUE INDEX PK_BoardComment
-	ON BoardComment ( -- ´ñ±Û
-		comm_no ASC -- ´ñ±Û¹øÈ£
+	ON BoardComment ( -- ëŒ“ê¸€
+		comm_no ASC -- ëŒ“ê¸€ë²ˆí˜¸
 	);
 
--- ´ñ±Û
+-- ëŒ“ê¸€
 ALTER TABLE BoardComment
 	ADD
-		CONSTRAINT PK_BoardComment -- ´ñ±Û ±âº»Å°
+		CONSTRAINT PK_BoardComment -- ëŒ“ê¸€ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			comm_no -- ´ñ±Û¹øÈ£
+			comm_no -- ëŒ“ê¸€ë²ˆí˜¸
 		);
 
--- Çà»ç
+-- í–‰ì‚¬
 CREATE TABLE Event (
-	E_no     number       NOT NULL, -- Çà»ç¹øÈ£
-	E_sdate  DATE         NOT NULL, -- ½ÃÀÛÀÏ
-	E_edate  DATE         NOT NULL, -- Á¾·áÀÏ
-	loc_code VARCHAR2(10) NULL      -- Áö¿ªÄÚµå
+	E_no     number       NOT NULL, -- í–‰ì‚¬ë²ˆí˜¸
+	E_sdate  DATE         NOT NULL, -- ì‹œìž‘ì¼
+	E_edate  DATE         NOT NULL, -- ì¢…ë£Œì¼
+	loc_code VARCHAR2(10) NULL      -- ì§€ì—­ì½”ë“œ
 );
 
--- Çà»ç ±âº»Å°
+-- í–‰ì‚¬ ê¸°ë³¸í‚¤
 CREATE UNIQUE INDEX PK_Event
-	ON Event ( -- Çà»ç
-		E_no ASC -- Çà»ç¹øÈ£
+	ON Event ( -- í–‰ì‚¬
+		E_no ASC -- í–‰ì‚¬ë²ˆí˜¸
 	);
 
--- Çà»ç
+-- í–‰ì‚¬
 ALTER TABLE Event
 	ADD
-		CONSTRAINT PK_Event -- Çà»ç ±âº»Å°
+		CONSTRAINT PK_Event -- í–‰ì‚¬ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			E_no -- Çà»ç¹øÈ£
+			E_no -- í–‰ì‚¬ë²ˆí˜¸
 		);
 
--- °Ô½ÃÆÇ
+-- ê²Œì‹œíŒ
 ALTER TABLE Board
 	ADD
-		CONSTRAINT FK_Member_TO_Board -- È¸¿ø -> °Ô½ÃÆÇ
+		CONSTRAINT FK_Member_TO_Board -- íšŒì› -> ê²Œì‹œíŒ
 		FOREIGN KEY (
-			B_auth -- ÀÛ¼ºÀÚ
+			NickName -- ë³„ëª…
 		)
-		REFERENCES Member ( -- È¸¿ø
-			Email -- ÀÌ¸ÞÀÏ
+		REFERENCES Member ( -- íšŒì›
+			NickName -- ë³„ëª…
 		);
 
--- °Ô½ÃÆÇ
+-- ê²Œì‹œíŒ
 ALTER TABLE Board
 	ADD
-		CONSTRAINT FK_BoardCategory_TO_Board -- °Ô½ÃÆÇÁ¾·ù -> °Ô½ÃÆÇ
+		CONSTRAINT FK_BoardCategory_TO_Board -- ê²Œì‹œíŒì¢…ë¥˜ -> ê²Œì‹œíŒ
 		FOREIGN KEY (
-			BoardCode -- °Ô½ÃÆÇ ÄÚµå
+			BoardCode -- ê²Œì‹œíŒ ì½”ë“œ
 		)
-		REFERENCES BoardCategory ( -- °Ô½ÃÆÇÁ¾·ù
-			BoardCode -- °Ô½ÃÆÇ ÄÚµå
+		REFERENCES BoardCategory ( -- ê²Œì‹œíŒì¢…ë¥˜
+			BoardCode -- ê²Œì‹œíŒ ì½”ë“œ
 		);
 
--- °Ô½ÃÆÇ
+-- ê²Œì‹œíŒ
 ALTER TABLE Board
 	ADD
-		CONSTRAINT FK_Event_TO_Board -- Çà»ç -> °Ô½ÃÆÇ
+		CONSTRAINT FK_Event_TO_Board -- í–‰ì‚¬ -> ê²Œì‹œíŒ
 		FOREIGN KEY (
-			E_no -- Çà»ç¹øÈ£
+			E_no -- í–‰ì‚¬ë²ˆí˜¸
 		)
-		REFERENCES Event ( -- Çà»ç
-			E_no -- Çà»ç¹øÈ£
+		REFERENCES Event ( -- í–‰ì‚¬
+			E_no -- í–‰ì‚¬ë²ˆí˜¸
 		);
 
--- Æ¯»ê¹°
+-- íŠ¹ì‚°ë¬¼
 ALTER TABLE RegionalFood
 	ADD
-		CONSTRAINT FK_location_TO_RegionalFood -- Áö¿ª -> Æ¯»ê¹°
+		CONSTRAINT FK_location_TO_RegionalFood -- ì§€ì—­ -> íŠ¹ì‚°ë¬¼
 		FOREIGN KEY (
-			loc_code -- Áö¿ªÄÚµå
+			loc_code -- ì§€ì—­ì½”ë“œ
 		)
-		REFERENCES location ( -- Áö¿ª
-			loc_code -- Áö¿ªÄÚµå
+		REFERENCES location ( -- ì§€ì—­
+			loc_code -- ì§€ì—­ì½”ë“œ
 		);
 
--- »çÁø
+-- ì‚¬ì§„
 ALTER TABLE Image
 	ADD
-		CONSTRAINT FK_Board_TO_Image -- °Ô½ÃÆÇ -> »çÁø
+		CONSTRAINT FK_Board_TO_Image -- ê²Œì‹œíŒ -> ì‚¬ì§„
 		FOREIGN KEY (
-			imgNo,     -- ¹øÈ£
-			BoardCode  -- °Ô½ÃÆÇ ÄÚµå
+			no,        -- ë²ˆí˜¸
+			BoardCode  -- ê²Œì‹œíŒ ì½”ë“œ
 		)
-		REFERENCES Board ( -- °Ô½ÃÆÇ
-			B_no,      -- ¹øÈ£
-			BoardCode  -- °Ô½ÃÆÇ ÄÚµå
+		REFERENCES Board ( -- ê²Œì‹œíŒ
+			B_no,      -- ë²ˆí˜¸
+			BoardCode  -- ê²Œì‹œíŒ ì½”ë“œ
 		);
 
--- ÂÊÁö
+-- ì‚¬ì§„
+ALTER TABLE Image
+	ADD
+		CONSTRAINT FK_RegionalFood_TO_Image -- íŠ¹ì‚°ë¬¼ -> ì‚¬ì§„
+		FOREIGN KEY (
+			f_name,   -- ì´ë¦„
+			loc_code  -- ì§€ì—­ì½”ë“œ
+		)
+		REFERENCES RegionalFood ( -- íŠ¹ì‚°ë¬¼
+			f_name,   -- ì´ë¦„
+			loc_code  -- ì§€ì—­ì½”ë“œ
+		);
+
+-- ìª½ì§€
 ALTER TABLE Message
 	ADD
-		CONSTRAINT FK_Member_TO_Message -- È¸¿ø -> ÂÊÁö
+		CONSTRAINT FK_Member_TO_Message -- íšŒì› -> ìª½ì§€
 		FOREIGN KEY (
-			receiver -- ¹Þ´Â»ç¶÷
+			sender -- ë³´ë‚¸ì´
 		)
-		REFERENCES Member ( -- È¸¿ø
-			Email -- ÀÌ¸ÞÀÏ
+		REFERENCES Member ( -- íšŒì›
+			NickName -- ë³„ëª…
 		);
 
--- ÂÊÁö
+-- ìª½ì§€
 ALTER TABLE Message
 	ADD
-		CONSTRAINT FK_Member_TO_Message2 -- È¸¿ø -> ÂÊÁö2
+		CONSTRAINT FK_Member_TO_Message2 -- íšŒì› -> ìª½ì§€2
 		FOREIGN KEY (
-			sender -- º¸³½»ç¶÷
+			receiver -- ë°›ëŠ”ì´
 		)
-		REFERENCES Member ( -- È¸¿ø
-			Email -- ÀÌ¸ÞÀÏ
+		REFERENCES Member ( -- íšŒì›
+			NickName -- ë³„ëª…
 		);
 
--- ÃßÃµ
+-- ì¶”ì²œ
 ALTER TABLE recommend
 	ADD
-		CONSTRAINT FK_Member_TO_recommend -- È¸¿ø -> ÃßÃµ
+		CONSTRAINT FK_Member_TO_recommend -- íšŒì› -> ì¶”ì²œ
 		FOREIGN KEY (
-			Email -- ÀÌ¸ÞÀÏ
+			NickName -- ë³„ëª…
 		)
-		REFERENCES Member ( -- È¸¿ø
-			Email -- ÀÌ¸ÞÀÏ
+		REFERENCES Member ( -- íšŒì›
+			NickName -- ë³„ëª…
 		);
 
--- ÃßÃµ
+-- ì¶”ì²œ
 ALTER TABLE recommend
 	ADD
-		CONSTRAINT FK_Board_TO_recommend -- °Ô½ÃÆÇ -> ÃßÃµ
+		CONSTRAINT FK_Board_TO_recommend -- ê²Œì‹œíŒ -> ì¶”ì²œ
 		FOREIGN KEY (
-			B_no,      -- ¹øÈ£
-			BoardCode  -- °Ô½ÃÆÇ ÄÚµå
+			B_no,      -- ë²ˆí˜¸
+			BoardCode  -- ê²Œì‹œíŒ ì½”ë“œ
 		)
-		REFERENCES Board ( -- °Ô½ÃÆÇ
-			B_no,      -- ¹øÈ£
-			BoardCode  -- °Ô½ÃÆÇ ÄÚµå
+		REFERENCES Board ( -- ê²Œì‹œíŒ
+			B_no,      -- ë²ˆí˜¸
+			BoardCode  -- ê²Œì‹œíŒ ì½”ë“œ
 		);
 
--- ´ñ±Û
+-- ëŒ“ê¸€
 ALTER TABLE BoardComment
 	ADD
-		CONSTRAINT FK_Board_TO_BoardComment -- °Ô½ÃÆÇ -> ´ñ±Û
+		CONSTRAINT FK_Board_TO_BoardComment -- ê²Œì‹œíŒ -> ëŒ“ê¸€
 		FOREIGN KEY (
-			B_no,      -- ¹øÈ£
-			BoardCode  -- °Ô½ÃÆÇ ÄÚµå
+			B_no,      -- ë²ˆí˜¸
+			BoardCode  -- ê²Œì‹œíŒ ì½”ë“œ
 		)
-		REFERENCES Board ( -- °Ô½ÃÆÇ
-			B_no,      -- ¹øÈ£
-			BoardCode  -- °Ô½ÃÆÇ ÄÚµå
+		REFERENCES Board ( -- ê²Œì‹œíŒ
+			B_no,      -- ë²ˆí˜¸
+			BoardCode  -- ê²Œì‹œíŒ ì½”ë“œ
 		);
 
--- ´ñ±Û
+-- ëŒ“ê¸€
 ALTER TABLE BoardComment
 	ADD
-		CONSTRAINT FK_Member_TO_BoardComment -- È¸¿ø -> ´ñ±Û
+		CONSTRAINT FK_Member_TO_BoardComment -- íšŒì› -> ëŒ“ê¸€
 		FOREIGN KEY (
-			Email -- ÀÌ¸ÞÀÏ
+			NickName -- ìž‘ì„±ìž
 		)
-		REFERENCES Member ( -- È¸¿ø
-			Email -- ÀÌ¸ÞÀÏ
+		REFERENCES Member ( -- íšŒì›
+			NickName -- ë³„ëª…
 		);
 
--- ´ñ±Û
+-- ëŒ“ê¸€
 ALTER TABLE BoardComment
 	ADD
-		CONSTRAINT FK_BrdComm_TO_BrdComm -- ´ñ±Û -> ´ñ±Û
+		CONSTRAINT FK_BoardComm_TO_BoardComm -- ëŒ“ê¸€ -> ëŒ“ê¸€
 		FOREIGN KEY (
-			ref -- ºÎ¸ð´ñ±Û¹øÈ£
+			ref -- ë¶€ëª¨ëŒ“ê¸€ë²ˆí˜¸
 		)
-		REFERENCES BoardComment ( -- ´ñ±Û
-			comm_no -- ´ñ±Û¹øÈ£
+		REFERENCES BoardComment ( -- ëŒ“ê¸€
+			comm_no -- ëŒ“ê¸€ë²ˆí˜¸
 		);
 
--- Çà»ç
+-- í–‰ì‚¬
 ALTER TABLE Event
 	ADD
-		CONSTRAINT FK_location_TO_Event -- Áö¿ª -> Çà»ç
+		CONSTRAINT FK_location_TO_Event -- ì§€ì—­ -> í–‰ì‚¬
 		FOREIGN KEY (
-			loc_code -- Áö¿ªÄÚµå
+			loc_code -- ì§€ì—­ì½”ë“œ
 		)
-		REFERENCES location ( -- Áö¿ª
-			loc_code -- Áö¿ªÄÚµå
+		REFERENCES location ( -- ì§€ì—­
+			loc_code -- ì§€ì—­ì½”ë“œ
 		);

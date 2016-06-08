@@ -72,8 +72,8 @@
 	<beans:bean id="dataSource" class="oracle.jdbc.pool.OracleDataSource">
 		<beans:property name="dataSourceName" value="ds" />
 		<beans:property name="URL" value="jdbc:oracle:thin:@localhost:1521:xe" />
-		<beans:property name="user" value="scott" />
-		<beans:property name="password" value="TIGER" />
+		<beans:property name="user" value="whenwhere" />
+		<beans:property name="password" value="whenwhere" />
 	</beans:bean>
 
 	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

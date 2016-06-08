@@ -5,7 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.whenwhere.user.dao.MessageDAO">
 
 	<insert id="sendMsg" parameterType="com.whenwhere.user.vo.MessageVO">
-		insert into values(SEQ_MSG.NEXTVAL, #{sender}, #{receiver}, #{title}, #{content}, '0', sysdate)
+		insert into message (M_NO, sender, receiver, M_Title, M_Content, M_Receive_ck, M_Wdate) 
+		values(SEQ_MSG.NEXTVAL, #{sender}, #{receiver}, #{title}, #{content}, '0', sysdate)
 	</insert>
 	
 	<select id="getRowsByReceiver" resultType="Integer">
