@@ -22,28 +22,13 @@
 			<ul class="nav navbar-nav"> 
 				<!-- Messages: style can be found in dropdown.less-->
 				<li class="dropdown messages-menu logined">
-					<!-- Menu toggle button --> <a href="#" class="dropdown-toggle"
-					data-toggle="dropdown"> <i class="fa fa-envelope-o"></i> <span
-						class="label label-success">4</span>
-				</a>
+					<a href="#" class="dropdown-toggle"	data-toggle="dropdown"> 
+						<i class="fa fa-envelope-o"></i> 
+						<span class="label label-warning notifyCnt"></span>
+					</a>
 					<ul class="dropdown-menu">
-						<li class="header">
-							<span id="newMsgCk"></span>
-									새로운 메시지가 ${fn:length(newMsgs) }개 있습니다.
-						</li>
-						
-						<c:forEach items="${newMsgs}" var="list">
-						<li>
-							<a href="#">
-								<div class="pull-left">
-							    	<img src="http://cfile2.uf.tistory.com/image/247D023455EE71460B2555" class="img-circle" alt="User Image">
-							    </div> 
-							    <h4>${list.getSender() }<small><i class="fa fa-clock-o"></i> 5 mins</small></h4>
-							    <p>${list.getTitle() }</p>
-							</a>
-						</li>
-						</c:forEach>
-						
+						<li class="header"><span id="newMsgCnt"></span></li>
+						<li id="newMsgs"></li>
 						<li class="footer"><a href="javascript:msgPopup();">See All Messages</a></li>
 					</ul>
 				</li>
@@ -51,10 +36,10 @@
 
 				<!-- Notifications Menu -->
 				<li class="dropdown notifications-menu logined">
-					<!-- Menu toggle button --> <a href="#" class="dropdown-toggle"
-					data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <span
-						class="label label-warning">10</span>
-				</a>
+					<a href="#" class="dropdown-toggle"	data-toggle="dropdown">
+						<i class="fa fa-bell-o"></i>
+						<span class="label label-warning">10</span>
+					</a>
 					<ul class="dropdown-menu">
 						<li class="header">You have 10 notifications</li>
 						<li>
@@ -164,11 +149,25 @@
 				dataType : "json",
 				success : function(result){
 					if(result.ok){
-						console.log(result.newMsgs);
-						if(num <= 0){
-							$("#newMsgCk").text("새로운 메시지가 없습니다.");	
+						if(result.cnt <= 0){
+							$("#newMsgCnt").text("새로운 메시지가 없습니다.");	
 						}else{
-							$("#newMsgCk").text("새로운 메시지가 ${newMsgs.size()}개 있습니다.");
+							$("#newMsgCnt").text("새로운 메시지가"+result.cnt+"개 있습니다.");
+							$(".notifyCnt").text(result.cnt);
+							var arr=result.newMsgs;
+							console.log("arr : " + arr);
+							var str="";
+							for(var i=0;i<arr.length;i++){
+								str += 	"<li><ul class='menu'><li><a href='"+arr[i].no+"'>"+
+										"<div class='pull-left'>"+
+								    	"<img src='' class='img-circle' alt='User Image'>"+
+									    "</div>"+
+									    "<h4>"+arr[i].sender+"<small><i class='fa fa-clock-o'></i>"+arr[i].wdate+"</small></h4>"+
+									    "<p>"+arr[i].title+"</p>"+
+									    "</a></li></ul></li>";
+							}
+							$("#newMsgs").append(str);
+							console.log("str : " + str);
 						}
 					}else{
 						alert("Server error (ajax is returned 'false', header.jsp)");

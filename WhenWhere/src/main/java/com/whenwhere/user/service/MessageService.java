@@ -105,13 +105,23 @@ public class MessageService {
 			ok = false;
 		}
 		
-		System.out.println("size : " + msgList.size());
-		model.addAttribute("newMsgs", msgList);
-		
 		JSONObject jobj = new JSONObject();
+		if(msgList.size()>0){
+			JSONArray jArr = new JSONArray();
+			for(int i=0;i<msgList.size();i++){
+				JSONObject tempObj = new JSONObject();
+				tempObj.put("no", msgList.get(i).getNo());
+				tempObj.put("sender", msgList.get(i).getSender());
+				tempObj.put("title", msgList.get(i).getTitle());
+				tempObj.put("wdate", msgList.get(i).getWdate().toString());
+				jArr.add(tempObj);
+			}
+			jobj.put("cnt", msgList.get(0).getCnt());
+			jobj.put("newMsgs", jArr);
+		}else{
+			jobj.put("cnt", 0);
+		}
 		jobj.put("ok", ok);
-		jobj.put("cnt", msgList.get(0).getCnt());
-		System.out.println(jobj.toJSONString());
 		
 		return jobj.toJSONString();
 	}

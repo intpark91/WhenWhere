@@ -33,6 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			   	       RANK() OVER (ORDER BY M_No desc) as rk, COUNT(*) OVER() as cnt
 			    from message
 			    where M_status = '0'
+			    and receiver = #{receiver}
 			    order by no desc
 			   )
 		where rk <![CDATA[ <= ]]> 5
