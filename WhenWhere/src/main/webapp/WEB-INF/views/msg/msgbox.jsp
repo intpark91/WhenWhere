@@ -86,7 +86,7 @@
 											<tr>
 												<td><input type="checkbox"></td>
 												<td class="mailbox-name">${msg.sender}</a></td>
-												<td class="mailbox-subject"><a href="read-mail.html">${msg.title}</td>
+												<td class="mailbox-subject"><a href="../user/readMsg?num=${msg.no}">${msg.title}</td>
 												<td class="mailbox-date pull-right">${msg.wdate}</td>
 											</tr>
 										</c:forEach>

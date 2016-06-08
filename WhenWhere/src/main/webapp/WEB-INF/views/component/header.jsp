@@ -154,9 +154,9 @@
 						}else{
 							$("#newMsgCnt").text("새로운 메시지가"+result.cnt+"개 있습니다.");
 							$(".notifyCnt").text(result.cnt);
-							var arr=result.newMsgs;
+							var arr = result.newMsgs;
 							console.log("arr : " + arr);
-							var str="";
+							var str = "";
 							for(var i=0;i<arr.length;i++){
 								str += 	"<li><ul class='menu'><li><a href='"+arr[i].no+"'>"+
 										"<div class='pull-left'>"+

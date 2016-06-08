@@ -88,9 +88,13 @@ public class UserController {
 	}
 	
 	@RequestMapping("/msgbox")
-	public String msgPopup(Model model, HttpSession session,@RequestParam int page){
+	public String msgPopup(Model model, HttpSession session, @RequestParam int page){
 		msgService.getMsgList(model, session, page);
 		return "msg/msgbox";
+	}
+	@RequestMapping("/readMsg")
+	public String readMsg(@RequestParam int num){
+		return "msg/readMsg";
 	}
 	
 	@RequestMapping("/sendMsgForm")
