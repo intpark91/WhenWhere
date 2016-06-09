@@ -258,7 +258,7 @@
 					</div> 
 					
 				</div>
-				<!-- /#myCarousel -->
+				<!-- /#myCarousel --> 
 
 				<!-- #myCarousel2 -->
 				<div class="carousel slide" id="myCarousel2">
