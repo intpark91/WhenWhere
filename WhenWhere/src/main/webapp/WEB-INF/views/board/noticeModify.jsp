@@ -12,22 +12,19 @@
 
 
 <script type="text/javascript">
-	var result = '${insert}';
+	var result = '${modify}';
 	if (result == 'true') {
-		alert('글 쓰기 성공');
+		alert('글 수정 성공');
 		location.href = "noticeRead?category=1&no=0";
 	}
-	
 	else if(result =='false'){
-		alert('글 쓰기 실패');
+		alert('글 수정 실패');
 	}
 </script>
-<script type="text/javascript">
-	var editContact = CKEDITOR.instances.editContact.getData();
-	console.log(editContact);
 
+<script type="text/javascript">
 	var f = $("#inForm");
-	function formSubmit() {
+	function modify() {
 		if ($("#dataTitle").val() == '') {
 			alert("제목을 입력하시기 바랍니다.");
 			return;
@@ -38,7 +35,7 @@
 			return;
 		}
 		$("#inForm").submit();
-		
+
 	}
 </script>
 </head>
@@ -69,7 +66,8 @@
 
 								<!--//-->
 								<form id="inForm" name="inForm" method="post"
-									action="noticewrite" enctype="multipart/form-data">
+									action="noticemodify" enctype="multipart/form-data">
+									<input type="hidden" name="no" value="${updateBoard.no}">
 									<div class="con_area">
 										<div class="board_box">
 											<div class="bbs_write">
@@ -79,12 +77,12 @@
 														<tr>
 															<th scope="row"><label for="dataTitle">제 목</label></th>
 															<td class="bbs_tit"><input type="text" name="title"
-																id="dataTitle" value=""></td>
+																id="dataTitle" value="${updateBoard.title}"></td>
 														</tr>
 														<tr>
 															<th scope="row"><label for="userNick">등록자</label></th>
 															<td class="bbs_name"><input type="text" name="auth"
-																id="userNick" value="${sessionScope.member.nickname}"></td>
+																id="userNick" value="${updateBoard.auth}"></td>
 														</tr>
 
 
@@ -93,14 +91,12 @@
 
 														<tr>
 															<td colspan="2" class="bbs_write">
-																<div class="bbs_write_wrap">
-																	<!-- <textarea name="dataContent" id="dataContent"
-																	style="width: 100%; height: 300px;" rows="10" cols="50"></textarea> -->
+																<div class="bbs_write_wrap">																
 																	<textarea name="content" id="editor"
 																		style="width: 100%; height: 800px;" rows="10"
 																		cols="20">
-																	내용을 입력 해주세요!	
-																	</textarea>
+																		${updateBoard.content}
+																		</textarea>
 																	<script>
 																		CKEDITOR
 																				.replace(
@@ -113,8 +109,6 @@
 																</div>
 															</td>
 														</tr>
-
-
 														<!-- 에디터영역 끝.-->
 													</tbody>
 												</table>
@@ -122,7 +116,7 @@
 											<div class="bbs_btn">
 												<p class="fl">&nbsp;</p>
 												<p class="fr">
-													<a href="#" onclick="formSubmit();">등록</a>
+													<a href="#" onclick="modify();">수정</a> 
 													<a href="notice">취소</a>
 												</p>
 											</div>

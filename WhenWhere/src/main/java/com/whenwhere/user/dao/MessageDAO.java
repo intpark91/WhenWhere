@@ -13,4 +13,5 @@ public interface MessageDAO {
 	public List<MessageVO> getNewMsg(@Param("receiver") String receiver, @Param("status") String status);
 	public MessageVO getMsg(int num);
 	public int updateMsgStatus(int num);
+	
 }

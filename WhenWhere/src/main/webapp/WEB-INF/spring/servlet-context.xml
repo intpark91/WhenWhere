@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:websocket="http://www.springframework.org/schema/websocket"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+   xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:websocket="http://www.springframework.org/schema/websocket"
+   xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/websocket
         http://www.springframework.org/schema/websocket/spring-websocket.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing 
-		infrastructure -->
+   <!-- DispatcherServlet Context: defines this servlet's request-processing 
+      infrastructure -->
 
-	<!-- Process annotations on registered beans like @Autowired... -->
-	<context:annotation-config />
+   <!-- Process annotations on registered beans like @Autowired... -->
+   <context:annotation-config />
+   <!-- Enables the Spring MVC @Controller programming model -->
+   <mvc:annotation-driven />
 
-	<!-- Enables the Spring MVC @Controller programming model -->
-	<mvc:annotation-driven />
-
-	<context:component-scan base-package="com.whenwhere.board.cont" />
-	<context:component-scan base-package="com.whenwhere.board.dao" />
-	<context:component-scan base-package="com.whenwhere.board.service" />
-	<context:component-scan base-package="com.whenwhere.board.vo" />
-	<context:component-scan base-package="com.whenwhere.main.cont" />
-	<context:component-scan base-package="com.whenwhere.main.dao" />
-	<context:component-scan base-package="com.whenwhere.main.service" />
-	<context:component-scan base-package="com.whenwhere.main.vo" />
-	<context:component-scan base-package="com.whenwhere.user.cont" />
-	<context:component-scan base-package="com.whenwhere.user.dao" />
-	<context:component-scan base-package="com.whenwhere.user.service" />
-	<context:component-scan base-package="com.whenwhere.user.vo" />
-	<context:component-scan base-package="com.whenwhere.user.util" />
-	<context:component-scan base-package="com.whenwhere.websocket" />
+   <context:component-scan base-package="com.whenwhere.board.cont" />
+   <context:component-scan base-package="com.whenwhere.board.dao" />
+   <context:component-scan base-package="com.whenwhere.board.service" />
+   <context:component-scan base-package="com.whenwhere.board.vo" />
+   <context:component-scan base-package="com.whenwhere.main.cont" />
+   <context:component-scan base-package="com.whenwhere.main.dao" />
+   <context:component-scan base-package="com.whenwhere.main.service" />
+   <context:component-scan base-package="com.whenwhere.main.vo" />
+   <context:component-scan base-package="com.whenwhere.user.cont" />
+   <context:component-scan base-package="com.whenwhere.user.dao" />
+   <context:component-scan base-package="com.whenwhere.user.service" />
+   <context:component-scan base-package="com.whenwhere.user.vo" />
+   <context:component-scan base-package="com.whenwhere.user.util" />
+   <context:component-scan base-package="com.whenwhere.websocket" />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
