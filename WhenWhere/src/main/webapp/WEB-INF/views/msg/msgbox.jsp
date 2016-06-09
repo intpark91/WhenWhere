@@ -30,23 +30,31 @@
 			</section>
 			<div class="row">
 				<div class="col-md-3">
-					<a href="../user/sendMsgForm"
+					<a href="../user/msgbox?type=write"
 						class="btn btn-primary btn-block margin-bottom"> 새 메시지 쓰기 </a>
 					<div class="box box-solid">
 						<div class="box-body no-padding">
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="../user/msgbox?page=1"><i
-										class="fa fa-inbox"></i> 받은 쪽지함 <span
-										class="label label-primary pull-right">3</span></a></li>
+								<li><a href="../user/msgbox?type=list&page=1">
+									<i class="fa fa-inbox"></i> 받은 쪽지함 
+									<span class="label label-primary pull-right">3</span></a></li>
 								<li><a href="#"><i class="fa fa-envelope-o"></i> 보낸 쪽지함</a></li>
 								<li><a href="#"><i class="fa fa-envelope"></i> 보관함</a></li>
 							</ul>
 						</div>
 					</div>
 				</div>
-				<jsp:include page="../msg/showMsgList.jsp" />
-				<jsp:include page="../msg/readMsg.jsp" />
-				<jsp:include page="../msg/sendMsgForm.jsp" />
+				<c:choose>
+					<c:when test="${type=='list'}">
+						<jsp:include page="../msg/showMsgList.jsp" />
+					</c:when>
+					<c:when test="${type=='read'}">
+						<jsp:include page="../msg/readMsg.jsp" />
+					</c:when>
+					<c:when test="${type=='write'}">
+						<jsp:include page="../msg/writeMsgForm.jsp" />
+					</c:when>
+				</c:choose>
 			</div>
 		</div>
 	</div>
@@ -55,54 +63,93 @@
 		$(function() {
 			var str = ""
 			for (var i = "${pagination.getLinkBegin()}"; i <= "${pagination.getLinkEnd()}"; i++) {
-				str += "<li><a href='../user/msgbox?page="+i+"'>"+i+"</li>";
+				str += "<li><a href='../user/msgbox?page=" + i + "'>" + i
+						+ "</li>";
 			}
-			if ("${pagination.isPrev()}"=="true") {
-				str = "<li><a href='../user/msgbox?page="+${pagination.getLinkBegin()-1}+"'>PREV</a></li>" + str;
+			if ("${pagination.isPrev()}" == "true") {
+				str = "<li><a href='../user/msgbox?page=" + $
+				{
+					pagination.getLinkBegin() - 1
+				}
+				+"'>PREV</a></li>" + str;
 			}
-			if ("${pagination.isNext()}"=="true") {
-				str += "<li><a href='../user/msgbox?page="+${pagination.getLinkEnd()+1}+"'>NEXT</a></li>"
+			if ("${pagination.isNext()}" == "true") {
+				str += "<li><a href='../user/msgbox?page=" + $
+				{
+					pagination.getLinkEnd() + 1
+				}
+				+"'>NEXT</a></li>"
 			}
 			$("ul.pagination").html(str);
 		})
-		$(function(){
-			$("#reply").on("click", function(){
-				alert("??");
-				location.href="../user/sendMsgForm?receiver=${message.getSender()}";
+		$(function() {
+			$("#reply").on("click", function() {
+				location.href = "../user/msgbox?type=write&receiver=${message.getSender()}";
 			});
+			
 			$("#delete").on("click", function(){
-				var num = ${message.getNo()};
-				$.ajax({
-					url : "../user/deleteMsg",
-					type : "post",
-					data : num,
-					dataType : "json",
-					success : function(){
-						alert("okok");
-					},
-					error : function(){
-						alert("bad");
+				bootbox.dialog({
+					message : "삭제하시겠습니까?",
+					buttons : {
+						success : {
+							label : "네",
+							className : "btn-success",
+							callback : function() {
+								deleteMsg();
+							}
+						},
+						danger : {
+							label : "아니요",
+							className : "btn-danger",
+						}
 					}
 				});
 			});
 		});
-	function sendMsg(){
-		$.ajax({
-			type : "post",
-			url: "../user/sendMsg",
-			data: $("form[name=msgForm]").serialize(),
-			dataType: "json",
-			success: function(result){
-				if(result.ok){
-					location.href="../user/sendMsgForm";
-				}else{
-					alert("??");
+		
+		function deleteMsg(){
+			console.log("aaa");
+			var jobj = {}
+			jobj.num = "${message.getNo()}";
+			$.ajax({
+				url : "../user/deleteMsg",
+				type : "post",
+				data : jobj,
+				dataType : "json",
+				success : function(result) {
+					if(result.ok){
+						$.bootstrapGrowl("삭제되었습니다.", {
+				            type: 'danger',
+				            align: 'center',
+				            width: 'auto',
+				            allow_dismiss: false
+				        });
+						location.href="../user/msgbox?type=list&page=1";
+					}
+				},
+				error : function() {
+					alert("bad");
 				}
-			},
-			error: function(){
-			}
-		});
-	}
+			});
+		}
+		
+		function sendMsg(){
+			$.ajax({
+				type : "post",
+				url : "../user/sendMsg",
+				data : $("form[name=msgForm]").serialize(),
+				dataType : "json",
+				success : function(result) {
+					if (result.ok) {
+						location.href = "../user/msgbox?type=write";
+					} else {
+						alert("server err msgbox.jsp");
+					}
+				},
+				error : function() {
+				}
+			});
+		}
 	</script>
 </body>
 </html>

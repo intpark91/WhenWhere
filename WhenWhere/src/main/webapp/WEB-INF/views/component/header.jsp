@@ -29,34 +29,8 @@
 					<ul class="dropdown-menu">
 						<li class="header"><span id="newMsgCnt"></span></li>
 						<li id="newMsgs"></li>
-						<li class="footer"><a href="javascript:msgPopup('msgbox?page=1');">전체 메시지 보기</a></li>
+						<li class="footer"><a href="javascript:msgPopup('msgbox?type=list&page=1');">전체 메시지 보기</a></li>
 					</ul></li>
-				<!-- /.messages-menu -->
-
-				<!-- Notifications Menu -->
-				<!--<li class="dropdown notifications-menu logined">
-					<a href="#" class="dropdown-toggle"	data-toggle="dropdown">
-						<i class="fa fa-bell-o"></i>
-						<span class="label label-warning">10</span>
-					</a>
-					<ul class="dropdown-menu">
-						<li class="header">You have 10 notifications</li>
-						<li>
-							Inner Menu: contains the notifications
-							<ul class="menu">
-								<li>
-									start notification <a href="#"> <i
-										class="fa fa-users text-aqua"></i> 5 new members joined today
-								</a>
-								</li>
-								end notification
-							</ul>
-						</li>
-						<li class="footer"><a href="#">View all</a></li>
-					</ul>
-				</li> -->
-
-				<!-- login -->
 				<li class="login" style="display: none"><a
 					href="../home/loginForm"> <i class="fa fa-sign-in"
 						aria-hidden="true" style="font-size: 20px;"></i> <span
@@ -151,7 +125,7 @@
 							var arr = result.newMsgs;
 							var str = "";
 							for(var i=0;i<arr.length;i++){
-								str += 	"<li><ul class='menu'><li><a href=javascript:msgPopup('readMsg?num="+arr[i].no+"')>"+
+								str += 	"<li><ul class='menu'><li><a href=javascript:msgPopup('msgbox?type=read&num="+arr[i].no+"')>"+
 										"<div class='pull-left'>"+
 								    	"<img src='../resources/img/newIcon.png' class='img-circle' alt='User Image'>"+
 									    "</div>"+

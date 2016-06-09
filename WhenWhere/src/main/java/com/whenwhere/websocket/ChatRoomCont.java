@@ -53,7 +53,7 @@ public class ChatRoomCont {
 		
 		ServletContext application= (ServletContext) request.getServletContext();
 		Map<Integer,ChatRoomVO> roomM = (HashMap<Integer,ChatRoomVO>) application.getAttribute("roomListM");
-		List<ChatRoomVO> roomA = (ArrayList<ChatRoomVO>) application.getAttribute("roomListA");
+		List<Integer> roomA = (ArrayList<Integer>) application.getAttribute("roomNumList");
 		
 		MemberVO member = (MemberVO)session.getAttribute("member");
 		String sessionNick = "임시닉네임";
@@ -66,24 +66,25 @@ public class ChatRoomCont {
 	    chatVO.setwTime(sdf.format(d));
 	    chatVO.getUserList().add(sessionNick);
 		
-	    System.out.println(chatVO.getwTime());
-		if(roomA==null){
+		if(roomM==null){
 			roomM = new HashMap();
-			roomA = new ArrayList<ChatRoomVO>();
+			roomA = new ArrayList<Integer>();
 			
 			chatVO.setRoomNum(1);
 			roomM.put(1,chatVO);
-			roomA.add(chatVO);
+			roomA.add(1);
 			
+			session.setAttribute("session_roomInfo", 1);
 			application.setAttribute("roomListM", roomM);
-			application.setAttribute("roomListA", roomA);
+			application.setAttribute("roomNumList", roomA);
 		}else{
 			
-			int roomLastNum = ((ChatRoomVO) roomA.get(roomA.size()-1)).getRoomNum()+1;
+			int roomLastNum = ((Integer) roomA.get(roomA.size()-1))+1;
 			chatVO.setRoomNum(roomLastNum);
 			
+			session.setAttribute("session_roomInfo", roomLastNum);
 			roomM.put(roomLastNum,chatVO);
-			roomA.add(chatVO);
+			roomA.add(roomLastNum);
 		}
 		
 		obj.put("title", chatVO.getTitle());
@@ -112,7 +113,7 @@ public class ChatRoomCont {
 		ServletContext application= (ServletContext) request.getServletContext();
 		
 		Map<Integer,ChatRoomVO> roomL = (HashMap<Integer,ChatRoomVO>) application.getAttribute("roomListM");
-		List<ChatRoomVO> roomA = (ArrayList<ChatRoomVO>) application.getAttribute("roomListA");
+		List<ChatRoomVO> roomA = (ArrayList<ChatRoomVO>) application.getAttribute("roomNumList");
 		
 		int countbyPage = 10;
 		int totalCount = 0;
@@ -127,9 +128,9 @@ public class ChatRoomCont {
 			countbyPage = totalCount;
 		}
 		
-		System.out.println(totalCount);
-		for(int i=(countbyPage-1);i>=start;i--){
-			ChatRoomVO chat = (ChatRoomVO) roomA.get(i);
+		System.out.println("방개수 :"+totalCount);
+		while((--countbyPage)>=start){
+			ChatRoomVO chat = (ChatRoomVO)roomL.get(roomA.get(countbyPage));
 			
 			obj = new JSONObject();
 			

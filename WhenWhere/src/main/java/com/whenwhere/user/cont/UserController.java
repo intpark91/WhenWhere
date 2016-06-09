@@ -4,8 +4,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,32 +14,36 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.whenwhere.user.service.EmailService;
 import com.whenwhere.user.service.MessageService;
 import com.whenwhere.user.service.UserService;
-import com.whenwhere.user.vo.EmailVO;
 import com.whenwhere.user.vo.MemberVO;
 import com.whenwhere.user.vo.MessageVO;
 
 @Controller
-@RequestMapping(value="/user")
+@RequestMapping(value = "/user")
 public class UserController {
-	
+
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private EmailService emailService;
 	@Autowired
 	private MessageService msgService;
-	
-	/*******************************email validator***************************************/
+
+	/*******************************
+	 * email validator
+	 ***************************************/
 	@RequestMapping("/sendEmail")
 	@ResponseBody
-	public String sendEmail(String receiver, HttpSession session) throws Exception{
-        return emailService.certifyEmail(receiver, session);
-    }
+	public String sendEmail(String receiver, HttpSession session) throws Exception {
+		return emailService.certifyEmail(receiver, session);
+	}
 
 	@RequestMapping("/certify")
-	public String certified(Model model, HttpServletRequest request, @RequestParam String sessid){
+	public String certified(Model model, HttpServletRequest request, @RequestParam String sessid) {
 		ServletContext application = request.getServletContext();
-		if(application.getAttribute(sessid) == null){model.addAttribute("error", true); return "home/join";}
+		if (application.getAttribute(sessid) == null) {
+			model.addAttribute("error", true);
+			return "home/join";
+		}
 		HttpSession sess = (HttpSession) application.getAttribute(sessid);
 		application.removeAttribute(sessid);
 		model.addAttribute("email", sess.getAttribute("receiver"));
@@ -49,72 +51,74 @@ public class UserController {
 		return "home/join";
 	}
 
-	/**********************************Duplication check**********************************/
+	/**********************************
+	 * Duplication check
+	 **********************************/
 	@RequestMapping("/nicknameDupCk")
 	@ResponseBody
-	public String nicknameCk(@RequestParam String nickname) throws Exception{
-        return userService.nicknameCk(nickname);
-    }
-	
+	public String nicknameCk(@RequestParam String nickname) throws Exception {
+		return userService.nicknameCk(nickname);
+	}
+
 	@RequestMapping("/emailDupCk")
 	@ResponseBody
-	public String emailDupCk(@RequestParam String email) throws Exception{
-        return userService.emailCk(email);
-    }
+	public String emailDupCk(@RequestParam String email) throws Exception {
+		return userService.emailCk(email);
+	}
 
 	@RequestMapping("/join")
 	@ResponseBody
-	public String join(MemberVO member){
+	public String join(MemberVO member) {
 		return userService.joinMember(member);
 	}
-	
+
 	@RequestMapping("/login")
 	@ResponseBody
-	public String login(MemberVO member, HttpSession session){
+	public String login(MemberVO member, HttpSession session) {
 		return userService.login(member, session);
 	}
-	
+
 	@RequestMapping("/logout")
 	@ResponseBody
-	public String logout(HttpSession session){
+	public String logout(HttpSession session) {
 		return userService.logout(session);
 	}
-	
-	/**********************************for Messages**********************************/
+
+	/**********************************
+	 * for Messages
+	 **********************************/
 	@RequestMapping("/newMsgCk")
 	@ResponseBody
-	public String getNewMsg(Model model, HttpSession session){
+	public String getNewMsg(Model model, HttpSession session) {
 		return msgService.getNewMsg(model, session);
 	}
-	
+
 	@RequestMapping("/msgbox")
-	public String msgPopup(Model model, HttpSession session, @RequestParam int page){
-		msgService.getMsgList(model, session, page);
+	public String msgPopup(Model model, HttpSession session, @RequestParam String type,
+			@RequestParam(required = false) String receiver,
+			@RequestParam(required = false, defaultValue = "-1") int page,
+			@RequestParam(required = false, defaultValue = "0") int num) {
+
+		if (receiver != null) {
+			model.addAttribute("receiver", receiver);
+		} else if (num != 0) {
+			msgService.getMsg(model, num);
+		} else if (page >= 0) {
+			msgService.getMsgList(model, session, page);
+		}
+		model.addAttribute("type", type);
 		return "msg/msgbox";
 	}
-	@RequestMapping("/readMsg")
-	public String readMsg(Model model, @RequestParam int num){
-		msgService.getMsg(model, num);
-		return "msg/readMsg";
-	}
-	
-	@RequestMapping("/sendMsgForm")
-	public String sendMsgForm(Model model, HttpServletRequest request){
-		if(request.getParameter("receiver")!=null){
-			model.addAttribute("receiver", request.getParameter("receiver"));
-		}
-		return "msg/sendMsgForm";
-	}
-	
+
 	@RequestMapping("/sendMsg")
 	@ResponseBody
-	public String sendMsg(MessageVO msg){
+	public String sendMsg(MessageVO msg) {
 		return msgService.sendMsg(msg);
 	}
-	
+
 	@RequestMapping("/deleteMsg")
 	@ResponseBody
-	public String deleteMsg(@RequestParam int num){
-		return null;
+	public String deleteMsg(@RequestParam int num) {
+		return msgService.deleteMsg(num);
 	}
 }

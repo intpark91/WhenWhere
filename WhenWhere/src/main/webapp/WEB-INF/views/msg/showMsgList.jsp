@@ -36,14 +36,14 @@
 								<td><input type="checkbox"></td>
 								<td class="mailbox-name">${msg.sender}</td>
 								<td class="mailbox-subject">
-									<a href="../user/readMsg?num=${msg.no}">
+									<a href="../user/msgbox?type=read&num=${msg.no}">
 										<c:choose>
 											<c:when test="${msg.status == 0 }">
 												<b>${msg.title}</b>
 											</c:when>
 											<c:otherwise>
-													${msg.title}
-													</c:otherwise>
+												${msg.title}
+											</c:otherwise>
 										</c:choose>
 									</a>
 								</td>

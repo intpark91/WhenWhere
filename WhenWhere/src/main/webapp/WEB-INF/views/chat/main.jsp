@@ -46,7 +46,6 @@
 		var ws ='';
 		
 		$(function(){
-			
 			$( "input[name=pwdChk]" ).on("click", function() {
 				var chk = $(this).is(":checked");//.attr('checked');
 		        if(chk) $("input[name=pwd]").attr("disabled",false);
@@ -93,7 +92,7 @@
 		
 		function sendMsg(){
 		    ws.onopen = function () {
-		    	msgObj = new msgObj(0, 'admin', 'Info: 채팅방이 개설되었습니다.', 0);
+		    	msgObj = new MsgObj(0, 'admin', 'Info: 채팅방이 개설되었습니다.', 0);
 		    	strTxt=msgObj.msg_format();
 		        $('.chat_main_body').append(strTxt);
 		        
@@ -111,19 +110,19 @@
 		                $('input[name=chatInput]').val('');
 		            }
 		        });
-		    };
+		    }
 		    ws.onmessage = function (event) {
-		    	
 		    	var obj = eval("("+event.data+")");
-		    	msgObject = new msgObj(0, obj.name, obj.msg, 0);
+		    	msgObject = new MsgObj(0, obj.name, obj.msg, 0);
+		    	//room = new roomObj(json_param);
 		    	strTxt = msgObject.msg_format();
 		    	//받은메세지
 		    	$('.chat_main_body').append(strTxt);
-		    };
+		    }
 		    ws.onclose = function (event) {
 		    	/* strTxt=msg_format('admin','Info: 채팅방이 종료되었습니다..'); */
 		    	$('.chat_main_body').append(event.data);
-		    };
+		    }
 		}
 		
 		function makeRoom() {
@@ -161,7 +160,7 @@
 		     });
 		}
 		
-		function msgObj(type,from,text,to) {
+		function MsgObj(type,from,text,to) {
 		    this.type = type;
 		    this.from = from;
 		    this.text = text;
@@ -174,7 +173,7 @@
 		    		+  new Date()
 					+  '</small>' + '['+ this.from +']'
 					+  '</a>' + this.text
-					+  '</p></div>'
+					+  '</p></div>';
 				return str;
 			}
 		}
@@ -195,6 +194,9 @@
 		    	var checkClass='roomclass';
 		    	console.log(this.type);
 		    	
+		    	if(this.pwdCheck){
+		    		checkClass += ' requiredPwd';
+		    	}
 		    	switch (this.type) {
 		    	  case 0  :  typeName = '전체';
 		    	 			 className = '<span class="label label-danger">';
@@ -213,7 +215,7 @@
 		    	             break;
 		    	}
 		    	
-		    	str += '<tr class="roomclass">' 
+		    	str += '<tr class="' + checkClass + '">' 
 		    		+  '<td style="width: 10px;">' + this.num + '</td>'
 		    		+  '<td style="width: 80px;" class="hidden-xs">'+ this.time +'</td>'
 					+  '<th style="max-width: 20px;">'+ className + typeName +'</span></th>'
