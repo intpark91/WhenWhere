@@ -1,14 +1,14 @@
+-- 회원
+DROP TABLE Member;
+
 -- 게시판
 DROP TABLE Board;
 
 -- 특산물
 DROP TABLE RegionalFood;
 
--- 게시판종류
-DROP TABLE BoardCategory;
-
--- 회원
-DROP TABLE Member;
+-- 사진
+DROP TABLE Image;
 
 -- 지역
 DROP TABLE location;
@@ -19,15 +19,14 @@ DROP TABLE Message;
 -- 추천
 DROP TABLE recommend;
 
+-- 게시판종류
+DROP TABLE BoardCategory;
+
 -- 댓글
 DROP TABLE BoardComment;
 
 -- 행사
 DROP TABLE Event;
-
--- 사진
-DROP TABLE Image;
-
 
 -- 회원
 CREATE TABLE Member (
@@ -108,8 +107,8 @@ ALTER TABLE RegionalFood
 -- 사진
 CREATE TABLE Image (
 	fileName  varchar2(50) NOT NULL, -- 파일이름
-	no        number       NOT NULL, -- 번호
-	BoardCode varchar2(10) NOT NULL, -- 게시판 코드
+	no        number       NULL,     -- 번호
+	BoardCode varchar2(10) NULL,     -- 게시판 코드
 	f_name    VARCHAR2(20) NULL,     -- 이름
 	loc_code  VARCHAR2(10) NULL      -- 지역코드
 );
@@ -151,13 +150,13 @@ ALTER TABLE location
 
 -- 쪽지
 CREATE TABLE Message (
-	m_no         number        NOT NULL, -- 쪽지번호
-	sender       varchar2(24)  NULL,     -- 보낸이
-	receiver     varchar2(24)  NULL,     -- 받는이
-	m_title      varchar2(60)  NOT NULL, -- 제목
-	m_content    varchar2(600) NOT NULL, -- 내용
-	m_receive_ck char(1)       NOT NULL, -- 수신
-	m_wdate      DATE          NOT NULL  -- 받은날짜
+	m_no      number        NOT NULL, -- 쪽지번호
+	sender    varchar2(24)  NULL,     -- 보낸이
+	receiver  varchar2(24)  NULL,     -- 받는이
+	m_title   varchar2(60)  NOT NULL, -- 제목
+	m_content varchar2(600) NOT NULL, -- 내용
+	m_status  char(1)       NOT NULL, -- 상태
+	m_wdate   DATE          NOT NULL  -- 받은날짜
 );
 
 -- 쪽지 기본키

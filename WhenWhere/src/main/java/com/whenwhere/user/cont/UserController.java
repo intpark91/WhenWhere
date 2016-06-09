@@ -93,7 +93,8 @@ public class UserController {
 		return "msg/msgbox";
 	}
 	@RequestMapping("/readMsg")
-	public String readMsg(@RequestParam int num){
+	public String readMsg(Model model, @RequestParam int num){
+		msgService.getMsg(model, num);
 		return "msg/readMsg";
 	}
 	

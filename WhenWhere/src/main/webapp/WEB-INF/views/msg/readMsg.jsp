@@ -53,12 +53,12 @@
 					<div class="box box-primary">
 						<div class="box-body no-padding">
 							<div class="mailbox-read-info">
-								<h3>Message Subject Is Placed Here</h3>
-								<h4>From: support@almsaeedstudio.com 
-									<span class="mailbox-read-time pull-right">15 Feb. 2015 11:03 PM</span>
+								<h3><b>${message.getTitle() }</b></h3>
+								<h4>보낸이 : ${message.getSender() }
+									<span class="mailbox-read-time pull-right">${message.getWdate() }</span>
 								</h4>
 							</div>
-							<div class="mailbox-read-message">본문 줄바꿈 극혐</div>
+							<div class="mailbox-read-message">${message.getContent() }</div>
 						</div>
 
 						<!-- /.box-footer -->

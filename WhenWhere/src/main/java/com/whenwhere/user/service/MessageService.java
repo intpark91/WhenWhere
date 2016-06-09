@@ -125,4 +125,13 @@ public class MessageService {
 		
 		return jobj.toJSONString();
 	}
+
+	public void getMsg(Model model, int num) {
+		MessageDAO dao = sqlSessionTemplate.getMapper(MessageDAO.class);
+		
+		MessageVO message = dao.getMsg(num);
+		int rows = dao.updateMsgStatus(num);
+		
+		model.addAttribute("message", message);
+	}
 }
