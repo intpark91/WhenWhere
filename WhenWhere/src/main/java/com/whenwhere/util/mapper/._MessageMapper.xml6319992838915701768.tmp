@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whenwhere.user.dao.MessageDAO">
+
+	<insert id="sendMsg" parameterType="com.whenwhere.user.vo.MessageVO">
+		insert into message (M_NO, sender, receiver, M_Title, M_Content, M_status, M_Wdate) 
+		values(SEQ_MSG.NEXTVAL, #{sender}, #{receiver}, #{title}, #{content}, '0', sysdate)
+	</insert>
+	
+	<select id="getRowsByReceiver" resultType="Integer">
+		select count(*) from message where receiver = #{receiver}
+	</select>
+	
+	<select id="getMsgList" parameterType="map" resultType="com.whenwhere.user.vo.MessageVO">
+		select M_no as no, sender, m_title as title, m_content as content, M_status as status, M_wdate as wdate
+		  from (SELECT *
+			      FROM (select ROWNUM as rnum, M_no, sender, m_title, m_content, M_status, M_wdate
+	                      from MESSAGE
+	                     where receiver = #{receiver}
+	                     and M_status != '2'
+	                     order by M_NO desc
+			           ) board
+			     where rnum <![CDATA[ <= ]]> #{page}*#{rows}
+			   )
+		 where rnum >= (#{page} -1)*(#{rows} + 1)
+	</select>
+	
+	<select id="getNewMsg" parameterType="map" resultType="com.whenwhere.user.vo.MessageVO">
+		select no, sender, title, content, status, wdate, cnt
+		  from (select M_no as no, sender, m_title as title, m_content as content, M_status as status, M_wdate as wdate,
+			   	       RANK() OVER (ORDER BY M_No desc) as rk, COUNT(*) OVER() as cnt
+			    from message
+			    where M_status = '0'
+			    and receiver = #{receiver}
+			    order by no desc
+			   )
+		where rk <![CDATA[ <= ]]> 5
+	</select>
+	
+	<select id="getMsg" resultType="com.whenwhere.user.vo.MessageVO">
+		select M_no as no, sender, m_title as title, m_content as content, M_wdate as wdate
+		  from message
+		 where M_no = #{num}
+	</select>
+	
+	<update id="updateMsgStatus">
+		update message set M_status = '1' where M_no = #{num}
+	</update>
+</mapper>
