@@ -99,13 +99,25 @@ public class UserController {
 	}
 	
 	@RequestMapping("/sendMsgForm")
-	public String sendMsgForm(){
-		return "msg/sendMsgForm";
+	public String sendMsgForm(HttpServletRequest request){
+		String path = "";
+		System.out.println("??? : " + request.getParameter("receiver"));
+		if(request.getParameter("receiver")!=null){
+			System.out.println("???");
+			path += "?receiver="+request.getParameter("receiver");
+		}
+		return "msg/sendMsgForm"+path;
 	}
 	
 	@RequestMapping("/sendMsg")
 	@ResponseBody
 	public String sendMsg(MessageVO msg){
 		return msgService.sendMsg(msg);
+	}
+	
+	@RequestMapping("/deleteMsg")
+	@ResponseBody
+	public String deleteMsg(@RequestParam int num){
+		return null;
 	}
 }

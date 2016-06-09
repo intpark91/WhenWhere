@@ -64,11 +64,11 @@
 						<!-- /.box-footer -->
 						<div class="box-footer">
 							<div class="pull-right">
-								<button type="button" class="btn btn-default">
+								<button id="reply" type="button" class="btn btn-default">
 									<i class="fa fa-reply"></i> Reply
 								</button>
 							</div>
-							<button type="button" class="btn btn-default">
+							<button  id="delete" type="button" class="btn btn-default">
 								<i class="fa fa-trash-o"></i> Delete
 							</button>
 						</div>
@@ -80,5 +80,29 @@
 		</div>
 	</div>
 	<jsp:include page="../component/core_js.jsp" />
+	<script type="text/javascript">
+	$(function(){
+		$("#reply").on("click", function(){
+			alert("??");
+			location.href="../user/sendMsgForm?receiver=${message.getSender()}";
+		});
+		$("#delete").on("click", function(){
+			var num = ${message.getNo()};
+			$.ajax({
+				url : "../user/deleteMsg",
+				type : "post",
+				data : num,
+				dataType : "json",
+				success : function(){
+					alert("okok");
+				},
+				error : function(){
+					alert("bad");
+				}
+			});
+		});
+	});
+	
+	</script>
 </body>
 </html>

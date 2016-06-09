@@ -86,7 +86,17 @@
 											<tr>
 												<td><input type="checkbox"></td>
 												<td class="mailbox-name">${msg.sender}</a></td>
-												<td class="mailbox-subject"><a href="../user/readMsg?num=${msg.no}">${msg.title}</a></td>
+												
+												<td class="mailbox-subject"><a href="../user/readMsg?num=${msg.no}">
+												<c:choose>
+													<c:when test="${msg.status == 0 }">
+													<b>${msg.title}</b>
+													</c:when>
+													<c:otherwise>
+													${msg.title}
+													</c:otherwise>
+												</c:choose>
+												</a></td>
 												<td class="mailbox-date pull-right">${msg.wdate}</td>
 											</tr>
 										</c:forEach>
