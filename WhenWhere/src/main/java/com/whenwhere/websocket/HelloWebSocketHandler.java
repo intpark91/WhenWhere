@@ -1,8 +1,12 @@
 package com.whenwhere.websocket;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -57,8 +61,20 @@ public class HelloWebSocketHandler extends TextWebSocketHandler {
         sessions.remove(session);
         
         HttpSession Hsession = (HttpSession) session.getAttributes().get("session");
+        int currentRoom = (Integer) Hsession.getAttribute("session_roomInfo");
         MemberVO member = (MemberVO) Hsession.getAttribute("member");
         
+        ServletContext application =  (ServletContext) Hsession.getServletContext();
+        Map<Integer,ChatRoomVO> roomM = (HashMap<Integer,ChatRoomVO>) application.getAttribute("roomListM");
+		List<Integer> roomA = (ArrayList<Integer>) application.getAttribute("roomNumList");
+		
+		roomM.remove(currentRoom);
+		for(int i=0;i<roomA.size();i++){
+			if(roomA.get(i) == currentRoom){
+				System.out.println("리스트 탐색 성공");
+				roomA.remove(i);
+			}
+		}
         msgToAll("admin", member.getNickname() +" 님이 접속 종료하였습니다.");
     }
  
