@@ -64,19 +64,23 @@ public class SearchService {
 		  map.put("eDate", eDate);
 		  map.put("location", locations[i]);
 		  
-		  List<Map<String, Object>> list = dao.getEventList(map);
+		  List<Map<String, Object>> eventlist = dao.getEventList(map);
+		  List<Map<String, Object>> foodlist = dao.getFoodList(map);
 		  
-		  System.out.println(list.size()+"::"+list.get(0).get("title")+","+list.get(0).get("sDate"));
-		  
-		  for(int j=0; j<list.size(); j++){
-			  searchEventList.add(list.get(j));
+		  for(int j=0; j<eventlist.size(); j++){
+			  searchEventList.add(eventlist.get(j));
+			  System.out.println(searchEventList.size()+"::"+eventlist.get(j).get("title")+","+eventlist.get(j).get("eSDate"));
+		  }
+		 
+		  for(int j=0; j<foodlist.size(); j++){
+			  searchFoodList.add(foodlist.get(j));
+			  System.out.println(searchFoodList.size()+"::"+foodlist.get(j).get("foodName")+","+foodlist.get(j).get("fSDate"));
 		  }
 	  }
 	  
 	  JSONObject jsonObject = new JSONObject();
 	  jsonObject.put("searchEventList", searchEventList);
 	  jsonObject.put("searchFoodList", searchFoodList);
-	  System.out.println(jsonObject.toJSONString());
       return jsonObject.toJSONString();
    }
    
