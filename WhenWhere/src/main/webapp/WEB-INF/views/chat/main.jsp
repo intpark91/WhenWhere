@@ -46,7 +46,6 @@
 		var ws ='';
 		
 		$(function(){
-			
 			$( "input[name=pwdChk]" ).on("click", function() {
 				var chk = $(this).is(":checked");//.attr('checked');
 		        if(chk) $("input[name=pwd]").attr("disabled",false);
@@ -195,6 +194,9 @@
 		    	var checkClass='roomclass';
 		    	console.log(this.type);
 		    	
+		    	if(this.pwdCheck){
+		    		checkClass += ' requiredPwd';
+		    	}
 		    	switch (this.type) {
 		    	  case 0  :  typeName = '전체';
 		    	 			 className = '<span class="label label-danger">';
@@ -213,7 +215,7 @@
 		    	             break;
 		    	}
 		    	
-		    	str += '<tr class="roomclass">' 
+		    	str += '<tr class="' + checkClass + '">' 
 		    		+  '<td style="width: 10px;">' + this.num + '</td>'
 		    		+  '<td style="width: 80px;" class="hidden-xs">'+ this.time +'</td>'
 					+  '<th style="max-width: 20px;">'+ className + typeName +'</span></th>'
