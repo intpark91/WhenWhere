@@ -88,22 +88,29 @@ public class UserController {
 	}
 	
 	@RequestMapping("/msgbox")
-	public String msgPopup(Model model, HttpSession session, @RequestParam int page){
+	public String msgPopup(Model model, HttpSession session, @RequestParam(required = false) String receiver, @RequestParam String type, @RequestParam int page){
 		msgService.getMsgList(model, session, page);
+		if(receiver!=null){
+			model.addAttribute("receiver", receiver);
+		}
+		model.addAttribute("type", type);
 		return "msg/msgbox";
 	}
+	
 	@RequestMapping("/readMsg")
 	public String readMsg(Model model, @RequestParam int num){
 		msgService.getMsg(model, num);
+		model.addAttribute("type", "read");
 		return "msg/readMsg";
 	}
 	
-	@RequestMapping("/sendMsgForm")
-	public String sendMsgForm(Model model, HttpServletRequest request){
+	@RequestMapping("/writeMsgForm")
+	public String writeMsgForm(Model model, HttpServletRequest request){
 		if(request.getParameter("receiver")!=null){
 			model.addAttribute("receiver", request.getParameter("receiver"));
 		}
-		return "msg/sendMsgForm";
+		model.addAttribute("type", "write");
+		return "msg/writeMsgForm";
 	}
 	
 	@RequestMapping("/sendMsg")

@@ -44,9 +44,17 @@
 						</div>
 					</div>
 				</div>
-				<jsp:include page="../msg/showMsgList.jsp" />
-				<jsp:include page="../msg/readMsg.jsp" />
-				<jsp:include page="../msg/sendMsgForm.jsp" />
+				<c:choose>
+					<c:when test="${type=='list'}">
+						<jsp:include page="../msg/showMsgList.jsp" />
+					</c:when>
+					<c:when test="${type=='read'}">
+						<jsp:include page="../msg/readMsg.jsp" />
+					</c:when>
+					<c:when test="${type=='write'}">
+						<jsp:include page="../msg/writeMsgForm.jsp" />
+					</c:when>
+				</c:choose>
 			</div>
 		</div>
 	</div>
