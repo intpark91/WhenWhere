@@ -67,7 +67,7 @@
 				<li class="dropdown user user-menu logined" style="display: none">
 					<!-- Menu Toggle Button  --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <!-- The user image in the navbar  -->
-						<img src='../resources/img/user.png' class="user-image" alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
+						<img src='../resources/img/user.png' class="user-image" alt="User Image">
 						<span class="hidden-xs" id="member_nickname"></span>
 				</a>
 					<ul class="dropdown-menu">

@@ -99,7 +99,10 @@ public class UserController {
 	}
 	
 	@RequestMapping("/sendMsgForm")
-	public String sendMsgForm(){
+	public String sendMsgForm(Model model, HttpServletRequest request){
+		if(request.getParameter("receiver")!=null){
+			model.addAttribute("receiver", request.getParameter("receiver"));
+		}
 		return "msg/sendMsgForm";
 	}
 	
@@ -107,5 +110,11 @@ public class UserController {
 	@ResponseBody
 	public String sendMsg(MessageVO msg){
 		return msgService.sendMsg(msg);
+	}
+	
+	@RequestMapping("/deleteMsg")
+	@ResponseBody
+	public String deleteMsg(@RequestParam int num){
+		return null;
 	}
 }
