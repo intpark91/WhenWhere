@@ -43,6 +43,7 @@ public class MainController {
 	@RequestMapping(value = "/searchForm")
 	public String searchForm(Model model) {
 		model.addAttribute("locationList", searchServive.getAllLocationList());
+		model.addAttribute("locationSubList", searchServive.getSubLocationList());
 		return "home/search";
 	}
 	

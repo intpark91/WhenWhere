@@ -114,111 +114,28 @@
 
 							<nav>
 								<ul class="cd-tabs-navigation">
-									<li><a data-content="서울" class="selected" href="#0">서울</a></li>
-									<li><a data-content="경기" href="#0">경기</a></li>
-									<li><a data-content="영서" href="#0">영서</a></li>
-									<li><a data-content="영동" href="#0">영동</a></li>
-									<li><a data-content="충복" href="#0">충복</a></li>
-									<li><a data-content="충남" href="#0">충남</a></li>
-									<li><a data-content="경북" href="#0">경북</a></li>
-									<li><a data-content="경남" href="#0">경남</a></li>
-									<li><a data-content="전북" href="#0">전북</a></li>
-									<li><a data-content="전남" href="#0">전남</a></li>
-									<li><a data-content="제주" href="#0">제주</a></li>
-
+									<c:forEach items="${locationSubList }" var="subList">
+										<li><a data-content="${subList }" href="#0">${subList }</a></li>
+									</c:forEach>
 								</ul>
 								<!-- cd-tabs-navigation -->
 							</nav>
 
 							<ul class="cd-tabs-content">
-								<li data-content="서울" class="selected">
-									<ul class="locationUL">
-										<c:forEach items="${locationList.get(0) }" var="i">
-											<li><input type="checkbox" id="${i }" class="checkbox" />
-												<label for="${i }">${i }</label></li>
-										</c:forEach>
-									</ul>
-								</li>
-								<li data-content="경기">
-									<ul class="locationUL">
-										<c:forEach items="${locationList.get(1) }" var="i">
-											<li><input type="checkbox" id="${i }" class="checkbox" />
-												<label for="${i }">${i }</label></li>
-										</c:forEach>
-									</ul>
-								</li>
-								<li data-content="영서">
-									<ul class="locationUL">
-										<c:forEach items="${locationList.get(2) }" var="i">
-											<li><input type="checkbox" id="${i }" class="checkbox" />
-												<label for="${i }">${i }</label></li>
-										</c:forEach>
-									</ul>
-								</li>
-								<li data-content="영동">
-									<ul class="locationUL">
-										<c:forEach items="${locationList.get(3) }" var="i">
-											<li><input type="checkbox" id="${i }" class="checkbox" />
-												<label for="${i }">${i }</label></li>
-										</c:forEach>
-									</ul>
-								</li>
-								<li data-content="충복">
-									<ul class="locationUL">
-										<c:forEach items="${locationList.get(4) }" var="i">
-											<li><input type="checkbox" id="${i }" class="checkbox" />
-												<label for="${i }">${i }</label></li>
-										</c:forEach>
-									</ul>
-								</li>
-								<li data-content="충남">
-									<ul class="locationUL">
-										<c:forEach items="${locationList.get(5) }" var="i">
-											<li><input type="checkbox" id="${i }" class="checkbox" />
-												<label for="${i }">${i }</label></li>
-										</c:forEach>
-									</ul>
-								</li>
-								<li data-content="경북">
-									<ul class="locationUL">
-										<c:forEach items="${locationList.get(6) }" var="i">
-											<li><input type="checkbox" id="${i }" class="checkbox" />
-												<label for="${i }">${i }</label></li>
-										</c:forEach>
-									</ul>
-								</li>
-								<li data-content="경남">
-									<ul class="locationUL">
-										<c:forEach items="${locationList.get(7) }" var="i">
-											<li><input type="checkbox" id="${i }" class="checkbox" />
-												<label for="${i }">${i }</label></li>
-										</c:forEach>
-									</ul>
-								</li>
-								<li data-content="전북">
-									<ul class="locationUL">
-										<c:forEach items="${locationList.get(8) }" var="i">
-											<li><input type="checkbox" id="${i }" class="checkbox" />
-												<label for="${i }">${i }</label></li>
-										</c:forEach>
-									</ul>
-								</li>
-								<li data-content="전남">
-									<ul class="locationUL">
-										<c:forEach items="${locationList.get(9) }" var="i">
-											<li><input type="checkbox" id="${i }" class="checkbox" />
-												<label for="${i }">${i }</label></li>
-										</c:forEach>
-									</ul>
-								</li>
-								<li data-content="제주">
-									<ul class="locationUL">
-										<c:forEach items="${locationList.get(10) }" var="i">
-											<li><input type="checkbox" id="${i }" class="checkbox" />
-												<label for="${i }">${i }</label></li>
-										</c:forEach>
-									</ul>
-								</li>
+								<c:forEach items="${locationSubList }" var="sublist" varStatus="status">
+									<li data-content="${sublist }">
+										<ul class="locationUL">
+											<c:set var="cnt" value="${status.index}"/>
+											<c:forEach items="${locationList.get(cnt) }" var="list">
+												<li>
+													<input type="checkbox" id="${list }" class="checkbox" />
+													<label for="${list }">${list }</label>
+												</li>
+											</c:forEach>
+										</ul>
+									</li>
+								</c:forEach>
+								
 							</ul>
 							<!-- cd-tabs-content -->
 						</div>
@@ -226,6 +143,8 @@
 
 
 					</div>
+					 
+					
 					<div class="row">
 						<div class="col-sm-offset-3 col-sm-6 col-xs-offset-3 col-xs-6">
 							<button type="button" class="locationSearchBtn btn">상세검색∨</button>

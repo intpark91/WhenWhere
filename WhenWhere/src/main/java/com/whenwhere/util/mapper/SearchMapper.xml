@@ -8,6 +8,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select LOC_NAME from location where LOC_SUBJECT=#{sub_loc}
 	</select>
 	
+	<select id="getSubLocationList" resultType="String">
+		select loc_subject
+		from(select LOC_SUBJECT, MIN(LOC_CODE) as firstLoc 
+			 from location 
+			 group by LOC_SUBJECT order by firstLoc)
+	</select>
+	
 	<select id="getEventList" resultMap="eventResultMap" parameterType="java.util.HashMap">
 		select e.e_no, TO_CHAR(e.e_sdate, 'YYYY/MM/DD') e_sdate, TO_CHAR(e.e_edate, 'YYYY/MM/DD') e_edate, b.boardcode, b.b_title, b.b_wdate, b.b_recommend, l.loc_subject, l.loc_name, i.filename
 		from (select * 
@@ -18,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		        E_SDATE >= TO_DATE(#{sDate}, 'MM/DD/YYYY') and E_SDATE <![CDATA[<]]>= TO_DATE(#{eDate}, 'MM/DD/YYYY') and E_EDATE >= TO_DATE(#{eDate}, 'MM/DD/YYYY') or
 		        E_SDATE <![CDATA[<]]>= TO_DATE(#{sDate}, 'MM/DD/YYYY') and E_EDATE >= TO_DATE(#{eDate}, 'MM/DD/YYYY')) e, board b, location l, image i
 		where 
-		b.BOARDCODE = i.BOARDCODE and
+		b.B_NO = i.NO and
 		e.E_NO = b.E_NO and
 		e.LOC_CODE = l.LOC_CODE and
 		l.LOC_NAME = #{location}
@@ -39,8 +46,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		f.F_NAME = i.F_NAME and
 		f.LOC_CODE = i.LOC_CODE
 	</select>
-	
-	
 	
 	<resultMap id="eventResultMap" type="java.util.HashMap">
 	<!-- <result javaType="데이터타입" column="db컬럼명" property="맵에서 키값"/> -->

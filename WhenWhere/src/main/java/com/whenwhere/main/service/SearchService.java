@@ -21,10 +21,10 @@ public class SearchService {
    @Autowired
    private SqlSessionTemplate sqlSessionTemplate;
    
-   /*public List<String> getSubLocationList(){
+   public List<String> getSubLocationList(){
       SearchDAO dao = sqlSessionTemplate.getMapper(SearchDAO.class);
       return dao.getSubLocationList();
-   }*/
+   }
    
    public List<String> getLocationList(String sub_loc){
       SearchDAO dao = sqlSessionTemplate.getMapper(SearchDAO.class);
@@ -33,17 +33,11 @@ public class SearchService {
    
    public List<List<String>> getAllLocationList(){
       List<List<String>> list = new ArrayList<List<String>>();
-      list.add(getLocationList("서울"));
-      list.add(getLocationList("경기"));
-      list.add(getLocationList("영서"));
-      list.add(getLocationList("영동"));
-      list.add(getLocationList("충북"));
-      list.add(getLocationList("충남"));
-      list.add(getLocationList("경북"));
-      list.add(getLocationList("경남"));
-      list.add(getLocationList("전북"));
-      list.add(getLocationList("전남"));
-      list.add(getLocationList("제주"));
+      List<String> subLocationList = getSubLocationList();
+      
+      for(int i=0; i<subLocationList.size(); i++){
+    	  list.add(getLocationList(subLocationList.get(i)));
+      }
       
       return list;
    }
