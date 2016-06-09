@@ -90,6 +90,7 @@ public class ChatRoomCont {
 		obj.put("title", chatVO.getTitle());
 		obj.put("name", sessionNick );
 		
+		System.out.println(sessionNick+"님이 방을 만들었어요");
 		return obj.toJSONString();
 		
 	}
@@ -151,6 +152,25 @@ public class ChatRoomCont {
 			
 			jsonArr.add(obj);
 		}
+		
+		return jsonArr.toJSONString();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/enterRoom")
+	@ResponseBody
+	public String enterRoom(@RequestParam("roomNum") int roomNum, HttpServletRequest request) throws Exception{
+   
+		JSONArray jsonArr = new JSONArray();
+		
+		JSONObject obj = new JSONObject();
+		obj.put("ok", true);
+		jsonArr.add(obj);
+		
+		ServletContext application= (ServletContext) request.getServletContext();
+		
+		Map<Integer,ChatRoomVO> roomL = (HashMap<Integer,ChatRoomVO>) application.getAttribute("roomListM");
+		List<ChatRoomVO> roomA = (ArrayList<ChatRoomVO>) application.getAttribute("roomNumList");
 		
 		return jsonArr.toJSONString();
 	}
