@@ -85,9 +85,18 @@
 .board_photo .board_ebook{width:100%;}
 .board_photo .board_ebook h3{font-size:90%;}
 .board_photo .board_ebook h4{
-		white-space:nowrap;
-		overflow:hidden;
-		text-overflow:ellipsis;
+		    overflow: hidden;
+    text-overflow: ellipsis;
+
+    /* 여러 줄 자르기 추가 스타일 */
+    white-space: normal;
+    line-height: 1.2;
+    height: 3.8em;
+    text-align: left;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 
 	
 	font-size:14px;font-weight:normal;padding-top:10px;height:60px;overflow:hidden;}

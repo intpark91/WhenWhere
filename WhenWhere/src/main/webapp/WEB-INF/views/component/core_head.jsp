@@ -11,4 +11,4 @@
 <link rel="stylesheet" href="../css/main/skin-blue.css">
 <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
 <link rel="shortcut icon" href="../resources/img/WWfavi.ico">
-<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+
