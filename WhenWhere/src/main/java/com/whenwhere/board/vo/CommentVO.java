@@ -6,8 +6,8 @@ public class CommentVO {
 	private int boardNo;
 	private String boardCode;
 	private int ref;
-	private String email;
-
+	private String content;
+	
 	public int getNo() {
 		return no;
 	}
@@ -47,12 +47,14 @@ public class CommentVO {
 	public void setRef(int ref) {
 		this.ref = ref;
 	}
-
-	public String getEmail() {
-		return email;
+	
+	public String getContent() {
+		return content;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setContent(String content) {
+		this.content = content;
 	}
+
+	
 }

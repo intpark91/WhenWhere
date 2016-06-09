@@ -46,25 +46,33 @@ function delectAjax(no){
 				alert(status);
 		}  
 	});	
-}
-	
+}	
 	function modifyForm(no){	
 		location.href="noticeRead?no="+no+"&cmd=updateForm";
 	}
 
 	$(function(){
-	    $(".noticeboardcomment").click(function(){
-	        $(".comment_wrap").toggle();
+	    $(".noticeboardcomment").on('click',function(){	    	
+	    	$(".comment_wrap").css('visibility','visible');
+	    	$(".comment_wrap").attr('class','comment_wrap_visible');
+	    	
 	    });
+	    
+ 	    $('.commentbtn').on('click',function(){
+	    	$(".comment_wrap_visible").css('visibility','hidden');
+	    	$(".comment_wrap_visible").attr('class','comment_wrap');
+	    
+	    }); 
+	    
 	});
-
-
-		
-		
-		
-	
-	
-	
+	$(function(){
+	var nickname = '${sessionScope.member.nickname}'
+	   if(nickname=='')
+	   $('#author').val('none');
+	   else{
+	   $('#author').val(nickname);
+	   }
+	});
 </script>
 
 </head>
@@ -154,129 +162,106 @@ function delectAjax(no){
 												onclick="modifyForm(${ReadBoard.no});">수정하기</button>
 										</div>
 										<div>
-											<button class="noticeboardcomment" id="reviewwrite" type="button" >댓글보기</button>
+											<button class="noticeboardcomment" id="reviewwrite"
+												type="button">댓글보기</button>
 										</div>
 									</div>
-							<div class="comment_wrap">
-									<div class="con_area">
-										<div class="board_box">
-											<div class="bbs_view">
+									<div class="comment_wrap" style="visibility:hidden;">
+										<div class="con_area">
+											<div class="board_box">
+												<div class="bbs_view">
 
 
-												<div class="singlewrap pushpull">
-													전체 댓글
-													<ol class="commentlist">
-														<li class="comment odd alt thread-odd thread-alt depth-1"
-															id="li-comment-27">
-															<div id="comment-27">
-																<div class="post-wrap rel">
-																	<div class="reply_text"></div>
-																	<div class="postcontentreply">
-																		<div class="comment-guts">
-																			<div class="avatar-comments">
-																				<img src="../images/eventimg/eventDemo.JPG"
-																				>
-																			</div>
-																			<div class="comment-guts-pads">
-																				<!--  <div class="carrot-comment"></div> -->
-																				<div class="says">
-																				<c:choose>
-																					<c:when test="${sessionScope.member.nickname eq null}">
-																						none
-																					</c:when>
-																					<c:otherwise>				
-																						${sessionScope.member.nickname}
-																					</c:otherwise>
-																					</c:choose>
-																				
+													<div class="singlewrap pushpull">
+														전체 댓글
+														<ol class="commentlist">
+															<li class="comment odd alt thread-odd thread-alt depth-1"
+																id="li-comment-27">
+																<div id="comment-27">
+																	<div class="post-wrap rel">
+																		<div class="reply_text"></div>
+																		<div class="postcontentreply">
+																			<div class="comment-guts">
+																				<div class="avatar-comments">
+																					<img src="../images/eventimg/user.JPG">
 																				</div>
-																				<div class="says">
-																					<span class="says_date">06 09, 2016</span>
+																				<div class="comment-guts-pads">
+																					<!--  <div class="carrot-comment"></div> -->
+																					<div class="says">none</div>
+																					<div class="says">
+																						<span class="says_date">06 09, 2016</span>
+																					</div>
+																					<p>ddsadasd</p>
 																				</div>
-																				<p>ddsadasd</p>
 																			</div>
 																		</div>
+																		<!-- END postcontentreply -->
 																	</div>
-																	<!-- END postcontentreply -->
-																</div>
-																<!-- END comment -->
-															</div>
-															<!--end entire post wrap-->
-														</li>
-														<!-- #comment-## -->
+																	<!-- END comment -->
+																</div> <!--end entire post wrap-->
+															</li>
+															<!-- #comment-## -->
 
-													</ol>
+														</ol>
+													</div>
+
+													<div id="respond" class="comment-respond">
+														<h3 id="reply-title" class="comment-reply-title">
+															댓글 쓰기 <small> <a rel="nofollow"
+																id="cancel-comment-reply-link"
+																href="http://myforum.dothome.co.kr/my-favorite-model/#respond"
+																style="display: none;">댓글 취소</a>
+															</small>
+														</h3>
+														<form action="comment" method="post" id="commentform" class="comment-form">
+															<p class="comment-notes">
+																<span id="email-notes">여러분의 생각을 댓글을 남겨 주세요! <span
+																	class="required">*</span>
+																</span>
+															</p>
+															<p class="comment-form-author">
+																<label for="author">이름<span class="required"></span></label>
+																<input id="author" name="auth" type="text"
+																	readonly="true" value="none" size="30"
+																	aria-required="true" required="required">
+															</p>
+
+
+															<p class="comment-form-comment">
+																<label for="comment">내용</label>
+																<textarea id="comment" name="comment" cols="45" rows="8"
+																	aria-required="true" required="required"></textarea>
+															</p>
+															<p class="form-submit">
+																<button type="button" class="commentbtn" id="submit">댓글 감추기</button>
+																<input name="submit" type="submit" id="submit"
+																	class="submit" value="댓글 쓰기"> 															
+															</p>
+															
+														</form>
+													</div>
+													<!-- #respond -->
 												</div>
-
-												<div id="respond" class="comment-respond">
-													<h3 id="reply-title" class="comment-reply-title">
-														댓글 쓰기 <small> <a rel="nofollow"
-															id="cancel-comment-reply-link"
-															href="http://myforum.dothome.co.kr/my-favorite-model/#respond"
-															style="display: none;">댓글 취소</a>
-														</small>
-													</h3>
-													<form
-														action="http://myforum.dothome.co.kr/php/myforum_reply.php"
-														method="post" id="commentform" class="comment-form" >
-														<p class="comment-notes">
-															<span id="email-notes">여러분의 생각을 댓글을 남겨 주세요! <span
-																class="required">*</span>
-															</span>
-														</p>
-														<p class="comment-form-author">
-															<label for="author">이름<span class="required"></span></label>
-															<input id="author" name="author" type="text"
-																readonly="true" value="none" size="30"
-																aria-required="true" required="required">
-														</p>
-
-
-														<p class="comment-form-comment">
-															<label for="comment">내용</label>
-															<textarea id="comment" name="comment" cols="45" rows="8"
-																aria-required="true" required="required"></textarea>
-														</p>
-														<p class="form-submit">
-															<input name="submit" type="submit" id="submit"
-																class="submit" value="입력 하기"> <input
-																type="hidden" name="comment_post_ID" value="173"
-																id="comment_post_ID"> <input type="hidden"
-																name="comment_parent" id="comment_parent" value="0">
-															<input type="hidden" name="board_seqn" id="board_seqn"
-																value="25">
-														</p>
-														<p style="display: none;">
-															<input type="hidden" id="akismet_comment_nonce"
-																name="akismet_comment_nonce" value="e92d0001d0">
-														</p>
-														<p style="display: none;"></p>
-														<input type="hidden" id="ak_js" name="ak_js"
-															value="1465438540239">
-													</form>
-												</div>
-												<!-- #respond -->
 											</div>
+											<!--end col8-->
+
+
 										</div>
-										<!--end col8-->
-
-
 									</div>
 								</div>
-							</div>
 
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	
 
-	<!-- /.content-wrapper -->
-	<!-- include -->
-	<jsp:include page="../component/footer.jsp" />
-	<jsp:include page="../component/controlSidebar.jsp" />
+
+		<!-- /.content-wrapper -->
+		<!-- include -->
+		<jsp:include page="../component/footer.jsp" />
+		<jsp:include page="../component/controlSidebar.jsp" />
 	</div>
 	<!-- scripts -->
 	<jsp:include page="../component/core_js.jsp" />

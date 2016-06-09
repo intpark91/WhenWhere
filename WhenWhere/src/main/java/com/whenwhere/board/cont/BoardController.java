@@ -20,7 +20,7 @@ import com.whenwhere.board.vo.BoardVO;
 @RequestMapping("/board")
 public class BoardController {
 	
-	/*怨듭��궗�빆 寃뚯떆�뙋 �떆�옉*/
+	/*공지 게시판 시작*/
 	@Autowired
 	NoticeBoardSVC noticeBoardSVC;
 	
@@ -58,9 +58,13 @@ public class BoardController {
 		return noticeBoardSVC.searchList(request,model);		
 	}
 	
+	@RequestMapping(value = "comment", method = RequestMethod.GET)
+	public String comment(Model model,HttpServletRequest request) {				
+		return noticeBoardSVC.searchList(request,model);		
+	}
 	
-	
-	/*怨듭��궗�빆 寃뚯떆�뙋 �걹*/
+
+	/*공지 게시판 끝*/
 	
 	
 

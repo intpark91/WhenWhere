@@ -38,4 +38,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			   )
 		where rk <![CDATA[ <= ]]> 5
 	</select>
+	
+	<select id="getMsg" resultType="com.whenwhere.user.vo.MessageVO">
+		select M_no as no, sender, m_title as title, m_content as content, M_wdate as wdate
+		  from message
+		 where M_no = #{num}
+	</select>
+	
+	<update id="updateMsgStatus">
+		update message set M_status = '1' where M_no = #{num}
+	</update>
 </mapper>
