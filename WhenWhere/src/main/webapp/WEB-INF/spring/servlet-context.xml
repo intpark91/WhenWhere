@@ -1,38 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:websocket="http://www.springframework.org/schema/websocket"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+   xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:websocket="http://www.springframework.org/schema/websocket"
+   xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/websocket
         http://www.springframework.org/schema/websocket/spring-websocket.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing 
-		infrastructure -->
+   <!-- DispatcherServlet Context: defines this servlet's request-processing 
+      infrastructure -->
 
-	<!-- Process annotations on registered beans like @Autowired... -->
-	<context:annotation-config />
+   <!-- Process annotations on registered beans like @Autowired... -->
+   <context:annotation-config />
 
-	<!-- Enables the Spring MVC @Controller programming model -->
-	<mvc:annotation-driven />
+   <!-- Enables the Spring MVC @Controller programming model -->
+   <mvc:annotation-driven />
 
-	<context:component-scan base-package="com.whenwhere.board.cont" />
-	<context:component-scan base-package="com.whenwhere.board.dao" />
-	<context:component-scan base-package="com.whenwhere.board.service" />
-	<context:component-scan base-package="com.whenwhere.board.vo" />
-	<context:component-scan base-package="com.whenwhere.main.cont" />
-	<context:component-scan base-package="com.whenwhere.main.dao" />
-	<context:component-scan base-package="com.whenwhere.main.service" />
-	<context:component-scan base-package="com.whenwhere.main.vo" />
-	<context:component-scan base-package="com.whenwhere.user.cont" />
-	<context:component-scan base-package="com.whenwhere.user.dao" />
-	<context:component-scan base-package="com.whenwhere.user.service" />
-	<context:component-scan base-package="com.whenwhere.user.vo" />
-	<context:component-scan base-package="com.whenwhere.user.util" />
-	<context:component-scan base-package="com.whenwhere.websocket" />
+   <context:component-scan base-package="com.whenwhere.board.cont" />
+   <context:component-scan base-package="com.whenwhere.board.dao" />
+   <context:component-scan base-package="com.whenwhere.board.service" />
+   <context:component-scan base-package="com.whenwhere.board.vo" />
+   <context:component-scan base-package="com.whenwhere.main.cont" />
+   <context:component-scan base-package="com.whenwhere.main.dao" />
+   <context:component-scan base-package="com.whenwhere.main.service" />
+   <context:component-scan base-package="com.whenwhere.main.vo" />
+   <context:component-scan base-package="com.whenwhere.user.cont" />
+   <context:component-scan base-package="com.whenwhere.user.dao" />
+   <context:component-scan base-package="com.whenwhere.user.service" />
+   <context:component-scan base-package="com.whenwhere.user.vo" />
+   <context:component-scan base-package="com.whenwhere.user.util" />
+   <context:component-scan base-package="com.whenwhere.websocket" />
 
+   <!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+      up static resources in the ${webappRoot}/resources directory -->
+   <resources mapping="/resources/**" location="/resources/" />
+   <resources mapping="/css/**" location="/css/" />
+   <resources mapping="/js/**" location="/js/" />
+   <resources mapping="/images/**" location="/images/" />
+   <resources mapping="/smartEditor/**" location="/smartEditor/" />
+   <resources mapping="/ckEditor/**" location="/ckEditor/" />
+   <!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+      in the /WEB-INF/views directory -->
+   <beans:bean
+      class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <beans:property name="prefix" value="/WEB-INF/views/" />
+      <beans:property name="suffix" value=".jsp" />
+      <beans:property name="contentType" value="text/html; charset=UTF-8" />
+   </beans:bean>
+   
+   <beans:bean id="mailSender"
+      class="org.springframework.mail.javamail.JavaMailSenderImpl">
+      <beans:property name="host" value="smtp.gmail.com" />
+      <beans:property name="port" value="25" />
+      <beans:property name="username" value="WhenWhereTeam@gmail.com" />
+      <beans:property name="password" value="WhenWhereTeam30" />
+      <beans:property name="defaultEncoding" value="utf-8" />
+      <beans:property name="javaMailProperties">
+         <beans:props>
+            <beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+            <beans:prop key="mail.transport.protocol">smtp</beans:prop>
+            <beans:prop key="mail.smtp.auth">true</beans:prop>
+            <beans:prop key="mail.debug">true</beans:prop>
+         </beans:props>
+      </beans:property>
+   </beans:bean>
+   
+   <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+   
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
@@ -50,49 +86,31 @@
 		<beans:property name="contentType" value="text/html; charset=UTF-8" />
 	</beans:bean>
 	
-	<beans:bean id="mailSender"
-		class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<beans:property name="host" value="smtp.gmail.com" />
-		<beans:property name="port" value="25" />
-		<beans:property name="username" value="WhenWhereTeam@gmail.com" />
-		<beans:property name="password" value="WhenWhereTeam30" />
-		<beans:property name="defaultEncoding" value="utf-8" />
-		<beans:property name="javaMailProperties">
-			<beans:props>
-				<beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
-				<beans:prop key="mail.transport.protocol">smtp</beans:prop>
-				<beans:prop key="mail.smtp.auth">true</beans:prop>
-				<beans:prop key="mail.debug">true</beans:prop>
-			</beans:props>
-		</beans:property>
-	</beans:bean>
-	
-	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
-	
 	<beans:bean id="dataSource" class="oracle.jdbc.pool.OracleDataSource">
 		<beans:property name="dataSourceName" value="ds" />
 		<beans:property name="URL" value="jdbc:oracle:thin:@localhost:1521:xe" />
 		<beans:property name="user" value="scott" />
 		<beans:property name="password" value="TIGER" />
+
 	</beans:bean>
 
-	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<beans:property name="mapperLocations" value="classpath:com/whenwhere/util/mapper/*.xml" />
-		<beans:property name="dataSource" ref="dataSource" />
-	</beans:bean>
+   <beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <beans:property name="mapperLocations" value="classpath:com/whenwhere/util/mapper/*.xml" />
+      <beans:property name="dataSource" ref="dataSource" />
+   </beans:bean>
 
-	<beans:bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-		<beans:constructor-arg index="0" ref="sqlSessionFactory" />
-	</beans:bean>
-	
-	<!-- 웹 소켓 사용 위한 handler 및 빈 객체지정 -->
-	<websocket:handlers>
-		<websocket:mapping handler="echoHandler" path="/wsclient" />
-		<websocket:handshake-interceptors>
-			<beans:bean class="com.whenwhere.websocket.HandshakeInterceptor"/>
-		</websocket:handshake-interceptors>
-	</websocket:handlers>
-	
-	<beans:bean id="echoHandler" class="com.whenwhere.websocket.HelloWebSocketHandler" />
-	
+   <beans:bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+      <beans:constructor-arg index="0" ref="sqlSessionFactory" />
+   </beans:bean>
+   
+   <!-- 웹 소켓 사용 위한 handler 및 빈 객체지정 -->
+   <websocket:handlers>
+      <websocket:mapping handler="echoHandler" path="/wsclient" />
+      <websocket:handshake-interceptors>
+         <beans:bean class="com.whenwhere.websocket.HandshakeInterceptor"/>
+      </websocket:handshake-interceptors>
+   </websocket:handlers>
+   
+   <beans:bean id="echoHandler" class="com.whenwhere.websocket.HelloWebSocketHandler" />
+   
 </beans:beans>
