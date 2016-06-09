@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whenwhere.board.dao.BoardDAO">
+	
+	<select id="noticeList" parameterType="map" resultType="com.whenwhere.board.vo.BoardVO">
+				select ROWNUM ,b_no as no, b_title as title, b_wdate as wdate, b_auth as auth, b_hit as hit
+   				 from (SELECT *
+			      FROM (select ROWNUM as rnum,b_no, b_title, b_wdate, b_auth, b_hit
+	                      from board 
+	                     where boardcode = '공지'
+	                     order by b_no desc
+			           ) board 
+			     where rnum <![CDATA[ <= ]]> #{pageNum}*#{rowcnt} 
+			   )
+		 where rnum >= (#{pageNum}  -1)*(#{rowcnt}  + 1)
+	</select> 
+	
+	<select id="pageTotlaCount" resultType="Integer">
+		select count(*) from board where boardCode = '공지'
+	</select>
+
+	<insert id="insertBoard" parameterType="com.whenwhere.board.vo.BoardVO" >
+		INSERT INTO board (B_no, BoardCode, B_title, B_wdate, B_auth, B_content, B_hit, B_recommend)
+        VALUES (NOTICEBOARD_SQ.nextval,#{category},#{title},sysdate,#{auth},#{content},0,0)
+	</insert>
+	
+	<select id="readBoard" parameterType="com.whenwhere.board.vo.BoardVO" resultType="com.whenwhere.board.vo.BoardVO">
+		select b_no as no, b_title as title, b_wdate as wdate, b_auth as auth, b_content as content, b_hit as hit, b_recommend as recommend from board
+		<where>
+			<if test="auth!=null">				
+				b_NO=(select MAX(b_no)FROM board WHERE
+				b_AUTH=#{auth})
+			</if>
+
+			<if test="no!=0">
+				b_NO=#{no} and BOARDCODE='공지'
+			</if>
+		</where>		
+	</select>
+		
+	<delete id="deleteBoard" parameterType="com.whenwhere.board.vo.BoardVO">
+		delete from board where b_no = #{no}
+	</delete>
+	
+	<update id="modifyBoard" parameterType="com.whenwhere.board.vo.BoardVO">
+		update board set b_title=#{title}, b_content=#{content} where b_no=#{no}
+	</update>
+	
+	<update id="hitBoard">
+		update board set b_hit = (select max(nvl(b_hit,0)+1) from board where b_no=#{no}) where b_no = #{no}
+	</update>
+	
+	
+	<select id="noticeSearchList" parameterType="com.whenwhere.board.vo.BoardVO" resultType="com.whenwhere.board.vo.BoardVO">
+		                            select rownum, b_no as no, b_title as title, b_auth as auth, b_hit as hit , b_wdate as wdate ,page ,boardcode
+						from(select * 
+								from (SELECT TRUNC((ROWNUM-1)/12+1) AS page,  b_no, b_title, b_auth, b_hit , b_wdate,boardcode
+										FROM  (SELECT b_no, b_title, b_auth, b_content , b_wdate,b_hit,boardcode
+                      FROM board 
+                      
+          <where>
+			<if test="title.equals('B_TITLE')">				
+				b_title like '%${content}%' order by b_no desc)))
+				where page=${no} and boardcode='공지'
+			</if>    
+			
+			<if test="title.equals('B_CONTENT')">				
+				B_CONTENT like '%${content}%' order by b_no desc)))
+				where page=${no} and boardcode='공지'
+			</if>   
+	  	  </where> 
+                <!-- b_title like '게시판' order by b_no desc )))
+				where page=1  -->
+	</select>
+	
+	
+	<select id="getSearchCnt" parameterType="com.whenwhere.board.vo.BoardVO" resultType="Integer">
+     	 SELECT count(*) count FROM board
+     	 <where>
+			<if test="title.equals('B_TITLE')">
+				b_title like '%${content}%' and boardCode = '공지'
+			</if>
+			
+			<if test="title.equals('B_CONTENT')">
+				b_content like '%${content}%' and boardCode = '공지'
+			</if>
+		</where>
+     	 
+    </select>
+	
+	
+</mapper>

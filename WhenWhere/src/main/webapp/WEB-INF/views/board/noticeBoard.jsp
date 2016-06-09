@@ -66,7 +66,15 @@ color:#ffffff;
 							<div class="board_box">
 								<div class="bbs_info">
 									<div class="page">
-										Total : ${totalcount}개 / Page : <em>${pagenation.currPage}</em> / ${pagenation.totalPage}
+										<c:choose>
+											<c:when test="${searchboardList eq null}">
+												Total : ${totalcount}개 / Page : <em>${pagenation.currPage}</em> / ${pagenation.totalPage}
+											</c:when>
+											<c:otherwise>				
+												Total : ${searchVO.no}개 / Page : <em>${searchpagenation.currPage}</em> / ${searchpagenation.totalPage}							
+											</c:otherwise>
+										</c:choose>
+										
 									</div>
 									<div class="search">
 										<form action="http://tour.jb.go.kr/board/list.do"
@@ -80,12 +88,13 @@ color:#ffffff;
 
 										<form action="search"
 											id="searchForm" name="rfc_bbs_searchForm"
-											class="rfc_bbs_searchForm" method="post">
+											class="rfc_bbs_searchForm" method="GET">
 											<select name="searchType" id="searchType" class="TypeSelect">
 												<option value="B_TITLE">제목</option>
 												<option value="B_CONTENT">내용</option>
 											</select> 
 											<input type="text" title="검색값입력" id="keyword" name="keyword" class="b_search_input" value="">
+											<input type="hidden" name="page" value="1">
 											<button type="submit" class="searchBtn">검색</button>
 										</form>
 
@@ -115,16 +124,32 @@ color:#ffffff;
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="item" items="${boardList}" varStatus="status">
+											<c:choose>
+												<c:when test="${searchboardList eq null}">
+												<c:forEach var="item" items="${boardList}" varStatus="status">
 												<tr>
 													<%-- <input type="hidden" name="num" value="${item.num}"> --%>
 													<td>${item.no}</td>
 													<td><a href="noticeRead?no=${item.no}">${item.title}</a></td>
 													<td>${item.hit}</td>
-													<td>${boardList[0].auth}</td>
+													<td>${item.auth}</td>
 													<td>${item.wdate}</td>
 												</tr>
-											</c:forEach>
+												</c:forEach>
+												</c:when>
+												<c:otherwise>
+												<c:forEach var="item" items="${searchboardList}" varStatus="status">
+												<tr>
+													<%-- <input type="hidden" name="num" value="${item.num}"> --%>
+													<td>${item.no}</td>
+													<td><a href="noticeRead?no=${item.no}">${item.title}</a></td>
+													<td>${item.hit}</td>
+													<td>${item.auth}</td>
+													<td>${item.wdate}</td>
+												</tr>
+												</c:forEach>
+												</c:otherwise>
+											</c:choose>	
 	
 																						
 										</tbody>
@@ -134,7 +159,8 @@ color:#ffffff;
 				
 								<div id="count">
 									<ul>
-									
+						<c:choose>
+							<c:when test="${searchpagenation eq null}">
 									<c:choose>
 										<c:when test="${pagenation.currPage>10}">
 										<li><a href="notice?page=1">&lt;&lt;</a></li>
@@ -151,11 +177,36 @@ color:#ffffff;
        							   </c:forEach>	
 									<c:choose>
 								 		<c:when test="${pagenation.linkEnd ne pagenation.totalPage}">
-											<li><a href="notice?page=${pagenation.linkEnd+1}">&gt;</a></li>
-											<li><a href="notice?page=${pagenation.totalPage}">&gt;&gt;</a></li>
+											<li><a href="notice?page=${pagenation.linkEnd+1}">[>]</a></li>
+											<li><a href="notice?page=${pagenation.totalPage}">[>>]</a></li>
 										</c:when>
 									</c:choose>
-									
+							</c:when>
+						
+						
+							<c:otherwise>
+									<c:choose>
+										<c:when test="${searchpagenation.currPage>10}">
+										<li><a href="search?page=1&searchType=${searchVO.title}&keyword=${searchVO.content}">&lt;&lt;</a></li>
+										<li><a href="search?page=${pagenation.linkBegin-1}&searchType=${searchVO.title}&keyword=${searchVO.content}">&lt;</a></li>
+										</c:when>
+									</c:choose>																						
+								    <c:forEach var="i" begin="${searchpagenation.linkBegin}" end="${searchpagenation.linkEnd}" step="1">
+            							<c:choose>
+               						    	<c:when test="${i eq searchpagenation.currPage}&searchType=${searchVO.title}&keyword=${searchVO.content}">
+               						    		<li class="page"><a href="search?page=${i}" class="choice"><strong>${i}</strong></a></li>
+               						    	</c:when>
+               						    <c:otherwise><li class="page"><a href="search?page=${i}&searchType=${searchVO.title}&keyword=${searchVO.content}">${i}</a></li></c:otherwise>
+            							</c:choose>
+       							   </c:forEach>	
+									<c:choose>
+								 		<c:when test="${searchpagenation.linkEnd ne searchpagenation.totalPage}">
+											<li><a href="search?page=${searchpagenation.linkEnd+1}&searchType=${searchVO.title}&keyword=${searchVO.content}">&gt;</a></li>
+											<li><a href="search?page=${searchpagenation.totalPage}&searchType=${searchVO.title}&keyword=${searchVO.content}">&gt;&gt;</a></li>
+										</c:when>
+									</c:choose>						
+							</c:otherwise>
+						</c:choose>	
 									</ul>
 
 								</div>	

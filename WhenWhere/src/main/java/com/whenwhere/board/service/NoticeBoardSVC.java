@@ -127,38 +127,33 @@ public class NoticeBoardSVC implements BoardService {
 		boardvo.setNo(pageNum);
 		boardvo.setCategory(boardCode);
 		boardvo.setTitle(searchType);
-		boardvo.setContent(keyword);
-		
-		System.out.println(boardvo.getTitle());
-		System.out.println(boardvo.getContent());
-		model.addAttribute("boardList", boardDAO.noticeSearchList(boardvo));
-		
-		final int linkSceen = 10;
-		
+		boardvo.setContent(keyword);	
+		model.addAttribute("searchboardList", boardDAO.noticeSearchList(boardvo));	
+		final int linkSceen = 10;	
 		PaginationVO paginationVO = new PaginationVO();
-		int resultpage = this.serachgetTotalPageCnt(keyword,searchType,boardCode,model); 	
+		int resultpage = this.serachgetTotalPageCnt(boardvo,model); 
 		int linkGroup =(pageNum-1)/linkSceen+1;
 		int linkEnd = linkGroup*linkSceen;
 		int lineBegin = linkEnd-linkSceen+1;
-		if(linkEnd>resultpage)linkEnd=resultpage;
-		
+		if(linkEnd>resultpage)linkEnd=resultpage;	
 		paginationVO.setTotalPage(resultpage);
 		paginationVO.setCurrPage(pageNum);
 		paginationVO.setLinkBegin(lineBegin);
 		paginationVO.setLinkEnd(linkEnd);			
 		paginationVO.setNext(true);
-				
-		model.addAttribute("pagenation", paginationVO);
+		boardvo.setNo(resultpage);		
+		model.addAttribute("searchVO", boardvo);
+		model.addAttribute("searchpagenation", paginationVO);
 		return "board/noticeBoard";
 	}
 	
-	public int serachgetTotalPageCnt(String keyword, String searchType, String boardCode, Model model) {
+	public int serachgetTotalPageCnt(BoardVO boardvo, Model model) {
 		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);
-		model.addAttribute("totalcount", boardDAO.pageTotlaCount(boardCode));
-		if (boardDAO.getSearchCnt(keyword,searchType) % ROWCNT != 0) {
-			return boardDAO.getSearchCnt(keyword,searchType) / ROWCNT + 1;
+		model.addAttribute("totalcount1", boardDAO.getSearchCnt(boardvo));		
+		if (boardDAO.getSearchCnt(boardvo) % ROWCNT != 0) {
+			return boardDAO.getSearchCnt(boardvo) / ROWCNT + 1;
 		}
-		return boardDAO.getSearchCnt(keyword,searchType) / ROWCNT;
+		return boardDAO.getSearchCnt(boardvo) / ROWCNT;
 	}
 	
 }
