@@ -523,5 +523,14 @@ body {
     border-radius: 50px;
 }
 
+.carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
+    right: 5%;
+    margin-left: -10px;
+}
+
+.carousel-control .glyphicon-chevron-left, .carousel-control .icon-prev {
+    left: 5%;
+    margin-left: -10px;
+}
 
 

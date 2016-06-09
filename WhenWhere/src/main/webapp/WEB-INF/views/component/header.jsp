@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- Main Header -->
 <header class="main-header">
 
@@ -17,52 +19,16 @@
 		</a>
 		<!-- Navbar Right Menu -->
 		<div class="navbar-custom-menu">
-			<ul class="nav navbar-nav">
+			<ul class="nav navbar-nav"> 
 				<!-- Messages: style can be found in dropdown.less-->
 				<li class="dropdown messages-menu logined">
-					<!-- Menu toggle button --> <a href="#" class="dropdown-toggle"
-					data-toggle="dropdown"> <i class="fa fa-envelope-o"></i> <span
-						class="label label-success">4</span>
-				</a>
+					<a href="#" class="dropdown-toggle"	data-toggle="dropdown"> 
+						<i class="fa fa-envelope-o"></i> 
+						<span class="label label-warning notifyCnt"></span>
+					</a>
 					<ul class="dropdown-menu">
-						<li class="header">You have 2 new messages</li>
-						<li>
-							<!-- inner menu: contains the messages -->
-							<ul class="menu">
-								<li>
-									<!-- start message --> <a href="#">
-										<div class="pull-left">
-											<!-- User Image -->
-											<img
-												src="https://live.namuwikiusercontent.com/81/8141a5ed37a563c4142f1a65aca1c5ff7e213ea9e429ecc2cae2ac9c11bb1d63.jpg"
-												class="img-circle" alt="User Image">
-										</div> <!-- Message title and timestamp -->
-										<h4>
-											WhenWhereTeam <small><i class="fa fa-clock-o"></i> 5
-												mins</small>
-										</h4> <!-- The message -->
-										<p>안녕하세요 WhenWhereTeam에서 알립니다.알쟈ㅓ레ㅑㅈ더레ㅓㅈㄷ레ㅑㅓㅈ레ㅓㅔㅂㅈ덜</p>
-								</a>
-								</li>
-								<!-- end message -->
-								<li>
-									<!-- start message --> <a href="#">
-										<div class="pull-left">
-											<!-- User Image -->
-											<img
-												src="https://live.namuwikiusercontent.com/81/8141a5ed37a563c4142f1a65aca1c5ff7e213ea9e429ecc2cae2ac9c11bb1d63.jpg"
-												class="img-circle" alt="User Image">
-										</div> <!-- Message title and timestamp -->
-										<h4>
-											WhenWhereTeam <small><i class="fa fa-clock-o"></i> 6
-												mins</small>
-										</h4> <!-- The message -->
-										<p>안녕하세요 WhenWhereTeam입니다.</p>
-								</a>
-								</li>
-								<!-- end message -->
-							</ul> <!-- /.menu -->
-						</li>
+						<li class="header"><span id="newMsgCnt"></span></li>
+						<li id="newMsgs"></li>
 						<li class="footer"><a href="javascript:msgPopup();">See All Messages</a></li>
 					</ul>
 				</li>
@@ -70,10 +36,10 @@
 
 				<!-- Notifications Menu -->
 				<li class="dropdown notifications-menu logined">
-					<!-- Menu toggle button --> <a href="#" class="dropdown-toggle"
-					data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <span
-						class="label label-warning">10</span>
-				</a>
+					<a href="#" class="dropdown-toggle"	data-toggle="dropdown">
+						<i class="fa fa-bell-o"></i>
+						<span class="label label-warning">10</span>
+					</a>
 					<ul class="dropdown-menu">
 						<li class="header">You have 10 notifications</li>
 						<li>
@@ -104,14 +70,14 @@
 					<!-- Menu Toggle Button  -->
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
 						<!-- The user image in the navbar  -->
-						<img src="https://www.dog-zzang.co.kr/dog_sale/photo/201603/1457282732_13629600.jpg"
+						<img src=""
 						class="user-image" alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
 						<span class="hidden-xs" id="member_nickname"></span>
 				</a>
 					<ul class="dropdown-menu">
 						<!-- The user image in the menu -->
 						<li class="user-header"><img
-							src="https://www.dog-zzang.co.kr/dog_sale/photo/201603/1457282732_13629600.jpg"
+							src=""
 							class="img-circle" alt="User Image">
 							<p>
 								<span id="member_nickname"></span> 
@@ -137,6 +103,13 @@
 	</nav>
 	<script type="text/javascript">
 		$(function() {
+			loginCk();
+			if("${sessionScope.member}"!=""){
+				msgCk();
+			}
+		});
+		
+		function loginCk(){
 			if ("${sessionScope.member.email}"=="") {
 				$(".logined").css("display", "none");
 				$(".login").css("display", "block");
@@ -167,12 +140,51 @@
 					}
 				});
 			});
-		});
+		}
+		
+		function msgCk(){
+			$.ajax({
+				url : "../user/newMsgCk",
+				type : "post",
+				dataType : "json",
+				success : function(result){
+					if(result.ok){
+						if(result.cnt <= 0){
+							$("#newMsgCnt").text("새로운 메시지가 없습니다.");	
+						}else{
+							$("#newMsgCnt").text("새로운 메시지가"+result.cnt+"개 있습니다.");
+							$(".notifyCnt").text(result.cnt);
+							var arr = result.newMsgs;
+							console.log("arr : " + arr);
+							var str = "";
+							for(var i=0;i<arr.length;i++){
+								str += 	"<li><ul class='menu'><li><a href='"+arr[i].no+"'>"+
+										"<div class='pull-left'>"+
+								    	"<img src='' class='img-circle' alt='User Image'>"+
+									    "</div>"+
+									    "<h4>"+arr[i].sender+"<small><i class='fa fa-clock-o'></i>"+arr[i].wdate+"</small></h4>"+
+									    "<p>"+arr[i].title+"</p>"+
+									    "</a></li></ul></li>";
+							}
+							$("#newMsgs").append(str);
+							console.log("str : " + str);
+						}
+					}else{
+						alert("Server error (ajax is returned 'false', header.jsp)");
+					}
+				},
+				error : function(){
+					alert("error");
+				}
+			});
+		} 
+		
 		function msgPopup() {
 			var popup = "../user/msgbox?page=1";
 			var popOption = "width=992, height=525, top=200, left=200";
 			window.open(popup, "", popOption);
 		}
+		
 		function logout() {
 			$.ajax({
 				url : "../user/logout",

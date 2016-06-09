@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.whenwhere.main.dao.SearchDAO">
 
 	<select id="getLocationList" resultType="String">
-		select LOC_NAME from location where LOC_SUBNAME=#{sub_loc}
+		select LOC_NAME from location where LOC_SUBJECT=#{sub_loc}
 	</select>
 	
 </mapper>

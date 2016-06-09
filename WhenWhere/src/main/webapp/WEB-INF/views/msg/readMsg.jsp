@@ -39,68 +39,46 @@
 					<div class="box box-solid">
 						<div class="box-body no-padding">
 							<ul class="nav nav-pills nav-stacked">
-								<li class="active"><a href="../user/msgbox?page=1"><i class="fa fa-inbox"></i>
-										받은 쪽지함 <span class="label label-primary pull-right">3</span></a></li>
+								<li class="active"><a href="../user/msgbox?page=1"><i
+										class="fa fa-inbox"></i> 받은 쪽지함 <span
+										class="label label-primary pull-right">3</span></a></li>
 								<li><a href="#"><i class="fa fa-envelope-o"></i> 보낸 쪽지함</a></li>
 								<li><a href="#"><i class="fa fa-envelope"></i> 보관함</a></li>
 							</ul>
 						</div>
-						<!-- /.box-body -->
 					</div>
-					<!-- /. box -->
 				</div>
 				<!-- /.col -->
 				<div class="col-md-9">
 					<div class="box box-primary">
-						<!-- /.box-header -->
-						<div class="box-body">
-						<form name="msgForm">
-							<div class="form-group">
-								<input type="hidden" name=sender value="${sessionScope.member.getNickname()}">
-								<input name="receiver" class="form-control"  placeholder="To: ">
+						<div class="box-body no-padding">
+							<div class="mailbox-read-info">
+								<h3>Message Subject Is Placed Here</h3>
+								<h4>From: support@almsaeedstudio.com 
+									<span class="mailbox-read-time pull-right">15 Feb. 2015 11:03 PM</span>
+								</h4>
 							</div>
-							<div class="form-group">
-								<input name="title" class="form-control" placeholder="Subject:">
-							</div>
-							<div class="form-group" style="margin-bottom: 0px;">
-								<textarea name="content" class="form-control" style="height: 300px; margin-bottom: 0px;"></textarea>
-							</div>
-						</form>
+							<div class="mailbox-read-message">본문 줄바꿈 극혐</div>
 						</div>
-						<div class="box-footer" style="padding-top: 0px;">
+
+						<!-- /.box-footer -->
+						<div class="box-footer">
 							<div class="pull-right">
-								<button type="button" onclick="javascript:sendMsg();" class="btn btn-primary">
-									<i class="fa fa-envelope-o"></i> 보내기
+								<button type="button" class="btn btn-default">
+									<i class="fa fa-reply"></i> Reply
 								</button>
 							</div>
-							<button type="reset" class="btn btn-default">
-								<i class="fa fa-times"></i> 취소
+							<button type="button" class="btn btn-default">
+								<i class="fa fa-trash-o"></i> Delete
 							</button>
 						</div>
+						<!-- /.box-footer -->
 					</div>
 				</div>
+				<!--  /.col -->
 			</div>
 		</div>
 	</div>
 	<jsp:include page="../component/core_js.jsp" />
-	<script type="text/javascript">
-	function sendMsg(){
-		$.ajax({
-			type : "post",
-			url: "../user/sendMsg",
-			data: $("form[name=msgForm]").serialize(),
-			dataType: "json",
-			success: function(result){
-				if(result.ok){
-					location.href="../user/sendMsgForm";
-				}else{
-					alert("??");
-				}
-			},
-			error: function(){
-			}
-		});
-	}
-	</script>
 </body>
 </html>
