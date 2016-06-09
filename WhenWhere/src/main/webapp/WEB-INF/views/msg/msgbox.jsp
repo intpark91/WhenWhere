@@ -40,7 +40,7 @@
 					<div class="box box-solid">
 						<div class="box-body no-padding">
 							<ul class="nav nav-pills nav-stacked">
-								<li class="active"><a href="#"><i class="fa fa-inbox"></i>
+								<li class="active"><a href="../user/msgbox?page=1"><i class="fa fa-inbox"></i>
 										받은 쪽지함 <span class="label label-primary pull-right">3</span></a></li>
 								<li><a href="#"><i class="fa fa-envelope-o"></i> 보낸 쪽지함</a></li>
 								<li><a href="#"><i class="fa fa-envelope"></i> 보관함</a></li>
@@ -85,9 +85,9 @@
 										<c:forEach var="msg" items="${msgList}">
 											<tr>
 												<td><input type="checkbox"></td>
-												<td class="mailbox-name"><a href="read-mail.html">${msg.sender}</a></td>
-												<td class="mailbox-subject">${msg.title}</td>
-												<td class="mailbox-date">${msg.wdate}</td>
+												<td class="mailbox-name">${msg.sender}</a></td>
+												<td class="mailbox-subject"><a href="../user/readMsg?num=${msg.no}">${msg.title}</td>
+												<td class="mailbox-date pull-right">${msg.wdate}</td>
 											</tr>
 										</c:forEach>
 									</tbody>

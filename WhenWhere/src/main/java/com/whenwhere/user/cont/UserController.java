@@ -80,10 +80,21 @@ public class UserController {
 		return userService.logout(session);
 	}
 	
+	/**********************************for Messages**********************************/
+	@RequestMapping("/newMsgCk")
+	@ResponseBody
+	public String getNewMsg(Model model, HttpSession session){
+		return msgService.getNewMsg(model, session);
+	}
+	
 	@RequestMapping("/msgbox")
-	public String msgPopup(Model model, HttpSession session,@RequestParam int page){
+	public String msgPopup(Model model, HttpSession session, @RequestParam int page){
 		msgService.getMsgList(model, session, page);
 		return "msg/msgbox";
+	}
+	@RequestMapping("/readMsg")
+	public String readMsg(@RequestParam int num){
+		return "msg/readMsg";
 	}
 	
 	@RequestMapping("/sendMsgForm")
@@ -94,7 +105,6 @@ public class UserController {
 	@RequestMapping("/sendMsg")
 	@ResponseBody
 	public String sendMsg(MessageVO msg){
-		msgService.sendMsg(msg);
-		return null;
+		return msgService.sendMsg(msg);
 	}
 }
