@@ -5,14 +5,19 @@ import java.util.List;
 
 public class ChatRoomVO {
 	
-	private int roonNum;
+	private int roomNum;
 	private String title;
 	private int type;
-	private int userNum; //방인원
-	private String pwd;
-	private boolean accessChk = true;
+	private int userNum;
+	private String pwd = null;
 	private List<String> userList = new ArrayList<String>();
-	
+	private String wTime;
+	public int getRoomNum() {
+		return roomNum;
+	}
+	public void setRoomNum(int roomNum) {
+		this.roomNum = roomNum;
+	}
 	public String getTitle() {
 		return title;
 	}
@@ -25,11 +30,11 @@ public class ChatRoomVO {
 	public void setType(int type) {
 		this.type = type;
 	}
-	public int getuserNum() {
+	public int getUserNum() {
 		return userNum;
 	}
-	public void setuserNum(int num) {
-		this.userNum = num;
+	public void setUserNum(int userNum) {
+		this.userNum = userNum;
 	}
 	public String getPwd() {
 		return pwd;
@@ -37,25 +42,24 @@ public class ChatRoomVO {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-	public boolean isAccessChk() {
-		if(userNum > userList.size())
-			return true;
-		else return false;
-	}
-	public void setAccessChk(boolean accessChk) {
-		this.accessChk = accessChk;
-	}
 	public List<String> getUserList() {
 		return userList;
 	}
 	public void setUserList(List<String> userList) {
 		this.userList = userList;
 	}
-	public int getRoonNum() {
-		return roonNum;
+	public String getwTime() {
+		return wTime;
 	}
-	public void setRoonNum(int roonNum) {
-		this.roonNum = roonNum;
+	public void setwTime(String wTime) {
+		this.wTime = wTime;
 	}
 	
+	public boolean roomAccessCheck(){
+		if(userList.size()+1<userNum){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }

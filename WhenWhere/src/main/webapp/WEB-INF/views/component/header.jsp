@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!-- Main Header -->
 <header class="main-header">
 
@@ -19,23 +19,22 @@
 		</a>
 		<!-- Navbar Right Menu -->
 		<div class="navbar-custom-menu">
-			<ul class="nav navbar-nav"> 
+			<ul class="nav navbar-nav">
 				<!-- Messages: style can be found in dropdown.less-->
-				<li class="dropdown messages-menu logined">
-					<a href="#" class="dropdown-toggle"	data-toggle="dropdown"> 
-						<i class="fa fa-envelope-o"></i> 
-						<span class="label label-warning notifyCnt"></span>
-					</a>
+				<li class="dropdown messages-menu logined"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown"> <i
+						class="fa fa-envelope-o"></i> <span
+						class="label label-warning notifyCnt"></span>
+				</a>
 					<ul class="dropdown-menu">
 						<li class="header"><span id="newMsgCnt"></span></li>
 						<li id="newMsgs"></li>
-						<li class="footer"><a href="javascript:msgPopup();">See All Messages</a></li>
-					</ul>
-				</li>
+						<li class="footer"><a href="javascript:msgPopup('msgbox?page=1');">전체 메시지 보기</a></li>
+					</ul></li>
 				<!-- /.messages-menu -->
 
 				<!-- Notifications Menu -->
-				<li class="dropdown notifications-menu logined">
+				<!--<li class="dropdown notifications-menu logined">
 					<a href="#" class="dropdown-toggle"	data-toggle="dropdown">
 						<i class="fa fa-bell-o"></i>
 						<span class="label label-warning">10</span>
@@ -43,45 +42,40 @@
 					<ul class="dropdown-menu">
 						<li class="header">You have 10 notifications</li>
 						<li>
-							<!-- Inner Menu: contains the notifications -->
+							Inner Menu: contains the notifications
 							<ul class="menu">
 								<li>
-									<!-- start notification --> <a href="#"> <i
+									start notification <a href="#"> <i
 										class="fa fa-users text-aqua"></i> 5 new members joined today
 								</a>
 								</li>
-								<!-- end notification -->
+								end notification
 							</ul>
 						</li>
 						<li class="footer"><a href="#">View all</a></li>
 					</ul>
-				</li>
-				
+				</li> -->
+
 				<!-- login -->
-				<li class="login" style="display: none">
-				<a href="../home/loginForm">
-					<i class="fa fa-sign-in" aria-hidden="true" style="font-size: 20px;"></i>
-					<span class="hidden-xs" style="font-size: 20px;">&nbsp;LOGIN</span>
-				</a>
-				</li>
-				
+				<li class="login" style="display: none"><a
+					href="../home/loginForm"> <i class="fa fa-sign-in"
+						aria-hidden="true" style="font-size: 20px;"></i> <span
+						class="hidden-xs" style="font-size: 20px;">&nbsp;LOGIN</span>
+				</a></li>
+
 				<!-- User Account Menu -->
 				<li class="dropdown user user-menu logined" style="display: none">
-					<!-- Menu Toggle Button  -->
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
-						<!-- The user image in the navbar  -->
-						<img src=""
-						class="user-image" alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
+					<!-- Menu Toggle Button  --> <a href="#" class="dropdown-toggle"
+					data-toggle="dropdown"> <!-- The user image in the navbar  -->
+						<img src='../resources/img/user.png' class="user-image" alt="User Image">
 						<span class="hidden-xs" id="member_nickname"></span>
 				</a>
 					<ul class="dropdown-menu">
 						<!-- The user image in the menu -->
-						<li class="user-header"><img
-							src=""
-							class="img-circle" alt="User Image">
+						<li class="user-header"><img src="../resources/img/user.png" class="img-circle"
+							alt="User Image">
 							<p>
-								<span id="member_nickname"></span> 
-								<small id="member_email"></small>
+								<span id="member_nickname"></span><small id="member_email"></small>
 							</p></li>
 						<!-- Menu Footer -->
 						<li class="user-footer">
@@ -94,7 +88,7 @@
 						</li>
 					</ul>
 				</li>
-				
+
 				<!-- Control Sidebar Toggle Button -->
 				<li><a href="#" data-toggle="control-sidebar"><i
 						class="fa fa-gears"></i></a></li>
@@ -152,22 +146,20 @@
 						if(result.cnt <= 0){
 							$("#newMsgCnt").text("새로운 메시지가 없습니다.");	
 						}else{
-							$("#newMsgCnt").text("새로운 메시지가"+result.cnt+"개 있습니다.");
+							$("#newMsgCnt").text("새로운 메시지가 "+result.cnt+"개 있습니다.");
 							$(".notifyCnt").text(result.cnt);
 							var arr = result.newMsgs;
-							console.log("arr : " + arr);
 							var str = "";
 							for(var i=0;i<arr.length;i++){
-								str += 	"<li><ul class='menu'><li><a href='"+arr[i].no+"'>"+
+								str += 	"<li><ul class='menu'><li><a href=javascript:msgPopup('readMsg?num="+arr[i].no+"')>"+
 										"<div class='pull-left'>"+
-								    	"<img src='' class='img-circle' alt='User Image'>"+
+								    	"<img src='../resources/img/newIcon.png' class='img-circle' alt='User Image'>"+
 									    "</div>"+
 									    "<h4>"+arr[i].sender+"<small><i class='fa fa-clock-o'></i>"+arr[i].wdate+"</small></h4>"+
 									    "<p>"+arr[i].title+"</p>"+
 									    "</a></li></ul></li>";
 							}
 							$("#newMsgs").append(str);
-							console.log("str : " + str);
 						}
 					}else{
 						alert("Server error (ajax is returned 'false', header.jsp)");
@@ -179,8 +171,8 @@
 			});
 		} 
 		
-		function msgPopup() {
-			var popup = "../user/msgbox?page=1";
+		function msgPopup(path) {
+			var popup = "../user/"+path;
 			var popOption = "width=992, height=525, top=200, left=200";
 			window.open(popup, "", popOption);
 		}

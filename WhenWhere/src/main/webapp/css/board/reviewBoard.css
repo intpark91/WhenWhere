@@ -55,9 +55,7 @@ border:1px solid #275d8b; -webkit-border-radius: 3px; -moz-border-radius: 3px;bo
 
 /*상품LIST-II*/
 
-.photoWrap {white-space:nowrap;
-		overflow:hidden;
-		text-overflow:ellipsis; 
+.photoWrap {
 		display:inline-block;
 		width:32%;max-height:430px;min-height:350px;margin:20px 1px 0 10px;overflow:hidden;cursor:pointer;float:left;}
 .photoWrap h3{font-size:100%;width:98%;margin-left:2%;}
@@ -135,9 +133,7 @@ border:1px solid #275d8b; -webkit-border-radius: 3px; -moz-border-radius: 3px;bo
 .course {float:left;width:99%;margin-left:1%;height:auto;margin-top:10px;padding-top:10px;padding-bottom:10px;font-size:15px;line-height:1.7em;border-bottom:1px solid #dddddd;border-top:1px solid #dddddd;}
 
 /*상품LIST-II*/
-.photoWrap {white-space:nowrap;
-		overflow:hidden;
-		text-overflow:ellipsis; display:inline-block;width:48%;height:auto;margin:20px 1px 0 1%;overflow:hidden;cursor:pointer;float:left;}
+.photoWrap { display:inline-block;width:48%;height:auto;margin:20px 1px 0 1%;overflow:hidden;cursor:pointer;float:left;}
 .photoWrap h3{font-size:100%;}
 .photoWrap .photo_img{display:inline-block;width:93%;height:160px;text-align:center;background:#f1f1f1;margin-bottom:10px;border:1px solid #ddd;}
 
@@ -328,12 +324,40 @@ body{overflow-x:hidden;}
 .stay_search_btn .searchBtn {width:95%;height:auto;border:1px solid #fff;background-color:#373737;font-size:14px;padding:3px 12px 3px 12px;color:#fff;cursor:pointer;}
 .stay_search_box .calendar{background-image:url(/resources/images/sub/calendar_small.png);background-position:center;background-repeat:no-repeat;width:17px;height:30px;background-color:#fafafa;border:none;cursor:pointer;}
 .stay_search_box .dayNum{float:left;padding-left:10px;height:30px;padding-top:5px;}
-.stay_infobox{		white-space:nowrap;
-		overflow:hidden;
-		text-overflow:ellipsis; color:#ffffff;float:left;width:95%;margin-top:5px;margin-bottom:15px;border-top:1px solid #d4d4d4;padding:1%;margin-left:2%;font-size:100%;line-height:1.5em;height:120px;overflow:hidden;}
-.stay_infobox li{		white-space:nowrap;
-		overflow:hidden;
-		text-overflow:ellipsis;width:98%;padding:1%;font-size:90%;padding-top:10px;}
+.stay_infobox{		   
+	display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* 여러 줄 자르기 추가 스타일 */
+    white-space: normal;
+    line-height: 1.2;
+    height: 3.8em;
+    text-align: left;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    
+     color:#ffffff;float:left;width:95%;margin-top:5px;margin-bottom:15px;border-top:1px solid #d4d4d4;padding:1%;margin-left:2%;font-size:100%;line-height:1.5em;height:120px;overflow:hidden;}
+.stay_infobox li{		
+/* 	display: inline-block;
+    white-space: nowrap; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    /* 여러 줄 자르기 추가 스타일 */
+    white-space: normal;
+    line-height: 1.2;
+    height: 3.8em;
+    text-align: left;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+	   
+	   
+	   width:98%;padding:1%;font-size:90%;}
 .stay_infobox .price{color:#ee0712;padding-top:5px;padding-bottom:5px;border-bottom:1px dashed #d4d4d4;font-size:100%;}
 .jb_btn{width:100%;background-color:#888;text-align:center;font-size:110%;}
 .jb_btn a{width:100%;border-top:1px solid #d4d4d4;background-color:#888;color:#fff;}
@@ -689,9 +713,7 @@ body{overflow-x:hidden;}
 
 /*상품LIST-II*/
 
-.photoWrap {white-space:nowrap;
-		overflow:hidden;
-		text-overflow:ellipsis; display:inline-block;width:32%;max-height:430px;min-height:350px;margin:20px 1px 0 10px;overflow:hidden;cursor:pointer;float:left;}
+.photoWrap { display:inline-block;width:32%;max-height:430px;min-height:350px;margin:20px 1px 0 10px;overflow:hidden;cursor:pointer;float:left;}
 .photoWrap h3{font-size:100%;width:98%;margin-left:2%;}
 .photoWrap .jb_area{display:block;width:auto;height:auto;padding:0% 2% 0% 1%;background-color:#d92737;color:#fff;font-size:85%;text-align:center;float:left;margin-right:10px;border-radius:8px;}
 .photoWrap .photo_img{display:inline-block;width:97%;height:240px;text-align:center;background:#f1f1f1;margin-bottom:10px;border:1px solid #ddd;}
@@ -731,9 +753,7 @@ body{overflow-x:hidden;}
 .course {float:left;width:99%;margin-left:1%;height:auto;margin-top:10px;padding-top:10px;padding-bottom:10px;font-size:14px;line-height:1.5em;border-bottom:1px solid #dddddd;border-top:1px solid #dddddd;}
 
 /*상품LIST-II*/
-.photoWrap {white-space:nowrap;
-		overflow:hidden;
-		text-overflow:ellipsis; display:inline-block;width:48%;height:auto;margin:20px 1px 0 1%;overflow:hidden;cursor:pointer;float:left;}
+.photoWrap { display:inline-block;width:48%;height:auto;margin:20px 1px 0 1%;overflow:hidden;cursor:pointer;float:left;}
 .photoWrap h3{font-size:100%;}
 .photoWrap .photo_img{display:inline-block;width:93%;height:220px;text-align:center;background:#f1f1f1;margin-bottom:10px;border:1px solid #ddd;}
 
@@ -769,9 +789,7 @@ body{overflow-x:hidden;}
 .course {float:left;width:99%;margin-left:1%;height:auto;margin-top:10px;padding-top:10px;padding-bottom:10px;font-size:15px;line-height:1.7em;border-bottom:1px solid #dddddd;border-top:1px solid #dddddd;}
 
 /*상품LIST-II*/
-.photoWrap {white-space:nowrap;
-		overflow:hidden;
-		text-overflow:ellipsis; display:inline-block;width:48%;height:auto;margin:20px 1px 0 1%;overflow:hidden;cursor:pointer;float:left;}
+.photoWrap { display:inline-block;width:48%;height:auto;margin:20px 1px 0 1%;overflow:hidden;cursor:pointer;float:left;}
 .photoWrap h3{font-size:100%;}
 .photoWrap .photo_img{display:inline-block;width:93%;height:160px;text-align:center;background:#f1f1f1;margin-bottom:10px;border:1px solid #ddd;}
 
@@ -808,12 +826,10 @@ body{overflow-x:hidden;}
 .course {width:97%;margin-left:1%;padding:10px 0 10px 0;font-size:13px;margin-top:5px;float:left;font-size:80%;line-height:1.7em;border-bottom:1px solid #dddddd;border-top:1px solid #dddddd;}
 
 /*상품LIST-II*/
-.photoWrap {		white-space:nowrap;
-		overflow:hidden;
-		text-overflow:ellipsis; float:left;width:93%;height:auto;margin:10px 3px 0 8px;overflow:hidden;cursor:pointer;float:left;}
+.photoWrap {	 float:left;width:93%;height:auto;margin:10px 3px 0 8px;overflow:hidden;cursor:pointer;float:left;}
 .photoWrap h3{font-size:100%;}
 .photoWrap .photo_img{display:inline-block;width:93%;height:220px;text-align:center;background:#f1f1f1;margin-bottom:10px;border:1px solid #ddd;}
-.serchList .photoWrap a {font-size:100%;}
+.serchList .photoWrap a {color:#337ab7;font-size:100%;}
 .serchList .photoWrap .photo_info {font-size:100%;}
 
 /*거시기장터_검색상품리스트*/

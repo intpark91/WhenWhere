@@ -9,7 +9,7 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="../css/board/boardwrite.css" type="text/css">
 	<link rel="stylesheet" href="../css/datepicker/jquery-ui.css" type="text/css" />
-
+	<script src="../ckEditor/ckeditor.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>	
 <script type="text/javascript">
 jQuery.browser = {};
@@ -161,7 +161,17 @@ jQuery.browser = {};
 													<tr>
 														<td colspan="2" class="bbs_write">
 															<div class="bbs_write_wrap">
-																<jsp:include page="JSeditor.jsp" />
+																							
+															    <textarea id="ckeditor" name="ckeditor" rows="10" cols="80">
+                       		                                              내용을 입력해주세요.                     		
+                                                                </textarea>
+																<script>	
+   																 CKEDITOR.replace('ckeditor',{
+    															 toolbar : 'MyToolbar',
+    															 filebrowserImageUploadUrl : '${pageContext.request.contextPath}/board/ckeditorImageUpload',   	
+    															 height : '800px'
+   																 });  
+																</script>	
 															</div>
 														</td>
 													</tr>
