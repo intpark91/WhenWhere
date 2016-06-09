@@ -99,14 +99,11 @@ public class UserController {
 	}
 	
 	@RequestMapping("/sendMsgForm")
-	public String sendMsgForm(HttpServletRequest request){
-		String path = "";
-		System.out.println("??? : " + request.getParameter("receiver"));
+	public String sendMsgForm(Model model, HttpServletRequest request){
 		if(request.getParameter("receiver")!=null){
-			System.out.println("???");
-			path += "?receiver="+request.getParameter("receiver");
+			model.addAttribute("receiver", request.getParameter("receiver"));
 		}
-		return "msg/sendMsgForm"+path;
+		return "msg/sendMsgForm";
 	}
 	
 	@RequestMapping("/sendMsg")
