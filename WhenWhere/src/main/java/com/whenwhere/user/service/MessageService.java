@@ -134,4 +134,19 @@ public class MessageService {
 		
 		model.addAttribute("message", message);
 	}
+
+	public String deleteMsg(int num) {
+		MessageDAO dao = sqlSessionTemplate.getMapper(MessageDAO.class);
+		boolean ok = true;
+		int rows = dao.deleteMsg(num);
+		
+		if(rows<0){
+			ok = false;
+		}
+		
+		JSONObject jobj = new JSONObject();
+		jobj.put("ok", ok);
+		
+		return jobj.toJSONString();
+	}
 }

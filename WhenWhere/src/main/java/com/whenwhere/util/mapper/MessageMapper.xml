@@ -48,4 +48,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateMsgStatus">
 		update message set M_status = '1' where M_no = #{num}
 	</update>
+	
+	<delete id="deleteMsg">
+		delete from message where M_no = #{num}
+	</delete>
 </mapper>
