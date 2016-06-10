@@ -22,7 +22,7 @@
 			</section>
 			<!-- Content Header (Page header) -->
 			<!-- Main content -->
-			
+			<section class="content">
 				<form class="form-horizontal">
 					<!-- LOGIN FORM -->
 					<div class="container">
@@ -37,16 +37,6 @@
 										class="image-circle" />
 								</div>
 								<span> When & Where</span>
-							</div>
-							<div class="col-md-6 col-xs-6 follow line" align="center">
-								<h3>
-									125651 <br /> <span>FOLLOWERS</span>
-								</h3>
-							</div>
-							<div class="col-md-6 col-xs-6 follow line" align="center">
-								<h3>
-									125651 <br /> <span>FOLLOWERS</span>
-								</h3>
 							</div>
 							<div class="col-md-12 col-xs-12 login_control">
 								<div class="control">
@@ -65,8 +55,7 @@
 						</div>
 					</div>
 				</form>
-			<!-- end:Main Form --> </section>
-			<!-- /.content -->
+			</section>
 		</div>
 
 		<!-- /.content-wrapper -->

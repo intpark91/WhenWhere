@@ -114,7 +114,7 @@ public class ChatRoomCont {
 		ServletContext application= (ServletContext) request.getServletContext();
 		
 		Map<Integer,ChatRoomVO> roomL = (HashMap<Integer,ChatRoomVO>) application.getAttribute("roomListM");
-		List<ChatRoomVO> roomA = (ArrayList<ChatRoomVO>) application.getAttribute("roomNumList");
+		List<Integer> roomA = (ArrayList<Integer>) application.getAttribute("roomNumList");
 		
 		int countbyPage = 10;
 		int totalCount = 0;
@@ -159,19 +159,83 @@ public class ChatRoomCont {
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/enterRoom")
 	@ResponseBody
-	public String enterRoom(@RequestParam("roomNum") int roomNum, HttpServletRequest request) throws Exception{
+	public String enterRoom(@RequestParam("roomNum") int roomNum, HttpServletRequest request, HttpSession session) throws Exception{
    
-		JSONArray jsonArr = new JSONArray();
-		
 		JSONObject obj = new JSONObject();
 		obj.put("ok", true);
-		jsonArr.add(obj);
+		
+		System.out.println("접속하려는 방 번호"+roomNum);
 		
 		ServletContext application= (ServletContext) request.getServletContext();
+		Map<Integer,ChatRoomVO> roomMap = (HashMap<Integer,ChatRoomVO>) application.getAttribute("roomListM");
+		MemberVO memvo = (MemberVO) session.getAttribute("member");
+		String userNick = memvo.getNickname();
 		
-		Map<Integer,ChatRoomVO> roomL = (HashMap<Integer,ChatRoomVO>) application.getAttribute("roomListM");
-		List<ChatRoomVO> roomA = (ArrayList<ChatRoomVO>) application.getAttribute("roomNumList");
+		System.out.println("현재이용중인 유저"+memvo.getNickname());
 		
-		return jsonArr.toJSONString();
+		//유저가 방에 입장중일때 현재 입장중인 방에 저장된 정보에서 삭제됨.
+		if(session.getAttribute("session_roomInfo")!=null){
+			int nowEnterRoom = (Integer) session.getAttribute("session_roomInfo");
+			System.out.println("nowEnterRoom"+nowEnterRoom);
+			
+			ChatRoomVO nowRoom = roomMap.get(roomNum);
+			if(nowRoom.getUserList().size()==1){
+				roomMap.remove(nowEnterRoom);
+			}else{
+				List<String> userList = nowRoom.getUserList();
+				for(int i=0;i<userList.size();i++){
+					if(userList.get(i).equals(userNick)){
+						userList.remove(i);
+					}
+				}
+			}
+		}
+		
+		//들어가려는 방에 유저 정보 저장.
+		ChatRoomVO enterRoom = roomMap.get(roomNum);
+		enterRoom.getUserList().add(userNick);
+		
+		obj.put("title", enterRoom.getTitle());
+		obj.put("name", userNick);
+		
+		return obj.toJSONString();
+	}
+	
+	@RequestMapping("/checkRoomPwd")
+	@ResponseBody
+	public String checkRoomPwd(@RequestParam("roomNum") int roomNum, HttpServletRequest request, HttpSession session) throws Exception{
+   
+		JSONObject obj = new JSONObject();
+		obj.put("ok", true);
+		
+		ServletContext application= (ServletContext) request.getServletContext();
+		Map<Integer,ChatRoomVO> roomMap = (HashMap<Integer,ChatRoomVO>) application.getAttribute("roomListM");
+		MemberVO memvo = (MemberVO) session.getAttribute("member");
+		String userNick = memvo.getNickname();
+		
+		//유저가 방에 입장중일때 현재 입장중인 방에 저장된 정보에서 삭제됨.
+		if(session.getAttribute("session_roomInfo")!=null){
+			int nowEnterRoom = (Integer) session.getAttribute("session_roomInfo");
+			ChatRoomVO nowRoom = roomMap.get(roomNum);
+			if(nowRoom.getUserList().size()==1){
+				roomMap.remove(nowEnterRoom);
+			}else{
+				List<String> userList = nowRoom.getUserList();
+				for(int i=0;i<userList.size();i++){
+					if(userList.get(i).equals(userNick)){
+						userList.remove(i);
+					}
+				}
+			}
+		}
+		
+		//들어가려는 방에 유저 정보 저장.
+		ChatRoomVO enterRoom = roomMap.get(roomNum);
+		enterRoom.getUserList().add(userNick);
+		
+		obj.put("title", enterRoom.getTitle());
+		obj.put("name", userNick);
+		
+		return obj.toJSONString();
 	}
 }

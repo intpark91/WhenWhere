@@ -46,11 +46,11 @@
 		var ws ='';
 		
 		$(function(){
-			
+			/* ************방 리스트에 대한 정보를 불러옴******************/
 			$.ajax({
 	           type:"POST",
 	           url:"../chat/getChatRoomList",
-	           dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+	           dataType:"JSON",
 	           data : { "page": 1 },
 	           success : function(data) {
 	        	   console.log(data);
@@ -80,12 +80,14 @@
 	           }
 	    	});
 			
+			/* ************비밀번호 체크시 비밀번호 입력할 수 있게******************/
 			$( "input[name=pwdChk]" ).on("click", function() {
 				var chk = $(this).is(":checked");//.attr('checked');
 		        if(chk) $("input[name=pwd]").attr("disabled",false);
 		        else  $("input[name=pwd]").attr("disabled",true);
 			});
 			
+			/* ************방접속위해 tr 클릭시 동작******************/
 			$(".mainTr").on("click",'#clickTr',function(){
 				click_num = $(this).children(':nth-child(1)').text();
 				click_numInRoom = $(this).find('#numInRoom').text();
@@ -97,9 +99,14 @@
 				}
 				
 				if($('#roomTitle').hasClass('nowRoom')){
-					if(!confirm("현재 채팅중인 방이 존재합니다. 종료후 재입장 하시겠습니까?"))
+					if(confirm("현재 채팅중인 방이 존재합니다. 종료후 재입장 하시겠습니까?")){
+						if($(this).hasClass('requiredPwd')){
+							alert('방입장시 비밀번호가 필요합니다.');
+							return;
+						}
+					}else{
 						return;
-					//비밀번호 검사후 비밀번호 입력하도록 해야함 ~!
+					}
 				}
 				
 				$('.chat_main_body').html('');
@@ -142,7 +149,7 @@
 		});
 		
 		function websocket(){
-			ws = new WebSocket("ws://192.168.8.31:8088/WhenWhere/wsclient");
+			ws = new WebSocket("ws://localhost:8088/WhenWhere/wsclient");
 		}
 		
 		function sendMsg(){
