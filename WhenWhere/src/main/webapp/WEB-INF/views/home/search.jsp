@@ -65,7 +65,7 @@
       									<p>Test Contents</p>
       								</div> -->
 								</div>
-
+ 
 								<div class="item row">
 									<img src="../resources/img/item-2.jpg"
 										class="detailImg2 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">
