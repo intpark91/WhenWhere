@@ -46,39 +46,44 @@
 		var ws ='';
 		
 		$(function(){
+			
 			/* ************방 리스트에 대한 정보를 불러옴******************/
-			$.ajax({
-	           type:"POST",
-	           url:"../chat/getChatRoomList",
-	           dataType:"JSON",
-	           data : { "page": 1 },
-	           success : function(data) {
-	        	   console.log(data);
-	        	   if(data[0].ok){
-	        		   for(var i=1; i<data.length;i++){
-	        			   var json_param = new Array();
-	        			   json_param.push(data[i].num);
-	        			   json_param.push(data[i].title);
-	        			   json_param.push(data[i].wTime);
-	        			   json_param.push(data[i].type);
-	        			   json_param.push(data[i].userNum);
-	        			   json_param.push(data[i].userNumInRoom);
-	        			   json_param.push(data[i].pwdCheck);
-	        			   
-	        			   room = new roomObj(json_param);
-	        			   str_Txt = room.room_format();
-	        			   
-	        			   $('.mainTr').append(str_Txt);
-	        		   }
-	        	   }
-	           },
-	           complete : function(data) {
-	        	   
-	           },
-	           error : function(xhr, status, error) {
-	                 console.log(error);
-	           }
-	    	});
+			setInterval(function() {
+				$.ajax({
+			           type:"POST",
+			           url:"../chat/getChatRoomList",
+			           dataType:"JSON",
+			           data : { "page": 1 },
+			           success : function(data) {
+			        	   console.log(data);
+			        	   if(data[0].ok){
+			        		   for(var i=1; i<data.length;i++){
+			        			   $('.mainTr').html('');
+			        			   
+			        			   var json_param = new Array();
+			        			   json_param.push(data[i].num);
+			        			   json_param.push(data[i].title);
+			        			   json_param.push(data[i].wTime);
+			        			   json_param.push(data[i].type);
+			        			   json_param.push(data[i].userNum);
+			        			   json_param.push(data[i].userNumInRoom);
+			        			   json_param.push(data[i].pwdCheck);
+			        			   
+			        			   room = new roomObj(json_param);
+			        			   str_Txt = room.room_format();
+			        			   
+			        			   $('.mainTr').append(str_Txt);
+			        		   }
+			        	   }
+			           },
+			           complete : function(data) {
+			        	   
+			           },
+			           error : function(xhr, status, error) {
+			                 console.log(error);
+			           }
+			    	});
+			}, 1000);
 			
 			/* ************비밀번호 체크시 비밀번호 입력할 수 있게******************/
 			$( "input[name=pwdChk]" ).on("click", function() {
@@ -149,7 +154,7 @@
 		});
 		
 		function websocket(){
-			ws = new WebSocket("ws://localhost:8088/WhenWhere/wsclient");
+			ws = new WebSocket("ws://192.168.8.31:8088/WhenWhere/wsclient");
 		}
 		
 		function sendMsg(){

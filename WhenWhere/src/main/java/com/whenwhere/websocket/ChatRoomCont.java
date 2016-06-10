@@ -129,7 +129,6 @@ public class ChatRoomCont {
 			countbyPage = totalCount;
 		}
 		
-		System.out.println("방개수 :"+totalCount);
 		while((--countbyPage)>=start){
 			ChatRoomVO chat = (ChatRoomVO)roomL.get(roomA.get(countbyPage));
 			

@@ -22,13 +22,12 @@ public class HelloWebSocketHandler extends TextWebSocketHandler {
   
 	@Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        System.out.println("클라이언트 접속됨");
-        
         sessions.add(session);
         
         HttpSession Hsession = (HttpSession) session.getAttributes().get("session");
         MemberVO member = (MemberVO) Hsession.getAttribute("member");
-        
+        ServletContext application =  (ServletContext) Hsession.getServletContext();
+        Map<Integer,ChatRoomVO> roomM = (HashMap<Integer,ChatRoomVO>) application.getAttribute("roomListM");
         msgToAll("admin", member.getNickname()+" 님이 접속 하였습니다.");
     }
     
@@ -43,10 +42,7 @@ public class HelloWebSocketHandler extends TextWebSocketHandler {
     		System.out.println(str);
     		
     		String name = (String) jsonObj.get("name");
-    		System.out.println("이름:"+name);
-    		
     		String msg = (String) jsonObj.get("msg");
-    		System.out.println("msg:"+msg);
     		
     		msgToAll(name,msg);
     	} catch (Exception e) {
@@ -68,11 +64,21 @@ public class HelloWebSocketHandler extends TextWebSocketHandler {
         Map<Integer,ChatRoomVO> roomM = (HashMap<Integer,ChatRoomVO>) application.getAttribute("roomListM");
 		List<Integer> roomA = (ArrayList<Integer>) application.getAttribute("roomNumList");
 		
-		roomM.remove(currentRoom);
+		ChatRoomVO room = roomM.get(currentRoom);
 		for(int i=0;i<roomA.size();i++){
 			if(roomA.get(i) == currentRoom){
 				System.out.println("리스트 탐색 성공");
+				Hsession.removeAttribute("session_roomInfo");
+				if(room.getUserList().size()>1){
+					List<String> list = room.getUserList();
+					for(int j=0;j<list.size();j++){
+						if(list.get(j).equals(member.getNickname()))
+							list.remove(j);
+					}
+					break;
+				}
 				roomA.remove(i);
+				roomM.remove(currentRoom);
 			}
 		}
         msgToAll("admin", member.getNickname() +" 님이 접속 종료하였습니다.");
