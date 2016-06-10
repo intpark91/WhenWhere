@@ -48,10 +48,12 @@ public class SearchService {
 	  String sDate = request.getParameter("sDate");
 	  String eDate = request.getParameter("eDate");
 	  String locations[] = request.getParameterValues("locations");
-	  System.out.println(locations);
 	  
 	  List<Map<String, Object>> searchEventList = new ArrayList<Map<String, Object>>();
 	  List<Map<String, Object>> searchFoodList = new ArrayList<Map<String, Object>>();
+	  
+	  System.out.println(sDate+"::"+eDate+"::"+locations.length);
+
 	  for(int i=0; i<locations.length; i++){
 		  HashMap<String, Object> map = new HashMap<String, Object>();
 		  map.put("sDate", sDate);
@@ -65,7 +67,7 @@ public class SearchService {
 			  searchEventList.add(eventlist.get(j));
 			  System.out.println(searchEventList.size()+"::"+eventlist.get(j).get("title")+","+eventlist.get(j).get("eSDate"));
 		  }
-		 
+
 		  for(int j=0; j<foodlist.size(); j++){
 			  searchFoodList.add(foodlist.get(j));
 			  System.out.println(searchFoodList.size()+"::"+foodlist.get(j).get("foodName")+","+foodlist.get(j).get("fSDate"));
@@ -77,6 +79,7 @@ public class SearchService {
 	  jsonObject.put("searchFoodList", searchFoodList);
       return jsonObject.toJSONString();
    }
+   
    
 
 }

@@ -488,26 +488,27 @@ button, input, optgroup, select, textarea {
 
 body {
     font-family: 'Questrial','Helvetica Neue',Arial,sans-serif;
-    background-color: rgba(6, 212, 255, 0.39);
+    /* background-color: rgba(6, 212, 255, 0.39); */
     color: #222;
     webkit-tap-highlight-color: #222;
+    background: url(../resources/img/search_bg_img.jpg);
 }
 
 .section1, .section2, .section3, .scrollDiv{
-	background-color: rgb(91, 192, 222);
-	padding: 0px;
+	/* background-color: rgb(91, 192, 222); */
+	padding-bottom: 30px;
 }
 
 @media only screen and (min-width: 767px) {
-	.section1, .section2, .section3, .scrollDiv{
-	background-color: rgb(91, 192, 222);
-	padding: 0px;
-	margin-left: 50px;
+	.section1, .section2, .section3 {
+		/* background-color: rgba(255, 255, 255, 0.5); */
+		padding-bottom: 60px;
+	}
 }
-}
-
-.section1{
-	padding-top: 100px;	
+@media only screen and (min-width: 767px) {
+.section1 {
+		padding-top: 100px;
+	}
 }
 
 .section2{
@@ -520,7 +521,6 @@ body {
 
 .label-info{
 	background-color: #5BC0DE !important;
-    border-radius: 50px;
 }
 
 .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
@@ -533,4 +533,17 @@ body {
     margin-left: -10px;
 }
 
+.modal-content{
+	text-align: center;
+}
+
+#myModalLabel{
+	color: #444;
+    font-size: small;
+}
+
+.bg-primary{
+	color: #fff;
+    background-color: rgba(0,0,0,0);
+}
 
