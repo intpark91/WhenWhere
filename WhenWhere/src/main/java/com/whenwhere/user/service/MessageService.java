@@ -29,8 +29,17 @@ public class MessageService {
 	public String sendMsg(MessageVO msg) {
 		MessageDAO dao = sqlSessionTemplate.getMapper(MessageDAO.class);
 		boolean ok = false;
-		int rows = dao.sendMsg(msg);
-		if(rows > 0){
+		int rows=0;
+		try {
+			 rows = dao.sendMsg(msg);
+		} catch (Exception e) {
+			JSONObject jobj = new JSONObject();
+			jobj.put("ok", ok);
+			jobj.put("receiver", msg.getReceiver());
+			return jobj.toJSONString();
+		}
+		
+		if (rows > 0) {
 			ok = true;
 		}
 		JSONObject jobj = new JSONObject();
@@ -42,15 +51,15 @@ public class MessageService {
 		MessageDAO dao = sqlSessionTemplate.getMapper(MessageDAO.class);
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		PaginationVO pagination = new PaginationVO();
-		
+
 		if (member == null) {
 			System.out.println("session에 로그인한 유저가 없습니다.");
 			return null;
 		}
-		
+
 		int totalRows = dao.getRowsByReceiver(member.getEmail());
-		pagination.setTotalPage(totalRows/ROWCNT);
-		
+		pagination.setTotalPage(totalRows / ROWCNT);
+
 		return pagination;
 	}
 
@@ -63,26 +72,31 @@ public class MessageService {
 			return;
 		}
 		List<MessageVO> msgList = dao.getMsgList(member.getNickname(), ROWCNT, page, type);
-		
-		
+
 		int totalRows = dao.getRowsByReceiver(member.getEmail());
-		int totalPages = totalRows/ROWCNT+1;
-		int nav = (page-1)/LINKCNT+1;
-		
+		int totalPages = totalRows / ROWCNT + 1;
+		int nav = (page - 1) / LINKCNT + 1;
+
 		pn.setTotalPage(totalPages);
 		pn.setLinkCnt(LINKCNT);
 		pn.setRows(ROWCNT);
 		pn.setCurrPage(page);
-		pn.setLinkBegin((nav-1)*LINKCNT+1);
-		if(totalPages<nav*LINKCNT){
+		pn.setLinkBegin((nav - 1) * LINKCNT + 1);
+		if (totalPages < nav * LINKCNT) {
 			pn.setLinkEnd(totalPages);
-		}else{
-			pn.setLinkEnd(nav*LINKCNT);
+		} else {
+			pn.setLinkEnd(nav * LINKCNT);
 		}
-		
-		if(nav>1) pn.setPrev(true); else pn.setPrev(false);
-		if((totalPages-1)/LINKCNT+1!=nav) pn.setNext(true); else pn.setNext(false);
-		
+
+		if (nav > 1)
+			pn.setPrev(true);
+		else
+			pn.setPrev(false);
+		if ((totalPages - 1) / LINKCNT + 1 != nav)
+			pn.setNext(true);
+		else
+			pn.setNext(false);
+
 		model.addAttribute("msgList", msgList);
 		model.addAttribute("pagination", pn);
 	}
@@ -91,12 +105,12 @@ public class MessageService {
 		MessageDAO dao = sqlSessionTemplate.getMapper(MessageDAO.class);
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		boolean ok = true;
-		
+
 		if (member == null) {
 			System.out.println("session에 로그인한 유저가 없습니다.");
 			return null;
 		}
-		
+
 		List<MessageVO> msgList = new ArrayList<MessageVO>();
 		try {
 			msgList = dao.getNewMsg(member.getNickname(), "0");
@@ -104,11 +118,11 @@ public class MessageService {
 			e.printStackTrace();
 			ok = false;
 		}
-		
+
 		JSONObject jobj = new JSONObject();
-		if(msgList.size()>0){
+		if (msgList.size() > 0) {
 			JSONArray jArr = new JSONArray();
-			for(int i=0;i<msgList.size();i++){
+			for (int i = 0; i < msgList.size(); i++) {
 				JSONObject tempObj = new JSONObject();
 				tempObj.put("no", msgList.get(i).getNo());
 				tempObj.put("sender", msgList.get(i).getSender());
@@ -118,35 +132,51 @@ public class MessageService {
 			}
 			jobj.put("cnt", msgList.get(0).getCnt());
 			jobj.put("newMsgs", jArr);
-		}else{
+		} else {
 			jobj.put("cnt", 0);
 		}
 		jobj.put("ok", ok);
-		
+
 		return jobj.toJSONString();
 	}
 
-	public void getMsg(Model model, int num) {
+	public void getMsg(Model model, int num, String type) {
 		MessageDAO dao = sqlSessionTemplate.getMapper(MessageDAO.class);
-		
 		MessageVO message = dao.getMsg(num);
-		int rows = dao.updateMsgStatus(num);
-		
+		System.out.println(type);
+		if (type.equals("read")) {
+			dao.updateMsgStatus(num, type);
+		}
 		model.addAttribute("message", message);
 	}
 
 	public String deleteMsg(int num) {
 		MessageDAO dao = sqlSessionTemplate.getMapper(MessageDAO.class);
-		boolean ok = true;
+		boolean ok = false;
 		int rows = dao.deleteMsg(num);
-		
-		if(rows<0){
-			ok = false;
+
+		if (rows > 0) {
+			ok = true;
 		}
-		
+
 		JSONObject jobj = new JSONObject();
 		jobj.put("ok", ok);
-		
+
+		return jobj.toJSONString();
+	}
+
+	public String updateMsgStatus(int num, String type) {
+		MessageDAO dao = sqlSessionTemplate.getMapper(MessageDAO.class);
+		boolean ok = false;
+		int rows = dao.updateMsgStatus(num, type);
+
+		if (rows > 0) {
+			ok = true;
+		}
+
+		JSONObject jobj = new JSONObject();
+		jobj.put("ok", ok);
+
 		return jobj.toJSONString();
 	}
 }

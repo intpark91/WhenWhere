@@ -99,9 +99,11 @@ public class UserController {
 			@RequestParam(required = false, defaultValue = "-1") int page,
 			@RequestParam(required = false, defaultValue = "0") int num) {
 		switch (type) {
-		case "list": msgService.getMsgList(model, session, page, type); break;
-		case "sent": msgService.getMsgList(model, session, page, type); break; 
-		case "read": msgService.getMsg(model, num); break;
+		case "inbox": 
+		case "sent":  
+		case "outbox": msgService.getMsgList(model, session, page, type); break;
+		case "sentread": 
+		case "read": msgService.getMsg(model, num, type); break;
 		case "write": model.addAttribute("receiver", receiver); break;
 		}
 		model.addAttribute("type", type);
@@ -118,5 +120,11 @@ public class UserController {
 	@ResponseBody
 	public String deleteMsg(@RequestParam int num) {
 		return msgService.deleteMsg(num);
+	}
+	
+	@RequestMapping("/moveToOutbox")
+	@ResponseBody
+	public String moveToOutbox(@RequestParam int num, @RequestParam String type) {
+		return msgService.updateMsgStatus(num, type);
 	}
 }

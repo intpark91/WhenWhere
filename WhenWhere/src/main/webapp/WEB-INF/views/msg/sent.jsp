@@ -34,7 +34,7 @@
 								<td><input type="checkbox"></td>
 								<td class="mailbox-name">${msg.sender}</td>
 								<td class="mailbox-subject">
-									<a href="../user/msgbox?type=read&num=${msg.no}">
+									<a href="../user/msgbox?type=sentread&num=${msg.no}">
 										<c:choose>
 											<c:when test="${msg.status == 0 }">
 												<b>${msg.title}</b>
