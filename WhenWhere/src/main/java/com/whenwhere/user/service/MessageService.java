@@ -33,6 +33,7 @@ public class MessageService {
 		try {
 			 rows = dao.sendMsg(msg);
 		} catch (Exception e) {
+			e.printStackTrace();
 			JSONObject jobj = new JSONObject();
 			jobj.put("ok", ok);
 			jobj.put("receiver", msg.getReceiver());

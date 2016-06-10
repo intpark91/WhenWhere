@@ -405,7 +405,7 @@ ALTER TABLE BoardComment
 -- 댓글
 ALTER TABLE BoardComment
 	ADD
-		CONSTRAINT FK_BoardComment_TO_BoardComment -- 댓글 -> 댓글
+		CONSTRAINT FK_BoardComm_TO_BoardComm -- 댓글 -> 댓글
 		FOREIGN KEY (
 			ref -- 부모댓글번호
 		)
