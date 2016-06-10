@@ -35,10 +35,9 @@
 					<div class="box box-solid">
 						<div class="box-body no-padding">
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="../user/msgbox?type=list&page=1">
-									<i class="fa fa-inbox"></i> 받은 쪽지함 
+								<li><a href="../user/msgbox?type=list&page=1"><i class="fa fa-inbox"></i> 받은 쪽지함
 									<span class="label label-primary pull-right">3</span></a></li>
-								<li><a href="#"><i class="fa fa-envelope-o"></i> 보낸 쪽지함</a></li>
+								<li><a href="../user/msgbox?type=sent&page=1"><i class="fa fa-envelope-o"></i> 보낸 쪽지함</a></li>
 								<li><a href="#"><i class="fa fa-envelope"></i> 보관함</a></li>
 							</ul>
 						</div>
@@ -54,6 +53,9 @@
 					<c:when test="${type=='write'}">
 						<jsp:include page="../msg/writeMsgForm.jsp" />
 					</c:when>
+					<c:when test="${type=='sent'}">
+						<jsp:include page="../msg/sent.jsp" />
+					</c:when>
 				</c:choose>
 			</div>
 		</div>
@@ -63,25 +65,20 @@
 		$(function() {
 			var str = ""
 			for (var i = "${pagination.getLinkBegin()}"; i <= "${pagination.getLinkEnd()}"; i++) {
-				str += "<li><a href='../user/msgbox?page=" + i + "'>" + i
+				str += "<li><a href='../user/msgbox?type="+${type}+"&page=" + i + "'>" + i
 						+ "</li>";
 			}
 			if ("${pagination.isPrev()}" == "true") {
-				str = "<li><a href='../user/msgbox?page=" + $
-				{
-					pagination.getLinkBegin() - 1
-				}
-				+"'>PREV</a></li>" + str;
+				str = "<li><a href='../user/msgbox?type="+${type}+"&page=" 
+					+ ${pagination.getLinkBegin() - 1} +"'>PREV</a></li>" + str;
 			}
 			if ("${pagination.isNext()}" == "true") {
-				str += "<li><a href='../user/msgbox?page=" + $
-				{
-					pagination.getLinkEnd() + 1
-				}
-				+"'>NEXT</a></li>"
+				str += "<li><a href='../user/msgbox?type="+${type}+"&page=" 
+					 + ${pagination.getLinkEnd() + 1} +"'>NEXT</a></li>"
 			}
 			$("ul.pagination").html(str);
 		})
+		
 		$(function() {
 			$("#reply").on("click", function() {
 				location.href = "../user/msgbox?type=write&receiver=${message.getSender()}";

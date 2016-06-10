@@ -18,8 +18,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  from (SELECT *
 			      FROM (select ROWNUM as rnum, M_no, sender, m_title, m_content, M_status, M_wdate
 	                      from MESSAGE
-	                     where receiver = #{receiver}
-	                     and M_status != '2'
+	                     where 1=1
+	                     <choose>
+	                     	<when test="type = 'list'">
+	                     		and receiver = #{receiver}
+	                     		and M_status != '2'
+	                     	</when>
+	                     	<when test="type = 'sent'">
+	                     		sender = #{receiver}
+	                     	</when>
+	                     </choose>
 	                     order by M_NO desc
 			           ) board
 			     where rnum <![CDATA[ <= ]]> #{page}*#{rows}
@@ -32,8 +40,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  from (select M_no as no, sender, m_title as title, m_content as content, M_status as status, M_wdate as wdate,
 			   	       RANK() OVER (ORDER BY M_No desc) as rk, COUNT(*) OVER() as cnt
 			    from message
-			    where M_status = '0'
-			    and receiver = #{receiver}
+			    where receiver = #{receiver}
+			   	  and M_status = '0'
 			    order by no desc
 			   )
 		where rk <![CDATA[ <= ]]> 5

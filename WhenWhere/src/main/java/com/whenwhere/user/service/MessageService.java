@@ -54,7 +54,7 @@ public class MessageService {
 		return pagination;
 	}
 
-	public void getMsgList(Model model, HttpSession session, int page) {
+	public void getMsgList(Model model, HttpSession session, int page, String type) {
 		MessageDAO dao = sqlSessionTemplate.getMapper(MessageDAO.class);
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		PaginationVO pn = new PaginationVO();
@@ -62,7 +62,7 @@ public class MessageService {
 			System.out.println("session에 로그인한 유저가 없습니다.");
 			return;
 		}
-		List<MessageVO> msgList = dao.getMsgList(member.getNickname(), ROWCNT, page);
+		List<MessageVO> msgList = dao.getMsgList(member.getNickname(), ROWCNT, page, type);
 		
 		
 		int totalRows = dao.getRowsByReceiver(member.getEmail());

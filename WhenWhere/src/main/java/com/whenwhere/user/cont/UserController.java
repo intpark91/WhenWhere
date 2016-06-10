@@ -98,13 +98,11 @@ public class UserController {
 			@RequestParam(required = false) String receiver,
 			@RequestParam(required = false, defaultValue = "-1") int page,
 			@RequestParam(required = false, defaultValue = "0") int num) {
-
-		if (receiver != null) {
-			model.addAttribute("receiver", receiver);
-		} else if (num != 0) {
-			msgService.getMsg(model, num);
-		} else if (page >= 0) {
-			msgService.getMsgList(model, session, page);
+		switch (type) {
+		case "list": msgService.getMsgList(model, session, page, type); break;
+		case "sent": msgService.getMsgList(model, session, page, type); break; 
+		case "read": msgService.getMsg(model, num); break;
+		case "write": model.addAttribute("receiver", receiver); break;
 		}
 		model.addAttribute("type", type);
 		return "msg/msgbox";
