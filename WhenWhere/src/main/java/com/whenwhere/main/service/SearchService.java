@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.whenwhere.main.dao.SearchDAO;
 
-@Service("searchServive")
+@Service("searchService")
 public class SearchService {
    
    @Autowired

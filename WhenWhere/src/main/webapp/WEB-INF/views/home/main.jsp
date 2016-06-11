@@ -13,7 +13,7 @@
 body {
 	margin: 0;
 	padding: 0;
-	background: url(img.jpg) center center fixed no-repeat;
+	background: url(../resources/img/bg_img.jpg) center center fixed no-repeat;
 }
 
 video {
@@ -102,23 +102,23 @@ desired effect
 	<script src="../js/jquery-ui-slider-pips.js"></script>
 	<script src="../js/slider.js"></script>
 	<!-- <script type="text/javascript" src="../js/jquery.xdomainajax.js"></script>
-	 --><!-- <script type="text/javascript">
+	<script type="text/javascript">
 		$(function() {
 			var apiKey = "vi8iWq3OX1jmnigHbNdOdSLn6Ssh6un2Zc0w%2BXE8reflwUgpNkCBna0JvGZ%2B6Lyb0295n8AdOR9k8nWPrqRQKg%3D%3D";
 			var loc_code = "11B00000";
-			var path = "http://newsky2.kma.go.kr/service/MiddleFrcstInfoService/getMiddleLandWeather?"
-					+ "ServiceKey="
-					+ apiKey
+			var path = "http://newsky2.kma.go.kr/service/MiddleFrcstInfoService/getMiddleLandWeather?ServiceKey=" + apiKey
 					+ "&regId=11B00000"
-					+ "&tmFc=201606110600" + "&numOfRows=1&pageNo=1"
-
+					+ "&tmFc=201606110600" 
+					+ "&numOfRows=1"
+					+ "&pageNo=1&_type=json";
+				
 			$.ajax({
 				url : path,
 				type : "get",
-				dataType : "xml",
-				cache : false,
+				dataType : "jsonp",
 				success : function(data) {
-					console.log("data : " + data.responseText);
+					console.log("data : " + data);
+					console.log("data.responseText : " + data.responseText);
 					// var myXML = rplLine(data.responseText);
 					//console.log(myXML);
 					//var indexS = myXML.indexOf('"body":{"items":{'), indexE = myXML.indexOf("}]}"), result = myXML;
