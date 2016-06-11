@@ -105,7 +105,9 @@ desired effect
 	<script src="../js/slider.js"></script>
 	<script type="text/javascript">
 	 $(function(){
-		 var apiKey = "d5813187-8e18-3a48-a348-ffb130e70d10";
+		 
+		 var apiKey = "d5813187-8e18-3a48-a348-ffb130e70d10";//skplanet 키
+		 //5F5DBB7D-FFFF00AA9 //kweather 키
 		 var foretxt = "Y";	//중기예보 기상개황 수신여부 (Y/N)
 		 path = "http://apis.skplanetx.com/weather/allpoints/forecast6days?version=1&foretxt="+foretxt
 		 	  + "&appKey=" + apiKey;
