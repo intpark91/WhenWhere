@@ -72,7 +72,7 @@
 								</div>
 
 								<div class="item row">
-									<h3 class="col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">하이</h3>
+									<h3 class="detail3 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">하이</h3>
 								</div>
 
 							</div>
@@ -179,122 +179,16 @@
 
 				</div>
 				<!-- /#myCarousel2 -->
-
-				<!-- 
-				#myCarousel3
+				
+				<!-- #myCarousel3 -->
 				<div class="carousel slide" id="myCarousel3">
 					<h1 class="slideLabel">
 						<span class="label label-info">숙박</span>
 					</h1>
-					<div class="carousel-inner">
-						<div class="item active">
-							<ul class="thumbnails">
-								<li class="col-sm-3">
-									<div class="fff">
-										<div class="thumbnail">
-											<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-										</div>
-										<div class="caption">
-											<h4>Praesent commodo</h4>
-											<p>Nullam Condimentum Nibh Etiam Sem</p>
-											<a class="btn btn-mini" href="#">» Read More</a>
-										</div>
-									</div>
-								</li>
-								<li class="col-sm-3">
-									<div class="fff">
-										<div class="thumbnail">
-											<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-										</div>
-										<div class="caption">
-											<h4>Praesent commodo</h4>
-											<p>Nullam Condimentum Nibh Etiam Sem</p>
-											<a class="btn btn-mini" href="#">» Read More</a>
-										</div>
-									</div>
-								</li>
-								<li class="col-sm-3">
-									<div class="fff">
-										<div class="thumbnail">
-											<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-										</div>
-										<div class="caption">
-											<h4>Praesent commodo</h4>
-											<p>Nullam Condimentum Nibh Etiam Sem</p>
-											<a class="btn btn-mini" href="#">» Read More</a>
-										</div>
-									</div>
-								</li>
-								<li class="col-sm-3">
-									<div class="fff">
-										<div class="thumbnail">
-											<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-										</div>
-										<div class="caption">
-											<h4>Praesent commodo</h4>
-											<p>Nullam Condimentum Nibh Etiam Sem</p>
-											<a class="btn btn-mini" href="#">» Read More</a>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</div>
-						/Slide1
+					<div class="carousel-inner"></div>
 
-						<div class="item">
-							<ul class="thumbnails">
-								<li class="col-sm-3">
-									<div class="fff">
-										<div class="thumbnail">
-											<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-										</div>
-										<div class="caption">
-											<h4>Praesent commodo</h4>
-											<p>Nullam Condimentum Nibh Etiam Sem</p>
-											<a class="btn btn-mini" href="#">» Read More</a>
-										</div>
-									</div>
-								</li>
-								<li class="col-sm-3">
-									<div class="fff">
-										<div class="thumbnail">
-											<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-										</div>
-										<div class="caption">
-											<h4>Praesent commodo</h4>
-											<p>Nullam Condimentum Nibh Etiam Sem</p>
-											<a class="btn btn-mini" href="#">» Read More</a>
-										</div>
-									</div>
-								</li>
-								<li class="col-sm-3">
-									<div class="fff">
-										<div class="thumbnail">
-											<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-										</div>
-										<div class="caption">
-											<h4>Praesent commodo</h4>
-											<p>Nullam Condimentum Nibh Etiam Sem</p>
-											<a class="btn btn-mini" href="#">» Read More</a>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</div>
-						/Slide2
-					</div>
-					<nav>
-						<ul class="control-box pager">
-							<li><a data-slide="prev" href="#myCarousel3" class=""><i
-									class="glyphicon glyphicon-chevron-left"></i></a></li>
-							<li><a data-slide="next" href="#myCarousel3" class=""><i
-									class="glyphicon glyphicon-chevron-right"></i></a></li>
-						</ul>
-					</nav>
-					/.control-box
 				</div>
-				/#myCarousel3
- -->
+				<!-- /#myCarousel3 -->
 
 			</div>
 		</div>
@@ -313,7 +207,7 @@
 	<script src="../js/locationTab.js"></script>
 
 	<script src="../js/loadingSpinner.js"></script>
-
+	
 	<script type="text/javascript">
             // When the document is ready
             $(document).ready(function () {
@@ -322,9 +216,6 @@
                     todayBtn: "linked"
                 });
                 
-                $('.carousel').carousel({
-                    interval : 10000
-                });
                 
             });
     </script>
