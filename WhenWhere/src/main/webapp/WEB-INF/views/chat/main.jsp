@@ -57,9 +57,8 @@
 			           success : function(data) {
 			        	   console.log(data);
 			        	   if(data[0].ok){
+			        		   $('.mainTr').html('');
 			        		   for(var i=1; i<data.length;i++){
-			        			   $('.mainTr').html('');
-			        			   
 			        			   var json_param = new Array();
 			        			   json_param.push(data[i].num);
 			        			   json_param.push(data[i].title);
@@ -73,6 +72,7 @@
 			        			   str_Txt = room.room_format();
 			        			   
 			        			   $('.mainTr').append(str_Txt);
+			        			   console.log(str_Txt);
 			        		   }
 			        	   }
 			           },
@@ -83,7 +83,7 @@
 			                 console.log(error);
 			           }
 			    	});
-			}, 1000);
+			}, 3000);
 			
 			/* ************비밀번호 체크시 비밀번호 입력할 수 있게******************/
 			$( "input[name=pwdChk]" ).on("click", function() {

@@ -129,11 +129,14 @@ public class ChatRoomCont {
 			countbyPage = totalCount;
 		}
 		
+		/*System.out.println("countbyPage"+countbyPage);
+		System.out.println("totalCount"+totalCount);
+		System.out.println("start"+start);*/
+		
 		while((--countbyPage)>=start){
 			ChatRoomVO chat = (ChatRoomVO)roomL.get(roomA.get(countbyPage));
 			
 			obj = new JSONObject();
-			
 			obj.put("num", chat.getRoomNum());
 			obj.put("title", chat.getTitle());
 			obj.put("wTime", chat.getwTime());
@@ -171,8 +174,8 @@ public class ChatRoomCont {
 		MemberVO memvo = (MemberVO) session.getAttribute("member");
 		String userNick = memvo.getNickname();
 		
-		System.out.println("enterRoom map/list"+roomMap.size()+"/"+roomA.size());
-		System.out.println("현재이용중인 유저"+memvo.getNickname());
+		/*System.out.println("enterRoom map/list"+roomMap.size()+"/"+roomA.size());
+		System.out.println("현재이용중인 유저"+memvo.getNickname());*/
 		
 		//유저가 방에 입장중일때 현재 입장중인 방에 저장된 정보에서 삭제됨.
 		if(session.getAttribute("session_roomInfo")!=null){
@@ -196,6 +199,7 @@ public class ChatRoomCont {
 			}
 		}
 		
+		session.setAttribute("session_roomInfo",roomNum);
 		//들어가려는 방에 유저 정보 저장.
 		ChatRoomVO enterRoom = roomMap.get(roomNum);
 		enterRoom.getUserList().add(userNick);

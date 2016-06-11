@@ -30,30 +30,7 @@ public class ChatInterceptor extends HandlerInterceptorAdapter{
 	        
 	        System.out.println("[session_roomInfo !null]"+ member.getNickname() +"의 채팅방 종료됨.");
 	        
-	        ServletContext application =  (ServletContext) session.getServletContext();
-	        Map<Integer,ChatRoomVO> roomM = (HashMap<Integer,ChatRoomVO>) application.getAttribute("roomListM");
-			List<Integer> roomA = (ArrayList<Integer>) application.getAttribute("roomNumList");
-			
-			ChatRoomVO room = roomM.get(currentRoom);
-			System.out.println("인터셉터 map/list"+roomM.size()+"/"+roomA.size());
-			for(int i=0;i<roomA.size();i++){
-				if(roomA.get(i) == currentRoom){
-					
-					session.removeAttribute("session_roomInfo");
-					
-					if(room.getUserList().size()>1){
-						
-						List<String> list = room.getUserList();
-						for(int j=0;j<list.size();j++){
-							if(list.get(j).equals(member.getNickname()))
-								list.remove(j);
-						}
-						break;
-					}
-					roomA.remove(i);
-					roomM.remove(currentRoom);
-				}
-			}
+			session.removeAttribute("session_roomInfo");
 	        
 		}
 		return true;
