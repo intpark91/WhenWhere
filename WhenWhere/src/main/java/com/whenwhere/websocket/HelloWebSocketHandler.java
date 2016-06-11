@@ -54,7 +54,6 @@ public class HelloWebSocketHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         System.out.println("클라이언트 접속해제");
-        sessions.remove(session);
         
         HttpSession Hsession = (HttpSession) session.getAttributes().get("session");
         int currentRoom = (Integer) Hsession.getAttribute("session_roomInfo");
@@ -82,6 +81,7 @@ public class HelloWebSocketHandler extends TextWebSocketHandler {
 			}
 		}
         msgToAll("admin", member.getNickname() +" 님이 접속 종료하였습니다.");
+        sessions.remove(session);
     }
  
     // 메시지 전송시나 접속해제시 오류가 발생할 때 호출되는 메소드

@@ -104,19 +104,47 @@
 				}
 				
 				if($('#roomTitle').hasClass('nowRoom')){
-					if(confirm("현재 채팅중인 방이 존재합니다. 종료후 재입장 하시겠습니까?")){
-						if($(this).hasClass('requiredPwd')){
-							alert('방입장시 비밀번호가 필요합니다.');
-							return;
-						}
-					}else{
+					if(!confirm("현재 채팅중인 방이 존재합니다. 종료후 재입장 하시겠습니까?"))
 						return;
-					}
 				}
 				
-				$('.chat_main_body').html('');
-				$('#roomTitle').removeClass('nowRoom');
-				$('#roomTitle').text('아직 채팅방이 개설되지 않았습니다.');
+				if($(this).hasClass('requiredPwd')){
+					var prompt_pwd = prompt('방입장시 비밀번호가 필요합니다.');
+					if(prompt_pwd == ''){
+						alert('비밀번호를 입력해주세요');
+						return;
+					}
+					
+					pwdObject = new Object();
+					pwdObject.pwd = prompt_pwd;
+					pwdObject.roomNum = click_num;
+					
+					console.log(pwdObject);
+					
+					$.ajax({
+				           type:"POST",
+				           url:"../chat/checkRoomPwd",
+				           dataType:"JSON",
+				           data : pwdObject,
+				           success : function(data) {
+				        	   if(data.ok){
+				        		    alert('비밀번호가 일치합니다.');
+				        		    
+		        			   		$('.chat_main_body').html('');
+				       				$('#roomTitle').removeClass('nowRoom');
+				       				$('#roomTitle').text('아직 채팅방이 개설되지 않았습니다.');
+				        	   }else{
+				        		   alert('비밀번호가 일치하지 않습니다');
+				        		   return;
+				        	   }
+				           },
+				           complete : function(data) {
+				           },
+				           error : function(xhr, status, error) {
+				                 console.log(error + "return : " + xhr.responseText);
+				           }
+				    	});
+				}
 				
 				$.ajax({
 			           type:"POST",
@@ -189,7 +217,9 @@
 		    }
 		    ws.onclose = function (event) {
 		    	/* strTxt=msg_format('admin','Info: 채팅방이 종료되었습니다..'); */
-		    	$('.chat_main_body').append(event.data);
+		    	msgObj = new MsgObj(0, 'admin', 'Info: 채팅방이 종료되었습니다.', 0);
+		    	strTxt=msgObj.msg_format();
+		        $('.chat_main_body').append(strTxt);
 		    }
 		    
 		}
