@@ -116,4 +116,15 @@
    
    <beans:bean id="echoHandler" class="com.whenwhere.websocket.HelloWebSocketHandler" />
    
+   <!-- 방out을 위한 인터셉터 처리 -->
+   <mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/board/**/" />
+			<mvc:mapping path="/home/**/" />
+			<mvc:exclude-mapping path="/home/chat" />
+			<beans:bean class="com.whenwhere.util.ChatInterceptor">
+			</beans:bean> <!-- HandlerInterceptor 인터페이스를 구현한 클래스 -->
+		</mvc:interceptor>
+	</mvc:interceptors>
+   
 </beans:beans>
