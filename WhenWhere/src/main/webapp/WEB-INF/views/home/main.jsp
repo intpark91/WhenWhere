@@ -3,40 +3,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<jsp:include page="../component/core_head.jsp" />
-	<title>WhenWhereTest</title>
-	<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
-	<link rel="stylesheet" href="../css/jquery-ui-slider-pips.css" />
-	<link rel="stylesheet" href="../css/slider.css" />
-	<style type="text/css">
-	body {
-		margin : 0;
-		padding : 0;
-		background : url (img.jpg) center center fixed no-repeat;
-	}
-	video {
-		position: fixed;
-		top: 0;
-		left: 0;
-		min-width: 100%;
-		min-height: 100%;
-		width: auto;
-		height: auto;
-		z-index: -1;
-	}
-	
-	.titleDiv{
-		text-align: center;
-		font-size: 70px;
-		margin-top:60px;
-	}
-	
-	.sliderDiv{
-		margin-top:10px;
-		margin-bottom:150px;
-	}
-	
-	
+<jsp:include page="../component/core_head.jsp" />
+<title>WhenWhereTest</title>
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
+<link rel="stylesheet" href="../css/jquery-ui-slider-pips.css" />
+<link rel="stylesheet" href="../css/slider.css" />
+<style type="text/css">
+body {
+	margin: 0;
+	padding: 0;
+	background: url(img.jpg) center center fixed no-repeat;
+}
+
+video {
+	position: fixed;
+	top: 0;
+	left: 0;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	z-index: -1;
+}
+
+.titleDiv {
+	text-align: center;
+	font-size: 70px;
+	margin-top: 60px;
+}
+
+.sliderDiv {
+	margin-top: 10px;
+	margin-bottom: 150px;
+}
 </style>
 </head>
 <!--
@@ -86,12 +86,10 @@ desired effect
 						<div id="flat-slider"></div>
 					</div>
 				</div>
-				
+
 			</section>
 			<!-- /.content -->
-			<section class="weather">
-				
-			</section>
+			<section class="weather"></section>
 		</div>
 
 		<!-- /.content-wrapper -->
@@ -103,27 +101,42 @@ desired effect
 	<jsp:include page="../component/core_js.jsp" />
 	<script src="../js/jquery-ui-slider-pips.js"></script>
 	<script src="../js/slider.js"></script>
-	<script type="text/javascript">
-	 $(function(){
-		 
-		 var apiKey = "d5813187-8e18-3a48-a348-ffb130e70d10";//skplanet 키
-		 //5F5DBB7D-FFFF00AA9 //kweather 키
-		 var foretxt = "Y";	//중기예보 기상개황 수신여부 (Y/N)
-		 path = "http://apis.skplanetx.com/weather/allpoints/forecast6days?version=1&foretxt="+foretxt
-		 	  + "&appKey=" + apiKey;
-		 
-		 $.ajax({
-			 url : path,
-			 type : "get",
-			 dataType : "json",
-			 success : function(){
-				 alert("good");
-			 },
-			 error : function(){
-				 alert("error");
-			 }
-		 })
-	 })
-	</script>
+	<!-- <script type="text/javascript" src="../js/jquery.xdomainajax.js"></script>
+	 --><!-- <script type="text/javascript">
+		$(function() {
+			var apiKey = "vi8iWq3OX1jmnigHbNdOdSLn6Ssh6un2Zc0w%2BXE8reflwUgpNkCBna0JvGZ%2B6Lyb0295n8AdOR9k8nWPrqRQKg%3D%3D";
+			var loc_code = "11B00000";
+			var path = "http://newsky2.kma.go.kr/service/MiddleFrcstInfoService/getMiddleLandWeather?"
+					+ "ServiceKey="
+					+ apiKey
+					+ "&regId=11B00000"
+					+ "&tmFc=201606110600" + "&numOfRows=1&pageNo=1"
+
+			$.ajax({
+				url : path,
+				type : "get",
+				dataType : "xml",
+				cache : false,
+				success : function(data) {
+					console.log("data : " + data.responseText);
+					// var myXML = rplLine(data.responseText);
+					//console.log(myXML);
+					//var indexS = myXML.indexOf('"body":{"items":{'), indexE = myXML.indexOf("}]}"), result = myXML;
+					//var jsonObj = $.parseJSON('[' + result + ']'), rainsnow = jsonObj[0].response.body.items.item[0].obsrValue, sky = jsonObj[0].response.body.items.item[4].obsrValue, temp = jsonObj[0].response.body.items.item[5].obsrValue;
+					//console.log(jsonObj); 
+				},
+				error : function(xhr, status, error) {
+				}
+			})
+		})
+
+		function rplLine(value) {
+			if (value != null && value != "") {
+				return value.replace(/\n/g, "\\n");
+			} else {
+				return value;
+			}
+		}
+	</script> -->
 </body>
 </html>
