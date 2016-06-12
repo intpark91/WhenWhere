@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -13,8 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class WeatherService {
 	
-	public String getWeatherInfo() {
-		String locName = "영서";
+	public String getWeatherInfo(String locName) {
 		String locNameRegex = ".*["+locName.charAt(0)+"].*["+locName.charAt(1)+"].*";
 		String urlStr = "http://www.kma.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=108";
 		String buffer = "";
@@ -38,6 +39,9 @@ public class WeatherService {
 		JSONObject description = (JSONObject) item.get("description");
 		JSONObject body = (JSONObject) description.get("body");
 		JSONArray locArr= (JSONArray) body.get("location");
+		
+		JSONObject jsonObject = new JSONObject();
+		List<String> weathers = new ArrayList<>();
 		for(int i = 0; i<locArr.length(); i++){
 			JSONObject loc = (JSONObject) locArr.get(i);
 			String province = loc.get("province").toString();
@@ -51,11 +55,15 @@ public class WeatherService {
 					String date = timeOfDay.split(" ")[1];
 					if(date.equals("00:00")){
 						System.out.println(data.get("tmEf") + " : " + data.get("wf"));
+						weathers.add(data.get("wf").toString());
 					}
 				}
 				break;
 			}
 		}
-		return jobj.toString();
+		jsonObject.put("ok", true);
+		jsonObject.put("wf", weathers);
+		System.out.println(jsonObject.toString());
+		return jsonObject.toString();
 	}
 }

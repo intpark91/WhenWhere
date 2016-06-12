@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.whenwhere.main.service.SearchService;
@@ -25,14 +26,13 @@ public class MainController {
 	@RequestMapping(value = "/main")
 	public String main(Model model) {
 		model.addAttribute("userid", null);
-		//weatherService.getWeatherInfo();
 		return "home/main";
 	}
 	
 	@RequestMapping(value="/weather")
 	@ResponseBody
-	public String getWeather(){
-		return weatherService.getWeatherInfo();
+	public String getWeather(@RequestParam String locName){
+		return weatherService.getWeatherInfo(locName);
 	}
 	
 	@RequestMapping(value = "/joinForm")
