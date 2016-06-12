@@ -57,4 +57,9 @@ public class MainController {
 	public String chat() {
 		return "chat/main";
 	}
+	
+	@RequestMapping(value = "/admin")
+	public String admin() {
+		return "admin/manage";
+	}
 }
