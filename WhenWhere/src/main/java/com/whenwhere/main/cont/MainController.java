@@ -1,7 +1,5 @@
 package com.whenwhere.main.cont;
 
-import java.io.IOException;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -64,5 +62,10 @@ public class MainController {
 	@RequestMapping(value = "/chat")
 	public String chat() {
 		return "chat/main";
+	}
+	
+	@RequestMapping(value = "/admin")
+	public String admin() {
+		return "admin/manage";
 	}
 }
