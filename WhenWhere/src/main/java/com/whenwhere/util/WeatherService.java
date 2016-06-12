@@ -43,7 +43,7 @@ public class WeatherService {
 			String province = loc.get("province").toString();
 			
 			if(province.matches(locNameRegex)){
-				System.out.println(province + " : " +loc.get("city").toString());
+				System.out.println(province);
 				JSONArray dataArr = (JSONArray) loc.get("data");
 				for(int j=0; j<dataArr.length();j++){
 					JSONObject data = (JSONObject) dataArr.get(j);
