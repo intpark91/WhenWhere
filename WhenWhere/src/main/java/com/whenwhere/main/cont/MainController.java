@@ -25,7 +25,7 @@ public class MainController {
 	@RequestMapping(value = "/main")
 	public String main(Model model) {
 		model.addAttribute("userid", null);
-		weatherService.getWeatherInfo();
+		//weatherService.getWeatherInfo();
 		return "home/main";
 	}
 	
