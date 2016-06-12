@@ -22,7 +22,7 @@ public class ChatInterceptor extends HandlerInterceptorAdapter{
 			throws Exception {
 		
 		HttpSession session = request.getSession(true);
-		System.out.println(session.getAttribute("session_roomInfo") );
+		//System.out.println(session.getAttribute("session_roomInfo") );
 		if(session.getAttribute("session_roomInfo") != null){
 			
 			int currentRoom = (Integer) session.getAttribute("session_roomInfo");
