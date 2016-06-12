@@ -30,32 +30,31 @@ public class WeatherService {
 			e.printStackTrace();
 		}
 		JSONObject jobj = XML.toJSONObject(buffer);
-		jobj = (JSONObject) jobj.get("rss");
-		//System.out.println(jobj.toString());
-		jobj = (JSONObject) jobj.get("channel");
-		//System.out.println(jobj.toString());
-		jobj = (JSONObject) jobj.get("item");
-		//System.out.println(jobj.toString());
-		jobj = (JSONObject) jobj.get("description");
-		//System.out.println(jobj.toString());
-		jobj = (JSONObject) jobj.get("body");
-		//System.out.println(jobj.toString());
-		JSONArray jArr= (JSONArray) jobj.get("location");
-		System.out.println(jArr.toString());
-		for(int j = 0; j<jArr.length();j++){
-			JSONObject jobj2 = (JSONObject) jArr.get(j);
+		JSONObject rss = (JSONObject) jobj.get("rss");
+		JSONObject channel = (JSONObject) rss.get("channel");
+		JSONObject item = (JSONObject) channel.get("item");
+		JSONObject description = (JSONObject) item.get("description");
+		JSONObject body = (JSONObject) description.get("body");
+		JSONArray locArr= (JSONArray) body.get("location");
+		for(int i = 0; i<locArr.length(); i++){
+			JSONObject loc = (JSONObject) locArr.get(i);
+			System.out.println(loc.get("province").toString());
+			System.out.println(loc.get("city").toString());
+		}
+		/*for(int j = 0; j<locArr.length();j++){
+			JSONObject jobj2 = (JSONObject) locArr.get(j);
 			System.out.println(jobj2.get("city").toString());
-			jobj2 = (JSONObject) jArr.get(0);
-			jArr = jobj2.getJSONArray("data");
-			for(int i =0; i<jArr.length();i++){
-				String str1=((JSONObject)jArr.get(i)).get("tmEf").toString();
-				String str2=((JSONObject)jArr.get(i)).get("wf").toString();
+			jobj2 = (JSONObject) locArr.get(0);
+			locArr = jobj2.getJSONArray("data");
+			for(int i =0; i<locArr.length();i++){
+				String str1=((JSONObject)locArr.get(i)).get("tmEf").toString();
+				String str2=((JSONObject)locArr.get(i)).get("wf").toString();
 				String reg[] = str1.split(" ");
 				if(reg[1].equals("00:00")){
 					System.out.println(str1 + " : " + str2);
 				}
 			}
-		}
+		}*/
 		return jobj.toString();
 	}
 }
