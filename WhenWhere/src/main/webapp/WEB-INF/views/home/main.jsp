@@ -101,31 +101,5 @@ desired effect
 	<jsp:include page="../component/core_js.jsp" />
 	<script src="../js/jquery-ui-slider-pips.js"></script>
 	<script src="../js/slider.js"></script>
-	<script type="text/javascript">
-		$(function() {
-			$.ajax({
-				url : "../home/weather",
-				type : "post",
-				dataType : "json",
-				success : function(data) {
-					console.log(data);
-					console.log(data.rss);
-					console.log(data.rss.channel);
-					console.log(data.rss.channel.item);
-					console.log(data.rss.channel.item.description);
-					console.log(data.rss.channel.item.description.body);
-					var weather = {};
-					weather = data.rss.channel.item.description.body;
-					for(var i=0; i<weather.location.length;i++){
-						console.log("city : " + weather.location[i].city);
-						console.log("city : " + weather.location[i].data);
-					}
-				},
-				error : function(xhr, status, error) {
-					alert("error");
-				}
-			})
-		})
-	</script>
 </body>
 </html>

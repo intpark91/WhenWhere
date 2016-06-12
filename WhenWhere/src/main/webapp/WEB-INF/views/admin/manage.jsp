@@ -33,7 +33,6 @@
 						<div id="flat-slider"></div>
 					</div>
 				</div>
-				
 			</section>
 			<!-- /.content -->
 		</div>
