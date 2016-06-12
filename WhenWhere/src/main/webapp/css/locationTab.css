@@ -143,7 +143,7 @@ Main components
   .cd-tabs-navigation {
     /* tabbed on top on big devices */
     width: auto;
-    background-color: #1ABC9C;
+    background-color: #00c0ef;
     box-shadow: inset 0 -2px 3px rgba(203, 196, 130, 0.06);
   }
   .cd-tabs-navigation a {
@@ -233,21 +233,28 @@ Main components
 }
 
 /* tab css----------------------------------------------------------------------------- */
-
+.locationSearchBtn:hover{
+	background: rgba(255, 255, 255, 0.38);
+	color:white;
+}
+.locationSearchBtn:focus{
+	color:white;
+}
 
 .locationSearchBtn{
-	position: relative;
-    display: block;
-    line-height: 2.75em;
+    /* position: relative; */
+    /* display: block; */
+    /* line-height: 2.75em; */
     height: 3em;
-    padding: 0 1.618em;
-    background: #1abc9c;
-    border-right: 0.125rem solid #16a085;
+    /* padding: 0 1.618em; */
+    background: rgba(255, 255, 255, 0);
+    /* border-right: 0.125rem solid #16a085; */
     color: #fff;
-    cursor: pointer;
-    top: 0;
-    transition: all 0.25s;
- 	width: 100%;
+    /* cursor: pointer; */
+    /* top: 0; */
+    /* transition: all 0.25s; */
+    width: 100%;
+    border: 1px solid white;
 }
 
 .locationSearchDiv{
@@ -269,25 +276,41 @@ input[type="checkbox"].checkbox + label {
     display: inline;
     position: relative;
     background-color: white;
-    border:1px solid rgb(26, 188, 156);
+    border:1px solid rgb(0, 192, 239);
     
     /*label styling*/
-    padding: 2px 4px;
+    padding: 4px 8px;
     font-size: large;
     line-height: 14px;
-    color: rgb(26, 188, 156);
+    color: rgb(0, 192, 239);
     vertical-align: baseline;
     white-space: nowrap;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
 }
-input[type="checkbox"].checkbox:checked + label {
-    background-color: rgb(26, 188, 156);
-    color:white;
-    border:1px solid white;
+
+input[type="checkbox"].checkbox + label:hover {
+   	display: inline;
+    position: relative;
+    background-color: rgba(0, 192, 239, 0.54);
+    border: 1px solid rgb(0, 192, 239);
+    padding: 4px 8px;
+    font-size: large;
+    line-height: 14px;
+    color: rgb(255, 255, 255);
+    vertical-align: baseline;
+    white-space: nowrap;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
     border-radius: 3px;
+}
+
+input[type="checkbox"].checkbox:checked + label {
+    background-color: rgb(0, 192, 239);
+    color: white;
+    /* border: 1px solid white; */
+    border-radius: 5px;
 }
 
 .locationUL{

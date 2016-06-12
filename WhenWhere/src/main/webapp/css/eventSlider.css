@@ -165,8 +165,26 @@ ul {
 	margin-bottom: 5px;
 }
 
-.slideLabel{
-	border-top: 5px solid white;
-	padding-top: 5px;
+.spanSub{
+	display: inline; 
+    padding: .2em .6em .3em;
+    font-weight: 700;
+    color: black;
+    white-space: nowrap;
+    vertical-align: baseline;
+}
+
+.spanVal{
+	float: right;
+	display: inline; */
+    padding: .2em .6em .3em;
+    font-weight: 700;
+    color: black;
+    white-space: nowrap;
+    vertical-align: baseline;
+}
+
+.justifyDiv{
+	text-align: justify;
 }
 
