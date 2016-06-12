@@ -15,6 +15,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class WeatherService {
 	
+	//하늘 상태
+	private static final String SUNNY = "S";
+	private static final String CLOUD = "C";
+	private static final String DARK = "D";
+	//날씨
+	private static final String RAIN = "R";
+	private static final String SNOW = "S";
+	//양
+	private static final String HEAVY = "H";
+	private static final String LIGHT = "L";
+	
 	public String getWeatherInfo(String locName) {
 		String locNameRegex = ".*["+locName.charAt(0)+"].*["+locName.charAt(1)+"].*";
 		String urlStr = "http://www.kma.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=108";
@@ -55,7 +66,7 @@ public class WeatherService {
 					String date = timeOfDay.split(" ")[1];
 					if(date.equals("00:00")){
 						System.out.println(data.get("tmEf") + " : " + data.get("wf"));
-						weathers.add(data.get("wf").toString());
+						weathers.add(changeWftoWfcode(data.get("wf").toString()));
 					}
 				}
 				break;
@@ -65,5 +76,24 @@ public class WeatherService {
 		jsonObject.put("wf", weathers);
 		System.out.println(jsonObject.toString());
 		return jsonObject.toString();
+	}
+	
+	private String changeWftoWfcode(String wf){
+		String code="";
+		switch (wf) {
+		case "맑음": code = SUNNY; break;
+		case "구름조금": code = CLOUD+LIGHT; break;
+		case "구름많음": code = CLOUD+HEAVY; break;
+		case "구름많고 비": code = CLOUD+HEAVY+RAIN; break;
+		case "구름많고 비/눈":
+		case "구름많고 눈/비": code = CLOUD+HEAVY+RAIN+SNOW; break;
+		case "구름많고 눈": code = CLOUD+HEAVY+SNOW; break;
+		case "흐림": code = DARK; break;
+		case "흐리고 비": code = DARK+RAIN; break;
+		case "흐리고 비/눈":
+		case "흐리고 눈/비": code = DARK+RAIN+SNOW; break;
+		case "흐리고 눈": code = DARK+SNOW; break;
+		}
+		return code;
 	}
 }
