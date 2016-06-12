@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 public class WeatherService {
 	
 	public String getWeatherInfo() {
+		String locName = "영서";
+		String locNameRegex = ".*["+locName.charAt(0)+"].*["+locName.charAt(1)+"].*";
 		String urlStr = "http://www.kma.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=108";
 		String buffer = "";
 		try {
@@ -38,23 +40,22 @@ public class WeatherService {
 		JSONArray locArr= (JSONArray) body.get("location");
 		for(int i = 0; i<locArr.length(); i++){
 			JSONObject loc = (JSONObject) locArr.get(i);
-			System.out.println(loc.get("province").toString());
-			System.out.println(loc.get("city").toString());
-		}
-		/*for(int j = 0; j<locArr.length();j++){
-			JSONObject jobj2 = (JSONObject) locArr.get(j);
-			System.out.println(jobj2.get("city").toString());
-			jobj2 = (JSONObject) locArr.get(0);
-			locArr = jobj2.getJSONArray("data");
-			for(int i =0; i<locArr.length();i++){
-				String str1=((JSONObject)locArr.get(i)).get("tmEf").toString();
-				String str2=((JSONObject)locArr.get(i)).get("wf").toString();
-				String reg[] = str1.split(" ");
-				if(reg[1].equals("00:00")){
-					System.out.println(str1 + " : " + str2);
+			String province = loc.get("province").toString();
+			
+			if(province.matches(locNameRegex)){
+				System.out.println(province + " : " +loc.get("city").toString());
+				JSONArray dataArr = (JSONArray) loc.get("data");
+				for(int j=0; j<dataArr.length();j++){
+					JSONObject data = (JSONObject) dataArr.get(j);
+					String timeOfDay = data.get("tmEf").toString();
+					String date = timeOfDay.split(" ")[1];
+					if(date.equals("00:00")){
+						System.out.println(data.get("tmEf") + " : " + data.get("wf"));
+					}
 				}
+				break;
 			}
-		}*/
+		}
 		return jobj.toString();
 	}
 }
