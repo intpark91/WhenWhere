@@ -55,6 +55,7 @@ public class SearchService {
 		String eDate = request.getParameter("eDate");
 		String locations[] = request.getParameterValues("locations");
 
+
 		List<Map<String, Object>> searchEventList = new ArrayList<Map<String, Object>>();
 		List<Map<String, Object>> searchFoodList = new ArrayList<Map<String, Object>>();
 		List<Map<String, Object>> searchHotelList = new ArrayList<Map<String, Object>>();
@@ -77,16 +78,15 @@ public class SearchService {
 						+ eventlist.get(j).get("eSDate"));
 			}
 
-			for (int j = 0; j < foodlist.size(); j++) {
+			for(int j=0; j<foodlist.size(); j++){
 				searchFoodList.add(foodlist.get(j));
-				System.out.println(searchFoodList.size() + "::" + foodlist.get(j).get("foodName") + ","
-						+ foodlist.get(j).get("fSDate"));
+				System.out.println(searchFoodList.size()+"::"+foodlist.get(j).get("foodName")+","+foodlist.get(j).get("fSDate"));
 			}
 
-			for (int j = 0; j < hotellist.size(); j++) {
+			for(int j=0; j<hotellist.size(); j++){
 				searchHotelList.add(hotellist.get(j));
-				System.out.println(searchHotelList.size() + "::");
 			}
+			System.out.println(searchHotelList.size()+"::");
 
 		}
 		JSONObject jsonObject = new JSONObject();
@@ -95,6 +95,7 @@ public class SearchService {
 		jsonObject.put("searchHotelList", searchHotelList);
 		return jsonObject.toJSONString();
 	}
+
 
 	public List<Map<String, Object>> hotelCrawler(String sDate, String eDate, String location) {
 		List<Map<String, Object>> list = new ArrayList<>();
@@ -137,24 +138,34 @@ public class SearchService {
 			}
 
 			divList = listDiv.getAllElements(HTMLElementName.DIV);
-			for (int i = 0; i < divList.size(); i++) {
-				if (divList.get(i).getAttributeValue("class") != null) {
-					if (divList.get(i).getAttributeValue("class")
-							.equals("listing-card-wrapper col-sm-12 col-md-6 space-2")) {
-						// ï¿½ï¿½ï¿½ï¿½ DIV List
+			for(int i=0; i<divList.size(); i++){
+				if(divList.get(i).getAttributeValue("class")!=null){
+					if(divList.get(i).getAttributeValue("class").equals("listing-card-wrapper col-sm-12 col-md-6 space-2")){
+						//¼÷¼Ò DIV List
 						divHotelList.add(divList.get(i));
-						// ï¿½ï¿½ï¿½ï¿½ IMG List
-						// imgRoomList.add(divList.get(i).getAllElements(HTMLElementName.IMG).get(0));
+						//¼÷¼Ò IMG List
+						//imgRoomList.add(divList.get(i).getAllElements(HTMLElementName.IMG).get(0));
 
-						Map<String, Object> map = new HashMap<>();
-						map.put("img", divList.get(i).getAllElements(HTMLElementName.IMG).get(0).toString());
-						map.put("hotelName",
-								divList.get(i).getAllElements(HTMLElementName.H3).get(0).getAttributeValue("title"));
-						map.put("href", "https://www.airbnb.co.kr" + divList.get(i).getAllElements(HTMLElementName.H3)
-								.get(0).getAllElements(HTMLElementName.A).get(0).getAttributeValue("href"));
-						map.put("locName", URLDecoder.decode(location, "UTF-8"));
+						for(int j=0; j<divList.get(i).getAllElements(HTMLElementName.SPAN).size(); j++){
+							if(divList.get(i).getAllElements(HTMLElementName.SPAN).get(j).getAttributeValue("class")!=null){
+								if(divList.get(i).getAllElements(HTMLElementName.SPAN).get(j).getAttributeValue("class").equals("rich-toggle wish_list_button wishlist-button")){
 
-						list.add(map);
+									Map<String, Object> map = new HashMap<>();
+									map.put("img", divList.get(i).getAllElements(HTMLElementName.IMG).get(0).toString());
+									map.put("hotelName", divList.get(i).getAllElements(HTMLElementName.H3).get(0).getAttributeValue("title"));
+
+									map.put("roomType", divList.get(i).getAllElements(HTMLElementName.SPAN).get(j).getAttributeValue("data-room_type"));
+									map.put("hotelType", divList.get(i).getAllElements(HTMLElementName.SPAN).get(j).getAttributeValue("data-property_type_name"));
+									map.put("capacity", divList.get(i).getAllElements(HTMLElementName.SPAN).get(j).getAttributeValue("data-person_capacity_string"));
+									map.put("bedCnt", divList.get(i).getAllElements(HTMLElementName.SPAN).get(j).getAttributeValue("data-bedrooms_string"));
+									map.put("href", "https://www.airbnb.co.kr"+divList.get(i).getAllElements(HTMLElementName.H3).get(0).getAllElements(HTMLElementName.A).get(0).getAttributeValue("href"));
+									map.put("locName", URLDecoder.decode(location,"UTF-8"));
+
+									list.add(map); 
+								}
+							}
+						}
+
 					}
 				}
 			}

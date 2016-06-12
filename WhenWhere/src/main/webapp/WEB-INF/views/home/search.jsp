@@ -65,10 +65,10 @@
       									<p>Test Contents</p>
       								</div> -->
 								</div>
- 
+
 								<div class="item row">
-									<img src="../resources/img/item-2.jpg"
-										class="detailImg2 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">
+									<div class="detail2 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">
+									</div>
 								</div>
 
 								<div class="item row">
@@ -163,7 +163,7 @@
 
 				<div class="carousel slide" id="myCarousel1">
 					<h1 class="slideLabel">
-						<span class="label label-info">행사지</span>
+						<span class="label">※ 행사지</span>
 					</h1>
 					<div class="carousel-inner"></div>
 
@@ -173,7 +173,7 @@
 				<!-- #myCarousel2 -->
 				<div class="carousel slide" id="myCarousel2">
 					<h1 class="slideLabel">
-						<span class="label label-info">먹거리</span>
+						<span class="label">※ 먹거리</span>
 					</h1>
 					<div class="carousel-inner"></div>
 
@@ -183,7 +183,7 @@
 				<!-- #myCarousel3 -->
 				<div class="carousel slide" id="myCarousel3">
 					<h1 class="slideLabel">
-						<span class="label label-info">숙박</span>
+						<span class="label">※ 숙박</span>
 					</h1>
 					<div class="carousel-inner"></div>
 
