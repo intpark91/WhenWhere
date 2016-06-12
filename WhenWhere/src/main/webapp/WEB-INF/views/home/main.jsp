@@ -101,42 +101,31 @@ desired effect
 	<jsp:include page="../component/core_js.jsp" />
 	<script src="../js/jquery-ui-slider-pips.js"></script>
 	<script src="../js/slider.js"></script>
-	<!-- <script type="text/javascript" src="../js/jquery.xdomainajax.js"></script>
 	<script type="text/javascript">
 		$(function() {
-			var apiKey = "vi8iWq3OX1jmnigHbNdOdSLn6Ssh6un2Zc0w%2BXE8reflwUgpNkCBna0JvGZ%2B6Lyb0295n8AdOR9k8nWPrqRQKg%3D%3D";
-			var loc_code = "11B00000";
-			var path = "http://newsky2.kma.go.kr/service/MiddleFrcstInfoService/getMiddleLandWeather?ServiceKey=" + apiKey
-					+ "&regId=11B00000"
-					+ "&tmFc=201606110600" 
-					+ "&numOfRows=1"
-					+ "&pageNo=1&_type=json";
-				
 			$.ajax({
-				url : path,
-				type : "get",
-				dataType : "jsonp",
+				url : "../home/weather",
+				type : "post",
+				dataType : "json",
 				success : function(data) {
-					console.log("data : " + data);
-					console.log("data.responseText : " + data.responseText);
-					// var myXML = rplLine(data.responseText);
-					//console.log(myXML);
-					//var indexS = myXML.indexOf('"body":{"items":{'), indexE = myXML.indexOf("}]}"), result = myXML;
-					//var jsonObj = $.parseJSON('[' + result + ']'), rainsnow = jsonObj[0].response.body.items.item[0].obsrValue, sky = jsonObj[0].response.body.items.item[4].obsrValue, temp = jsonObj[0].response.body.items.item[5].obsrValue;
-					//console.log(jsonObj); 
+					console.log(data);
+					console.log(data.rss);
+					console.log(data.rss.channel);
+					console.log(data.rss.channel.item);
+					console.log(data.rss.channel.item.description);
+					console.log(data.rss.channel.item.description.body);
+					var weather = {};
+					weather = data.rss.channel.item.description.body;
+					for(var i=0; i<weather.location.length;i++){
+						console.log("city : " + weather.location[i].city);
+						console.log("city : " + weather.location[i].data);
+					}
 				},
 				error : function(xhr, status, error) {
+					alert("error");
 				}
 			})
 		})
-
-		function rplLine(value) {
-			if (value != null && value != "") {
-				return value.replace(/\n/g, "\\n");
-			} else {
-				return value;
-			}
-		}
-	</script> -->
+	</script>
 </body>
 </html>

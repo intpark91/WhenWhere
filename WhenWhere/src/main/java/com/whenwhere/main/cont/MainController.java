@@ -27,13 +27,13 @@ public class MainController {
 	@RequestMapping(value = "/main")
 	public String main(Model model) {
 		model.addAttribute("userid", null);
-		try {
-			weatherService.getWeatherInfo();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return "home/main";
+	}
+	
+	@RequestMapping(value="/weather")
+	@ResponseBody
+	public String getWeather(){
+		return weatherService.getWeatherInfo();
 	}
 	
 	@RequestMapping(value = "/joinForm")
