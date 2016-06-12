@@ -37,6 +37,17 @@ video {
 	margin-top: 10px;
 	margin-bottom: 150px;
 }
+
+.weatherDiv li{
+	display: inline;
+	font-size: -webkit-xxx-large;
+}
+
+.weatherImg{
+	position: relative;
+	top: 75px;
+}
+
 </style>
 </head>
 <!--
@@ -81,7 +92,7 @@ desired effect
 			<!-- Main content -->
 			<section class="content">
 				<!-- Your Page Content Here -->
-				<div class="row center">
+				<div class="">
 					<div class="col-sm-offset-3 col-sm-6 col-sx-12 sliderDiv">
 						<div id="flat-slider"></div>
 					</div>
@@ -89,7 +100,26 @@ desired effect
 
 			</section>
 			<!-- /.content -->
-			<section class="weather"></section>
+			
+			<!-- weather  -->
+			<!-- <div class="weather row center no-padding">
+				<div class="col-sm-offset-3 col-sm-6 col-sx-12 weatherDiv">
+					<ul class="no-padding">
+						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30" ></li>
+						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
+						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
+						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
+						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
+						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
+						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
+						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
+						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
+						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
+						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
+					</ul>
+				</div>
+			</div> -->
+			
 		</div>
 
 		<!-- /.content-wrapper -->
@@ -101,5 +131,6 @@ desired effect
 	<jsp:include page="../component/core_js.jsp" />
 	<script src="../js/jquery-ui-slider-pips.js"></script>
 	<script src="../js/slider.js"></script>
+	
 </body>
 </html>
