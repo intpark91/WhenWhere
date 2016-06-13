@@ -27,6 +27,7 @@
 				</a></li>
 			</ul>
 			<!-- /.control-sidebar-menu -->
+<<<<<<< HEAD
 		<!-- 	<h3 class="control-sidebar-heading">Tasks Progress</h3>
         <ul class="control-sidebar-menu">
           <li>
@@ -62,6 +63,41 @@
 					<p>배경화면을 멈춥니다.</p>
 				</div>
 				<label for="cmn-toggle-1"></label>
+=======
+			<!--  <h3 class="control-sidebar-heading">Tasks Progress</h3>
+        <ul class="control-sidebar-menu">
+          <li>
+            <a href="javascript::;">
+              <h4 class="control-sidebar-subheading">
+                Custom Template Design
+                <span class="label label-danger pull-right">70%</span>
+              </h4>
+
+              <div class="progress progress-xxs">
+                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+              </div>
+            </a>
+          </li>
+        </ul> -->
+			<!-- /.control-sidebar-menu -->
+
+		</div>
+		<!-- /.tab-pane -->
+		<!-- Stats tab content -->
+		<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab
+			Content</div>
+		<!-- /.tab-pane -->
+		<!-- Settings tab content -->
+		<div class="tab-pane" id="control-sidebar-settings-tab">
+			<form method="post">
+				<h3 class="control-sidebar-heading">설정</h3>
+				<div class="form-group">
+					<label class="control-sidebar-subheading"> 배경 화면 정지 <input
+						type="checkbox" class="pull-right" checked>
+					</label>
+					<p>배경화면을 멈춥니다.</p>
+				</div>
+>>>>>>> refs/heads/main_js
 				<!-- /.form-group -->
 			</form>
 		</div>

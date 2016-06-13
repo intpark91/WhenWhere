@@ -29,7 +29,11 @@
 					<ul class="dropdown-menu">
 						<li class="header"><span id="newMsgCnt"></span></li>
 						<li id="newMsgs"></li>
+<<<<<<< HEAD
 						<li class="footer"><a href="javascript:msgPopup('msgbox?type=inbox&page=1');">전체 메시지 보기</a></li>
+=======
+						<li class="footer"><a href="javascript:msgPopup('msgbox?type=list&page=1');">전체 메시지 보기</a></li>
+>>>>>>> refs/heads/main_js
 					</ul></li>
 				<li class="login" style="display: none"><a
 					href="../home/loginForm"> <i class="fa fa-sign-in"

@@ -9,9 +9,16 @@ import com.whenwhere.user.vo.MessageVO;
 public interface MessageDAO {
 	public int sendMsg(MessageVO msg);
 	public int getRowsByReceiver(String receiver);
+<<<<<<< HEAD
 	public List<MessageVO> getMsgList(@Param("receiver") String receiver, @Param("rows") int rows, @Param("page") int page, @Param("type") String type);
 	public List<MessageVO> getNewMsg(@Param("receiver") String receiver, @Param("status") String status);
 	public MessageVO getMsg(int num);
 	public int updateMsgStatus(@Param("num")int num, @Param("type")String type);
+=======
+	public List<MessageVO> getMsgList(@Param("receiver") String receiver, @Param("rows") int rows, @Param("page") int page);
+	public List<MessageVO> getNewMsg(@Param("receiver") String receiver, @Param("status") String status);
+	public MessageVO getMsg(int num);
+	public int updateMsgStatus(int num);
+>>>>>>> refs/heads/main_js
 	public int deleteMsg(int num);
 }

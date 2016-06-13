@@ -488,6 +488,7 @@ button, input, optgroup, select, textarea {
 
 body {
     font-family: 'Questrial','Helvetica Neue',Arial,sans-serif;
+<<<<<<< HEAD
     /* background-color: rgba(6, 212, 255, 0.39); */
     color: #222;
     webkit-tap-highlight-color: #222;
@@ -546,4 +547,51 @@ body {
 	color: #fff;
     background-color: rgba(0,0,0,0);
 }
+=======
+    background-color: rgba(6, 212, 255, 0.39);
+    color: #222;
+    webkit-tap-highlight-color: #222;
+}
+
+.section1, .section2, .section3, .scrollDiv{
+	background-color: rgb(91, 192, 222);
+	padding: 0px;
+}
+
+@media only screen and (min-width: 767px) {
+	.section1, .section2, .section3, .scrollDiv{
+	background-color: rgb(91, 192, 222);
+	padding: 0px;
+	margin-left: 50px;
+}
+}
+
+.section1{
+	padding-top: 100px;	
+}
+
+.section2{
+}
+
+.section3{
+	padding-bottom: 60px;
+	margin-bottom: 10px;
+}
+
+.label-info{
+	background-color: #5BC0DE !important;
+    border-radius: 50px;
+}
+
+.carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
+    right: 5%;
+    margin-left: -10px;
+}
+
+.carousel-control .glyphicon-chevron-left, .carousel-control .icon-prev {
+    left: 5%;
+    margin-left: -10px;
+}
+
+>>>>>>> refs/heads/main_js
 

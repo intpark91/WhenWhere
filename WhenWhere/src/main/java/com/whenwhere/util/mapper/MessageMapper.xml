@@ -14,6 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getMsgList" parameterType="map" resultType="com.whenwhere.user.vo.MessageVO">
+<<<<<<< HEAD
 		select M_no as no, sender, receiver, m_title as title, m_content as content, M_status as status, M_wdate as wdate
 		  from (SELECT *
 			      FROM (select ROWNUM as rnum, M_no, sender, receiver, m_title, m_content, M_status, M_wdate
@@ -68,6 +69,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</when>
 		</choose>
 		where M_no = #{num}
+=======
+		select M_no as no, sender, m_title as title, m_content as content, M_status as status, M_wdate as wdate
+		  from (SELECT *
+			      FROM (select ROWNUM as rnum, M_no, sender, m_title, m_content, M_status, M_wdate
+	                      from MESSAGE
+	                     where receiver = #{receiver}
+	                     and M_status != '2'
+	                     order by M_NO desc
+			           ) board
+			     where rnum <![CDATA[ <= ]]> #{page}*#{rows}
+			   )
+		 where rnum >= (#{page} -1)*(#{rows} + 1)
+	</select>
+	
+	<select id="getNewMsg" parameterType="map" resultType="com.whenwhere.user.vo.MessageVO">
+		select no, sender, title, content, status, wdate, cnt
+		  from (select M_no as no, sender, m_title as title, m_content as content, M_status as status, M_wdate as wdate,
+			   	       RANK() OVER (ORDER BY M_No desc) as rk, COUNT(*) OVER() as cnt
+			    from message
+			    where M_status = '0'
+			    and receiver = #{receiver}
+			    order by no desc
+			   )
+		where rk <![CDATA[ <= ]]> 5
+	</select>
+	
+	<select id="getMsg" resultType="com.whenwhere.user.vo.MessageVO">
+		select M_no as no, sender, m_title as title, m_content as content, M_wdate as wdate
+		  from message
+		 where M_no = #{num}
+	</select>
+	
+	<update id="updateMsgStatus">
+		update message set M_status = '1' where M_no = #{num}
+>>>>>>> refs/heads/main_js
 	</update>
 	
 	<delete id="deleteMsg">

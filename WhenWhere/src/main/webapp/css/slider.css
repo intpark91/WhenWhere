@@ -147,6 +147,7 @@
 
 /* �썡 label �깭洹� 肄붾뱶異붽� */
 .ui-month-label {
+<<<<<<< HEAD
    	position: absolute;
     top: -78px;
     /* left: 50%; */
@@ -157,4 +158,16 @@
     /* padding: 0px; */
     color: #FFFFFF;
     /* font-size: 16px; */
+=======
+   	position: relative;
+    top: 48px;
+    /* left: 50%; */
+    /* margin-left: -3em; */
+    /* width: 14px; */
+    /* font-size: 16px; */
+    /* background: white; */
+    /* padding: 0px; */
+    color: #FFFFFF;
+    font-size: 16px;
+>>>>>>> refs/heads/main_js
 }

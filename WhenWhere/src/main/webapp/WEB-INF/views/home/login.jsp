@@ -22,6 +22,7 @@
 			</section>
 			<!-- Content Header (Page header) -->
 			<!-- Main content -->
+<<<<<<< HEAD
 			<section class="content">
 				<form class="form-horizontal">
 					<!-- LOGIN FORM -->
@@ -56,6 +57,53 @@
 					</div>
 				</form>
 			</section>
+=======
+			
+				<form class="form-horizontal">
+					<!-- LOGIN FORM -->
+					<div class="container">
+						<div class="row login_box">
+							<div class="col-md-12 col-xs-12" align="center">
+								<div class="line">
+									<h3>12 : 30 AM</h3>
+								</div>
+								<div class="outter">
+									<img
+										src="http://cfile1.uf.tistory.com/image/220ACD49543246531DCC3C"
+										class="image-circle" />
+								</div>
+								<span> When & Where</span>
+							</div>
+							<div class="col-md-6 col-xs-6 follow line" align="center">
+								<h3>
+									125651 <br /> <span>FOLLOWERS</span>
+								</h3>
+							</div>
+							<div class="col-md-6 col-xs-6 follow line" align="center">
+								<h3>
+									125651 <br /> <span>FOLLOWERS</span>
+								</h3>
+							</div>
+							<div class="col-md-12 col-xs-12 login_control">
+								<div class="control">
+									<div class="label">Email Address</div>
+									<input type="text" class="form-control"  name="email" value="whenwhere@gmail.com" />
+								</div>
+
+								<div class="control">
+									<div class="label">Password</div>
+									<input type="password" class="form-control" name="password" value="whenwhere" />
+								</div>
+								<div align="center">
+									<button type="button" class="btn btn-orange" onclick="login();">LOGIN</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			<!-- end:Main Form --> </section>
+			<!-- /.content -->
+>>>>>>> refs/heads/main_js
 		</div>
 
 		<!-- /.content-wrapper -->

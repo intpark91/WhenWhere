@@ -5,6 +5,7 @@ import java.util.List;
 
 public class BoardVO {
 	private int no;
+<<<<<<< HEAD
 	private String category;
 	private String title;
 	private Date wdate;
@@ -14,6 +15,37 @@ public class BoardVO {
 	private int recommend;
 	private int eventNo;
 	private List<CommentVO> comments;
+=======
+	private String boardName;
+	private String category;
+	private String title;
+	private Date wdate;
+	private Date wdate2;
+	private String auth;
+	private String content;
+	private int hit;
+	private int recommend;
+	private int eventNo;
+	private List<CommentVO> comments;
+
+	
+	
+	public Date getWdate2() {
+		return wdate2;
+	}
+
+	public void setWdate2(Date wdate2) {
+		this.wdate2 = wdate2;
+	}
+
+	public String getBoardName() {
+		return boardName;
+	}
+
+	public void setBoardName(String boardName) {
+		this.boardName = boardName;
+	}
+>>>>>>> refs/heads/main_js
 
 	public int getNo() {
 		return no;

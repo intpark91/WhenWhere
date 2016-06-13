@@ -31,9 +31,15 @@ public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor{
 		ServletServerHttpRequest ssreq = (ServletServerHttpRequest)request;
 		
 		HttpServletRequest req = ssreq.getServletRequest();
+<<<<<<< HEAD
 		HttpSession session = req.getSession(false);
 		MemberVO mem = (MemberVO)session.getAttribute("member");
 		System.out.println("handshake"+mem.getNickname());
+=======
+		
+		HttpSession session = req.getSession();
+		MemberVO mem = (MemberVO)session.getAttribute("member");
+>>>>>>> refs/heads/main_js
 		websocketMap.put("session", session);
 		
 		return super.beforeHandshake(request, arg1, arg2, websocketMap);

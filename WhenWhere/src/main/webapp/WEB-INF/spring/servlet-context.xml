@@ -35,7 +35,10 @@
    <context:component-scan base-package="com.whenwhere.user.service" />
    <context:component-scan base-package="com.whenwhere.user.vo" />
    <context:component-scan base-package="com.whenwhere.user.util" />
+<<<<<<< HEAD
    <context:component-scan base-package="com.whenwhere.util" />
+=======
+>>>>>>> refs/heads/main_js
    <context:component-scan base-package="com.whenwhere.websocket" />
 
    <!-- Handles HTTP GET requests for /resources/** by efficiently serving 
@@ -117,6 +120,7 @@
    
    <beans:bean id="echoHandler" class="com.whenwhere.websocket.HelloWebSocketHandler" />
    
+<<<<<<< HEAD
    <!-- 방out을 위한 인터셉터 처리 -->
    <mvc:interceptors>
 		<mvc:interceptor>
@@ -128,4 +132,6 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
    
+=======
+>>>>>>> refs/heads/main_js
 </beans:beans>

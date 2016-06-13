@@ -21,11 +21,21 @@ h2 {
 
 <script type="text/javascript">
 function delectAjax(no){
+<<<<<<< HEAD
 
 	jQuery.ajax({
 		type: "post", 
 		url:"noticedelete",
 		data : {"no":no},
+=======
+	var category = '${ReadBoard.category}';
+	jQuery.ajax({
+		type: "post", 
+		url:"noticedelete",
+		data : {"no":no
+				,"category":category
+		},
+>>>>>>> refs/heads/main_js
 		dataType : "json",
 		success : function(delect){
 			console.log(delect);

@@ -125,12 +125,17 @@ var category='${sessionScope.category}';
 					<div
 						class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2 text-center">
 						<div id="all" class="clearfix">
+<<<<<<< HEAD
 
 
 
 							<div id="content01">
 							<!-- 2015.12.07 수정-->
 
+=======
+							<div id="content01">
+							<!-- 2015.12.07 수정-->
+>>>>>>> refs/heads/main_js
 							<!--//-->
 							<form id="inForm" name="inForm" method="post"
 								action="reviewmodify"

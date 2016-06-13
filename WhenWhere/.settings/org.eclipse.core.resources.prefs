@@ -1,4 +1,7 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/whenwhere/user/service/MessageService.java=UTF-8
+<<<<<<< HEAD
 encoding//src/main/webapp/css/slider.css=UTF-8
+=======
+>>>>>>> refs/heads/main_js
 encoding//src/main/webapp/index.jsp=UTF-8
