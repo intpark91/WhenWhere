@@ -16,6 +16,7 @@
 			<div class="mailbox-read-message">${message.getContent() }</div>
 		</div>
 		<div class="box-footer">
+		<c:if test="${type!='sentread'}">
 			<div class="pull-right">
 				<button id="moveToOutbox" type="button" class="btn btn-default">
 					<i class="fa fa-hand-o-right"></i> 보관함으로
@@ -27,6 +28,7 @@
 			<button id="delete" type="button" class="btn btn-default">
 				<i class="fa fa-trash-o"></i> 삭제하기
 			</button>
+		</c:if>
 		</div>
 	</div>
 </div>

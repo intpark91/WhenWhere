@@ -93,15 +93,10 @@
 		})
 
 		$(function() {
-			$("#reply")
-					.on(
-							"click",
-							function() {
-								location.href = "../user/msgbox?type=write&receiver=${message.getSender()}";
-							});
-
+			$("#reply").on("click",	function() {
+				location.href = "../user/msgbox?type=write&receiver=${message.getSender()}";
+			});
 			$("#moveToOutbox").on("click", moveToOutbox);
-
 			$("#delete").on("click", function() {
 				bootbox.dialog({
 					message : "삭제하시겠습니까?",

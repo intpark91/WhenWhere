@@ -26,7 +26,7 @@ public class WeatherService {
 	private static final String HEAVY = "H";
 	private static final String LIGHT = "L";
 	
-	public String getWeatherInfo(String locName) {
+	public String getMidTermWeather(String locName) {
 		String locNameRegex = ".*["+locName.charAt(0)+"].{0,1}["+locName.charAt(1)+"].*";
 		String urlStr = "http://www.kma.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=108";
 		String buffer = "";
@@ -76,6 +76,25 @@ public class WeatherService {
 		jsonObject.put("wf", weathers);
 		System.out.println(jsonObject.toString());
 		return jsonObject.toString();
+	}
+	
+	public String getShortTermWeather(){
+		String urlStr = "http://www.kma.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=108";
+		String buffer = "";
+		try {
+			URL url = new URL(urlStr);
+			URLConnection connection = url.openConnection();
+			connection.setDoOutput(true);
+			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream(), "utf-8"));
+			String inputLine;
+			while ((inputLine = in.readLine()) != null) {
+				buffer += inputLine.trim();
+			}
+			in.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	private String changeWftoWfcode(String wf){

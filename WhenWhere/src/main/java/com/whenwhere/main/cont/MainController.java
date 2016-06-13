@@ -32,7 +32,7 @@ public class MainController {
 	@RequestMapping(value = "/weather")
 	@ResponseBody
 	public String getWeather(@RequestParam String locName) {
-		return weatherService.getWeatherInfo(locName);
+		return weatherService.getMidTermWeather(locName);
 	}
 
 	@RequestMapping(value = "/joinForm")
