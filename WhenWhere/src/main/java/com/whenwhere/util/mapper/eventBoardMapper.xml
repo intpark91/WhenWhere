@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       update event set e_sdate=#{sDate}, e_edate=#{eDate} where e_no=#{no}
    </update>
 
-	<select id="ReviewboardList" parameterType="map" resultMap="boardList,DateList">
+	<select id="ReviewboardList" parameterType="map" resultMap="boardList">
 	        select ROWNUM ,b_no as no, b_title as title, b_wdate as wdate, b_auth as auth, b_hit as hit, boardCode as category, boardname, b_content as content ,e_sdate, e_edate 
                from (SELECT *
                FROM (select ROWNUM as rnum, b.b_no, b.b_title, b.b_wdate, b.b_auth, b.b_hit, b.boardCode, c.boardname, b.b_content,e.E_EDATE,e.E_SDATE
@@ -47,17 +47,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    	    <id property="no" column="b_no" />
   		<result property="auth" column="b_auth"/>
   		<result property="title" column="b_title"/>
-  		<result property="wdate" column="b_wdate"/>
+  		<result property="wdate" column="e_sdate"/>
+  		<result property="wdate2" column="e_edate"/>
   		<result property="hit" column="b_hit"/>
   		<result property="category" column="boardCode"/>
-  		<result property="boardname" column="boardname"/>
+  		<result property="boardName" column="boardname"/>
   		<result property="content" column="b_content"/>
    </resultMap>
    	
-   <resultMap id="DateList" type="com.whenwhere.board.vo.EventVO">
-   		<result property="eDate" column="E_EDATE"/>
-  		<result property="sDate" column="E_SDATE"/>
-   </resultMap>
+
 <!--    <select id="imageList">
    		
    </select> -->

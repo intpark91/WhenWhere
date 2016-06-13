@@ -114,7 +114,7 @@ public class BoardController {
 	
 	@RequestMapping(value = "/reviewinsert",method = RequestMethod.POST)
 	public String reviewinsert(Model model,HttpServletRequest request, @RequestParam(required=false) MultipartFile upload) throws ParseException {
-		model.addAttribute("insert", reviewboardSVC.insert(model,request,upload));
+		model.addAttribute("insert", reviewboardSVC.insert(model,request));
 		return "board/review/reviewwrite";	
 	}
 	

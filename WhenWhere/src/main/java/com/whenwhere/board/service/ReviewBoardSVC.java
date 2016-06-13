@@ -3,6 +3,7 @@ package com.whenwhere.board.service;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -35,6 +36,7 @@ public class ReviewBoardSVC {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	String fileUrl=null;
+	static File newFile=null; 
 	public void imageUpload(HttpServletRequest request, HttpServletResponse response, MultipartFile upload) {
 		
 		OutputStream out = null;
@@ -60,8 +62,8 @@ public class ReviewBoardSVC {
 
             printWriter = response.getWriter();
             fileUrl = "http://localhost:8888/img/" + year+""+monthStr +time + fileName;
-            request.getSession().setAttribute("fileUrl", fileUrl);
-            request.getSession().setAttribute("fileUrl", fileUrl);
+            
+            request.getSession().setAttribute("MultipartFile", upload);
             printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("
                     + callback
                     + ",'"
@@ -88,18 +90,58 @@ public class ReviewBoardSVC {
         return;
 		
 	}
-	public boolean insert(Model model, HttpServletRequest request,MultipartFile upload) throws ParseException {
+	public boolean insert(Model model, HttpServletRequest request) throws ParseException {
 		String title = request.getParameter("title");
 		String content =request.getParameter("content");
 		String auth = request.getParameter("auth");
 		String sDate = request.getParameter("sDate");
 		String eDate = request.getParameter("eDate");
 		String boardCode = request.getParameter("category");
-		String fileName = (String) request.getSession().getAttribute("fileUrl");
+		
+		InputStream inputStream = null;  
+	    OutputStream outputStream = null;  
+	    
+		   MultipartFile file = (MultipartFile)request.getSession().getAttribute("MultipartFile");	   
+		   String fileName = file.getOriginalFilename();  	  
+		   try {
+		       inputStream = file.getInputStream();  
+		       newFile = new File("C:/img/saveimage/"+0+"-"+ fileName); 
+		       if (!newFile.exists()) {  
+		           newFile.createNewFile();  
+		       }
+		       else {
+		        	do{ 
+		        		for(int i=0;i<1000;i++){
+		        		newFile = new File("C:/img/saveimage/"+(i)+"-"+fileName);
+		        		if(!newFile.exists()) {
+		        			newFile.createNewFile();
+		        			break;
+		        		}
+		        		}
+		        	}
+		        	while(!newFile.exists());
+		       }			       
+		       outputStream = new FileOutputStream(newFile);  
+		       int read = 0;  
+		       byte[] bytes = new byte[1024];  		  
+		       while ((read = inputStream.read(bytes)) != -1) {  
+		           outputStream.write(bytes, 0, read);  
+		       }  
+		   } catch (IOException e) {  
+		       e.printStackTrace();  
+		   } finally {
+		       try {
+		           outputStream.close();
+		       } catch (IOException e) {
+		           e.printStackTrace();
+		       }
+		   }
+		
+		
 		String loc = request.getParameter("location");
 		ImageVO imageVO = new ImageVO();
 		imageVO.setBoardCode(boardCode);				
-		imageVO.setFileName(fileName);
+		/*imageVO.setFileName(fileurl);*/
 		Date date = null;
 		Date date1 = null;
 		DateFormat formatter ; 		 
