@@ -96,10 +96,9 @@ $(function() {
 				},
 				range : function(values) {
 					alert(values);
+						
 					this.resetClasses();
 					for (i = 0; i < values.length; i++) {
-						
-						
 						$pips.filter(
 								".ui-slider-pip-" + this.classLabel(values[i]))
 								.addClass("ui-slider-pip-selected-" + (i + 1));
