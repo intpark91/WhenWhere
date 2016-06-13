@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,11 +11,14 @@
 	href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
 <link rel="stylesheet" href="../css/jquery-ui-slider-pips.css" />
 <link rel="stylesheet" href="../css/slider.css" />
+<link rel="stylesheet" href="../css/eventSlider.css" />
+<link rel="stylesheet" href="../css/loadingSpinner.css">
 <style type="text/css">
 body {
 	margin: 0;
 	padding: 0;
-	background: url(../resources/img/bg_img.jpg) center center fixed no-repeat;
+	background: url(../resources/img/bg_img.jpg) center center fixed
+		no-repeat;
 }
 
 video {
@@ -25,7 +30,7 @@ video {
 	width: auto;
 	height: auto;
 	z-index: -1;
-}
+} 
 
 .titleDiv {
 	text-align: center;
@@ -38,70 +43,22 @@ video {
 	margin-bottom: 150px;
 }
 
-<<<<<<< HEAD
-.weatherSpan{
+.weatherSpan {
 	position: relative;
 	top: 67px;
+	font-size: 26px;
+	left:-2px;
 }
 
-.locSelect{
-    position: relative;
-    float: right;
-    bottom: 89px;
-}
-.locSel{
-	height: 25px;
-}
-
-=======
-.weatherDiv li{
-	display: inline;
-	font-size: -webkit-xxx-large;
-}
-
-.weatherSpan{
+.locSelect {
 	position: relative;
-	top: 52px;
-    left: -1px;
+	float: right;
+	bottom: 100px;
 }
 
-
-	<jsp:include page="../component/core_head.jsp" />
-	<title>WhenWhereTest</title>
-	<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
-	<link rel="stylesheet" href="../css/jquery-ui-slider-pips.css" />
-	<link rel="stylesheet" href="../css/slider.css" />
-	<style type="text/css">
-	body {
-		margin : 0;
-		padding : 0;
-		background : url (img.jpg) center center fixed no-repeat;
-	}
-	video {
-		position: fixed;
-		top: 0;
-		left: 0;
-		min-width: 100%;
-		min-height: 100%;
-		width: auto;
-		height: auto;
-		z-index: -1;
-	}
-	
-	.titleDiv{
-		text-align: center;
-		font-size: 70px;
-		margin-top:60px;
-	}
-	
-	.sliderDiv{
-		margin-top:10px;
-		margin-bottom:150px;
-	}
-	
-	
-
->>>>>>> refs/heads/main_js
+.locSel {
+	height: 35px;
+}
 </style>
 </head>
 <!--
@@ -146,53 +103,45 @@ desired effect
 			<!-- Main content -->
 			<section class="content">
 				<!-- Your Page Content Here -->
-<<<<<<< HEAD
-				<div class="">
-					<div class="col-sm-offset-3 col-sm-6 col-sx-12 sliderDiv">
-						<div id="flat-slider"></div>
-
-						<div class="locSelect">
-							<select class="locSel" id="locSel">
-								<option>서울</option>
-								<option>경기</option>
-								<option>3</option>
-								<option>4</option>
-							</select>
-						</div>
+				<div class="col-sm-offset-3 col-sm-6 col-sx-12 sliderDiv">
+					<div id="flat-slider"></div>
+					<div class="locSelect">
+						<select class="locSel btn" id="locSel">
+							<c:forEach items="${locationSubList }" var="list">
+								<option>${list }</option>
+							</c:forEach>
+						</select>
 					</div>
-					
 				</div>
-
 			</section>
 			<!-- /.content -->
 
+			<div class="container">
+				<!-- #myCarousel -->
+				<div class="carousel slide" id="myCarousel1">
+					<h1 class="slideLabel">
+						<span class="label">※ 행사지</span>
+					</h1>
+					<div class="carousel-inner"></div>
 
-=======
-				<div class="row center">
-					<div class="col-sm-offset-3 col-sm-6 col-sx-12 sliderDiv">
-						<div id="flat-slider"></div>
-					</div>
 				</div>
-				
-			</section>
-			<!-- /.content -->
->>>>>>> refs/heads/main_js
-			
-<<<<<<< HEAD
+				<!-- /#myCarousel -->
+			</div>
 
-=======
->>>>>>> refs/heads/main_js
+
+
 		</div>
+				<!-- /.content-wrapper -->
+				<!-- include -->
+				<jsp:include page="../component/footer.jsp" />
+				<jsp:include page="../component/controlSidebar.jsp" />
 
-		<!-- /.content-wrapper -->
-		<!-- include -->
-		<jsp:include page="../component/footer.jsp" />
-		<jsp:include page="../component/controlSidebar.jsp" />
-	</div>
-	<!-- scripts -->
+			</div>
+			<!-- scripts -->
 	<jsp:include page="../component/core_js.jsp" />
 	<script src="../js/jquery-ui-slider-pips.js"></script>
 	<script src="../js/slider.js"></script>
+	<script src='../js/loadingSpinner.js'></script>
 	
 </body>
 </html>

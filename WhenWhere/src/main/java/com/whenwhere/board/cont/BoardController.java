@@ -19,118 +19,115 @@ import com.whenwhere.board.service.ReviewBoardSVC;
 import com.whenwhere.board.vo.BoardVO;
 import com.whenwhere.board.vo.CommentVO;
 
-
-
 @Controller
 @RequestMapping("/board")
 public class BoardController {
-	
 
 	@Autowired
 	NoticeBoardSVC noticeBoardSVC;
 	@Autowired
 	ReviewBoardSVC reviewboardSVC;
-	
-	
+
 	@RequestMapping(value = "/notice")
-	public String notice(Model model,HttpServletRequest request) {			
-		return 	noticeBoardSVC.noticeList(model, request);
+	public String notice(Model model, HttpServletRequest request) {
+		return noticeBoardSVC.noticeList(model, request);
 	}
-	
+
 	@RequestMapping(value = "/noticewrite", method = RequestMethod.POST)
-	public String noticewrite(BoardVO boardVO,Model model,HttpServletRequest request) {		
+	public String noticewrite(BoardVO boardVO, Model model, HttpServletRequest request) {
 		model.addAttribute("insert", noticeBoardSVC.insert(boardVO));
-		return "board/notice/noticewrite";		
+		return "board/notice/noticewrite";
 	}
-	
+
 	@RequestMapping(value = "/noticeRead", method = RequestMethod.GET)
-	public String noticeRead(BoardVO boardVO,HttpServletRequest request,Model model) {
-		return noticeBoardSVC.readBoard(request,model);
+	public String noticeRead(BoardVO boardVO, HttpServletRequest request, Model model) {
+		return noticeBoardSVC.readBoard(request, model);
 	}
-	
+
 	@RequestMapping(value = "/noticedelete", method = RequestMethod.POST)
 	@ResponseBody
-	public String noticedelect(BoardVO boardVO,Model model) {			
-		return noticeBoardSVC.delectBoard(boardVO);		
+	public String noticedelect(BoardVO boardVO, Model model) {
+		return noticeBoardSVC.delectBoard(boardVO);
 	}
-	
+
 	@RequestMapping(value = "/noticemodify", method = RequestMethod.POST)
-	public String noticemodify(BoardVO boardVO,Model model) {		
+	public String noticemodify(BoardVO boardVO, Model model) {
 		model.addAttribute("modify", noticeBoardSVC.modify(boardVO));
-		return "board/notice/noticeModify";		
+		return "board/notice/noticeModify";
 	}
-	
+
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public String noticesearch(Model model,HttpServletRequest request) {				
-		return noticeBoardSVC.searchList(request,model);		
+	public String noticesearch(Model model, HttpServletRequest request) {
+		return noticeBoardSVC.searchList(request, model);
 	}
-	
+
 	@RequestMapping(value = "/comment", method = RequestMethod.POST)
 	@ResponseBody
-	public String noticecomment(CommentVO commentVO,Model model,HttpServletRequest request) {				
-		return noticeBoardSVC.noticecomment(request,model,commentVO);		
+	public String noticecomment(CommentVO commentVO, Model model, HttpServletRequest request) {
+		return noticeBoardSVC.noticecomment(request, model, commentVO);
 	}
-	
+
 	@RequestMapping(value = "/noticewriteform")
-	public String noticewriteform(HttpServletRequest request, Model model) { 
-	String category = request.getParameter("category");
-	model.addAttribute("category", category);
-	return "board/notice/noticewrite";
-	}	
-	
+	public String noticewriteform(HttpServletRequest request, Model model) {
+		String category = request.getParameter("category");
+		model.addAttribute("category", category);
+		return "board/notice/noticewrite";
+	}
+
 	@RequestMapping(value = "/commentdelect")
 	@ResponseBody
-	public String commentdelect(Model model,HttpServletRequest request) {
-		
-	return noticeBoardSVC.commentdelect(model,request);
-	}	
+	public String commentdelect(Model model, HttpServletRequest request) {
 
-	@RequestMapping(value = "/updatecomment",method = RequestMethod.POST)
-	@ResponseBody
-	public String updatecomment(Model model,HttpServletRequest request) {
-		
-	return noticeBoardSVC.updatecomment(model,request);
-	}	
-	/*���� ���� �Խ��� ��*/
-		
-	/*Ŀ�´�Ƽ �Խ��� ����*/
-	@RequestMapping(value = "/commuity")
-	public String community(Model model,HttpServletRequest request) {			
-		return 	noticeBoardSVC.noticeList(model, request);
+		return noticeBoardSVC.commentdelect(model, request);
 	}
-	/*Ŀ�´�Ƽ �Խ��� ��*/
-	
-	/*���� �Խ��� ����*/
-	
+
+	@RequestMapping(value = "/updatecomment", method = RequestMethod.POST)
+	@ResponseBody
+	public String updatecomment(Model model, HttpServletRequest request) {
+
+		return noticeBoardSVC.updatecomment(model, request);
+	}
+	/* ���� ���� �Խ��� �� */
+
+	/* Ŀ�´�Ƽ �Խ��� ���� */
+	@RequestMapping(value = "/commuity")
+	public String community(Model model, HttpServletRequest request) {
+		return noticeBoardSVC.noticeList(model, request);
+	}
+	/* Ŀ�´�Ƽ �Խ��� �� */
+
+	/* ���� �Խ��� ���� */
+
 	@RequestMapping(value = "/review")
-	public String review(Model model,HttpServletRequest request) {		
+	public String review(Model model, HttpServletRequest request) {
 		return reviewboardSVC.reviewList(model, request);
 	}
-	
+
 	@RequestMapping(value = "/reviewwrite")
 	public String reViewWrite() {
-		return "board/review/reviewwrite";	
+		return "board/review/reviewwrite";
 	}
-	
-	@RequestMapping(value = "/reviewinsert",method = RequestMethod.POST)
-	public String reviewinsert(Model model,HttpServletRequest request, @RequestParam(required=false) MultipartFile upload) throws ParseException {
-		model.addAttribute("insert", reviewboardSVC.insert(model,request));
-		return "board/review/reviewwrite";	
+
+	@RequestMapping(value = "/reviewinsert", method = RequestMethod.POST)
+	public String reviewinsert(Model model, HttpServletRequest request,
+			@RequestParam(required = false) MultipartFile upload) throws ParseException {
+		model.addAttribute("insert", reviewboardSVC.insert(model, request));
+		return "board/review/reviewwrite";
 	}
-	
+
 	@RequestMapping(value = "/reviewRead")
-	public String reviewRead(Model model,HttpServletRequest request) {
-		
-		return reviewboardSVC.readBoard(request, model);	
+	public String reviewRead(Model model, HttpServletRequest request) {
+
+		return reviewboardSVC.readBoard(request, model);
 	}
-	
+
 	@RequestMapping(value = "/reviewmodify", method = RequestMethod.POST)
-	public String reviewmodify(HttpServletRequest request,Model model) throws ParseException {		
+	public String reviewmodify(HttpServletRequest request, Model model) throws ParseException {
 		model.addAttribute("modify", reviewboardSVC.modify(request));
-		return "board/notice/noticeModify";		
+		return "board/notice/noticeModify";
 	}
-	
-	/*���� �Խ��� ��*/
+
+	/* ���� �Խ��� �� */
 
 	@RequestMapping(value = "/event")
 	public String event() {
@@ -146,20 +143,21 @@ public class BoardController {
 	public String write() {
 		return "board/write";
 	}
-	
+
 	@RequestMapping(value = "/JSeditor")
 	public String JSeditor() {
 		return "board/JSeditor";
 	}
-	
+
 	@RequestMapping(value = "/fileupload")
 	public String fileupload() {
 		return "board/fileupload";
 	}
-	
+
 	@RequestMapping(value = "/ckeditorImageUpload")
-	public void ckeditorImageUpload(HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile upload) {
+	public void ckeditorImageUpload(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam MultipartFile upload) {
 		ReviewBoardSVC ReviewSVC = new ReviewBoardSVC();
-		ReviewSVC.imageUpload(request,response,upload);
+		ReviewSVC.imageUpload(request, response, upload);
 	}
 }

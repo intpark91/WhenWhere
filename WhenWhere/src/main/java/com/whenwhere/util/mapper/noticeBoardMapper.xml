@@ -54,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </update>
    
    <update id="hitBoard">
-      update board set b_hit = (select (b_hit+1) from board where b_no=#{no} and b.BOARDCODE=#{category}) where b_no = #{no} and b.BOARDCODE=#{category}
+      update board set b_hit = (select (b_hit+1) from board where b_no=#{no} and BOARDCODE=#{category}) where b_no = #{no} and BOARDCODE=#{category}
    </update>
    
    
