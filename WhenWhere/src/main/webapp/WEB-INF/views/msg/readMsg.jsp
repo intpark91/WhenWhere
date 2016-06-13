@@ -6,26 +6,23 @@
 		<div class="box-body no-padding">
 			<div class="mailbox-read-info">
 				<h3>
-					<b>제목 :</b> ${message.getTitle() }
+					<b>${message.getTitle() }</b>
 				</h3>
-				<h5>
-					<b>보낸이 :</b> ${message.getSender() } <span
+				<h4>
+					보낸이 : ${message.getSender() } <span
 						class="mailbox-read-time pull-right">${message.getWdate() }</span>
-				</h5>
+				</h4>
 			</div>
 			<div class="mailbox-read-message">${message.getContent() }</div>
 		</div>
 		<div class="box-footer">
 			<div class="pull-right">
-				<button id="moveToOutbox" type="button" class="btn btn-default">
-					<i class="fa fa-hand-o-right"></i> 보관함으로
-				</button>
 				<button id="reply" type="button" class="btn btn-default">
-					<i class="fa fa-reply"></i> 답장하기
+					<i class="fa fa-reply"></i> Reply
 				</button>
 			</div>
 			<button id="delete" type="button" class="btn btn-default">
-				<i class="fa fa-trash-o"></i> 삭제하기
+				<i class="fa fa-trash-o"></i> Delete
 			</button>
 		</div>
 	</div>

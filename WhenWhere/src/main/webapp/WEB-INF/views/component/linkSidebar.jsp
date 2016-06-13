@@ -28,7 +28,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="../board/notice">
+				<a href="../board/notice?category=1">
 					<i class="fa fa-bullhorn" aria-hidden="true"></i>
 					<span>Notice</span></a>
 			</li>
@@ -44,7 +44,7 @@
 				</a>
 				<ul class="treeview-menu">
 					<li>
-						<a href="../board/notice">
+						<a href="../board/commuity?category=2">
 							<i class="fa fa-book" aria-hidden="true"></i>Board
 						</a>
 					</li>
@@ -53,7 +53,7 @@
 							<i class="fa fa-comments" aria-hidden="true"></i>Chat</a>
 					</li>
 					<li>
-						<a href="../board/review">
+						<a href="../board/review?category=3">
 							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>Review
 						</a>
 					</li>

@@ -5,33 +5,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.whenwhere.main.service.SearchService;
-import com.whenwhere.util.WeatherService;
+
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
 
 @Controller
 @RequestMapping("/home")
 public class MainController {
 
 	@Autowired
-	private SearchService searchService;
-	@Autowired
-	private WeatherService weatherService;
+	private SearchService searchServive;
 	
 	@RequestMapping(value = "/main")
 	public String main(Model model) {
 		model.addAttribute("userid", null);
 		return "home/main";
-	}
-	
-	@RequestMapping(value="/weather")
-	@ResponseBody
-	public String getWeather(){
-		return weatherService.getWeatherInfo();
 	}
 	
 	@RequestMapping(value = "/joinForm")
@@ -48,24 +42,19 @@ public class MainController {
 	
 	@RequestMapping(value = "/searchForm")
 	public String searchForm(Model model) {
-		model.addAttribute("locationList", searchService.getAllLocationList());
-		model.addAttribute("locationSubList", searchService.getSubLocationList());
+		model.addAttribute("locationList", searchServive.getAllLocationList());
+		model.addAttribute("locationSubList", searchServive.getSubLocationList());
 		return "home/search";
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/search")
 	public String search(Model model, HttpServletRequest request) {
-		return searchService.getSearchList(request);
+		return searchServive.getSearchList(request);
 	}
 	
 	@RequestMapping(value = "/chat")
 	public String chat() {
 		return "chat/main";
-	}
-	
-	@RequestMapping(value = "/admin")
-	public String admin() {
-		return "admin/manage";
 	}
 }

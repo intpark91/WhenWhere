@@ -27,7 +27,7 @@
 				</a></li>
 			</ul>
 			<!-- /.control-sidebar-menu -->
-		<!-- 	<h3 class="control-sidebar-heading">Tasks Progress</h3>
+			<!--  <h3 class="control-sidebar-heading">Tasks Progress</h3>
         <ul class="control-sidebar-menu">
           <li>
             <a href="javascript::;">
@@ -55,13 +55,11 @@
 			<form method="post">
 				<h3 class="control-sidebar-heading">설정</h3>
 				<div class="form-group">
-					<label class="control-sidebar-subheading"> 배경 화면 정지 
-					<input
+					<label class="control-sidebar-subheading"> 배경 화면 정지 <input
 						type="checkbox" class="pull-right" checked>
 					</label>
 					<p>배경화면을 멈춥니다.</p>
 				</div>
-				<label for="cmn-toggle-1"></label>
 				<!-- /.form-group -->
 			</form>
 		</div>

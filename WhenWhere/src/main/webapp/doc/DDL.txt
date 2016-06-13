@@ -55,7 +55,7 @@ ALTER TABLE Member
 CREATE TABLE Board (
 	B_no        number         NOT NULL, -- 번호
 	BoardCode   varchar2(10)   NOT NULL, -- 게시판 코드
-	B_auth      varchar2(24)   NULL,     -- 별명
+	NickName    varchar2(24)   NULL,     -- 별명
 	B_title     varchar2(50)   NOT NULL, -- 제목
 	B_wdate     DATE           NOT NULL, -- 작성일
 	B_content   varchar2(4000) NOT NULL, -- 본문
@@ -219,7 +219,7 @@ ALTER TABLE BoardCategory
 -- 댓글
 CREATE TABLE BoardComment (
 	comm_no      number        NOT NULL, -- 댓글번호
-	comm_auth    varchar2(24)  NULL,     -- 작성자
+	NickName     varchar2(24)  NULL,     -- 작성자
 	B_no         number        NOT NULL, -- 번호
 	comm_content VARCHAR2(600) NULL,     -- 새 컬럼
 	BoardCode    varchar2(10)  NOT NULL, -- 게시판 코드
@@ -267,7 +267,7 @@ ALTER TABLE Board
 	ADD
 		CONSTRAINT FK_Member_TO_Board -- 회원 -> 게시판
 		FOREIGN KEY (
-			B_auth -- 별명
+			NickName -- 별명
 		)
 		REFERENCES Member ( -- 회원
 			NickName -- 별명
@@ -396,7 +396,7 @@ ALTER TABLE BoardComment
 	ADD
 		CONSTRAINT FK_Member_TO_BoardComment -- 회원 -> 댓글
 		FOREIGN KEY (
-			comm_auth -- 작성자
+			NickName -- 작성자
 		)
 		REFERENCES Member ( -- 회원
 			NickName -- 별명

@@ -37,6 +37,54 @@ video {
 	margin-top: 10px;
 	margin-bottom: 150px;
 }
+
+.weatherDiv li{
+	display: inline;
+	font-size: -webkit-xxx-large;
+}
+
+.weatherSpan{
+	position: relative;
+	top: 52px;
+    left: -1px;
+}
+
+=======
+	<jsp:include page="../component/core_head.jsp" />
+	<title>WhenWhereTest</title>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
+	<link rel="stylesheet" href="../css/jquery-ui-slider-pips.css" />
+	<link rel="stylesheet" href="../css/slider.css" />
+	<style type="text/css">
+	body {
+		margin : 0;
+		padding : 0;
+		background : url (img.jpg) center center fixed no-repeat;
+	}
+	video {
+		position: fixed;
+		top: 0;
+		left: 0;
+		min-width: 100%;
+		min-height: 100%;
+		width: auto;
+		height: auto;
+		z-index: -1;
+	}
+	
+	.titleDiv{
+		text-align: center;
+		font-size: 70px;
+		margin-top:60px;
+	}
+	
+	.sliderDiv{
+		margin-top:10px;
+		margin-bottom:150px;
+	}
+	
+	
+>>>>>>> branch 'main_js' of https://github.com/intpark91/WhenWhere.git
 </style>
 </head>
 <!--
@@ -86,10 +134,10 @@ desired effect
 						<div id="flat-slider"></div>
 					</div>
 				</div>
-
+				
 			</section>
 			<!-- /.content -->
-			<section class="weather"></section>
+			
 		</div>
 
 		<!-- /.content-wrapper -->
@@ -101,31 +149,5 @@ desired effect
 	<jsp:include page="../component/core_js.jsp" />
 	<script src="../js/jquery-ui-slider-pips.js"></script>
 	<script src="../js/slider.js"></script>
-	<script type="text/javascript">
-		$(function() {
-			$.ajax({
-				url : "../home/weather",
-				type : "post",
-				dataType : "json",
-				success : function(data) {
-					console.log(data);
-					console.log(data.rss);
-					console.log(data.rss.channel);
-					console.log(data.rss.channel.item);
-					console.log(data.rss.channel.item.description);
-					console.log(data.rss.channel.item.description.body);
-					var weather = {};
-					weather = data.rss.channel.item.description.body;
-					for(var i=0; i<weather.location.length;i++){
-						console.log("city : " + weather.location[i].city);
-						console.log("city : " + weather.location[i].data);
-					}
-				},
-				error : function(xhr, status, error) {
-					alert("error");
-				}
-			})
-		})
-	</script>
 </body>
 </html>

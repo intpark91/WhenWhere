@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getEventList" resultMap="eventResultMap" parameterType="java.util.HashMap">
-		select e.e_no, TO_CHAR(e.e_sdate, 'YYYY/MM/DD') e_sdate, TO_CHAR(e.e_edate, 'YYYY/MM/DD') e_edate, b.boardcode, b.b_title, b.b_wdate, b.b_recommend, b.b_no, l.loc_subject, l.loc_name, i.filename
+		select e.e_no, TO_CHAR(e.e_sdate, 'YYYY/MM/DD') e_sdate, TO_CHAR(e.e_edate, 'YYYY/MM/DD') e_edate, b.boardcode, b.b_title, b.b_wdate, b.b_recommend, l.loc_subject, l.loc_name, i.filename
 		from (select * 
 		      from event
 		      where 
@@ -27,11 +27,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where 
 		b.B_NO = i.NO and
 		e.E_NO = b.E_NO and
-		e.LOC_CODE = l.LOC_CODE
-		<if test="location != 'all'">
-		and l.LOC_NAME = #{location}
-		</if>
-		
+		e.LOC_CODE = l.LOC_CODE and
+		l.LOC_NAME = #{location}
 	</select>
 	
 	<select id="getFoodList" resultMap="eventResultMap" parameterType="java.util.HashMap">
@@ -44,19 +41,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		        f_SDATE >= TO_DATE(#{sDate}, 'MM/DD/YYYY') and f_SDATE <![CDATA[<]]>= TO_DATE(#{eDate}, 'MM/DD/YYYY') and f_EDATE >= TO_DATE(#{eDate}, 'MM/DD/YYYY') or
 		        f_SDATE <![CDATA[<]]>= TO_DATE(#{sDate}, 'MM/DD/YYYY') and f_EDATE >= TO_DATE(#{eDate}, 'MM/DD/YYYY')) f, location l, image i
 		where 
-		f.LOC_CODE = l.LOC_CODE and
+		f.LOC_CODE = l.LOC_CODE and  
+		l.LOC_NAME = #{location} and
 		f.F_NAME = i.F_NAME and
 		f.LOC_CODE = i.LOC_CODE
-		<if test="location != 'all'">
-		and l.LOC_NAME = #{location}
-		</if>
 	</select>
 	
 	<resultMap id="eventResultMap" type="java.util.HashMap">
 	<!-- <result javaType="데이터타입" column="db컬럼명" property="맵에서 키값"/> -->
 		<result javaType="integer" column="e_no" property="eNo"/>
 		<result javaType="String" column="boardcode" property="bCode"/>
-		<result javaType="String" column="b_no" property="bNo"/>
         <result javaType="String" column="b_title" property="title"/>
         <result javaType="String" column="b_wdate" property="bDate"/>
         <result javaType="String" column="b_auth" property="bAuth"/>
