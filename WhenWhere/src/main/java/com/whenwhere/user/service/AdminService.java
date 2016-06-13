@@ -61,4 +61,22 @@ public class AdminService {
 		
 		return jobj.toString();
 	}
+
+	public String delUser(String nickname) {
+		
+		boolean ok = false;
+		JSONObject jobj = new JSONObject();
+		jobj.put("ok", true);
+		
+		AdminDAO dao = sqlSessionTemplate.getMapper(AdminDAO.class);
+		int rows = dao.delUser(nickname);
+
+		if (rows > 0) {
+			ok = true;
+		}
+		
+		jobj.put("ok", ok);
+		
+		return jobj.toString();
+	}
 }

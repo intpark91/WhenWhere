@@ -11,4 +11,5 @@ public interface AdminDAO {
 	public int getBoardList(String email);
 	public void getLocalProductList(MemberVO member);
 	public int changeUserAuth(@Param("auth") String auth,@Param("nickname") String nickname);
+	public int delUser(String nickname);
 }

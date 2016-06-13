@@ -12,13 +12,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update member set authority=#{auth} where nickname=#{nickname}
 	</update>
 	
-	<insert id="joinMember" parameterType="com.whenwhere.user.vo.MemberVO">
-		insert into member values(#{email}, #{nickname}, #{password}, #{phoneNumber}, 'member');
-	</insert>
+	<delete id="delUser">
+		DELETE FROM member where nickname = #{nickname}
+	</delete>
 	
-	<select id="login" parameterType="com.whenwhere.user.vo.MemberVO" resultType="com.whenwhere.user.vo.MemberVO">
+	<!-- <select id="login" parameterType="com.whenwhere.user.vo.MemberVO" resultType="com.whenwhere.user.vo.MemberVO">
 		select * from member where email = #{email} and password = #{password}
-	</select>
+	</select> -->
 	
 	<!-- <select id="totalCnt" parameterType="my.board.vo.Search" resultType="Integer">
 		select count(*) from MYBOARD

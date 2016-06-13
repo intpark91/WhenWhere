@@ -28,4 +28,10 @@ public class AdminController {
 	public String changeUserAuth(@RequestParam("val") String auth, @RequestParam("nickname") String nickname, HttpSession session) throws Exception {
 		return adminService.changeUserAuth(auth,nickname);
 	}
+	
+	@RequestMapping("/delUser")
+	@ResponseBody
+	public String delUser(@RequestParam("nickname") String nickname, HttpSession session) throws Exception {
+		return adminService.delUser(nickname);
+	}
 }
