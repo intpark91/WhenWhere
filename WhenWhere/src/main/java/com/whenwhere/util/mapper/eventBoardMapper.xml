@@ -30,12 +30,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       update event set e_sdate=#{sDate}, e_edate=#{eDate} where e_no=#{no}
    </update>
 
-	<select id="ReviewboardList" parameterType="map" resultType="com.whenwhere.board.vo.BoardVO">
-		select ROWNUM ,b_no as no, b_title as title, b_wdate as wdate, b_auth as auth, b_hit as hit, boardCode as category, boardname, b_content as content 
+	<select id="ReviewboardList" parameterType="map" resultMap="boardList">
+	        select ROWNUM ,b_no as no, b_title as title, b_wdate as wdate, b_auth as auth, b_hit as hit, boardCode as category, boardname, b_content as content ,e_sdate, e_edate 
                from (SELECT *
-               FROM (select ROWNUM as rnum, b.b_no, b.b_title, b.b_wdate, b.b_auth, b.b_hit, b.boardCode, c.boardname, b.b_content
-                        from board b , boardcategory c
-                        where b.boardcode = c.boardcode and b.boardcode=#{boardCode}
+               FROM (select ROWNUM as rnum, b.b_no, b.b_title, b.b_wdate, b.b_auth, b.b_hit, b.boardCode, c.boardname, b.b_content,e.E_EDATE,e.E_SDATE
+                        from board b , boardcategory c, event e
+                        where b.boardcode = c.boardcode and b.boardcode=3 and e.e_no = b.e_no
                         order by b_no desc
                     )  
               where rnum <![CDATA[ <= ]]> #{pageNum}*#{rowcnt} 
@@ -43,12 +43,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        	where rnum >= (#{pageNum}  -1)*(#{rowcnt}  + 1)    
    </select> 
    
-   <select id="imageList">
+   <resultMap id="boardList" type="com.whenwhere.board.vo.BoardVO">
+   	    <id property="no" column="b_no" />
+  		<result property="auth" column="b_auth"/>
+  		<result property="title" column="b_title"/>
+  		<result property="wdate" column="E_SDATE"/>
+  		<result property="wdate2" column="E_EDATE"/>
+  		<result property="hit" column="b_hit"/>
+  		<result property="category" column="boardCode"/>
+  		<result property="boardName" column="boardname"/>
+  		<result property="content" column="b_content"/>
+   </resultMap>
+   	
+
+<!--    <select id="imageList">
    		
-   </select>
+   </select> -->
    
-   <select id="dateList">
-   			
-   </select>
+
    
 </mapper>

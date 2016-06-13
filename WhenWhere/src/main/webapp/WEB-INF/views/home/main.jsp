@@ -3,6 +3,53 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="../component/core_head.jsp" />
+<title>WhenWhereTest</title>
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
+<link rel="stylesheet" href="../css/jquery-ui-slider-pips.css" />
+<link rel="stylesheet" href="../css/slider.css" />
+<style type="text/css">
+body {
+	margin: 0;
+	padding: 0;
+	background: url(../resources/img/bg_img.jpg) center center fixed no-repeat;
+}
+
+video {
+	position: fixed;
+	top: 0;
+	left: 0;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	z-index: -1;
+}
+
+.titleDiv {
+	text-align: center;
+	font-size: 70px;
+	margin-top: 60px;
+}
+
+.sliderDiv {
+	margin-top: 10px;
+	margin-bottom: 150px;
+}
+
+.weatherDiv li{
+	display: inline;
+	font-size: -webkit-xxx-large;
+}
+
+.weatherSpan{
+	position: relative;
+	top: 52px;
+    left: -1px;
+}
+
+
 	<jsp:include page="../component/core_head.jsp" />
 	<title>WhenWhereTest</title>
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
@@ -37,6 +84,7 @@
 	}
 	
 	
+
 </style>
 </head>
 <!--
@@ -89,6 +137,7 @@ desired effect
 				
 			</section>
 			<!-- /.content -->
+			
 		</div>
 
 		<!-- /.content-wrapper -->

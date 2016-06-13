@@ -9,7 +9,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,8 +26,11 @@ import com.whenwhere.board.vo.ImageVO;
 import com.whenwhere.user.vo.MemberVO;
 import com.whenwhere.util.PaginationVO;
 
+
+
+
 @Service
-public class ReviewBoardSVC implements BoardService {
+public class ReviewBoardSVC {
 	private static final int ROWCNT = 12;
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
@@ -59,7 +61,7 @@ public class ReviewBoardSVC implements BoardService {
             printWriter = response.getWriter();
             fileUrl = "http://localhost:8888/img/" + year+""+monthStr +time + fileName;
             request.getSession().setAttribute("fileUrl", fileUrl);
-         
+            request.getSession().setAttribute("fileUrl", fileUrl);
             printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("
                     + callback
                     + ",'"
@@ -195,9 +197,9 @@ public class ReviewBoardSVC implements BoardService {
 		if(sPageNum==null) sPageNum="1";
 		int pageNum = Integer.parseInt(sPageNum);			
 		String boardCode = request.getParameter("category");
-		System.out.println("boardCode" + boardCode);
+	
 		model.addAttribute("ReviewboardList", boardDAO.ReviewboardList(boardCode,ROWCNT,pageNum));
-		model.addAttribute("", boardDAO);
+		
 		final int linkSceen = 10; 
 		
 		PaginationVO paginationVO = new PaginationVO();

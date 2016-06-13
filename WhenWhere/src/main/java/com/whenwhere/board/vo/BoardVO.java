@@ -9,6 +9,7 @@ public class BoardVO {
 	private String category;
 	private String title;
 	private Date wdate;
+	private Date wdate2;
 	private String auth;
 	private String content;
 	private int hit;
@@ -18,6 +19,14 @@ public class BoardVO {
 
 	
 	
+	public Date getWdate2() {
+		return wdate2;
+	}
+
+	public void setWdate2(Date wdate2) {
+		this.wdate2 = wdate2;
+	}
+
 	public String getBoardName() {
 		return boardName;
 	}

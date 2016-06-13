@@ -19,11 +19,13 @@ import com.whenwhere.board.service.ReviewBoardSVC;
 import com.whenwhere.board.vo.BoardVO;
 import com.whenwhere.board.vo.CommentVO;
 
+
+
 @Controller
 @RequestMapping("/board")
 public class BoardController {
 	
-	/*���� ���� �Խ���*/
+
 	@Autowired
 	NoticeBoardSVC noticeBoardSVC;
 	@Autowired

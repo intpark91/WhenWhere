@@ -31,5 +31,6 @@ public interface BoardDAO {
 	public int dateModify(EventVO eventVO);
 	public int inserteventBoard();
 	public List<BoardVO> ReviewboardList(@Param("boardCode") String boardCode,@Param("rowcnt") int rowcnt,@Param("pageNum") int pageNum);
+	
 
 }
