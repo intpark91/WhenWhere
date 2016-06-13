@@ -86,6 +86,7 @@ public class SearchService {
 			for(int j=0; j<hotellist.size(); j++){
 				searchHotelList.add(hotellist.get(j));
 			}
+			
 			System.out.println(searchHotelList.size()+"::");
 
 		}
@@ -113,25 +114,22 @@ public class SearchService {
 
 			String url = "https://www.airbnb.co.kr/s/" + location + "?guests=4&checkin=" + sDate + "&checkout=" + eDate
 					+ "&ss_id=yaoo0pbg&ss_preload=false&source=bb&s_tag=xlxoS8bY";
+			
+			System.out.println(location+","+sDate+","+eDate);
 
-			// �ش� URL �������� �����´�.
 			Source source = new Source(new URL(url));
-			;
-
-			// �޼ҵ� ã�⸦ ���� ���ۺ��� ������ �±׵鸸 parse �Ѵ�
+			
 			source.fullSequentialParse();
-
-			// �ش� �����Ͱ� �ִ� �κ��� ã�� �κ�.
 
 			List<Element> divList = source.getAllElements(HTMLElementName.DIV);
 			List<Element> divHotelList = new ArrayList<>();
-			// List<Element> imgRoomList = new ArrayList<>();
 
 			Element listDiv = null;
 			for (int i = 0; i < divList.size(); i++) {
 				if (divList.get(i).getAttributeValue("class") != null) {
 					if (divList.get(i).getAttributeValue("class").equals("listings-container")) {
 						listDiv = divList.get(i);
+						System.out.println("222들와?");
 						break;
 					}
 				}
@@ -140,16 +138,12 @@ public class SearchService {
 			divList = listDiv.getAllElements(HTMLElementName.DIV);
 			for(int i=0; i<divList.size(); i++){
 				if(divList.get(i).getAttributeValue("class")!=null){
-					if(divList.get(i).getAttributeValue("class").equals("listing-card-wrapper col-sm-12 col-md-6 space-2")){
-						//���� DIV List
+					if(divList.get(i).getAttributeValue("class").equals("listing-card-wrapper col-sm-12 row-space-2 col-md-6")){
 						divHotelList.add(divList.get(i));
-						//���� IMG List
-						//imgRoomList.add(divList.get(i).getAllElements(HTMLElementName.IMG).get(0));
 
 						for(int j=0; j<divList.get(i).getAllElements(HTMLElementName.SPAN).size(); j++){
 							if(divList.get(i).getAllElements(HTMLElementName.SPAN).get(j).getAttributeValue("class")!=null){
 								if(divList.get(i).getAllElements(HTMLElementName.SPAN).get(j).getAttributeValue("class").equals("rich-toggle wish_list_button wishlist-button")){
-
 									Map<String, Object> map = new HashMap<>();
 									map.put("img", divList.get(i).getAllElements(HTMLElementName.IMG).get(0).toString());
 									map.put("hotelName", divList.get(i).getAllElements(HTMLElementName.H3).get(0).getAttributeValue("title"));
@@ -174,6 +168,7 @@ public class SearchService {
 			e.printStackTrace();
 		}
 
+		System.out.println(list.size());
 		return list;
 	}
 
