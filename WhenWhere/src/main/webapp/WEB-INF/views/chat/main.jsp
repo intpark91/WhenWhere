@@ -46,8 +46,6 @@
 		var ws ='';
 		
 		$(function(){
-<<<<<<< HEAD
-			
 			/* ************방 리스트에 대한 정보를 불러옴******************/
 			setInterval(function() {
 				$.ajax({
@@ -183,7 +181,7 @@
 		});
 		
 		function websocket(){
-			ws = new WebSocket("ws://192.168.8.31:8088/WhenWhere/wsclient");
+			ws = new WebSocket("ws://192.168.8.13:8088/WhenWhere/wsclient");
 		}
 		
 		function sendMsg(){
