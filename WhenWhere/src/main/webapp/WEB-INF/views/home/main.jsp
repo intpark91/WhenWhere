@@ -43,10 +43,9 @@ video {
 	font-size: -webkit-xxx-large;
 }
 
-.weatherSpan{
+.weatherImg{
 	position: relative;
-	top: 57px;
-    left: -1px;
+	top: 75px;
 }
 
 </style>
