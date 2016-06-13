@@ -76,11 +76,6 @@
 									</div>
 								</div>
 
-								<div class="item row">
-									<h3
-										class="detail3 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">하이</h3>
-								</div>
-
 							</div>
 
 							<!-- Left and right controls -->

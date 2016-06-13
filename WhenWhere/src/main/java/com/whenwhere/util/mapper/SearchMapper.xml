@@ -28,13 +28,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		b.B_NO = i.NO and
 		e.E_NO = b.E_NO and
 		e.LOC_CODE = l.LOC_CODE
-		<if test="location != 'all'">
-		and l.LOC_NAME = #{location}
-		</if>
-		<if test="locSub != 'all'">
-		and l.LOC_SUBJECT = #{locSub}
-		</if>
-		
+		<choose>
+			<when test="location != 'all'">
+				and l.LOC_NAME = #{location}
+			</when>
+			<when test="locSub != 'all'">
+				and l.LOC_SUBJECT = #{locSub}
+			</when>
+			<otherwise>and 1=1</otherwise>
+		</choose>
 	</select>
 	
 	<select id="getFoodList" resultMap="eventResultMap" parameterType="java.util.HashMap">

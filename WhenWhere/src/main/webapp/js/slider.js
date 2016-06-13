@@ -4,7 +4,7 @@ $("#flat-slider").slider({
 	max : min+dateLength,
 	min : min,
 	range : true,
-	values : [ min, min+4 ],
+	values : [ min, min+2 ],
 	//orientation : applyToDevice
 }).slider("pips", {
 	first : "pip",
