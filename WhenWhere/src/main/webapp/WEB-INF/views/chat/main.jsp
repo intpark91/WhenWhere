@@ -46,143 +46,48 @@
 		var ws ='';
 		
 		$(function(){
-			
-			/* ************방 리스트에 대한 정보를 불러옴******************/
-			setInterval(function() {
-				$.ajax({
-			           type:"POST",
-			           url:"../chat/getChatRoomList",
-			           dataType:"JSON",
-			           data : { "page": 1 },
-			           success : function(data) {
-			        	   console.log(data);
-			        	   if(data[0].ok){
-			        		   $('.mainTr').html('');
-			        		   for(var i=1; i<data.length;i++){
-			        			   var json_param = new Array();
-			        			   json_param.push(data[i].num);
-			        			   json_param.push(data[i].title);
-			        			   json_param.push(data[i].wTime);
-			        			   json_param.push(data[i].type);
-			        			   json_param.push(data[i].userNum);
-			        			   json_param.push(data[i].userNumInRoom);
-			        			   json_param.push(data[i].pwdCheck);
-			        			   
-			        			   room = new roomObj(json_param);
-			        			   str_Txt = room.room_format();
-			        			   
-			        			   $('.mainTr').append(str_Txt);
-			        			   console.log(str_Txt);
-			        		   }
-			        	   }
-			           },
-			           complete : function(data) {
-			        	   
-			           },
-			           error : function(xhr, status, error) {
-			                 console.log(error);
-			           }
-			    	});
-			}, 3000);
-			
-			/* ************비밀번호 체크시 비밀번호 입력할 수 있게******************/
 			$( "input[name=pwdChk]" ).on("click", function() {
 				var chk = $(this).is(":checked");//.attr('checked');
 		        if(chk) $("input[name=pwd]").attr("disabled",false);
 		        else  $("input[name=pwd]").attr("disabled",true);
 			});
 			
-			/* ************방접속위해 tr 클릭시 동작******************/
-			$(".mainTr").on("click",'#clickTr',function(){
-				click_num = $(this).children(':nth-child(1)').text();
-				click_numInRoom = $(this).find('#numInRoom').text();
-				click_userNum = $(this).find('#userNum').text();
-				
-				if(click_numInRoom >= click_userNum){
-					alert("방에 접속할 수 없습니다.인원초과!")
-					return;
-				}
-				
-				if($('#roomTitle').hasClass('nowRoom')){
-					if(!confirm("현재 채팅중인 방이 존재합니다. 종료후 재입장 하시겠습니까?"))
-						return;
-				}
-				
-				if($(this).hasClass('requiredPwd')){
-					var prompt_pwd = prompt('방입장시 비밀번호가 필요합니다.');
-					if(prompt_pwd == ''){
-						alert('비밀번호를 입력해주세요');
-						return;
-					}
-					
-					pwdObject = new Object();
-					pwdObject.pwd = prompt_pwd;
-					pwdObject.roomNum = click_num;
-					
-					console.log(pwdObject);
-					
-					$.ajax({
-				           type:"POST",
-				           url:"../chat/checkRoomPwd",
-				           dataType:"JSON",
-				           data : pwdObject,
-				           success : function(data) {
-				        	   if(data.ok){
-				        		    alert('비밀번호가 일치합니다.');
-				        		    
-		        			   		$('.chat_main_body').html('');
-				       				$('#roomTitle').removeClass('nowRoom');
-				       				$('#roomTitle').text('아직 채팅방이 개설되지 않았습니다.');
-				        	   }else{
-				        		   alert('비밀번호가 일치하지 않습니다');
-				        		   return;
-				        	   }
-				           },
-				           complete : function(data) {
-				           },
-				           error : function(xhr, status, error) {
-				                 console.log(error + "return : " + xhr.responseText);
-				           }
-				    	});
-				}
-				
-				$.ajax({
-			           type:"POST",
-			           url:"../chat/enterRoom",
-			           dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
-			           data : { "roomNum": click_num },
-			           success : function(data) {
-			        	   console.log(data);
-			        	  
-			        	   if(data.ok){
-			        		   $('input[name=title]').val('');
-			        	   	   $('#roomMakeDiv').addClass('collapsed-box');
-			        	   	   /* $('#roomMakeDiv .box-body').css('display','none'); */
-			        		   $('#roomListDiv').addClass('collapsed-box');
-			        		   $('#chattingRoom').removeClass('collapsed-box');
-			        		 
-			        		   title=data.title;
-			        		   user=data.name;
-			        		   
-			        		   $('#roomTitle').text('방제목:');
-			        		   $('.room-title').text(title);
-			        		   
-			        		   websocket(); //websocket연결
-			        		   sendMsg(); //msg 출력
-			        	   }
-			           },
-			           complete : function(data) {
-			        	   
-			           },
-			           error : function(xhr, status, error) {
-			                 console.log(error);
-			           }
-			    });
-			});
+			$.ajax({
+	           type:"POST",
+	           url:"../chat/getChatRoomList",
+	           dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+	           data : { "page": 1 },
+	           success : function(data) {
+	        	   console.log(data);
+	        	   if(data[0].ok){
+	        		   for(var i=1; i<data.length;i++){
+	        			   var json_param = new Array();
+	        			   json_param.push(data[i].num);
+	        			   json_param.push(data[i].title);
+	        			   json_param.push(data[i].wTime);
+	        			   json_param.push(data[i].type);
+	        			   json_param.push(data[i].userNum);
+	        			   json_param.push(data[i].userNumInRoom);
+	        			   json_param.push(data[i].pwdCheck);
+	        			   
+	        			   room = new roomObj(json_param);
+	        			   str_Txt = room.room_format();
+	        			   
+	        			   $('.mainTr').append(str_Txt);
+	        		   }
+	        	   }
+	           },
+	           complete : function(data) {
+	        	   
+	           },
+	           error : function(xhr, status, error) {
+	                 console.log(error);
+	           }
+	    	});
 		});
 		
 		function websocket(){
-			ws = new WebSocket("ws://192.168.8.31:8088/WhenWhere/wsclient");
+			ws = new WebSocket("ws://localhost:8088/WhenWhere/wsclient");
 		}
 		
 		function sendMsg(){
@@ -190,7 +95,6 @@
 		    	msgObj = new MsgObj(0, 'admin', 'Info: 채팅방이 개설되었습니다.', 0);
 		    	strTxt=msgObj.msg_format();
 		        $('.chat_main_body').append(strTxt);
-		        $('#roomTitle').addClass('nowRoom');
 		        
 		        $('input[name=chatInput]').on('keydown', function(evt){
 		            if(evt.keyCode==13){
@@ -217,11 +121,8 @@
 		    }
 		    ws.onclose = function (event) {
 		    	/* strTxt=msg_format('admin','Info: 채팅방이 종료되었습니다..'); */
-		    	msgObj = new MsgObj(0, 'admin', 'Info: 채팅방이 종료되었습니다.', 0);
-		    	strTxt=msgObj.msg_format();
-		        $('.chat_main_body').append(strTxt);
+		    	$('.chat_main_body').append(event.data);
 		    }
-		    
 		}
 		
 		function makeRoom() {
@@ -314,12 +215,12 @@
 		    	             break;
 		    	}
 		    	
-		    	str += '<tr id="clickTr" class="' + checkClass + '">' 
+		    	str += '<tr class="' + checkClass + '">' 
 		    		+  '<td style="width: 10px;">' + this.num + '</td>'
 		    		+  '<td style="width: 80px;" class="hidden-xs">'+ this.time +'</td>'
 					+  '<th style="max-width: 20px;">'+ className + typeName +'</span></th>'
 					+  '<td style="width: 80px;" class="hidden-xs">'
-					+  '<span id="numInRoom">' + this.userNumInRoom + '</span>' + '/' +  '<span id="userNum">' + this.userNum + '</span>' 
+					+  '<span>' + this.userNumInRoom + '<span>' + '/' +  '<span>' + this.userNum + '<span>' 
 					+' </td>'
 					+  '<td>'+ this.title + '</td></tr>';
 				return str;
@@ -346,7 +247,7 @@
 				 <div class="col-sx-12">
 		          <div id="roomMakeDiv"class="box box-default collapsed-box">
 		            <div class="box-header with-border">
-		              <h3 class="box-title ">채팅 방 만들기</h3>
+		              <h3 class="box-title">채팅 방 만들기</h3>
 		
 		              <div class="box-tools pull-right">
 		                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
@@ -412,7 +313,7 @@
 				<div class="col-sx-12 " >
 					<div id="roomListDiv" class="box box-default">
 						<div class="box-header">
-							<h3 class="box-title"><span class="hidden-xs">채팅 방 리스트</span></h3>
+							<h3 class="box-title">채팅 방 리스트</h3>
 
 							<div class="box-tools">
 								<div class="input-group input-group-sm " style="width: 150px;">

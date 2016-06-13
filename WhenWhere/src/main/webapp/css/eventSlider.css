@@ -1,13 +1,13 @@
 
 img { max-width:100%; }
 
-/* a {
+a {
     -webkit-transition: all 150ms ease;
 	-moz-transition: all 150ms ease;
 	-ms-transition: all 150ms ease;
 	-o-transition: all 150ms ease;
 	transition: all 150ms ease; 
-	} */
+	}
     
 a:hover {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; /* IE 8 */
@@ -20,14 +20,13 @@ a:hover {
 
 body{
     border-top:0;
-    /* background:#c4e17f; */
-    /* background-image:-webkit-linear-gradient(left,#c4e17f,#c4e17f 12.5%,#f7fdca 12.5%,#f7fdca 25%,#fecf71 25%,#fecf71 37.5%,#f0776c 37.5%,#f0776c 50%,#db9dbe 50%,#db9dbe 62.5%,#c49cde 62.5%,#c49cde 75%,#669ae1 75%,#669ae1 87.5%,#62c2e4 87.5%,#62c2e4);background-image:-moz-linear-gradient(left,#c4e17f,#c4e17f 12.5%,#f7fdca 12.5%,#f7fdca 25%,#fecf71 25%,#fecf71 37.5%,#f0776c 37.5%,#f0776c 50%,#db9dbe 50%,#db9dbe 62.5%,#c49cde 62.5%,#c49cde 75%,#669ae1 75%,#669ae1 87.5%,#62c2e4 87.5%,#62c2e4);background-image:-o-linear-gradient(left,#c4e17f,#c4e17f 12.5%,#f7fdca 12.5%,#f7fdca 25%,#fecf71 25%,#fecf71 37.5%,#f0776c 37.5%,#f0776c 50%,#db9dbe 50%,#db9dbe 62.5%,#c49cde 62.5%,#c49cde 75%,#669ae1 75%,#669ae1 87.5%,#62c2e4 87.5%,#62c2e4);background-image:linear-gradient(to right,#c4e17f,#c4e17f 12.5%,#f7fdca 12.5%,#f7fdca 25%,#fecf71 25%,#fecf71 37.5%,#f0776c 37.5%,#f0776c 50%,#db9dbe 50%,#db9dbe 62.5%,#c49cde 62.5%,#c49cde 75%,#669ae1 75%,#669ae1 87.5%,#62c2e4 87.5%,#62c2e4) */
+    background:#c4e17f;
+    background-image:-webkit-linear-gradient(left,#c4e17f,#c4e17f 12.5%,#f7fdca 12.5%,#f7fdca 25%,#fecf71 25%,#fecf71 37.5%,#f0776c 37.5%,#f0776c 50%,#db9dbe 50%,#db9dbe 62.5%,#c49cde 62.5%,#c49cde 75%,#669ae1 75%,#669ae1 87.5%,#62c2e4 87.5%,#62c2e4);background-image:-moz-linear-gradient(left,#c4e17f,#c4e17f 12.5%,#f7fdca 12.5%,#f7fdca 25%,#fecf71 25%,#fecf71 37.5%,#f0776c 37.5%,#f0776c 50%,#db9dbe 50%,#db9dbe 62.5%,#c49cde 62.5%,#c49cde 75%,#669ae1 75%,#669ae1 87.5%,#62c2e4 87.5%,#62c2e4);background-image:-o-linear-gradient(left,#c4e17f,#c4e17f 12.5%,#f7fdca 12.5%,#f7fdca 25%,#fecf71 25%,#fecf71 37.5%,#f0776c 37.5%,#f0776c 50%,#db9dbe 50%,#db9dbe 62.5%,#c49cde 62.5%,#c49cde 75%,#669ae1 75%,#669ae1 87.5%,#62c2e4 87.5%,#62c2e4);background-image:linear-gradient(to right,#c4e17f,#c4e17f 12.5%,#f7fdca 12.5%,#f7fdca 25%,#fecf71 25%,#fecf71 37.5%,#f0776c 37.5%,#f0776c 50%,#db9dbe 50%,#db9dbe 62.5%,#c49cde 62.5%,#c49cde 75%,#669ae1 75%,#669ae1 87.5%,#62c2e4 87.5%,#62c2e4)
 }
 
 .thumbnails li> .fff .caption { 
     background:#fff !important; 
-    padding:10px;
-    text-align: center;
+    padding:10px
 }
 
 /* Page Header */
@@ -54,8 +53,6 @@ ul.thumbnails {
 /* Thumbnail Box */
 .caption h4 {
     color: #444;
-    font-size: small;
-    white-space: normal;
 }
 
 .caption p {  
@@ -70,18 +67,18 @@ ul.thumbnails {
     width: 100%;
 }
 .carousel-control{
-    /* background: white; */
-    /* border: 0px; */
-    /* border-radius: 0px; */
-    /* display: inline-block; */
-    /* font-size: 34px; */
-    /* font-weight: 200; */
-    /* line-height: 18px; */
-    /* opacity: 0.5; */
-    /* padding: 4px 10px 0px; */
+    background: #666;
+    border: 0px;
+    border-radius: 0px;
+    display: inline-block;
+    font-size: 34px;
+    font-weight: 200;
+    line-height: 18px;
+    opacity: 0.5;
+    padding: 4px 10px 0px;
     position: static;
-    /* height: 30px; */
-    /* width: 15px; */
+    height: 30px;
+    width: 15px;
 }
 
 
@@ -154,37 +151,18 @@ ul {
 }
 
 .searchBtn{
-	/* background-color: rgba(255, 255, 255, 0); */
+	background-color: rgba(255, 255, 255, 0);
     border: 3px solid white;
-    /* color: white; */
+    color: white;
     font-size: 40px;
-    width:100%;
 }
 
 .thumbnail{
 	margin-bottom: 5px;
 }
 
-.spanSub{
-	display: inline; 
-    padding: .2em .6em .3em;
-    font-weight: 700;
-    color: black;
-    white-space: nowrap;
-    vertical-align: baseline;
-}
-
-.spanVal{
-	float: right;
-	display: inline; */
-    padding: .2em .6em .3em;
-    font-weight: 700;
-    color: black;
-    white-space: nowrap;
-    vertical-align: baseline;
-}
-
-.justifyDiv{
-	text-align: justify;
+.slideLabel{
+	border-top: 5px solid white;
+	padding-top: 5px;
 }
 
