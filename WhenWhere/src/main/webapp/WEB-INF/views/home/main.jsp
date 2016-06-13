@@ -26,7 +26,7 @@ video {
 	width: auto;
 	height: auto;
 	z-index: -1;
-}
+} 
 
 .titleDiv {
 	text-align: center;
