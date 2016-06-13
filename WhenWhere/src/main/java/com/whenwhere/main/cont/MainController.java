@@ -26,6 +26,7 @@ public class MainController {
 	@RequestMapping(value = "/main")
 	public String main(Model model) {
 		model.addAttribute("userid", null);
+		model.addAttribute("locationSubList", searchService.getSubLocationList());
 		return "home/main";
 	}
 
@@ -56,8 +57,14 @@ public class MainController {
 
 	@ResponseBody
 	@RequestMapping(value = "/search")
-	public String search(Model model, HttpServletRequest request) {
+	public String search(HttpServletRequest request) {
 		return searchService.getSearchList(request);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getEventList")
+	public String getEventList(HttpServletRequest request) {
+		return searchService.getEventList(request);
 	}
 
 	@RequestMapping(value = "/chat")

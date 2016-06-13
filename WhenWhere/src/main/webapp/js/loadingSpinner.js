@@ -43,6 +43,58 @@ Github: https://github.com/vadimsva/waitMe
             case 'bounce':
               effectElemCount = 3;
               break;
+            case 'rotateplane':
+              effectElemCount = 1;
+              break;
+            case 'stretch':
+              effectElemCount = 5;
+              break;
+            case 'orbit':
+              effectElemCount = 2;
+              break;
+            case 'roundBounce':
+              effectElemCount = 12;
+              break;
+            case 'win8':
+              effectElemCount = 5;
+              createSubElem = true;
+              break;
+            case 'win8_linear':
+              effectElemCount = 5;
+              createSubElem = true;
+              break;
+            case 'ios':
+              effectElemCount = 12;
+              break;
+            case 'facebook':
+              effectElemCount = 3;
+              break;
+            case 'rotation':
+              effectElemCount = 1;
+              specificAttr = 'border-color';
+              break;
+            case 'timer':
+              effectElemCount = 2;
+							if ($.isArray(_options.color)) {
+								var color = _options.color[0];
+							} else {
+								var color = _options.color;
+							}
+              addStyle = 'border-color:' + color;
+              break;
+            case 'pulse':
+              effectElemCount = 1;
+              specificAttr = 'border-color';
+              break;
+            case 'progressBar':
+              effectElemCount = 1;
+              break;
+            case 'bouncePulse':
+              effectElemCount = 3;
+              break;
+            case 'img':
+              effectElemCount = 1;
+              break;
           }
 
           if (addStyle !== '') {

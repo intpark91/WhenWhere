@@ -1,31 +1,27 @@
 /*! jQuery-ui-Slider-Pips - v1.11.3 - 2016-03-15
  * Copyright (c) 2016 Simon Goellner <simey.me@gmail.com>; Licensed MIT */
-
-var weathers = ['S','S','S'];
+var weathers, locName,
+dayLeft,dayRight,yearLeft,monthLeft,
+yearRight, monthRight, sDate, eDate;
 
 $(function() {
-	var locName = '영서'
+	dayLeft = $('.ui-slider-pip-selected-1').children('.ui-slider-label').text(),
+	dayRight = $('.ui-slider-pip-selected-2').children('.ui-slider-label').text(),
+	locName = $('#locSel option:selected').text();
 	
-	$.ajax({
-		dataType:"json",
-		type:"post",
-		url:"../home/weather",
-		data:{locName:locName},
-		success:function(data){
-			
-			for(var i=0; i<data.wf.length; i++){
-				weathers.push(data.wf[i]);
-			}
-			
-			$('.weatherSpan').each(function(k, v) {
-				$(this).html($('<img src="../resources/img/weather/' + weathers[k] + '.png" width="30" height="30">'));
-			})
-			
-		},
-		error:function(){
-			alert('error');
-		}
+	run_waitWeather('.weatherSpan');
+	run_wait('#myCarousel1');
+	getWeather(locName);
+	getEventList();
+	
+	$('#locSel').on('change', function() {
+		locName = $('#locSel option:selected').text();
+		run_waitWeather('.weatherSpan');
+		run_wait('#myCarousel1');
+		getWeather(locName);
+		getEventList();
 	});
+
 	
 });
 
@@ -289,10 +285,10 @@ $(function() {
 				
 				
 				var year = new Date().getYear();
-				var month2 = new Date().getMonth() + 1;
-				var max = (new Date(year, month2, 0)).getDate();
+				var month = new Date().getMonth() + 1;
+				var max = (new Date(year, month, 0)).getDate();
 				var todayDate = new Date().getDate();
-				var nextMonth = month2 + 1;
+				var nextMonth = month + 1;
 				
 				var labelValue = options.formatLabel(label);
 				var delValue = labelValue;
@@ -308,7 +304,7 @@ $(function() {
 					+ labelValue + "\">" + delValue
 					+ "</span>"
 					+ "<span class=\"ui-month-label\">"
-					+ month2 +'월' + "</span>" 
+					+ month +'월' + "</span>" 
 					+ "<span class='weatherSpan'></span>"
 					+ "</span>";
 				}
@@ -333,6 +329,8 @@ $(function() {
 						+ "<span class='weatherSpan'></span>"
 						+ "</span>";
 				}
+				
+				
 			}
 
 			// create our first pip
@@ -410,8 +408,11 @@ $(function() {
 			
 			//슬라이더 이동시 이벤트----------------------------------------------------------
 			slider.element.on("slidechange.selectPip",function(){
-				alert(year);
-				$(this).slider("values")
+				
+				dayLeft = $(this).slider("values")[0],
+				dayRight = $(this).slider("values")[1];
+				
+				getEventList();
 			});
 			
 			
@@ -582,3 +583,144 @@ $(function() {
 	};
 	$.extend(true, $.ui.slider.prototype, extensionMethods);
 })(jQuery);
+
+function run_wait(location){
+	$(location).waitMe({
+		effect: 'bounce',
+		text: '검색 중...',
+		bg: 'rgba(255,255,255,0.3)',
+		color: 'white',
+		maxSize: '100px',
+		onClose: function() {}
+	});
+}
+
+function run_waitWeather(location){
+	$(location).waitMe({
+		effect: 'ios',
+		text: '',
+		bg: 'rgba(255,255,255,0.3)',
+		color: 'white',
+		maxSize: '',
+		onClose: function() {}
+	});
+}
+
+function getWeather(locName) {
+	$.ajax({
+		dataType:"json",
+		type:"post",
+		url:"../home/weather",
+		data:{locName:locName},
+		success:function(data){
+			weathers = ['CH','S','S'];
+			
+			for(var i=0; i<data.wf.length; i++){
+				weathers.push(data.wf[i]);
+			}
+			
+			$('.weatherSpan').each(function(k, v) {
+				$(this).html($('<img src="../resources/img/weather/' + weathers[k] + '.png" width="30" height="30">'));
+			});
+			
+		},
+		error:function(){
+			alert('error');
+		}
+	});
+}
+
+function getEventList(){
+	yearLeft = new Date().getFullYear(),
+	monthLeft = new Date().getMonth() + 1,
+	yearRight, monthRight, sDate, eDate;
+	
+	sDate = monthLeft+"/"+dayLeft+"/"+yearLeft;
+	
+	if(dayLeft > dayRight){
+		monthRight = monthLeft + 1;
+	}else{
+		monthRight = monthLeft;
+	}
+	if(monthLeft > monthRight){
+		yearRight = yearLeft + 1;
+	}else{
+		yearRight = yearLeft;
+	}
+	
+	eDate = monthRight+"/"+dayRight+"/"+yearRight;
+	
+	
+	
+	// --- 행사 정보 가져오기==========================
+	
+	$.ajax({
+		dataType:"json",
+		type:"post",
+		url:"../home/getEventList",
+		data:{sDate:sDate, eDate:eDate, location:locName},
+		success:function(data){
+			var carousel1 = $('#myCarousel1');
+
+			carousel1.empty();
+
+			carousel1.append($('<h1 class="slideLabel"><span class="label">※ 행사지</span></h1>'));
+			carousel1.append($('<div/>').attr('class','carousel-inner'));
+
+			var carouselDiv = carousel1.children('.carousel-inner');
+
+			for(var j=0; j<data.searchEventList.length; j++){
+
+				var itemDiv = carouselDiv.children('.item:last-child'),
+				thumbnailsUl = itemDiv.children('.thumbnails'),
+				colLi = $('<li/>').attr('class','col-sm-3'),
+				fDiv = $('<div/>').attr('class','fff'),
+				thumbnailDiv = $('<div/>').attr('class','thumbnail'),
+				img = $('<img/>').attr('src','../resources/img/'+data.searchEventList[j].imgName+'.jpg').attr('width','200px'),
+				imgA = $('<a href="#" class="searchImgA" data-toggle="modal" data-target="#basicModal"></a>'),
+				captionDiv = $('<div/>').attr('class','caption'),
+				nav = $('<nav/>'),
+				navUl = $('<ul/>').attr('class','control-box pager'),
+				title = $('<h4>'+"["+data.searchEventList[j].locName+"] "+data.searchEventList[j].title+'</h4>').attr('class','label'),
+				content = $('<p>'+data.searchEventList[j].eSDate+'~'+data.searchEventList[j].eEDate+'</p>');
+
+				if(j % 4 == 0){
+					if(j == 0){ 
+						itemDiv = $('<div/>').attr('class','item active');
+					}else{
+						itemDiv = $('<div/>').attr('class','item');
+					}
+					thumbnailsUl = $('<ul/>').attr('class','thumbnails');
+					itemDiv.append(thumbnailsUl);
+					carouselDiv.append(itemDiv);
+				}
+
+				captionDiv.append(title);
+				captionDiv.append(content);
+				captionDiv.append($('<input type="hidden" value="#?bNo='+data.searchEventList[j].bNo+'">'));
+				imgA.append(img);
+				thumbnailDiv.append(imgA);
+				fDiv.append(thumbnailDiv);
+				fDiv.append(captionDiv);
+				colLi.append(fDiv);
+				thumbnailsUl.append(colLi);
+
+				if(j == data.searchEventList.length-1){
+					navUl.append($('<li><a data-slide="prev" href="#myCarousel1"><i class="glyphicon glyphicon-chevron-left"></i></a></li>'));
+					navUl.append($('<li><a data-slide="next" href="#myCarousel1"><i class="glyphicon glyphicon-chevron-right"></i></a></li>'));
+					nav.append(navUl);
+					carousel1.append(nav);
+				}
+
+			}
+		},
+		error:function(){
+
+		}
+	});
+
+	
+}
+
+
+

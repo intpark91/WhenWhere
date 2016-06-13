@@ -91,6 +91,34 @@ public class SearchService {
 		jsonObject.put("searchHotelList", searchHotelList);
 		return jsonObject.toJSONString();
 	}
+	
+	public String getEventList(HttpServletRequest request){
+		SearchDAO dao = sqlSessionTemplate.getMapper(SearchDAO.class);
+
+		String sDate = request.getParameter("sDate");
+		String eDate = request.getParameter("eDate");
+		String location = request.getParameter("location");
+
+		List<Map<String, Object>> searchEventList = new ArrayList<Map<String, Object>>();
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("sDate", sDate);
+		map.put("eDate", eDate);
+		map.put("location", "all");
+		map.put("locSub", location);
+
+		List<Map<String, Object>> eventlist = dao.getEventList(map);
+
+		for (int j = 0; j < eventlist.size(); j++) {
+			searchEventList.add(eventlist.get(j));
+			System.out.println(searchEventList.size() + "::" + eventlist.get(j).get("title") + ","
+					+ eventlist.get(j).get("eSDate"));
+		}
+
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("searchEventList", searchEventList);
+		return jsonObject.toJSONString();
+	}
 
 	public List<Map<String, Object>> hotelCrawler(String sDate, String eDate, String location) {
 		List<Map<String, Object>> list = new ArrayList<>();
