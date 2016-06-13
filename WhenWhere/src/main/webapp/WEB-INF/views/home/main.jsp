@@ -38,14 +38,18 @@ video {
 	margin-bottom: 150px;
 }
 
-.weatherDiv li{
-	display: inline;
-	font-size: -webkit-xxx-large;
-}
-
 .weatherSpan{
 	position: relative;
 	top: 67px;
+}
+
+.locSelect{
+    position: relative;
+    float: right;
+    bottom: 89px;
+}
+.locSel{
+	height: 25px;
 }
 
 </style>
@@ -95,15 +99,17 @@ desired effect
 				<div class="">
 					<div class="col-sm-offset-3 col-sm-6 col-sx-12 sliderDiv">
 						<div id="flat-slider"></div>
+
+						<div class="locSelect">
+							<select class="locSel" id="locSel">
+								<option>서울</option>
+								<option>경기</option>
+								<option>3</option>
+								<option>4</option>
+							</select>
+						</div>
 					</div>
-					<div class="locSelect">
-						<select class="" id="locSel">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-						</select>
-					</div>
+					
 				</div>
 
 			</section>
