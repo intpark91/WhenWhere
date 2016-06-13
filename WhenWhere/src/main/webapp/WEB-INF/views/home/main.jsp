@@ -96,30 +96,22 @@ desired effect
 					<div class="col-sm-offset-3 col-sm-6 col-sx-12 sliderDiv">
 						<div id="flat-slider"></div>
 					</div>
+					<div class="locSelect">
+						<select class="" id="locSel">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+						</select>
+					</div>
 				</div>
 
 			</section>
 			<!-- /.content -->
+
+
 			
-			<!-- weather  -->
-			<!-- <div class="weather row center no-padding">
-				<div class="col-sm-offset-3 col-sm-6 col-sx-12 weatherDiv">
-					<ul class="no-padding">
-						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30" ></li>
-						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
-						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
-						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
-						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
-						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
-						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
-						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
-						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
-						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
-						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
-					</ul>
-				</div>
-			</div> -->
-			
+
 		</div>
 
 		<!-- /.content-wrapper -->

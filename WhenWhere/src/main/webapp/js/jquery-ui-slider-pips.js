@@ -18,7 +18,7 @@ $(function() {
 			}
 			
 			$('.weatherSpan').each(function(k, v) {
-				$(this).html($('<img src="../resources/img/' + weathers[k] + '.png" width="30" height="30">'));
+				$(this).html($('<img src="../resources/img/weather/' + weathers[k] + '.png" width="30" height="30">'));
 			})
 			
 		},
@@ -407,9 +407,16 @@ $(function() {
 								}
 							});
 			
+			
+			//슬라이더 이동시 이벤트----------------------------------------------------------
 			slider.element.on("slidechange.selectPip",function(){
-				alert($(this).slider("values"));
+				alert(year);
+				$(this).slider("values")
 			});
+			
+			
+			
+			
 		},
 		// floats
 		float : function(settings) {
