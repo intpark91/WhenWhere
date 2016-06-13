@@ -59,12 +59,11 @@
 /* the text label postion & size */
 /* it overflows so no need for width to be accurate */
 .ui-slider-pips .ui-slider-label {
-      position: absolute;
+	position: absolute;
     top: 25px;
     left: 50%;
     margin-left: -1em;
     width: 2em;
-    font-size: 15px;
 }
 
 /* make it easy to see when we hover a label */
@@ -99,11 +98,11 @@
 }
 
 .ui-slider-vertical.ui-slider-pips .ui-slider-label {
-  top: 50%;
-  left: 0.5em;
-  margin-left: 0;
-  margin-top: -0.5em;
-  width: 2em;
+	top: 57%;
+    left: 25px;
+    margin-left: 0;
+    margin-top: -0.5em;
+    width: 2em;
 }
 
 /* FLOATING HORIZTONAL TOOLTIPS */
@@ -311,6 +310,7 @@
 .ui-slider-pips [class*=ui-slider-pip-selected] {
   font-weight: bold;
   color: #FF7A00;
+  font-size: x-large;
 }
 
 .ui-slider-pips .ui-slider-pip-inrange {

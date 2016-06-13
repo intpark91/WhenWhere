@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whenwhere.main.dao.SearchDAO">
+
+	<select id="getLocationList" resultType="String">
+		select LOC_NAME from location where LOC_SUBJECT=#{sub_loc}
+	</select>
+	
+	<select id="getSubLocationList" resultType="String">
+		select loc_subject
+		from(select LOC_SUBJECT, MIN(LOC_CODE) as firstLoc 
+			 from location 
+			 group by LOC_SUBJECT order by firstLoc)
+	</select>
+	
+	<select id="getEventList" resultMap="eventResultMap" parameterType="java.util.HashMap">
+		select e.e_no, TO_CHAR(e.e_sdate, 'YYYY/MM/DD') e_sdate, TO_CHAR(e.e_edate, 'YYYY/MM/DD') e_edate, b.boardcode, b.b_title, b.b_wdate, b.b_recommend, b.b_no, l.loc_subject, l.loc_name, i.filename
+		from (select * 
+		      from event
+		      where 
+		        E_SDATE >= TO_DATE(#{sDate}, 'MM/DD/YYYY') and E_EDATE <![CDATA[<]]>= TO_DATE(#{eDate}, 'MM/DD/YYYY') or
+		        E_SDATE <![CDATA[<]]>= TO_DATE(#{sDate}, 'MM/DD/YYYY') and E_EDATE >= TO_DATE(#{sDate}, 'MM/DD/YYYY') and E_EDATE <![CDATA[<]]>= TO_DATE(#{eDate}, 'MM/DD/YYYY') or
+		        E_SDATE >= TO_DATE(#{sDate}, 'MM/DD/YYYY') and E_SDATE <![CDATA[<]]>= TO_DATE(#{eDate}, 'MM/DD/YYYY') and E_EDATE >= TO_DATE(#{eDate}, 'MM/DD/YYYY') or
+		        E_SDATE <![CDATA[<]]>= TO_DATE(#{sDate}, 'MM/DD/YYYY') and E_EDATE >= TO_DATE(#{eDate}, 'MM/DD/YYYY')) e, board b, location l, image i
+		where 
+		b.B_NO = i.NO and
+		e.E_NO = b.E_NO and
+		e.LOC_CODE = l.LOC_CODE
+		<if test="location != 'all'">
+		and l.LOC_NAME = #{location}
+		</if>
+		
+	</select>
+	
+	<select id="getFoodList" resultMap="eventResultMap" parameterType="java.util.HashMap">
+		select f.f_name, f.loc_code, TO_CHAR(f.f_sdate, 'YYYY/MM/DD') f_sdate, TO_CHAR(f.f_edate, 'YYYY/MM/DD') f_edate, l.loc_subject, l.loc_name, i.filename
+		from (select * 
+		      from RegionalFood
+		      where 
+		        f_SDATE >= TO_DATE(#{sDate}, 'MM/DD/YYYY') and f_EDATE <![CDATA[<]]>= TO_DATE(#{eDate}, 'MM/DD/YYYY') or
+		        f_SDATE <![CDATA[<]]>= TO_DATE(#{sDate}, 'MM/DD/YYYY') and f_EDATE >= TO_DATE(#{sDate}, 'MM/DD/YYYY') and f_EDATE <![CDATA[<]]>= TO_DATE(#{eDate}, 'MM/DD/YYYY') or
+		        f_SDATE >= TO_DATE(#{sDate}, 'MM/DD/YYYY') and f_SDATE <![CDATA[<]]>= TO_DATE(#{eDate}, 'MM/DD/YYYY') and f_EDATE >= TO_DATE(#{eDate}, 'MM/DD/YYYY') or
+		        f_SDATE <![CDATA[<]]>= TO_DATE(#{sDate}, 'MM/DD/YYYY') and f_EDATE >= TO_DATE(#{eDate}, 'MM/DD/YYYY')) f, location l, image i
+		where 
+		f.LOC_CODE = l.LOC_CODE and
+		f.F_NAME = i.F_NAME and
+		f.LOC_CODE = i.LOC_CODE
+		<if test="location != 'all'">
+		and l.LOC_NAME = #{location}
+		</if>
+	</select>
+	
+	<resultMap id="eventResultMap" type="java.util.HashMap">
+	<!-- <result javaType="데이터타입" column="db컬럼명" property="맵에서 키값"/> -->
+		<result javaType="integer" column="e_no" property="eNo"/>
+		<result javaType="String" column="boardcode" property="bCode"/>
+		<result javaType="String" column="b_no" property="bNo"/>
+        <result javaType="String" column="b_title" property="title"/>
+        <result javaType="String" column="b_wdate" property="bDate"/>
+        <result javaType="String" column="b_auth" property="bAuth"/>
+        <result javaType="integer" column="b_recommend" property="bRecommend"/>
+        <result javaType="String" column="e_sdate" property="eSDate"/>
+        <result javaType="String" column="e_edate" property="eEDate"/>
+        <result javaType="String" column="loc_subject" property="locSubName"/>
+        <result javaType="String" column="loc_name" property="locName"/>
+        <result javaType="String" column="filename" property="imgName"/>
+        <result javaType="String" column="f_name" property="foodName"/>
+        <result javaType="String" column="f_sdate" property="fSDate"/>
+        <result javaType="String" column="f_edate" property="fEDate"/>
+	</resultMap> 
+	
+</mapper>
