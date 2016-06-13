@@ -1,6 +1,34 @@
 /*! jQuery-ui-Slider-Pips - v1.11.3 - 2016-03-15
  * Copyright (c) 2016 Simon Goellner <simey.me@gmail.com>; Licensed MIT */
 
+var weathers = ['S','S','S'];
+
+$(function() {
+	var locName = '영서'
+	
+	$.ajax({
+		dataType:"json",
+		type:"post",
+		url:"../home/weather",
+		data:{locName:locName},
+		success:function(data){
+			
+			for(var i=0; i<data.wf.length; i++){
+				weathers.push(data.wf[i]);
+			}
+			
+			$('.weatherSpan').each(function(k, v) {
+				$(this).html($('<img src="../resources/img/' + weathers[k] + '.png" width="30" height="30">'));
+			})
+			
+		},
+		error:function(){
+			alert('error');
+		}
+	});
+	
+});
+
 (function($) {
 	"use strict";
 	var extensionMethods = {
@@ -280,7 +308,9 @@
 					+ labelValue + "\">" + delValue
 					+ "</span>"
 					+ "<span class=\"ui-month-label\">"
-					+ month2 +'월' + "</span>" + "</span>";
+					+ month2 +'월' + "</span>" 
+					+ "<span class='weatherSpan'></span>"
+					+ "</span>";
 				}
 					
 				else if(delValue == 1){
@@ -299,7 +329,9 @@
 						+ "<span class=\"ui-slider-line\"></span>"
 						+ "<span class=\"ui-slider-label\" data-value=\""
 						+ labelValue + "\">" + delValue
-						+ "</span>" + "</span>";
+						+ "</span>" 
+						+ "<span class='weatherSpan'></span>"
+						+ "</span>";
 				}
 			}
 
