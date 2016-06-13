@@ -43,9 +43,10 @@ video {
 	font-size: -webkit-xxx-large;
 }
 
-.weatherImg{
+.weatherSpan{
 	position: relative;
-	top: 75px;
+	top: 52px;
+    left: -1px;
 }
 
 </style>
@@ -101,24 +102,7 @@ desired effect
 			</section>
 			<!-- /.content -->
 			
-			<!-- weather  -->
-			<!-- <div class="weather row center no-padding">
-				<div class="col-sm-offset-3 col-sm-6 col-sx-12 weatherDiv">
-					<ul class="no-padding">
-						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30" ></li>
-						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
-						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
-						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
-						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
-						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
-						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
-						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
-						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
-						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
-						<li><img class="img-responsive" alt="" src="../resources/img/sunny.png" width="30" height="30"></li>
-					</ul>
-				</div>
-			</div> -->
+
 			
 		</div>
 
