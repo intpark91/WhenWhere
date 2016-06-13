@@ -90,8 +90,41 @@
 			}
 			$("ul.pagination").html(str);
 			$("li.${type}").attr("class", "active");
+			
+			$("button#readChecked").on("click", readChecked);
+						
+			$("button#moveToOutbox").on("click", function(){
+			});
+			
+			$("button#deletFromBox").on("click", function(){
+			});
 		})
-
+		
+		function readChecked(){
+			var jobj = {};
+			jobj.no = new Array();
+			$(".msgCheckBox").each(function(){
+				if($(this).is(":checked")){
+					jobj.no.push($(this).val())
+				}
+			});
+			
+			$.ajax({
+				url : "../user/readChecked",
+				type : "post",
+				data : jobj,
+				dataType : "json",
+				success : function(result){
+					if(result.ok){
+						location.href="../user/msgbox?type=inbox&page=1";
+					}
+				},
+				error : function(){
+					alert("error");
+				}
+			});
+		}
+		
 		$(function() {
 			$("#reply").on("click",	function() {
 				location.href = "../user/msgbox?type=write&receiver=${message.getSender()}";
