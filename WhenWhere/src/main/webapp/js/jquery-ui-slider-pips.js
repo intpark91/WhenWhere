@@ -18,7 +18,7 @@ $(function() {
 			}
 			
 			$('.weatherSpan').each(function(k, v) {
-				$(this).html($('<img src="../resources/img/' + weathers[k] + '.png" width="30" height="30">'));
+				$(this).html($('<img src="../resources/img/weather/' + weathers[k] + '.png" width="30" height="30">'));
 			})
 			
 		},
