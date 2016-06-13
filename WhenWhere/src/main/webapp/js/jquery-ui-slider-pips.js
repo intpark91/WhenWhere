@@ -567,7 +567,7 @@ $(function() {
 
 				options.event = "slidechange slide";
 
-			}
+			} 
 
 			// when slider changes, update handle tip label.
 			slider.element.off(".sliderFloat").on(
