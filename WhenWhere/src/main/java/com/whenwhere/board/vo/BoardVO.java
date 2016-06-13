@@ -5,6 +5,7 @@ import java.util.List;
 
 public class BoardVO {
 	private int no;
+	private String boardName;
 	private String category;
 	private String title;
 	private Date wdate;
@@ -14,6 +15,16 @@ public class BoardVO {
 	private int recommend;
 	private int eventNo;
 	private List<CommentVO> comments;
+
+	
+	
+	public String getBoardName() {
+		return boardName;
+	}
+
+	public void setBoardName(String boardName) {
+		this.boardName = boardName;
+	}
 
 	public int getNo() {
 		return no;

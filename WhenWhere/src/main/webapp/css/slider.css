@@ -145,16 +145,16 @@
 	background-color: #67c3ec;
 }
 
-/* �썡 label �깭洹� 肄붾뱶異붽� */
+/* 월 label 태그 코드추가 */
 .ui-month-label {
-   	position: absolute;
-    top: -78px;
+   	position: relative;
+    top: 48px;
     /* left: 50%; */
     /* margin-left: -3em; */
-    width: 38px;
-    font-size: x-large;
+    /* width: 14px; */
+    /* font-size: 16px; */
     /* background: white; */
     /* padding: 0px; */
     color: #FFFFFF;
-    /* font-size: 16px; */
+    font-size: 16px;
 }

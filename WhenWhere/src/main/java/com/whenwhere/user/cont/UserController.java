@@ -98,13 +98,13 @@ public class UserController {
 			@RequestParam(required = false) String receiver,
 			@RequestParam(required = false, defaultValue = "-1") int page,
 			@RequestParam(required = false, defaultValue = "0") int num) {
-		switch (type) {
-		case "inbox": 
-		case "sent":  
-		case "outbox": msgService.getMsgList(model, session, page, type); break;
-		case "sentread": 
-		case "read": msgService.getMsg(model, num, type); break;
-		case "write": model.addAttribute("receiver", receiver); break;
+
+		if (receiver != null) {
+			model.addAttribute("receiver", receiver);
+		} else if (num != 0) {
+			msgService.getMsg(model, num);
+		} else if (page >= 0) {
+			msgService.getMsgList(model, session, page);
 		}
 		model.addAttribute("type", type);
 		return "msg/msgbox";
@@ -120,11 +120,5 @@ public class UserController {
 	@ResponseBody
 	public String deleteMsg(@RequestParam int num) {
 		return msgService.deleteMsg(num);
-	}
-	
-	@RequestMapping("/moveToOutbox")
-	@ResponseBody
-	public String moveToOutbox(@RequestParam int num, @RequestParam String type) {
-		return msgService.updateMsgStatus(num, type);
 	}
 }
