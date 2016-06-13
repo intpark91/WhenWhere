@@ -95,8 +95,6 @@ $(function() {
 					}
 				},
 				range : function(values) {
-					alert(values);
-						
 					this.resetClasses();
 					for (i = 0; i < values.length; i++) {
 						$pips.filter(
@@ -375,8 +373,7 @@ $(function() {
 			// was clicked.
 			slider.element
 					.off("mousedown.slider")
-					.on(
-							"mousedown.selectPip",
+					.on("mousedown.selectPip",
 							function(e) {
 								var $target = $(e.target), closest = getClosestHandle($target
 										.data("value")), $handle = $handles
@@ -386,13 +383,10 @@ $(function() {
 									labelClick($target, e);
 									slider.element.one("mouseup.selectPip",
 											function() {
-												$handle.removeClass(
-														"ui-state-active")
-														.focus();
+												$handle.removeClass("ui-state-active").focus();
 											});
 								} else {
-									var originalMousedown = slider.element
-											.data("mousedown-original");
+									var originalMousedown = slider.element.data("mousedown-original");
 									originalMousedown(e);
 								}
 							});
@@ -412,6 +406,10 @@ $(function() {
 									selectPip.single(value);
 								}
 							});
+			
+			slider.element.on("slidechange.selectPip",function(){
+				alert($(this).slider("values"));
+			});
 		},
 		// floats
 		float : function(settings) {
