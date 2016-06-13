@@ -27,7 +27,7 @@ public class WeatherService {
 	private static final String LIGHT = "L";
 	
 	public String getWeatherInfo(String locName) {
-		String locNameRegex = ".*["+locName.charAt(0)+"].*["+locName.charAt(1)+"].*";
+		String locNameRegex = ".*["+locName.charAt(0)+"].{0,1}["+locName.charAt(1)+"].*";
 		String urlStr = "http://www.kma.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=108";
 		String buffer = "";
 		try {
@@ -80,19 +80,26 @@ public class WeatherService {
 	
 	private String changeWftoWfcode(String wf){
 		String code="";
-		switch (wf) {
-		case "맑음": code = SUNNY; break;
-		case "구름조금": code = CLOUD+LIGHT; break;
-		case "구름많음": code = CLOUD+HEAVY; break;
-		case "구름많고 비": code = CLOUD+HEAVY+RAIN; break;
-		case "구름많고 비/눈":
-		case "구름많고 눈/비": code = CLOUD+HEAVY+RAIN+SNOW; break;
-		case "구름많고 눈": code = CLOUD+HEAVY+SNOW; break;
-		case "흐림": code = DARK; break;
-		case "흐리고 비": code = DARK+RAIN; break;
-		case "흐리고 비/눈":
-		case "흐리고 눈/비": code = DARK+RAIN+SNOW; break;
-		case "흐리고 눈": code = DARK+SNOW; break;
+		if(wf.matches(".*[맑].*")){
+			code += SUNNY;
+		}
+		if(wf.matches(".*[구름].*")){
+			code += CLOUD;
+		}
+		if(wf.matches(".*[흐].*")){
+			code += DARK;
+		}
+		if(wf.matches(".*[조금].*")){
+			code += LIGHT;
+		}
+		if(wf.matches(".*[많].*")){
+			code += HEAVY;
+		}
+		if(wf.matches(".*[비].*")){
+			code += RAIN;
+		}
+		if(wf.matches(".*[눈].*")){
+			code += SNOW;
 		}
 		return code;
 	}
