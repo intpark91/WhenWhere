@@ -5,27 +5,29 @@
 		<div class="box-body no-padding">
 			<div class="mailbox-controls">
 				<!-- Check all button -->
+				<c:if test="${type == 'inbox' or type == 'outbox' }">
 				<div class="btn-group">
 					<button type="button"
 						class="btn btn-default btn-sm checkbox-toggle"
 						data-toggle="tooltip" data-container="body" title="전체선택">
 						<i class="fa fa-square-o"></i>
 					</button>
-					<button type="button" class="btn btn-default btn-sm"
+					<button id="readChecked" type="button" class="btn btn-default btn-sm"
 						data-toggle="tooltip" data-container="body" title="선택된 쪽지 읽음">
 						<span class="glyphicon glyphicon-eye-open"></span>
 					</button>
-					<c:if test="${type == 'list' }">
-						<button type="button" class="btn btn-default btn-sm"
+					<c:if test="${type == 'inbox' }">
+						<button id="moveToOutbox" type="button" class="btn btn-default btn-sm"
 							data-toggle="tooltip" data-container="body" title="보관함으로 보내기">
 							<i class="fa fa-archive"></i>
 						</button>
 					</c:if>
-					<button type="button" class="btn btn-default btn-sm"
+					<button id="deletFromBox" type="button" class="btn btn-default btn-sm"
 						data-toggle="tooltip" data-container="body" title="삭제">
 						<i class="fa fa-trash-o"></i>
 					</button>
 				</div>
+				</c:if>
 				<!-- /.btn-group -->
 				<div class="box-tools pull-right">
 					<div class="has-feedback">
@@ -57,7 +59,7 @@
 						</tr>
 						<c:forEach var="msg" items="${msgList}">
 							<tr>
-								<td class="msg_checkbox"><input type="checkbox"></td>
+								<td class="msg_checkbox"><input class="msgCheckBox" type="checkbox" value="${msg.no }"></td>
 								<c:choose>
 									<c:when test="${type == 'sent' }">
 										<td class="msg_sender">${msg.receiver}</td>

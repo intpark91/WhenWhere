@@ -126,6 +126,12 @@ public class UserController {
 	@ResponseBody
 	public String moveToOutbox(@RequestParam int num, @RequestParam String type) {
 		return msgService.updateMsgStatus(num, type);
-
+	}
+	
+	@RequestMapping("/readChecked")
+	@ResponseBody
+	public String readChecked(HttpServletRequest request) {
+		System.out.println(request.getParameter("jobj"));
+		return null;
 	}
 }
