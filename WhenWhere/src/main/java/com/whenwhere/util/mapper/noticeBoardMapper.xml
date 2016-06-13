@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whenwhere.board.dao.BoardDAO">
+   
+   <select id="noticeList" parameterType="map" resultType="com.whenwhere.board.vo.BoardVO">
+		select ROWNUM ,b_no as no, b_title as title, b_wdate as wdate, b_auth as auth, b_hit as hit, boardCode as category,boardname
+               from (SELECT *
+               FROM (select ROWNUM as rnum, b.b_no, b.b_title, b.b_wdate, b.b_auth, b.b_hit, b.boardCode, c.boardname
+                        from board b , boardcategory c
+                        where b.boardcode = c.boardcode and b.boardcode=#{boardCode}
+                        order by b_no desc
+                    )  
+              where rnum <![CDATA[ <= ]]> #{pageNum}*#{rowcnt} 
+            )
+       w where rnum >= (#{pageNum}  -1)*(#{rowcnt}  + 1)    
+   </select> 
+   
+   <select id="pageTotlaCount" resultType="Integer">
+      select count(*) from board where boardCode = #{boardCode}
+   </select>
+
+   <insert id="insertBoard" parameterType="com.whenwhere.board.vo.BoardVO" >
+      INSERT INTO board 
+     	<if test="category==1"> (B_no, BoardCode, B_title, B_wdate, b_auth , B_content, B_hit, B_recommend)
+        VALUES (SEQ_BOARD_NOTICE.nextval,#{category},#{title},sysdate,#{auth},#{content},0,0)</if> 
+        <if test="category==2"> (B_no, BoardCode, B_title, B_wdate, b_auth , B_content, B_hit, B_recommend)
+        VALUES (SEQ_BOARD_COMMUNITY.nextval,#{category},#{title},sysdate,#{auth},#{content},0,0)</if>     
+   </insert>
+   
+   <select id="readBoard" parameterType="com.whenwhere.board.vo.BoardVO" resultType="com.whenwhere.board.vo.BoardVO">
+        select b.b_no as no, b.b_title as title, b.b_wdate as wdate, b.b_auth as auth
+        	, b.b_content as content, b.b_hit as hit, b.b_recommend as recommend , b.BoardCode as category, c.boardname  
+        	from board b , BOARDCATEGORY c  
+      <where>
+         <if test="auth!=null">            
+            b.b_wdate=(select MAX(b_wdate)FROM board WHERE
+            b_auth=#{auth}) and b.boardcode = c.boardcode
+         </if>
+
+         <if test="no!=0">
+            b.b_NO=#{no} and b.BOARDCODE=#{category} and b.boardcode = c.boardcode
+         </if>
+      </where>      
+   </select>
+      
+   <delete id="deleteBoard" parameterType="com.whenwhere.board.vo.BoardVO">
+      delete from board where b_no = #{no}
+   </delete>
+   
+   <update id="modifyBoard" parameterType="com.whenwhere.board.vo.BoardVO">
+      update board set b_title=#{title}, b_content=#{content} where b_no=#{no}
+   </update>
+   
+   <update id="hitBoard">
+      update board set b_hit = (select (b_hit+1) from board where b_no=#{no} and b.BOARDCODE=#{category}) where b_no = #{no} and b.BOARDCODE=#{category}
+   </update>
+   
+   
+   <select id="noticeSearchList" parameterType="com.whenwhere.board.vo.BoardVO" resultType="com.whenwhere.board.vo.BoardVO">
+              select rownum, b_no as no, b_title as title, b_auth as auth, b_hit as hit , b_wdate as wdate ,page ,boardCode as category, boardname
+                  from(select * 
+                        from ((SELECT TRUNC((ROWNUM-1)/12+1) AS page,  b_no, b_title, b_auth, b_hit , b_wdate, boardcode, boardname
+                              FROM  (SELECT b.b_no, b.b_title, b.b_auth, b.b_content , b.b_wdate,b_hit, b.boardcode, c.boardname 
+                      FROM board b, boardcategory c 
+                      
+          <where>
+         <if test="title.equals('B_TITLE')">            
+            b_title like '%${content}%' and b.boardcode=c.boardcode order by b_no desc))))
+            where page=${no} and boardcode=#{category}
+         </if>    
+         
+         <if test="title.equals('B_CONTENT')">            
+            B_CONTENT like '%${content}%' and b.boardcode=c.boardcode order by b_no desc))))
+            where page=${no} and boardcode=#{category}
+         </if>   
+          </where> 
+   </select>
+   
+   
+   <select id="getSearchCnt" parameterType="com.whenwhere.board.vo.BoardVO" resultType="Integer">
+         SELECT count(*) count FROM board
+         <where>
+         <if test="title.equals('B_TITLE')">
+            b_title like '%${content}%' and boardCode = #{category}
+         </if>
+         
+         <if test="title.equals('B_CONTENT')">
+            b_content like '%${content}%' and boardCode = #{category}
+         </if>
+      </where>
+         
+    </select>
+   
+   <insert id="insertComment" parameterType="com.whenwhere.board.vo.CommentVO" >
+       insert into BoardComment (comm_no, comm_auth, B_no, COMM_CONTENT,boardcode) 
+       		values (SEQ_BOARD_COMM.nextval,#{auth},#{boardNo},#{content},#{boardCode})
+   </insert>
+   
+   <select id="commentList" parameterType="com.whenwhere.board.vo.BoardVO" resultType="com.whenwhere.board.vo.CommentVO">
+      	select b_no, comm_no as no, comm_auth as auth , COMM_CONTENT as content 
+  		  from BoardComment
+ 		 where b_no=#{no}
+   		   and boardcode=#{category}
+   </select>
+   
+    <delete id="commentdelect">
+      delete from boardcomment where comm_no = #{no}
+   </delete>
+   
+   <update id="updatecomment" parameterType="map">
+      update boardcomment set comm_content=#{comment} where comm_no=#{no}
+   </update>
+   
+</mapper>
