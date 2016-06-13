@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -118,7 +119,7 @@
 
 								<div class="this_month_event_view" style="display: block;">
 									<div class="bandi">
-										<h2>${boardList.title}</h2>
+										<h2>dxsadas</h2>
 				
 										<p>장소 : 전라북도 전주시 덕진구 덕진동 1가 1220</p>
 										<p>주최/주관 : 전주시/전주한지문화축제 조직위원회</p>
@@ -181,123 +182,22 @@
 
 						<div class="serchList">
 							
-
+							<c:forEach var="item" items="${ReviewboardList}" varStatus="status">	
 							<div class="photoWrap">
 								<a href="#">
-									<img src="../images/reviewimg/reviewDemo.JPG" alt="20160114004001393.JPG" class="photo_img">
+									<img src="../images/reviewimg/reviewDemo.JPG" alt="" class="photo_img">
 								</a>
 								<h3>
 									<a href="#">
-										<span class="jb_area">군산</span> 군산세계철새축제
+										<span class="jb_area">군산</span> ${item.title}
 									</a>
 								</h3>
 								<ul class="stay_infobox">
 									<li>기간: 2015.05.30~06.01</li> 
-									<li>대한민국을 대표하는 철새들의 휴식지 금강호 일원및 철새조망대에서 "군산세계철새축제"가 매년
-										11월에 개최됩니다. 국내 최대 규모의 철새 전문시설인 철새조망대는 ...ㅁㄴㅇㅁㄴㅁㄴㅇㄴㅁㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅇ </li>
+									<li> ${item.content}</li>
 								</ul>
 							</div>
-
-							<div class="photoWrap">
-								<a href="#">
-									<img src="../images/reviewimg/reviewDemo.JPG" alt="197518_image2_1.jpg" class="photo_img">
-								</a>
-								<h3>
-									<a href="#">
-										<span class="jb_area">부안</span> 곰소젓갈수산물축제
-									</a>
-								</h3>
-								<ul class="stay_infobox">
-									<li>기간: 2015.10.23~10.25</li>
-									<li>전북 부안지역 특산품인 곰소젓갈과 청정 수산물을 즐길 수 있는 &lt;곰소젓갈수산물축제&gt;가
-										10월 23일부터 25일까지 진서면 곰소젓갈마을 일원에서 열린다. 곰소젓갈은 서해...</li>
-								</ul>
-							</div>
-
-							<div class="photoWrap">
-								<a href="#">
-									<img src="../images/reviewimg/reviewDemo.JPG"
-									alt="대한아놀자2.jpg" class="photo_img">
-								</a>
-								<h3>
-									<a href="#">
-										<span class="jb_area">군산</span> 군산시간여행축제
-									</a>
-								</h3>
-								<ul class="stay_infobox">
-									<li>기간: 2016.09.30~10.02</li>
-									<li>즐거운 체험거리, 공연, 먹을거리가 가득한 군산의 대표축제로써 일제강점기 수탈의 역사 속 군산
-										사람들의 항거와 저항을 기억하고 현재 우리모습을 돌아보는 장으로 당시를 살았던 사람 ...</li>
-								</ul>
-							</div>
-
-							<div class="photoWrap">
-								<a href="#">
-									<img src="../images/reviewimg/reviewDemo.JPG" alt="1771479_image2_1.png" class="photo_img">
-								</a>
-								<h3>
-									<a href="#">
-										<span class="jb_area">남원</span> 지리산 바래봉 눈꽃축제
-									</a>
-								</h3>
-								<ul class="stay_infobox">
-									<li>기간: 2016.01.01~02.14</li>
-									<li><span style="font-size: 14px;">제5회 지리산남원 바래봉
-											눈꽃축제&gt;가 2016년 1월 1일(금)부터 2월 14일(일)까지 남원시 운봉읍 지리산 바래봉 ... </span></li>
-								</ul>
-							</div>
-							<div class="photoWrap">
-								<a
-									href="#">
-									<img src="../images/reviewimg/reviewDemo.JPG" alt="2028703_image2_1.jpg" class="photo_img">
-								</a>
-								<h3>
-									<a href="#">
-										<span class="jb_area">완주</span> 산속여우빛축제
-									</a>
-								</h3>
-								<ul class="stay_infobox">
-									<li>기간: 2015.08.22~12.31</li>
-									<li><span style="font-size: 14px;">"산속여우빛" 축제는 1만여
-											평의 허브가 있는 정원에 &lt;어린 왕자&gt; 이야기를 테마로, 정원 곳곳 ... </span></li>
-								</ul>
-							</div>
-							<div class="photoWrap">
-								<a href="#">
-									<img src="../images/reviewimg/reviewDemo.JPG"
-									alt="마이산배경꽃잔디.jpg" class="photo_img">
-								</a>
-								<h3>
-									<a href="#">
-										<span class="jb_area">진안</span> 원연장 꽃잔디 축제
-									</a>
-								</h3>
-								<ul class="stay_infobox">
-									<li>기간: 2016.04.29~05.01</li>
-									<li>진안 연장리의 독특한 꽃잔디를 테마로 체험형 축제로 승화시켜 연장리의 브랜드 가치를 극대화
-										시키며, 지역축제를 전국적인 자연 관광 축제로 발전시켜 나아감으로써 관광자원 개발과 대 ...</li>
-								</ul>
-							</div>
-
-							<div class="photoWrap">
-								<a
-									href="#">
-
-									<img src="../images/reviewimg/reviewDemo.JPG" alt="139408010009584.jpg" class="photo_img">
-								</a>
-								<h3>
-									<a href="#">
-										<span class="jb_area">고창</span> 고창 모양성제
-									</a>
-								</h3>
-								<ul class="stay_infobox">
-									<li>기간: 2016.10.05~10.09</li>
-									<li>고창읍성(모양성)은 조선 단종 원년(1453년) 외침을 막기 위해 당시 전라도와 제주도 21개현의
-										백성들이 힘을 합쳐 축성한 성곽으로 우리나라에서 가장 원형이 잘 보존된 자연석 ...</li>
-								</ul>
-							</div>
-
-							
+							</c:forEach>
 						</div>
 						<div id="count">
 							<ul>

@@ -1,5 +1,6 @@
 package com.whenwhere.board.dao;
 
+import java.sql.Date;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import com.whenwhere.board.vo.BoardVO;
@@ -22,11 +23,13 @@ public interface BoardDAO {
 	public List<CommentVO> commentList(BoardVO boardVO);
 	public int commentdelect(int no);
 	public int updatecomment(@Param("no") int no,@Param("comment") String comment);	
-	public int inserteventBoard(BoardVO boardVO);
+	public int inserteventBoard(@Param("title") String title, @Param("content") String content, @Param("auth") String auth, 
+			@Param("sDate") Date sdate, @Param("eDate") Date edate, @Param("category") String boardCode,@Param("loc") String loc);
 	public int insertImage(ImageVO imageVO);
-	public int insertDate(EventVO eventVO);
 	public EventVO eventDate(BoardVO boardVO);
 	public int eventmodifyBoard(BoardVO boardVO);
 	public int dateModify(EventVO eventVO);
-	
+	public int inserteventBoard();
+	public List<BoardVO> ReviewboardList(@Param("boardCode") String boardCode,@Param("rowcnt") int rowcnt,@Param("pageNum") int pageNum);
+
 }

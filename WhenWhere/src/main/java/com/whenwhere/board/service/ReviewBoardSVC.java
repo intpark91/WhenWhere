@@ -94,16 +94,10 @@ public class ReviewBoardSVC implements BoardService {
 		String eDate = request.getParameter("eDate");
 		String boardCode = request.getParameter("category");
 		String fileName = (String) request.getSession().getAttribute("fileUrl");
-		BoardVO boardVO = new BoardVO();
-		boardVO.setTitle(title);
-		boardVO.setContent(content);
-		boardVO.setAuth(auth);
-		boardVO.setCategory(boardCode);
+		String loc = request.getParameter("location");
 		ImageVO imageVO = new ImageVO();
 		imageVO.setBoardCode(boardCode);				
 		imageVO.setFileName(fileName);
-		
-		EventVO eventVO = new EventVO();
 		Date date = null;
 		Date date1 = null;
 		DateFormat formatter ; 		 
@@ -112,11 +106,8 @@ public class ReviewBoardSVC implements BoardService {
 		date1 = (Date)formatter.parse(eDate);
 		java.sql.Date sdate = new java.sql.Date(date.getTime());
 		java.sql.Date edate = new java.sql.Date(date1.getTime());		
-		eventVO.setLoc(request.getParameter("location"));
-		eventVO.seteDate(edate);
-		eventVO.setsDate(sdate);
 		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);
-		if (boardDAO.inserteventBoard(boardVO) == 1 && boardDAO.insertImage(imageVO)==1&&boardDAO.insertDate(eventVO)==1) {
+		if (boardDAO.inserteventBoard(title,content,auth,sdate,edate,boardCode,loc) > 0) {
 			return true;
 		} else {
 			return false;
@@ -199,13 +190,14 @@ public class ReviewBoardSVC implements BoardService {
 		}	
 	}
 	public String reviewList(Model model, HttpServletRequest request) {
-		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);
-		
+		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);		
 		String sPageNum = request.getParameter("page");
 		if(sPageNum==null) sPageNum="1";
 		int pageNum = Integer.parseInt(sPageNum);			
-		String boardCode = request.getParameter("category");		
-		model.addAttribute("boardList", boardDAO.noticeList(boardCode,ROWCNT,pageNum));	
+		String boardCode = request.getParameter("category");
+		System.out.println("boardCode" + boardCode);
+		model.addAttribute("ReviewboardList", boardDAO.ReviewboardList(boardCode,ROWCNT,pageNum));
+		model.addAttribute("", boardDAO);
 		final int linkSceen = 10; 
 		
 		PaginationVO paginationVO = new PaginationVO();

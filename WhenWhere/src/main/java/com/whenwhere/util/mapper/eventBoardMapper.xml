@@ -3,19 +3,21 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.whenwhere.board.dao.BoardDAO">
-	<insert id="inserteventBoard" parameterType="com.whenwhere.board.vo.BoardVO" >
-		INSERT INTO board (B_no, BoardCode, B_title, B_wdate, b_auth , B_content, B_hit, B_recommend,e_no)
-        VALUES (SEQ_BOARD_REVIEW.nextval,#{category},#{title},sysdate,#{auth},#{content},0,0,SEQ_EVENT.nextval)
+	
+	<insert id="inserteventBoard" parameterType="map">
+		  insert all
+  		  into event (E_no, e_sdate, e_edate, loc_code)
+  		  values (SEQ_EVENT.NEXTVAL, #{sDate}, #{eDate}, #{loc})
+  		  into board (B_NO, BOARDCODE, B_AUTH, B_TITLE, B_WDATE, B_CONTENT, B_HIT, B_RECOMMEND, E_NO)
+      	  values (SEQ_BOARD_EVENT.NEXTVAL, #{category}, #{auth}, #{title}, sysdate, #{content}, 0, 0, SEQ_EVENT.CURRVAL)
+		  select * from dual
 	</insert>
 	
 	<insert id="insertImage" parameterType="com.whenwhere.board.vo.ImageVO" >
 		insert into image (filename,boardcode) values (#{fileName},#{boardCode})
 	</insert>
-	
-	<insert id="insertDate" parameterType="com.whenwhere.board.vo.EventVO" >
-		insert into event (e_no,e_sdate,e_edate,loc_code) values (SEQ_EVENT.nextval,#{sDate},#{eDate},#{loc})
-	</insert>
-	
+
+
 	<select id="eventDate" parameterType="com.whenwhere.board.vo.BoardVO" resultType="com.whenwhere.board.vo.EventVO">       
            select e_no as no, e_sdate as sDate, e_edate as eDate from (select * from event order by e_no desc) where rownum = 1
 	</select>
@@ -28,4 +30,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       update event set e_sdate=#{sDate}, e_edate=#{eDate} where e_no=#{no}
    </update>
 
+	<select id="ReviewboardList" parameterType="map" resultType="com.whenwhere.board.vo.BoardVO">
+		select ROWNUM ,b_no as no, b_title as title, b_wdate as wdate, b_auth as auth, b_hit as hit, boardCode as category, boardname, b_content as content 
+               from (SELECT *
+               FROM (select ROWNUM as rnum, b.b_no, b.b_title, b.b_wdate, b.b_auth, b.b_hit, b.boardCode, c.boardname, b.b_content
+                        from board b , boardcategory c
+                        where b.boardcode = c.boardcode and b.boardcode=#{boardCode}
+                        order by b_no desc
+                    )  
+              where rnum <![CDATA[ <= ]]> #{pageNum}*#{rowcnt} 
+            )
+       	where rnum >= (#{pageNum}  -1)*(#{rowcnt}  + 1)    
+   </select> 
+   
+   <select id="imageList">
+   		
+   </select>
+   
+   <select id="dateList">
+   			
+   </select>
+   
 </mapper>
