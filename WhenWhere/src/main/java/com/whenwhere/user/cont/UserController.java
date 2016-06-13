@@ -98,7 +98,6 @@ public class UserController {
 			@RequestParam(required = false) String receiver,
 			@RequestParam(required = false, defaultValue = "-1") int page,
 			@RequestParam(required = false, defaultValue = "0") int num) {
-<<<<<<< HEAD
 		switch (type) {
 		case "inbox": 
 		case "sent":  
@@ -127,29 +126,6 @@ public class UserController {
 	@ResponseBody
 	public String moveToOutbox(@RequestParam int num, @RequestParam String type) {
 		return msgService.updateMsgStatus(num, type);
-=======
 
-		if (receiver != null) {
-			model.addAttribute("receiver", receiver);
-		} else if (num != 0) {
-			msgService.getMsg(model, num);
-		} else if (page >= 0) {
-			msgService.getMsgList(model, session, page);
-		}
-		model.addAttribute("type", type);
-		return "msg/msgbox";
-	}
-
-	@RequestMapping("/sendMsg")
-	@ResponseBody
-	public String sendMsg(MessageVO msg) {
-		return msgService.sendMsg(msg);
-	}
-
-	@RequestMapping("/deleteMsg")
-	@ResponseBody
-	public String deleteMsg(@RequestParam int num) {
-		return msgService.deleteMsg(num);
->>>>>>> refs/heads/main_js
 	}
 }

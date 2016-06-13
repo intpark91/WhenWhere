@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.whenwhere.board.dao.BoardDAO">
-<<<<<<< HEAD
+
 	<insert id="inserteventBoard" parameterType="com.whenwhere.board.vo.BoardVO" >
 		INSERT INTO board (B_no, BoardCode, B_title, B_wdate, b_auth , B_content, B_hit, B_recommend,e_no)
         VALUES (SEQ_BOARD_REVIEW.nextval,#{category},#{title},sysdate,#{auth},#{content},0,0,SEQ_EVENT.nextval)
@@ -29,7 +29,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       update event set e_sdate=#{sDate}, e_edate=#{eDate} where e_no=#{no}
    </update>
 
-=======
 	
 	<insert id="inserteventBoard" parameterType="map">
 		  insert all
@@ -81,13 +80,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		<result property="boardName" column="boardname"/>
   		<result property="content" column="b_content"/>
    </resultMap>
-   	
-
-<!--    <select id="imageList">
-   		
-   </select> -->
-   
-
-   
->>>>>>> refs/heads/main_js
 </mapper>

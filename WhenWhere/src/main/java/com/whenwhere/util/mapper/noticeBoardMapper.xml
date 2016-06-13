@@ -6,7 +6,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <select id="noticeList" parameterType="map" resultType="com.whenwhere.board.vo.BoardVO">
 		select ROWNUM ,b_no as no, b_title as title, b_wdate as wdate, b_auth as auth, b_hit as hit, boardCode as category,boardname
-<<<<<<< HEAD
                from (SELECT *
                FROM (select ROWNUM as rnum, b.b_no, b.b_title, b.b_wdate, b.b_auth, b.b_hit, b.boardCode, c.boardname
                         from board b , boardcategory c
@@ -56,57 +55,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <update id="hitBoard">
       update board set b_hit = (select (b_hit+1) from board where b_no=#{no} and b.BOARDCODE=#{category}) where b_no = #{no} and b.BOARDCODE=#{category}
-=======
-          from (SELECT *
-          FROM (select ROWNUM as rnum, b.b_no, b.b_title, b.b_wdate, b.b_auth, b.b_hit, b.boardCode, c.boardname
-          from board b , boardcategory c
-          where b.boardcode = c.boardcode and b.boardcode=#{boardCode}
-          order by b_no desc
-            )  
-           where rnum <![CDATA[ <= ]]> #{pageNum}*#{rowcnt} 
-            )
-       w where rnum >= (#{pageNum}  -1)*(#{rowcnt}  + 1)    
-   </select> 
-   
-   <select id="pageTotlaCount" resultType="Integer">
-      select count(*) from board where boardCode = #{boardCode}
-   </select>
-
-   <insert id="insertBoard" parameterType="com.whenwhere.board.vo.BoardVO" >
-      INSERT INTO board 
-     	<if test="category==1"> (B_no, BoardCode, B_title, B_wdate, b_auth , B_content, B_hit, B_recommend)
-        VALUES (SEQ_BOARD_NOTICE.nextval,#{category},#{title},sysdate,#{auth},#{content},0,0)</if> 
-        <if test="category==2"> (B_no, BoardCode, B_title, B_wdate, b_auth , B_content, B_hit, B_recommend)
-        VALUES (SEQ_BOARD_COMMUNITY.nextval,#{category},#{title},sysdate,#{auth},#{content},0,0)</if>     
-   </insert>
-   
-   <select id="readBoard" parameterType="com.whenwhere.board.vo.BoardVO" resultType="com.whenwhere.board.vo.BoardVO">
-        select b.b_no as no, b.b_title as title, b.b_wdate as wdate, b.b_auth as auth
-        	, b.b_content as content, b.b_hit as hit, b.b_recommend as recommend , b.BoardCode as category, c.boardname  
-        	from board b , BOARDCATEGORY c  
-      <where>
-         <if test="auth!=null">            
-            b.b_wdate=(select MAX(b_wdate)FROM board WHERE
-            b_auth=#{auth}) and b.boardcode = c.boardcode
-         </if>
-
-         <if test="no!=0">
-            b.b_NO=#{no} and b.BOARDCODE=#{category} and b.boardcode = c.boardcode
-         </if>
-      </where>      
-   </select>
-      
-   <delete id="deleteBoard" parameterType="com.whenwhere.board.vo.BoardVO">
-      delete from board where b_no = #{no}
-   </delete>
-   
-   <update id="modifyBoard" parameterType="com.whenwhere.board.vo.BoardVO">
-      update board set b_title=#{title}, b_content=#{content} where b_no=#{no}
-   </update>
-   
-   <update id="hitBoard">
-      update board set b_hit = (select max(nvl(b_hit,0)+1) from board where b_no=#{no}) where b_no = #{no}
->>>>>>> refs/heads/main_js
    </update>
    
    

@@ -13,7 +13,7 @@ import org.springframework.web.socket.server.support.HttpSessionHandshakeInterce
 
 import com.whenwhere.user.vo.MemberVO;
 
-public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor{
+public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor {
 
 	@Override
 	public void afterHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler,
@@ -25,24 +25,18 @@ public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor{
 	@Override
 	public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse arg1, WebSocketHandler arg2,
 			Map<String, Object> websocketMap) throws Exception {
-		
+
 		System.out.println("Before handshake");
-		
-		ServletServerHttpRequest ssreq = (ServletServerHttpRequest)request;
-		
+
+		ServletServerHttpRequest ssreq = (ServletServerHttpRequest) request;
+
 		HttpServletRequest req = ssreq.getServletRequest();
-<<<<<<< HEAD
-		HttpSession session = req.getSession(false);
-		MemberVO mem = (MemberVO)session.getAttribute("member");
-		System.out.println("handshake"+mem.getNickname());
-=======
-		
+
 		HttpSession session = req.getSession();
-		MemberVO mem = (MemberVO)session.getAttribute("member");
->>>>>>> refs/heads/main_js
+		MemberVO mem = (MemberVO) session.getAttribute("member");
 		websocketMap.put("session", session);
-		
+
 		return super.beforeHandshake(request, arg1, arg2, websocketMap);
 	}
-	
+
 }
