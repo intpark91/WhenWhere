@@ -323,7 +323,7 @@ $(document).ready(function() {
 				div.append(spanVal);
 				$('.detail2').append(div);
 			}
-			
+			 
 			
 		}else{
 			$('.modal-footer').css('display','block');
