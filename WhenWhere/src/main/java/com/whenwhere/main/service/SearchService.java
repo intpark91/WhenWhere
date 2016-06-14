@@ -62,6 +62,7 @@ public class SearchService {
 			map.put("sDate", sDate);
 			map.put("eDate", eDate);
 			map.put("location", locations[i]);
+			map.put("locSub", "all");
 
 			List<Map<String, Object>> eventlist = dao.getEventList(map);
 			List<Map<String, Object>> foodlist = dao.getFoodList(map);
