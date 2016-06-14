@@ -70,7 +70,7 @@ Main components
 
 .cd-tabs-navigation:after {
 	content: "";
-	display: table;
+	display: table; 
 	clear: both;
 }
 
