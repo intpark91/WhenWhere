@@ -21,7 +21,6 @@
    <!-- Enables the Spring MVC @Controller programming model -->
    <mvc:annotation-driven />
 
-
    <context:component-scan base-package="com.whenwhere.board.cont" />
    <context:component-scan base-package="com.whenwhere.board.dao" />
    <context:component-scan base-package="com.whenwhere.board.service" />
@@ -37,6 +36,10 @@
    <context:component-scan base-package="com.whenwhere.user.util" />
    <context:component-scan base-package="com.whenwhere.util" />
    <context:component-scan base-package="com.whenwhere.websocket" />
+   <context:component-scan base-package="com.whenwhere.team.cont" />
+   <context:component-scan base-package="com.whenwhere.team.dao" />
+   <context:component-scan base-package="com.whenwhere.team.service" />
+   <context:component-scan base-package="com.whenwhere.team.vo" />
 
    <!-- Handles HTTP GET requests for /resources/** by efficiently serving 
       up static resources in the ${webappRoot}/resources directory -->
