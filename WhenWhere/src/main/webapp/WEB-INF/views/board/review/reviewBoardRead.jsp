@@ -43,6 +43,41 @@ function delectAjax(no){
 	});	
 
 }	
+
+function recommend(no){
+	var NickName = '${sessionScope.member.nickname}';
+	var category = '${ReadBoard.category}';
+	if(NickName=='null')alert('로그인 후 이용 가능 합니다');
+	else
+	jQuery.ajax({
+		
+		type: "post", 
+		url:"recommend",
+		data : {"no":no,"nickName":NickName,"category":category},
+		dataType : "json",
+		success : function(recommend){
+			 if(recommend.recommend==true){			 	
+					alert('추천을 누르셨습니다');
+					location.href="review?category="+${ReadBoard.category}+"";
+			  }
+			 else{
+				 alert('이미 추천을 누르 셨습니다.');
+			 }
+		},
+		complete : function(res){					
+		}, 
+		error : function(xhr,status,error){
+				alert("에러 발생");
+				alert(status);
+		}  
+	});	
+
+}	
+
+
+
+
+
 	$(function(){		
 		$('#submit').on('click',function(){
 			var serData = $('#commentform').serialize();
@@ -225,7 +260,7 @@ function delectAjax(no){
 											</table>
 										<!-- 	</form> -->
 											<div class="bbs_btn">
-												<p class="fl">
+												<p class="fl">													
 													<a href="review?category=${ReadBoard.category}"><h4>목록</h4></a>
 												</p>
 											</div>		
@@ -297,7 +332,7 @@ function delectAjax(no){
 														</h3>
 														
 														
-														<form action="comment" method="post" id="commentform" class="comment-form">
+														<form action="reviewcommend" method="post" id="commentform" class="comment-form">
 															<p class="comment-notes">
 																<input type="hidden" name="boardNo" value="${ReadBoard.no}">
 																<input type="hidden" name="category" value="${ReadBoard.category}">
