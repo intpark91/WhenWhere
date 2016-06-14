@@ -10,12 +10,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		  values (SEQ_EVENT.NEXTVAL, #{sDate}, #{eDate}, #{loc})
   		  into board (B_NO, BOARDCODE, B_AUTH, B_TITLE, B_WDATE, B_CONTENT, B_HIT, B_RECOMMEND, E_NO)
       	  values (SEQ_BOARD_EVENT.NEXTVAL, #{category}, #{auth}, #{title}, sysdate, #{content}, 0, 0, SEQ_EVENT.CURRVAL)
+      	  into image (no,filename,boardcode) values (SEQ_BOARD_EVENT.CURRVAL,#{fileName},#{category})
 		  select * from dual
 	</insert>
-	
-	<insert id="insertImage" parameterType="com.whenwhere.board.vo.ImageVO" >
-		insert into image (filename,boardcode) values (#{fileName},#{boardCode})
-	</insert>
+		
 	<select id="eventDate" parameterType="com.whenwhere.board.vo.BoardVO" resultType="com.whenwhere.board.vo.EventVO">       
            select e_no as no, e_sdate as sDate, e_edate as eDate from (select * from event order by e_no desc) where rownum = 1
 	</select>
@@ -29,17 +27,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </update>
 
 	<select id="ReviewboardList" parameterType="map" resultMap="boardList">
-	          SELECT ROWNUM ,b_no as no, b_title as title, b_wdate as wdate, b_auth as auth, b_hit as hit, boardCode as category, boardname as boardname, b_content as content 
-              ,e_sdate as sDate, e_edate as eDate,filename as filename, loc_subject as loc , b_recommend as recommend
-               FROM (SELECT *
-               FROM (SELECT ROWNUM as rnum, b.b_no, b.b_title, b.b_wdate, b.b_auth, b.b_hit, b.boardCode, c.boardname, b.b_content,e.E_EDATE,e.E_SDATE, i.filename,l.loc_subject,b.b_recommend
-               FROM BOARD b , boardcategory c, event e, image i, location l
-               WHERE b.boardcode = c.boardcode and b.boardcode=#{boardCode} and e.e_no = b.e_no and i.boardcode=#{boardCode} and l.loc_code = e.loc_code
-               ORDER BY b_no DESC
-                    )    
-              where rnum <![CDATA[ <= ]]> #{pageNum}*#{rowcnt} 
-            )
-       	where rnum >= (#{pageNum}  -1)*(#{rowcnt}  + 1)    
+        SELECT ROWNUM ,b_no as no, b_title as title, b_wdate as wdate, b_auth as auth, b_hit as hit, boardCode as category, boardname as boardname, b_content as content 
+              ,to_char(e_sdate, 'YYYY-MM-DD') as sDate, to_char(e_edate, 'YYYY-MM-DD') as eDate,
+              filename as filename, loc_subject as loc , b_recommend as recommend
+          FROM (SELECT *
+          FROM (SELECT ROWNUM as rnum, b.b_no, b.b_title, b.b_wdate, b.b_auth, b.b_hit, b.boardCode, c.boardname, b.b_content,e.E_EDATE,e.E_SDATE, i.filename,l.loc_subject,b.b_recommend
+                  FROM BOARD b , boardcategory c, event e, image i, location l
+                 WHERE b.boardcode = #{boardCode}
+                   and b.b_NO = i.NO
+                   and b.boardcode = c.boardcode
+                   and b.e_no =  e.e_no 
+                   and b.boardcode = i.boardcode 
+                   and e.loc_code = l.loc_code
+                 ORDER BY b_no DESC
+                )    
+          where rnum <![CDATA[ <= ]]> #{pageNum}*#{rowcnt} 
+        )
+	where rnum >= (#{pageNum}  -1)*(#{rowcnt}  + 1)  
    </select> 
    
     <resultMap id="boardList" type="java.util.HashMap">
@@ -56,20 +60,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		<result property="recommend" column="b_recommend"/>
    </resultMap> 
    	   
-   	 <insert id="recommend" parameterType="map">
-   	 	insert into RECOMMEND(b_no, BoardCODE, nickname) values (15,'3','gd')
-   	 </insert>  
+
    	 
    	 	<select id="eventSearchList" parameterType="map" resultMap="searchList">
 	          SELECT ROWNUM ,b_no as no, b_title as title, b_wdate as wdate, b_auth as auth, b_hit as hit, boardCode as category, boardname as boardname, b_content as content 
               ,e_sdate as sDate, e_edate as eDate,filename as filename, loc_subject as loc , b_recommend as recommend
-               FROM (SELECT *
-               FROM (SELECT ROWNUM as rnum, b.b_no, b.b_title, b.b_wdate, b.b_auth, b.b_hit, b.boardCode, c.boardname, b.b_content,e.E_EDATE,e.E_SDATE, i.filename,l.loc_subject,b.b_recommend
-               FROM BOARD b , boardcategory c, event e, image i, location l
+          FROM (SELECT *
+          FROM (SELECT ROWNUM as rnum, b.b_no, b.b_title, b.b_wdate, b.b_auth, b.b_hit, b.boardCode, c.boardname, b.b_content,e.E_EDATE,e.E_SDATE, i.filename,l.loc_subject,b.b_recommend
+                  FROM BOARD b , boardcategory c, event e, image i, location l
           <where>
          <if test="title.equals('B_TITLE')">            
-            b.boardcode = c.boardcode and b.boardcode=#{boardCode} and e.e_no = b.e_no and i.boardcode=#{boardCode} 
-            and l.loc_code = e.loc_code and b.b_title like '%${content}%'
+           b.boardcode = #{boardCode}
+                   and b.b_NO = i.NO
+                   and b.boardcode = c.boardcode
+                   and b.e_no =  e.e_no 
+                   and b.boardcode = i.boardcode 
+                   and e.loc_code = l.loc_code
+                   and b.b_title like '%${content}%'
             ORDER BY b_no DESC
             )    
             WHERE rnum <![CDATA[ <= ]]> #{pageNum}*#{rowcnt} 
@@ -78,8 +85,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </if>    
          
          <if test="title.equals('B_CONTENT')">            
-            b.boardcode = c.boardcode and b.boardcode=#{boardCode} and e.e_no = b.e_no and i.boardcode=#{boardCode}  
-            					and l.loc_code = e.loc_code and b.B_CONTENT like '%${content}%'
+             and b.b_NO = i.NO
+                   and b.boardcode = c.boardcode
+                   and b.e_no =  e.e_no 
+                   and b.boardcode = i.boardcode 
+                   and e.loc_code = l.loc_code
+                   and b.B_CONTENT like '%${content}%'
             ORDER BY b_no DESC
                     )    
             WHERE rnum <![CDATA[ <= ]]> #{pageNum}*#{rowcnt} 
@@ -104,7 +115,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		<result property="content" column="b_content"/>
   		<result property="recommend" column="b_recommend"/>
    </resultMap>
-   	 
+   
+   	 <insert id="recommend" parameterType="map">
+   	 	insert into RECOMMEND(b_no, BoardCODE, nickname) values (#{no},#{boardCode},#{nickName})  	 	
+   	 </insert>  
+   
+   	 <update id="updaterecommend" parameterType="map">
+   	 	 update board set b_recommend = (select max(b_recommend+1) from board where b_no=#{no}) 
+   	 	 where b_no = #{no} and boardcode = #{boardCode}
+   	 </update>
    	 
    	   
 </mapper>

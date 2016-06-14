@@ -25,16 +25,17 @@ public interface BoardDAO {
 	public int commentdelect(int no);
 	public int updatecomment(@Param("no") int no,@Param("comment") String comment);	
 	public int inserteventBoard(@Param("title") String title, @Param("content") String content, @Param("auth") String auth, 
-			@Param("sDate") Date sdate, @Param("eDate") Date edate, @Param("category") String boardCode,@Param("loc") String loc);
+			@Param("sDate") Date sdate, @Param("eDate") Date edate, @Param("category") String boardCode,@Param("loc") String loc, @Param("fileName") String fileurl);
 	public int insertImage(ImageVO imageVO);
 	public EventVO eventDate(BoardVO boardVO);
 	public int eventmodifyBoard(BoardVO boardVO);
 	public int dateModify(EventVO eventVO);
-	public int inserteventBoard();
+	
 	public List<HashMap<String,Object>> ReviewboardList(@Param("boardCode") String boardCode,@Param("rowcnt") int rowcnt,@Param("pageNum") int pageNum);
 	public int recommend(@Param("no") int no,@Param("nickName") String nickName,@Param("boardCode") String boardCode);
 	public List<HashMap<String,Object>> eventSearchList(@Param("pageNum") int pageNum,@Param("boardCode") String boardCode,
 			@Param("title") String searchType,@Param("content") String keyword,@Param("rowcnt") int rowcnt);
+	public int updaterecommend(@Param("no") int no,@Param("boardCode") String boardCode);
 	
 	
 

@@ -113,6 +113,7 @@ public class BoardController {
 	public String reViewWrite(HttpServletRequest request, Model model) {
 		String category = request.getParameter("category");
 		model.addAttribute("category", category);
+		
 		return "board/review/reviewwrite";	
 	}
 	
@@ -142,7 +143,7 @@ public class BoardController {
 	@RequestMapping(value = "/recommend", method = RequestMethod.POST)
 	@ResponseBody
 	public String recommend(Model model,HttpServletRequest request) {				
-		return noticeBoardSVC.recommend(request,model);		
+		return reviewboardSVC.recommend(request,model);		
 	}
 	
 	@RequestMapping(value = "/event")

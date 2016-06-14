@@ -94,12 +94,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
    
    <insert id="insertComment" parameterType="com.whenwhere.board.vo.CommentVO" >
-       insert into BoardComment (comm_no, comm_auth, B_no, b_CONTENT,boardcode) 
+       insert into BoardComment (comm_no, comm_auth, B_no, COMM_CONTENT,boardcode) 
        		values (SEQ_BOARD_COMM.nextval,#{auth},#{boardNo},#{content},#{boardCode})
    </insert>
    
    <select id="commentList" parameterType="com.whenwhere.board.vo.BoardVO" resultType="com.whenwhere.board.vo.CommentVO">
-      	select b_no, comm_no as no, comm_auth as auth , b_CONTENT as content 
+      	select b_no, comm_no as no, comm_auth as auth , COMM_CONTENT as content 
   		  from BoardComment
  		 where b_no=#{no}
    		   and boardcode=#{category}

@@ -55,7 +55,6 @@ public class SearchService {
 		List<Map<String, Object>> searchFoodList = new ArrayList<Map<String, Object>>();
 		List<Map<String, Object>> searchHotelList = new ArrayList<Map<String, Object>>();
 
-		System.out.println(sDate + "::" + eDate + "::" + locations.length);
 
 		for (int i = 0; i < locations.length; i++) {
 			HashMap<String, Object> map = new HashMap<String, Object>();
@@ -70,21 +69,15 @@ public class SearchService {
 
 			for (int j = 0; j < eventlist.size(); j++) {
 				searchEventList.add(eventlist.get(j));
-				System.out.println(searchEventList.size() + "::" + eventlist.get(j).get("title") + ","
-						+ eventlist.get(j).get("eSDate"));
 			}
 
 			for (int j = 0; j < foodlist.size(); j++) {
 				searchFoodList.add(foodlist.get(j));
-				System.out.println(searchFoodList.size() + "::" + foodlist.get(j).get("foodName") + ","
-						+ foodlist.get(j).get("fSDate"));
 			}
 
 			for (int j = 0; j < hotellist.size(); j++) {
 				searchHotelList.add(hotellist.get(j));
 			}
-			System.out.println(searchHotelList.size() + "::");
-
 		}
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("searchEventList", searchEventList);
@@ -112,8 +105,6 @@ public class SearchService {
 
 		for (int j = 0; j < eventlist.size(); j++) {
 			searchEventList.add(eventlist.get(j));
-			System.out.println(searchEventList.size() + "::" + eventlist.get(j).get("title") + ","
-					+ eventlist.get(j).get("eSDate"));
 		}
 
 		JSONObject jsonObject = new JSONObject();

@@ -50,7 +50,6 @@ public class EventBoardSVC {
 		String boardCode = request.getParameter("category");
 		String loc = request.getParameter("location");
 		String fileurl = (String)request.getSession().getAttribute("fileUrl");
-		System.out.println(fileurl);
 		ImageVO imageVO = new ImageVO();
 		imageVO.setBoardCode(boardCode);				
 		imageVO.setFileName(fileurl);		
@@ -63,7 +62,7 @@ public class EventBoardSVC {
 		java.sql.Date sdate = new java.sql.Date(date.getTime());
 		java.sql.Date edate = new java.sql.Date(date1.getTime());		
 		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);
-		if (boardDAO.inserteventBoard(title,content,auth,sdate,edate,boardCode,loc) > 0 && boardDAO.insertImage(imageVO)==1) {
+		if (boardDAO.inserteventBoard(title,content,auth,sdate,edate,boardCode,loc,fileurl) > 0) {
 			return true;
 		} else {
 			return false;
@@ -151,20 +150,9 @@ public class EventBoardSVC {
 		String sPageNum = request.getParameter("page");
 		if(sPageNum==null) sPageNum="1";
 		int pageNum = Integer.parseInt(sPageNum);			
-		String boardCode = request.getParameter("category");
-		
-/*		List<HashMap<String,Object>> list =  boardDAO.ReviewboardList(boardCode,ROWCNT,pageNum);
-		String result = null;
-		if(list!=null){
-		for(int i=0;i<list.size();i++){
-			result = list.get(i).get("CONTENT").toString().replace("src='http://localhost:7777/img/'", "");
-			System.out.println(result);
-		}
-		}*/
-		model.addAttribute("ReviewboardList", boardDAO.ReviewboardList(boardCode,ROWCNT,pageNum));
-		
-		final int linkSceen = 10; 
-		
+		String boardCode = request.getParameter("category");				
+		model.addAttribute("ReviewboardList", boardDAO.ReviewboardList(boardCode,ROWCNT,pageNum));		
+		final int linkSceen = 10; 		
 		PaginationVO paginationVO = new PaginationVO();
 		int resultpage = this.getTotalPageCnt(boardCode,model); 	
 		int linkGroup =(pageNum-1)/linkSceen+1;
