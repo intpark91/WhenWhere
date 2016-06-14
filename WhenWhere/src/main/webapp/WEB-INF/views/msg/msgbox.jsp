@@ -82,54 +82,52 @@
 				+"'>PREV</a></li>" + str;
 			}
 			if ("${pagination.isNext()}" == "true") {
-				str += "<li><a href='../user/msgbox?type={type}&page=" + $
+				str += "<li><a href='../user/msgbox?type=${type}&page=" + $
 				{
 					pagination.getLinkEnd() + 1
 				}
 				+"'>NEXT</a></li>"
 			}
+			
 			$("ul.pagination").html(str);
+			
 			$("li.${type}").attr("class", "active");
 			
-			$("button#readChecked").on("click", readChecked);
-						
+			$("button#readChecked").on("click", function(){
+				changeStatus("read");
+			});
+			
 			$("button#moveToOutbox").on("click", function(){
-			});
-			
-			$("button#deletFromBox").on("click", function(){
-			});
-		})
-		
-		function readChecked(){
-			var jobj = {};
-			jobj.no = new Array();
-			$(".msgCheckBox").each(function(){
-				if($(this).is(":checked")){
-					jobj.no.push($(this).val())
+				if("${type}"=="inbox"){
+					changeStatus("move");
+				}else{
+					moveToOutbox();
 				}
 			});
 			
-			$.ajax({
-				url : "../user/readChecked",
-				type : "post",
-				data : jobj,
-				dataType : "json",
-				success : function(result){
-					if(result.ok){
-						location.href="../user/msgbox?type=inbox&page=1";
+			$("button#deleteFromBox").on("click", function(){
+				bootbox.dialog({
+					message : "삭제하시겠습니까?",
+					buttons : {
+						success : {
+							label : "네",
+							className : "btn-success",
+							callback : function() {
+								deleteFromBox("${type}");
+							}
+						},
+						danger : {
+							label : "아니요",
+							className : "btn-danger",
+						}
 					}
-				},
-				error : function(){
-					alert("error");
-				}
+				});
 			});
-		}
-		
-		$(function() {
+			
 			$("#reply").on("click",	function() {
 				location.href = "../user/msgbox?type=write&receiver=${message.getSender()}";
 			});
-			$("#moveToOutbox").on("click", moveToOutbox);
+			
 			$("#delete").on("click", function() {
 				bootbox.dialog({
 					message : "삭제하시겠습니까?",
@@ -148,8 +146,54 @@
 					}
 				});
 			});
-		});
-
+		})
+		
+		function changeStatus(type){
+			var arr = new Array();
+			$(".msgCheckBox:checked").each(function(k, v){
+				arr[k] = {};
+				arr[k].no = $(this).val();
+			});
+			
+			$.ajax({
+				url : "../user/changeStatus",
+				type : "post",
+				data : {"arr" : JSON.stringify(arr), "type" : type},
+				dataType : "json",
+				success : function(result){
+					if(result.ok){
+						location.href="../user/msgbox?type=${type}&page=1";
+					}
+				},
+				error : function(){
+					alert("error");
+				}
+			});
+		}
+		
+		function deleteFromBox(type){
+			var arr = new Array();
+			$(".msgCheckBox:checked").each(function(k, v){
+				arr[k] = {};
+				arr[k].no = $(this).val();
+			});
+			
+			$.ajax({
+				url : "../user/deleteFromBox",
+				type : "post",
+				data : {"arr" : JSON.stringify(arr)},
+				dataType : "json",
+				success : function(result){
+					if(result.ok){
+						location.href="../user/msgbox?type="+type+"&page=1";
+					}
+				},
+				error : function(){
+					alert("error");
+				}
+			});
+		}
+		
 		function sendMsg() {
 			$.ajax({
 				type : "post",
@@ -158,7 +202,15 @@
 				dataType : "json",
 				success : function(result) {
 					if (result.ok) {
-						location.href = "../user/msgbox?type=write";
+						$("input[name=receiver]").val("");
+						$("input[name=title]").val("");
+						$("textarea[name=content]").val("");
+						$.bootstrapGrowl("전송 성공~", {
+							type : 'success',
+							align : 'center',
+							width : 'auto',
+							allow_dismiss : false
+						});
 					} else if (result.receiver != "") {
 						$.bootstrapGrowl(result.receiver + "님은 없습니다.", {
 							type : 'danger',

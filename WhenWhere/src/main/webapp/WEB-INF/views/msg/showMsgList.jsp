@@ -12,17 +12,17 @@
 						data-toggle="tooltip" data-container="body" title="전체선택">
 						<i class="fa fa-square-o"></i>
 					</button>
-					<button id="readChecked" type="button" class="btn btn-default btn-sm"
-						data-toggle="tooltip" data-container="body" title="선택된 쪽지 읽음">
-						<span class="glyphicon glyphicon-eye-open"></span>
-					</button>
 					<c:if test="${type == 'inbox' }">
+						<button id="readChecked" type="button" class="btn btn-default btn-sm"
+							data-toggle="tooltip" data-container="body" title="읽음 으로 표시">
+							<span class="glyphicon glyphicon-eye-open"></span>
+						</button>
 						<button id="moveToOutbox" type="button" class="btn btn-default btn-sm"
 							data-toggle="tooltip" data-container="body" title="보관함으로 보내기">
 							<i class="fa fa-archive"></i>
 						</button>
 					</c:if>
-					<button id="deletFromBox" type="button" class="btn btn-default btn-sm"
+					<button id="deleteFromBox" type="button" class="btn btn-default btn-sm"
 						data-toggle="tooltip" data-container="body" title="삭제">
 						<i class="fa fa-trash-o"></i>
 					</button>
