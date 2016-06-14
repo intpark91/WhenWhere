@@ -8,8 +8,8 @@
 			<form name="msgForm">
 				<div class="form-group">
 					<input type="hidden" name=sender
-						value="${sessionScope.member.getNickname()}"> <input
-						name="receiver" class="form-control" placeholder="To: "
+						value="${sessionScope.member.getNickname()}"> 
+					<input name="receiver" class="form-control" placeholder="To: "
 						value="${receiver}">
 				</div>
 				<div class="form-group">

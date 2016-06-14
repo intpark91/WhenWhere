@@ -58,14 +58,12 @@ public class WeatherService {
 			String province = loc.get("province").toString();
 			
 			if(province.matches(locNameRegex)){
-				System.out.println(province);
 				JSONArray dataArr = (JSONArray) loc.get("data");
 				for(int j=0; j<dataArr.length();j++){
 					JSONObject data = (JSONObject) dataArr.get(j);
 					String timeOfDay = data.get("tmEf").toString();
 					String date = timeOfDay.split(" ")[1];
 					if(date.equals("00:00")){
-						System.out.println(data.get("tmEf") + " : " + data.get("wf"));
 						weathers.add(changeWftoWfcode(data.get("wf").toString()));
 					}
 				}
@@ -74,7 +72,6 @@ public class WeatherService {
 		}
 		jsonObject.put("ok", true);
 		jsonObject.put("wf", weathers);
-		System.out.println(jsonObject.toString());
 		return jsonObject.toString();
 	}
 	
