@@ -74,7 +74,7 @@
 						$('#chattingRoom').removeClass('collapsed-box');
 
 						title = data.title;
-						user = data.name;
+						user = data.name; 
 
 						$('#roomTitle').text('방제목:');
 						$('.room-title').text(title);
