@@ -89,7 +89,7 @@ desired effect
 									<li data-target="#detailCarousel" data-slide-to="0"
 										class="active"></li>
 								</ol>
-
+ 
 								<!-- Wrapper for slides -->
 
 								<div class="carousel-inner modalContent" role="listbox">
