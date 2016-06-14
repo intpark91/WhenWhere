@@ -1,0 +1,67 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: url(../resources/img/bg_img.jpg) center center fixed
+		no-repeat;
+}
+
+video {
+	position: fixed;
+	top: 0;
+	left: 0;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	z-index: -1;
+} 
+
+.titleDiv {
+	text-align: center;
+	font-size: 70px;
+	margin-top: 60px;
+}
+
+.sliderDiv {
+	margin-top: 10px;
+	margin-bottom: 150px;
+}
+
+.weatherSpan {
+	position: relative;
+	top: 67px;
+	font-size: 26px;
+	left:-2px;
+}
+
+.locSelect {
+	position: relative;
+	float: right;
+	bottom: 100px;
+}
+
+.locSel {
+	height: 35px;
+}
+
+.carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
+    right: 5%;
+    margin-left: -10px;
+}
+
+.carousel-control .glyphicon-chevron-left, .carousel-control .icon-prev {
+    left: 5%;
+    margin-left: -10px;
+}
+
+.modal-content{
+	text-align: center;
+}
+
+.slideLabel{
+	width: 100%;
+}
+
+.container{
+	margin-top: 80px;
+}

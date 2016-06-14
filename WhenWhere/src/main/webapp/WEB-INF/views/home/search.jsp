@@ -55,7 +55,6 @@
 								<li data-target="#detailCarousel" data-slide-to="0"
 									class="active"></li>
 								<li data-target="#detailCarousel" data-slide-to="1"></li>
-								<li data-target="#detailCarousel" data-slide-to="2"></li>
 							</ol>
 
 							<!-- Wrapper for slides -->
