@@ -45,15 +45,16 @@ function delectAjax(no){
 }	
 
 function recommend(no){
-	var NickName = '${sessionScope.member.nickname}';
+	var nickName = '${sessionScope.member.nickname}';
+	console.log("nickname"+nickName);
 	var category = '${ReadBoard.category}';
-	if(NickName=='null')alert('로그인 후 이용 가능 합니다');
+	if(nickName=='')alert('로그인 후 이용 가능 합니다');
 	else
 	jQuery.ajax({
 		
 		type: "post", 
 		url:"recommend",
-		data : {"no":no,"nickName":NickName,"category":category},
+		data : {"no":no,"nickName":nickName,"category":category},
 		dataType : "json",
 		success : function(recommend){
 			 if(recommend.recommend==true){			 	
@@ -267,10 +268,10 @@ function recommend(no){
 										</div>
 
 									</div>									
-											<div id="btnWrap">												
+											<div id="btnWrap">		
+												<button class="noticeboard" id="reviewwrite" type="button" onclick="recommend(${ReadBoard.no});">추천하기</button>										
 												<button class="noticeboard" id="reviewwrite" type="button" onclick="delectAjax(${ReadBoard.no});">삭제하기</button>
-												<button class="noticeboard" id="reviewwrite" type="button" onclick="modifyForm(${ReadBoard.no});">수정하기</button>
-												<button class="noticeboard" id="reviewwrite" type="button" onclick="recommend(${ReadBoard.no});">추천하기</button>
+												<button class="noticeboard" id="reviewwrite" type="button" onclick="modifyForm(${ReadBoard.no});">수정하기</button>												
 											</div>
 										</div>
 									</div>
@@ -278,7 +279,7 @@ function recommend(no){
 										<div class="con_area">
 											<div class="board_box">
 												<div class="bbs_view">
-
+														
 
 													<div class="singlewrap pushpull">
 														전체 댓글
