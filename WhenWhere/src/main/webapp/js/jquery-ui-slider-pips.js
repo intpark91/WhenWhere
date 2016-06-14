@@ -701,7 +701,9 @@ function getEventList(){
 					itemDiv.append(thumbnailsUl);
 					carouselDiv.append(itemDiv);
 				}
-
+				
+				
+				captionDiv.append($('<span class="recommend glyphicon glyphicon-thumbs-up">' +data.searchEventList[j].bRecommend+ '</span>'));
 				captionDiv.append(title);
 				captionDiv.append(content);
 				captionDiv.append($('<input type="hidden" value="#?bNo='+data.searchEventList[j].bNo+'">'));
