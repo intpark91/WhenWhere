@@ -98,7 +98,7 @@ $(document).ready(function() {
 
 						
 						if(data.searchEventList.length == 0){
-							carousel1.children('h1').text('※ 행사 정보가 존재하지 않습니다.').attr('class','label searchFail');
+							carousel1.children('h1').text('※ 해당 기간내에 행사 검색결과가 존재하지 않습니다.').attr('class','label searchFail');
 						}
 						
 						var carouselDiv = carousel1.children('.carousel-inner');
@@ -154,7 +154,7 @@ $(document).ready(function() {
 						}
 						
 						if(data.searchFoodList.length == 0){
-							carousel2.children('h1').text('※ 특산물 정보가 존재하지 않습니다.').attr('class','label searchFail');
+							carousel2.children('h1').text('※ 해당 기간내에 특산물 검색결과가 존재하지 않습니다.').attr('class','label searchFail');
 						}
 
 						carouselDiv = carousel2.children('.carousel-inner');

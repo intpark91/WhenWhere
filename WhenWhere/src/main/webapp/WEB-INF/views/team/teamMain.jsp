@@ -56,6 +56,41 @@
 	</style>
 	<script type="text/javascript">
 	
+		function makeTeam() {
+			alert($('form').serialize());
+			$.ajax({
+				type : "POST",
+				url : "../team/makeTeam",
+				dataType : "JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+				data : $('form').serialize(),
+				success : function(data) {
+					console.log(data);
+
+					if (data.ok) {
+						$('input[name=title]').val('');
+						$('#roomMakeDiv').addClass('collapsed-box');
+						/* $('#roomMakeDiv .box-body').css('display','none'); */
+						$('#roomListDiv').addClass('collapsed-box');
+						$('#chattingRoom').removeClass('collapsed-box');
+
+						title = data.title;
+						user = data.name;
+
+						$('#roomTitle').text('방제목:');
+						$('.room-title').text(title);
+
+						websocket(); //websocket연결
+						sendMsg(); //msg 출력
+					}
+				},
+				complete : function(data) {
+
+				},
+				error : function(xhr, status, error) {
+					console.log(error);
+				}
+			});
+		}
 	</script>
 </head>
 
@@ -99,7 +134,7 @@
 										<div class="input-group-addon">
 											<i class="fa fa-calendar"></i>
 										</div>
-										<input type="text" class="form-control pull-right col-sm-10" id="reservation">
+										<input name="date" type="text" class="form-control pull-right col-sm-10" id="reservation">
 									</div>
 								</div>
 								<div class="form-group">
@@ -125,12 +160,10 @@
 									</div>
 									<label class="col-sm-1 control-label">지역선택</label>
 									<div class="col-sm-3">
-										<select name="userNum" class="form-control select2" style="width: 100%;">
-											<option value="2" selected="selected">서울</option>
-											<option value="4">경기</option>
-											<option value="6">경남</option>
-											<option value="8">경북</option>
-											<option value="10">전북</option>
+										<select name="locName" class="form-control select2" style="width: 100%;">
+											<c:forEach items="${locationSubList }" var="list">
+												<option value="${list }">${list }</option>
+											</c:forEach>
 										</select>
 									</div>
 								</div>
@@ -138,7 +171,7 @@
 				              <!-- /.box-body -->
 				              <div class="box-footer">
 				                <button type="submit" class="btn btn-default">취소</button>
-				                <button type="button" onclick="makeRoom();" class="btn btn-info pull-right">방만들기</button>
+				                <button type="button" onclick="makeTeam();" class="btn btn-info pull-right">팀만들기</button>
 				              </div>
 				              <!-- /.box-footer -->
 				            </form>

@@ -17,6 +17,8 @@
 		<jsp:include page="../component/header.jsp" />
 		<jsp:include page="../component/linkSidebar.jsp" />
 		<!-- include -->
+		
+		<!-- Title -->
 		<section class="section1">
 			<div class="row">
 				<div class="input-daterange" id="datepicker" align="center">
@@ -95,8 +97,6 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- /modal contents -->
 
 		<!-- 지역 탭목록 -->
 		<section class="section2">

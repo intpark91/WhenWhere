@@ -78,7 +78,8 @@ public class MainController {
 	}
 	
 	@RequestMapping(value = "/team")
-	public String team() {
+	public String team(Model model) {
+		model.addAttribute("locationSubList", searchService.getSubLocationList());
 		return "team/teamMain";
 	}
 }
