@@ -102,4 +102,21 @@ public class AdminService {
 		
 		return jarr.toJSONString();
 	}
+
+	public String delBoard(int type, int num) {
+		boolean ok = false;
+		JSONObject jobj = new JSONObject();
+		jobj.put("ok", ok);
+		
+		AdminDAO dao = sqlSessionTemplate.getMapper(AdminDAO.class);
+		int rows = dao.delBoard(type,num);
+
+		if (rows > 0) {
+			ok = true;
+		}
+		
+		jobj.put("ok", ok);
+		
+		return jobj.toString();
+	}
 }

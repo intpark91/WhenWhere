@@ -40,4 +40,10 @@ public class AdminContoller {
 	public String getBoardList(@RequestParam("type") int type, HttpSession session) throws Exception {
 		return adminService.getBoardList(type);
 	}
+	
+	@RequestMapping("/delBoard")
+	@ResponseBody
+	public String delBoard(@RequestParam("type") int type, @RequestParam("bnum") int num, HttpSession session) throws Exception {
+		return adminService.delBoard(type,num);
+	}
 }

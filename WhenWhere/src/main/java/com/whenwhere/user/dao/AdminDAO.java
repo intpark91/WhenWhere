@@ -14,4 +14,5 @@ public interface AdminDAO {
 	public int changeUserAuth(@Param("auth") String auth,@Param("nickname") String nickname);
 	public int delUser(String nickname);
 	public List<BoardVO> getBoardList(int type);
+	public int delBoard(@Param("type") int type, @Param("num") int num);
 }
