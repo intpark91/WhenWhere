@@ -31,7 +31,7 @@ function delectAjax(no){
 			console.log(delect);
 			 if(delect.delect==true){			 	
 					alert('글 삭제 성공');
-					location.href="review?category="+${ReadBoard.category}+"";
+					location.href="event?category="+${ReadBoard.category}+"";
 			     }
 		},
 		complete : function(res){					
@@ -58,7 +58,7 @@ function recommend(no){
 		success : function(recommend){
 			 if(recommend.recommend==true){			 	
 					alert('추천을 누르셨습니다');
-					location.href="review?category="+${ReadBoard.category}+"";
+					location.href="event?category="+${ReadBoard.category}+"";
 			  }
 			 else{
 				 alert('이미 추천을 누르 셨습니다.');
@@ -89,7 +89,7 @@ function recommend(no){
 				success : function(insert){
 					 if(insert.insert==true){			 	
 							alert('댓글 쓰기 성공');
-							location.href="reviewRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
+							location.href="eventRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
 					     }
 				},
 				complete : function(res){					
@@ -106,7 +106,7 @@ function recommend(no){
 
 
 	function modifyForm(no){	
-		location.href="reviewRead?no="+no+"&cmd=updateForm&category="+${ReadBoard.category}+"&eno="+${EventDate.no}+"";
+		location.href="eventRead?no="+no+"&cmd=updateForm&category="+${ReadBoard.category}+"&eno="+${EventDate.no}+"";
 	}
 
 	$(function(){
@@ -128,7 +128,7 @@ function recommend(no){
 	}
 	
 	function read(){
-		location.href="reviewRead?no="+${ReadBoard.no}+"";
+		location.href="eventRead?no="+${ReadBoard.no}+"";
 	}
 	
 	function updatecomment(no){
@@ -141,7 +141,7 @@ function recommend(no){
 			success : function(update){
 				 if(update.update==true){			 	
 						alert('댓글 수정 성공');
-						location.href="reviewRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
+						location.href="eventRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
 				     }
 			},
 			complete : function(res){					
@@ -162,7 +162,7 @@ function recommend(no){
 			success : function(cdelete){
 				 if(cdelete.cdelete==true){			 	
 						alert('댓글 삭제 성공');
-						location.href="reviewRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
+						location.href="eventRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
 				     }
 			},
 			complete : function(res){					
@@ -261,7 +261,7 @@ function recommend(no){
 										<!-- 	</form> -->
 											<div class="bbs_btn">
 												<p class="fl">													
-													<a href="review?category=${ReadBoard.category}"><h4>목록</h4></a>
+													<a href="event?category=${ReadBoard.category}"><h4>목록</h4></a>
 												</p>
 											</div>		
 										</div>

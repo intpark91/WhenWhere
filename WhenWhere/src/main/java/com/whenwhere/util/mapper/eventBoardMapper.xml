@@ -3,6 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.whenwhere.board.dao.BoardDAO">
+	
 	<insert id="inserteventBoard" parameterType="map">
 		  insert all
   		  into event (E_no, e_sdate, e_edate, loc_code)
@@ -15,8 +16,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertImage" parameterType="com.whenwhere.board.vo.ImageVO" >
 		insert into image (filename,boardcode) values (#{fileName},#{boardCode})
 	</insert>
-
-
 	<select id="eventDate" parameterType="com.whenwhere.board.vo.BoardVO" resultType="com.whenwhere.board.vo.EventVO">       
            select e_no as no, e_sdate as sDate, e_edate as eDate from (select * from event order by e_no desc) where rownum = 1
 	</select>
@@ -30,27 +29,82 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </update>
 
 	<select id="ReviewboardList" parameterType="map" resultMap="boardList">
-	        select ROWNUM ,b_no as no, b_title as title, b_wdate as wdate, b_auth as auth, b_hit as hit, boardCode as category, boardname, b_content as content ,e_sdate, e_edate 
-               from (SELECT *
-               FROM (select ROWNUM as rnum, b.b_no, b.b_title, b.b_wdate, b.b_auth, b.b_hit, b.boardCode, c.boardname, b.b_content,e.E_EDATE,e.E_SDATE
-                        from board b , boardcategory c, event e
-                        where b.boardcode = c.boardcode and b.boardcode=3 and e.e_no = b.e_no
-                        order by b_no desc
-                    )  
+	          SELECT ROWNUM ,b_no as no, b_title as title, b_wdate as wdate, b_auth as auth, b_hit as hit, boardCode as category, boardname as boardname, b_content as content 
+              ,e_sdate as sDate, e_edate as eDate,filename as filename, loc_subject as loc , b_recommend as recommend
+               FROM (SELECT *
+               FROM (SELECT ROWNUM as rnum, b.b_no, b.b_title, b.b_wdate, b.b_auth, b.b_hit, b.boardCode, c.boardname, b.b_content,e.E_EDATE,e.E_SDATE, i.filename,l.loc_subject,b.b_recommend
+               FROM BOARD b , boardcategory c, event e, image i, location l
+               WHERE b.boardcode = c.boardcode and b.boardcode=#{boardCode} and e.e_no = b.e_no and i.boardcode=#{boardCode} and l.loc_code = e.loc_code
+               ORDER BY b_no DESC
+                    )    
               where rnum <![CDATA[ <= ]]> #{pageNum}*#{rowcnt} 
             )
        	where rnum >= (#{pageNum}  -1)*(#{rowcnt}  + 1)    
    </select> 
    
-   <resultMap id="boardList" type="com.whenwhere.board.vo.BoardVO">
+    <resultMap id="boardList" type="java.util.HashMap">
    	    <id property="no" column="b_no" />
   		<result property="auth" column="b_auth"/>
   		<result property="title" column="b_title"/>
-  		<result property="wdate" column="e_sdate"/>
-  		<result property="wdate2" column="e_edate"/>
+  		<result property="sDate" column="e_edate"/>
+  		<result property="eDate" column="e_edate"/>
+  		<result property="loc" column="loc_subject"/>
   		<result property="hit" column="b_hit"/>
   		<result property="category" column="boardCode"/>
   		<result property="boardName" column="boardname"/>
   		<result property="content" column="b_content"/>
+  		<result property="recommend" column="b_recommend"/>
+   </resultMap> 
+   	   
+   	 <insert id="recommend" parameterType="map">
+   	 	insert into RECOMMEND(b_no, BoardCODE, nickname) values (15,'3','gd')
+   	 </insert>  
+   	 
+   	 	<select id="eventSearchList" parameterType="map" resultMap="searchList">
+	          SELECT ROWNUM ,b_no as no, b_title as title, b_wdate as wdate, b_auth as auth, b_hit as hit, boardCode as category, boardname as boardname, b_content as content 
+              ,e_sdate as sDate, e_edate as eDate,filename as filename, loc_subject as loc , b_recommend as recommend
+               FROM (SELECT *
+               FROM (SELECT ROWNUM as rnum, b.b_no, b.b_title, b.b_wdate, b.b_auth, b.b_hit, b.boardCode, c.boardname, b.b_content,e.E_EDATE,e.E_SDATE, i.filename,l.loc_subject,b.b_recommend
+               FROM BOARD b , boardcategory c, event e, image i, location l
+          <where>
+         <if test="title.equals('B_TITLE')">            
+            b.boardcode = c.boardcode and b.boardcode=#{boardCode} and e.e_no = b.e_no and i.boardcode=#{boardCode} 
+            and l.loc_code = e.loc_code and b.b_title like '%${content}%'
+            ORDER BY b_no DESC
+            )    
+            WHERE rnum <![CDATA[ <= ]]> #{pageNum}*#{rowcnt} 
+            )
+       		WHERE rnum >= (#{pageNum}  -1)*(#{rowcnt}  + 1)
+         </if>    
+         
+         <if test="title.equals('B_CONTENT')">            
+            b.boardcode = c.boardcode and b.boardcode=#{boardCode} and e.e_no = b.e_no and i.boardcode=#{boardCode}  
+            					and l.loc_code = e.loc_code and b.B_CONTENT like '%${content}%'
+            ORDER BY b_no DESC
+                    )    
+            WHERE rnum <![CDATA[ <= ]]> #{pageNum}*#{rowcnt} 
+            )
+       		WHERE rnum >= (#{pageNum}  -1)*(#{rowcnt}  + 1)
+         </if>   
+         </where> 
+               
+                  
+   </select> 
+   
+    <resultMap id="searchList" type="java.util.HashMap">
+   	    <id property="no" column="b_no" />
+  		<result property="auth" column="b_auth"/>
+  		<result property="title" column="b_title"/>
+  		<result property="sDate" column="e_edate"/>
+  		<result property="eDate" column="e_edate"/>
+  		<result property="loc" column="loc_subject"/>
+  		<result property="hit" column="b_hit"/>
+  		<result property="category" column="boardCode"/>
+  		<result property="boardName" column="boardname"/>
+  		<result property="content" column="b_content"/>
+  		<result property="recommend" column="b_recommend"/>
    </resultMap>
+   	 
+   	 
+   	   
 </mapper>

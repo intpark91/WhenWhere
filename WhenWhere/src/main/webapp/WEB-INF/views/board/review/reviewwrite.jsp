@@ -127,7 +127,7 @@ jQuery.browser = {};
 											"FOCUS", []);
 									return;
 								}
-								console.log('들어왔냐?');
+								
 								$("#inForm").submit();
 							}
 						</script>
@@ -139,13 +139,13 @@ jQuery.browser = {};
 							<form id="inForm" name="inForm" method="post"
 								action="reviewinsert"
 								enctype="multipart/form-data">
-								<input type="hidden" name="category" value="3">	
-								<input type="hidden" name="eno" value="3">												
+								<input type="hidden" name="category" value="${category}">	
+								<!-- <input type="hidden" name="eno" value="3">	 -->											
 								<div class="con_area">
 									<div class="board_box">
 										<div class="bbs_write">
 											<table class="write_1">
-												<h3>행사 글 쓰기</h3>
+												<h3>게시판 글 쓰기</h3>
 												<tbody>
 													<tr>
 														<th scope="row"><label for="dataTitle">제 목</label></th>
@@ -158,8 +158,21 @@ jQuery.browser = {};
 															readonly="readonly" name="auth" id="userNick" value="${sessionScope.member.nickname}"></td>
 													</tr>																										<tr>
 													<th scope="row"><label for="location">지역</label></th>
-														<td class="bbs_location"><input type="text"
-															name="location" id="location"></td>
+														<td class="bbs_location">
+														<select name="location" id="location" class="location">
+															<option value="01001">서울</option>
+															<option value="02001">경기</option>
+															<option value="03001">영서</option>
+															<option value="04001">영동</option>
+															<option value="05001">충북</option>																				
+															<option value="06001">충남</option>
+															<option value="07001">경북</option>
+															<option value="08001">경남</option>
+															<option value="09001">전북</option>
+															<option value="10001">전남</option>
+															<option value="11001">제주</option>
+														</select> 
+														</td>
 													</tr>
 													<tr>
 														<th scope="row"><label for="dataTitle">기간 선택</label></th>

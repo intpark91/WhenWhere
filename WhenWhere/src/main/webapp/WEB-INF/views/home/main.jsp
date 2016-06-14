@@ -13,53 +13,7 @@
 <link rel="stylesheet" href="../css/slider.css" />
 <link rel="stylesheet" href="../css/eventSlider.css" />
 <link rel="stylesheet" href="../css/loadingSpinner.css">
-<style type="text/css">
-body {
-	margin: 0;
-	padding: 0;
-	background: url(../resources/img/bg_img.jpg) center center fixed
-		no-repeat;
-}
-
-video {
-	position: fixed;
-	top: 0;
-	left: 0;
-	min-width: 100%;
-	min-height: 100%;
-	width: auto;
-	height: auto;
-	z-index: -1;
-} 
-
-.titleDiv {
-	text-align: center;
-	font-size: 70px;
-	margin-top: 60px;
-}
-
-.sliderDiv {
-	margin-top: 10px;
-	margin-bottom: 150px;
-}
-
-.weatherSpan {
-	position: relative;
-	top: 67px;
-	font-size: 26px;
-	left:-2px;
-}
-
-.locSelect {
-	position: relative;
-	float: right;
-	bottom: 100px;
-}
-
-.locSel {
-	height: 35px;
-}
-</style>
+<link rel="stylesheet" href="../css/main.css">
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -115,6 +69,74 @@ desired effect
 				</div>
 			</section>
 			<!-- /.content -->
+
+			<!-- modal contents -->
+			<div class="modal fade" id="basicModal" tabindex="-1" role="dialog"
+				aria-labelledby="basicModal" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+							<h4 class="modal-title label" id="myModalLabel">제목</h4>
+						</div>
+						<div class="modal-body">
+
+							<div id="detailCarousel" class="carousel slide"
+								data-ride="carousel">
+								<!-- Indicators -->
+								<ol class="carousel-indicators">
+									<li data-target="#detailCarousel" data-slide-to="0"
+										class="active"></li>
+									<li data-target="#detailCarousel" data-slide-to="1"></li>
+								</ol>
+
+								<!-- Wrapper for slides -->
+
+								<div class="carousel-inner" role="listbox">
+									<div class="item active row">
+										<img src="../resources/img/item-1.jpg"
+											class="detailImg1 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">
+										<!-- <div class="carousel-caption">
+										<h3>Test</h3>
+      									<p>Test Contents</p>
+      								</div> -->
+									</div>
+
+									<div class="item row">
+										<div
+											class="detail2 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">
+										</div>
+									</div>
+
+								</div>
+
+								<!-- Left and right controls -->
+								<a class="left carousel-control" href="#detailCarousel"
+									role="button" data-slide="prev"> <span
+									class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									<span class="sr-only">Previous</span>
+
+								</a> <a class="right carousel-control" href="#detailCarousel"
+									role="button" data-slide="next"> <span
+									class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+									<span class="sr-only">Next</span>
+								</a>
+							</div>
+
+
+						</div>
+						<div class="modal-footer">
+							<p>
+								<a class="btn btn-mini readMore" href="#">» Read More</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- /modal contents -->
+
 
 			<div class="container">
 				<!-- #myCarousel -->
