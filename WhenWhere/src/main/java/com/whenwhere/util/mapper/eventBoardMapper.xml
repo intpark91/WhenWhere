@@ -124,6 +124,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    	 	 update board set b_recommend = (select max(b_recommend+1) from board where b_no=#{no}) 
    	 	 where b_no = #{no} and boardcode = #{boardCode}
    	 </update>
-   	 
+	
+   	<select id="getSubLocationList" resultMap="location">
+		select firstLoc,loc_subject
+		from(select LOC_SUBJECT, MIN(LOC_CODE) as firstLoc 
+			 from location 
+			 group by LOC_SUBJECT order by firstLoc)
+	</select>
+	
+	 <resultMap id="location" type="java.util.HashMap">
+   	    <id property="firstLoc" column="LOC_CODE" />
+  		<result property="loc_subject" column="loc_subject"/> 		
+   	 </resultMap>
    	   
 </mapper>

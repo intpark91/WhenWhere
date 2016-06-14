@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -160,17 +161,9 @@ jQuery.browser = {};
 													<th scope="row"><label for="location">지역</label></th>
 														<td class="bbs_location">
 														<select name="location" id="location" class="location">
-															<option value="01001">서울</option>
-															<option value="02001">경기</option>
-															<option value="03001">영서</option>
-															<option value="04001">영동</option>
-															<option value="05001">충북</option>																				
-															<option value="06001">충남</option>
-															<option value="07001">경북</option>
-															<option value="08001">경남</option>
-															<option value="09001">전북</option>
-															<option value="10001">전남</option>
-															<option value="11001">제주</option>
+															<c:forEach var="item" items="${location}" varStatus="status">
+																<option value="${item.FIRSTLOC}">${item.loc_subject}</option>
+															</c:forEach>		
 														</select> 
 														</td>
 													</tr>

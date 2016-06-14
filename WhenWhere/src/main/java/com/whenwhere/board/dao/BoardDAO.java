@@ -36,7 +36,6 @@ public interface BoardDAO {
 	public List<HashMap<String,Object>> eventSearchList(@Param("pageNum") int pageNum,@Param("boardCode") String boardCode,
 			@Param("title") String searchType,@Param("content") String keyword,@Param("rowcnt") int rowcnt);
 	public int updaterecommend(@Param("no") int no,@Param("boardCode") String boardCode);
+	/*public List<HashMap<String,Object>> getSubLocationList();*/
 	
-	
-
 }

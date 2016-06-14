@@ -26,12 +26,7 @@ h1, h2, h3, h4 {
 <script type="text/javascript">
 	$(function() {
 		$('.noticewrite').on('click', function() {
-
-			location.href = "noticewriteform?category=" + $
-			{
-				boardList[0].category
-			}
-			+"";
+			location.href = "noticewriteform?category=" + ${boardList[0].category}+"";
 		});
 	});
 </script>

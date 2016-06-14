@@ -6,13 +6,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <select id="noticeList" parameterType="map" resultType="com.whenwhere.board.vo.BoardVO">
 		select ROWNUM ,b_no as no, b_title as title, b_wdate as wdate, b_auth as auth, b_hit as hit, boardCode as category,boardname
-          from (SELECT *
-          FROM (select ROWNUM as rnum, b.b_no, b.b_title, b.b_wdate, b.b_auth, b.b_hit, b.boardCode, c.boardname
-          from board b , boardcategory c
-          where b.boardcode = c.boardcode and b.boardcode=#{boardCode}
-          order by b_no desc
-            )  
-           where rnum <![CDATA[ <= ]]> #{pageNum}*#{rowcnt} 
+               from (SELECT *
+               FROM (select ROWNUM as rnum, b.b_no, b.b_title, b.b_wdate, b.b_auth, b.b_hit, b.boardCode, c.boardname
+                        from board b , boardcategory c
+                        where b.boardcode = c.boardcode and b.boardcode=#{boardCode}
+                        order by b_no desc
+                    )  
+              where rnum <![CDATA[ <= ]]> #{pageNum}*#{rowcnt} 
             )
        w where rnum >= (#{pageNum}  -1)*(#{rowcnt}  + 1)    
    </select> 
@@ -110,7 +110,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </delete>
    
    <update id="updatecomment" parameterType="map">
-      update boardcomment set b_CONTENT=#{comment} where comm_no=#{no}
+      update boardcomment set comm_content=#{comment} where comm_no=#{no}
    </update>
    
 </mapper>

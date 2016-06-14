@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -254,5 +255,9 @@ public class ReviewBoardSVC {
 		}
 		return jsonobject.toString();
 	}
+/*	public List<HashMap<String,Object>> location(HttpServletRequest request) {
+		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);		
+		return boardDAO.getSubLocationList();
+	}*/
 	
 }

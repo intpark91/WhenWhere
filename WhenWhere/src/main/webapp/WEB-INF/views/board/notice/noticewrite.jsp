@@ -23,8 +23,7 @@
 	}
 </script>
 <script type="text/javascript">
-	var editContact = CKEDITOR.instances.editContact.getData();
-	console.log(editContact);
+	
 
 	var f = $("#inForm");
 	function formSubmit() {

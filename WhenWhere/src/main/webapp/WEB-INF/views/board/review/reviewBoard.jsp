@@ -70,35 +70,7 @@
 												<li>
 												<a href="noticeRead">[전주] 전주한지문화축제</a><br> <span class="bandi_list_date">2016.05.05~05.08</span></li>
 											</ul>
-										</li>
-										
-										<li class="festival_list_child">
-											<ul class="bandi_list">
-												<li class="bandi_img">
-													<a href="#">
-														<img src="../images/reviewimg/reviewDemo.JPG" alt="">
-													</a>
-												</li>
-												<li>
-													<a href="#">[전주] 전주국제영화제</a><br> 
-													<span class="bandi_list_date">2016.04.28~05.07</span>
-												</li>
-											</ul>
-										</li>
-
-										<li class="festival_list_child">
-											<ul class="bandi_list">
-												<li class="bandi_img">
-													<a href="#">
-														<img src="../images/reviewimg/reviewDemo.JPG" alt="#">
-													</a>
-												</li>
-												<li>
-													<a href="#">[남원] 바래봉 철쭉제</a> 
-													<br> <span class="bandi_list_date">2016.04.23~05.22</span>
-												</li>
-											</ul>
-										</li>
+										</li>	
 									</ul>
 
 								</div>
