@@ -96,6 +96,11 @@ $(document).ready(function() {
 						carousel2.append($('<div/>').attr('class','carousel-inner'));
 						carousel3.append($('<div/>').attr('class','carousel-inner'));
 
+						
+						if(data.searchEventList.length == 0){
+							carousel1.children('h1').text('※ 여행지 정보가 존재하지 않습니다.').attr('class','label searchFail');
+						}
+						
 						var carouselDiv = carousel1.children('.carousel-inner');
 
 						for(var j=0; j<data.searchEventList.length; j++){
@@ -123,8 +128,9 @@ $(document).ready(function() {
 								itemDiv.append(thumbnailsUl);
 								carouselDiv.append(itemDiv);
 							}
-
+							
 							captionDiv.append(title);
+							captionDiv.append($('<span class="recommend glyphicon glyphicon-thumbs-up">' +data.searchEventList[j].bRecommend+ '</span>'));
 							captionDiv.append(content);
 							captionDiv.append($('<input type="hidden" value="#?bNo='+data.searchEventList[j].bNo+'">'));
 							imgA.append(img);
@@ -141,6 +147,10 @@ $(document).ready(function() {
 								carousel1.append(nav);
 							}
 
+						}
+						
+						if(data.searchFoodList.length == 0){
+							carousel2.children('h1').text('※ 특산물 정보가 존재하지 않습니다.').attr('class','label searchFail');
 						}
 
 						carouselDiv = carousel2.children('.carousel-inner');
@@ -188,6 +198,10 @@ $(document).ready(function() {
 								carousel2.append(nav);
 							}
 
+						}
+						
+						if(data.searchHotelList.length == 0){
+							carousel3.children('h1').text('※ 숙박 정보는 지역선택이 필수입니다.').attr('class','label searchFail');
 						}
 						
 						carouselDiv = carousel3.children('.carousel-inner');

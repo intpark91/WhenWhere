@@ -8,13 +8,17 @@
 	<title>WhenWhereTest</title>
 	<link rel="stylesheet" href=../css/board/reviewBoard.css>
 	<style type="text/css">
+	
 </style>
 <script type="text/javascript">
 	$(function(){
 		$('.reviewwrite').on('click',function(){
-			location.href="reviewwrite?category=3"	
+			location.href="reviewwrite?category=3"					
 		});
+		$('.img p:has(img)').css('display','none');
 	});
+	
+	
 </script>
 
 <style type="text/css">
@@ -105,7 +109,7 @@
 								<div class="this_month_event_view" style="display: block;">
 									<div class="bandi">
 										<h2>dxsadas</h2>
-				
+										
 										<p>장소 : 전라북도 전주시 덕진구 덕진동 1가 1220</p>
 										<p>주최/주관 : 전주시/전주한지문화축제 조직위원회</p>
 										<p>연락처 : 063-271-2503</p>
@@ -113,42 +117,6 @@
 									</div>
 									<p class="bandi_img">
 										<img src="../images/reviewimg/reviewDemo.JPG" alt="한지문화축제.jpg">
-									</p>
-								</div>
-
-								<div class="this_month_event_view" style="display: none;">
-									<div class="bandi">
-										<h2>전주국제영화제</h2>
-										<p class="term">
-											<img src="../images/reviewimg/reviewDemo.JPG"
-												alt="달력이모티">&nbsp;&nbsp;2016.04.28~05.07(10일간)
-										</p>
-										<p>장소 : 전라북도 전주시 완산구 고사동 155-1</p>
-										<p>주최/주관 : 전주국제영화제조직위원회/전주국제영화제집행위원회</p>
-										<p>연락처 : 063-288-5433</p>
-										<a href="#">상세보기</a>
-									</div>
-									<p class="bandi_img">
-
-										<img src="../images/reviewimg/reviewDemo.JPG" alt="festival_img.jpg">
-									</p>
-								</div>
-
-								<div class="this_month_event_view" style="display: none;">
-									<div class="bandi">
-										<h2>바래봉 철쭉제</h2>
-										<p class="term">
-											<img src="../images/reviewimg/reviewDemo.JPG" alt="달력이모티">&nbsp;&nbsp;2016.04.23~05.22(30일간)
-										</p>
-										<p>장소 :</p>
-										<p>주최/주관 : 남원시/운봉읍</p>
-										<p>연락처 : 063-634-0024</p>
-										<a href="#">상세보기</a>
-									</div>
-									<p class="bandi_img">
-
-										<img
-											src="../images/reviewimg/reviewDemo.JPG" alt="1.jpg">
 									</p>
 								</div>
 							</div>
@@ -170,7 +138,7 @@
 							<c:forEach var="item" items="${ReviewboardList}" varStatus="status">	
 							<div class="photoWrap">
 								<a href="reviewRead?no=${item.NO}&category=3">
-									<img src="${item.FILENAME}" alt="" class="photo_img">
+									<img src="http://localhost:8088/img/${item.FILENAME}" alt="" class="photo_img">
 								</a>
 								<h3>
 									<a href="reviewRead?no=${item.NO}&category=3">
@@ -182,7 +150,7 @@
 								<ul class="stay_infobox">
 									<li>기간: ${item.SDATE} ~ ${item.EDATE}</li>
 
-									<li> ${item.CONTENT}</li>
+									<li class="img"> ${item.CONTENT}</li>
 								</ul>
 							</div>
 							</c:forEach>

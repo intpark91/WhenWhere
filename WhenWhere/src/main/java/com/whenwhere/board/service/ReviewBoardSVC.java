@@ -16,6 +16,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,15 +58,16 @@ public class ReviewBoardSVC {
             String fileName = upload.getOriginalFilename();
             byte[] bytes = upload.getBytes();
             String uploadPath = "c:/img/"  + year+""+monthStr+ time+ fileName;
-           
+            
             out = new FileOutputStream(new File(uploadPath));
             out.write(bytes);
             String callback = request.getParameter("CKEditorFuncNum");
-
-            printWriter = response.getWriter();
-            fileUrl = "http://localhost:7777/img/" + year+""+monthStr +time + fileName;
             
+            printWriter = response.getWriter();
+            fileUrl = "http://localhost:8088/img/" + year+""+monthStr +time + fileName;
+            String fileSaveName = year+monthStr+time+fileName;
             request.getSession().setAttribute("fileUrl", fileUrl);
+            request.getSession().setAttribute("fileSaveName", fileSaveName);
             printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("
                     + callback
                     + ",'"
@@ -101,10 +103,8 @@ public class ReviewBoardSVC {
 		String boardCode = request.getParameter("category");
 		String loc = request.getParameter("location");
 		String fileurl = (String)request.getSession().getAttribute("fileUrl");
+		String fileSaveName = (String)request.getSession().getAttribute("fileSaveName");
 		
-		ImageVO imageVO = new ImageVO();
-		imageVO.setBoardCode(boardCode);				
-		imageVO.setFileName(fileurl);		
 		Date date = null;
 		Date date1 = null;
 		DateFormat formatter ; 		 
@@ -114,7 +114,7 @@ public class ReviewBoardSVC {
 		java.sql.Date sdate = new java.sql.Date(date.getTime());
 		java.sql.Date edate = new java.sql.Date(date1.getTime());		
 		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);
-		if (boardDAO.inserteventBoard(title,content,auth,sdate,edate,boardCode,loc) > 0 && boardDAO.insertImage(imageVO)==1) {
+		if (boardDAO.inserteventBoard(title,content,auth,sdate,edate,boardCode,loc,fileSaveName) > 0) {
 			return true;
 		} else {
 			return false;
@@ -189,7 +189,6 @@ public class ReviewBoardSVC {
 		eventVO.seteDate(edate);
 		eventVO.setsDate(sdate);
 		eventVO.setNo(Integer.parseInt(request.getParameter("eno")));
-		System.out.println(eventVO.getNo());
 		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);
 		if(boardDAO.eventmodifyBoard(boardVO)==1&&boardDAO.dateModify(eventVO)==1){
 			return true;
@@ -204,14 +203,6 @@ public class ReviewBoardSVC {
 		int pageNum = Integer.parseInt(sPageNum);			
 		String boardCode = request.getParameter("category");
 		
-/*		List<HashMap<String,Object>> list =  boardDAO.ReviewboardList(boardCode,ROWCNT,pageNum);
-		String result = null;
-		if(list!=null){
-		for(int i=0;i<list.size();i++){
-			result = list.get(i).get("CONTENT").toString().replace("src='http://localhost:7777/img/'", "");
-			System.out.println(result);
-		}
-		}*/
 		model.addAttribute("ReviewboardList", boardDAO.ReviewboardList(boardCode,ROWCNT,pageNum));
 		
 		final int linkSceen = 10; 
@@ -241,6 +232,27 @@ public class ReviewBoardSVC {
 			return boardDAO.pageTotlaCount(boardCode) / ROWCNT +1;
 		}
 		return boardDAO.pageTotlaCount(boardCode) / ROWCNT;
+	}
+	public String recommend(HttpServletRequest request, Model model) {
+		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);
+		String sNum = request.getParameter("no");
+		JSONObject jsonobject = new JSONObject();
+		int no = Integer.parseInt(sNum);
+		String nickName = request.getParameter("nickName");
+		String boardCode = request.getParameter("category");
+			
+		
+		
+		try{
+			if(boardDAO.recommend(no,nickName,boardCode)==1){
+				if(boardDAO.updaterecommend(no,boardCode)==1){
+					jsonobject.put("recommend", true);
+				}
+			}
+		}catch(Exception e){
+			jsonobject.put("recommend", false);
+		}
+		return jsonobject.toString();
 	}
 	
 }

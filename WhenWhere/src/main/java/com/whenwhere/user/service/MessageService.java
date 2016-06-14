@@ -1,12 +1,16 @@
 package com.whenwhere.user.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -151,6 +155,43 @@ public class MessageService {
 		model.addAttribute("message", message);
 	}
 
+	public String updateMsgStatus(int num, String type) {
+		MessageDAO dao = sqlSessionTemplate.getMapper(MessageDAO.class);
+		boolean ok = false;
+		int rows = dao.updateMsgStatus(num, type);
+
+		if (rows > 0) {
+			ok = true;
+		}
+
+		JSONObject jobj = new JSONObject();
+		jobj.put("ok", ok);
+
+		return jobj.toJSONString();
+	}
+
+	public String updateMsgStauts(String arr, String type) {
+		MessageDAO dao = sqlSessionTemplate.getMapper(MessageDAO.class);
+		JSONArray jArr = new JSONArray();
+		JSONParser parser = new JSONParser();
+		try {
+			jArr = (JSONArray) parser.parse(arr);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		
+		for(int i = 0; i< jArr.size();i++){
+			int num = Integer.parseInt((String) ((JSONObject) jArr.get(i)).get("no"));
+			dao.updateMsgStatus(num, type);
+		}
+		
+		JSONObject jobj = new JSONObject();
+		jobj.put("ok", true);
+
+		return jobj.toJSONString();
+	}
+	
 	public String deleteMsg(int num) {
 		MessageDAO dao = sqlSessionTemplate.getMapper(MessageDAO.class);
 		boolean ok = false;
@@ -165,18 +206,22 @@ public class MessageService {
 
 		return jobj.toJSONString();
 	}
-
-	public String updateMsgStatus(int num, String type) {
+	
+	public String deleteFromBox(String arr) {
 		MessageDAO dao = sqlSessionTemplate.getMapper(MessageDAO.class);
-		boolean ok = false;
-		int rows = dao.updateMsgStatus(num, type);
-
-		if (rows > 0) {
-			ok = true;
+		JSONArray jArr = new JSONArray();
+		JSONParser parser = new JSONParser();
+		try {
+			jArr = (JSONArray) parser.parse(arr);
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
-
+		for(int i = 0; i< jArr.size();i++){
+			int num = Integer.parseInt((String) ((JSONObject) jArr.get(i)).get("no"));
+			dao.deleteMsg(num);
+		}
 		JSONObject jobj = new JSONObject();
-		jobj.put("ok", ok);
+		jobj.put("ok", true);
 
 		return jobj.toJSONString();
 	}

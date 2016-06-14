@@ -122,16 +122,21 @@ public class UserController {
 		return msgService.deleteMsg(num);
 	}
 	
+	@RequestMapping("/deleteFromBox")
+	@ResponseBody
+	public String deleteFromBox(@RequestParam String arr) {
+		return msgService.deleteFromBox(arr);
+	}
+	
 	@RequestMapping("/moveToOutbox")
 	@ResponseBody
 	public String moveToOutbox(@RequestParam int num, @RequestParam String type) {
 		return msgService.updateMsgStatus(num, type);
 	}
 	
-	@RequestMapping("/readChecked")
+	@RequestMapping("/changeStatus")
 	@ResponseBody
-	public String readChecked(HttpServletRequest request) {
-		System.out.println(request.getParameter("jobj"));
-		return null;
+	public String changeStatus(@RequestParam String arr, @RequestParam String type) {
+		return msgService.updateMsgStauts(arr, type);
 	}
 }
