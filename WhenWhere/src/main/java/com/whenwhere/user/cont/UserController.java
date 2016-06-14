@@ -131,7 +131,7 @@ public class UserController {
 	@RequestMapping("/readChecked")
 	@ResponseBody
 	public String readChecked(HttpServletRequest request) {
-		System.out.println(request.getParameter("jobj"));
+		System.out.println(request.getParameter("arr"));
 		return null;
 	}
 }

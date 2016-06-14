@@ -15,7 +15,7 @@
 	var result = '${insert}';
 	if (result == 'true') {				
 		alert('글 쓰기 성공');
-		location.href = "reviewRead?no=0";
+		location.href = "eventRead?no=0";
 	}
 	else if(result =='false'){
 		alert('글 쓰기 실패');
@@ -137,7 +137,7 @@ jQuery.browser = {};
 
 							<!--//-->
 							<form id="inForm" name="inForm" method="post"
-								action="reviewinsert"
+								action="eventInsert"
 								enctype="multipart/form-data">
 								<input type="hidden" name="category" value="${category}">	
 								<!-- <input type="hidden" name="eno" value="3">	 -->											
