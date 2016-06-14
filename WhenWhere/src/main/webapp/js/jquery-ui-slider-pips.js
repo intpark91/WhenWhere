@@ -25,7 +25,7 @@ $(function() {
 	
 	$('.carousel').each(function() {
 		$(this).carousel({
-		        interval : 3000
+		        interval : 5000
 		    });
 	});
 
@@ -671,9 +671,13 @@ function getEventList(){
 
 			carousel1.empty();
 
-			carousel1.append($('<h1 class="slideLabel"><span class="label">※ 행사지</span></h1>'));
+			carousel1.append($('<h1 class="slideLabel"><span class="label">※ 행사</span></h1>'));
 			carousel1.append($('<div/>').attr('class','carousel-inner'));
 
+			if(data.searchEventList.length == 0){
+				carousel1.children('h1').text('※ 행사 정보가 존재하지 않습니다.').attr('class','label searchFail item active');
+			}
+			
 			var carouselDiv = carousel1.children('.carousel-inner');
 
 			for(var j=0; j<data.searchEventList.length; j++){
@@ -707,6 +711,10 @@ function getEventList(){
 				captionDiv.append(title);
 				captionDiv.append(content);
 				captionDiv.append($('<input type="hidden" value="#?bNo='+data.searchEventList[j].bNo+'">'));
+				imgA.append($('<input type="hidden" value='+data.searchEventList[j].eSDate+'~'+data.searchEventList[j].eEDate+'>'));
+				imgA.append($('<input type="hidden" value='+data.searchEventList[j].locName+'>'));
+				imgA.append($('<input type="hidden" value='+data.searchEventList[j].bRecommend+'>'));
+				imgA.append($('<input type="hidden" value='+data.searchEventList[j].bContent+'>'));
 				imgA.append(img);
 				thumbnailDiv.append(imgA);
 				fDiv.append(thumbnailDiv);
@@ -734,8 +742,8 @@ function getEventList(){
 function getDetailContent(){
 	
 	$(document).on('click', '.searchImgA', function() {
-		$('.carousel-indicators').children('.active').attr('class','');
-		$('.carousel-indicators').children('li:first-child').attr('class','active');
+		$('.carousel-indicators').empty();
+		$('.carousel-indicators').append('<li data-target="#detailCarousel" data-slide-to="0" class="active"></li>');
 		$('.detailImg1').parent().siblings().attr('class','item row');
 		$('.detailImg1').parent().attr('class','item active row');
 		$('.detailImg1').attr('src', $(this).children('img').attr('src'));
@@ -743,6 +751,27 @@ function getDetailContent(){
 		$('.readMore').attr('href',$(this).parent().next().children('input').val());
 		
 		$('.modal-footer').css('display','block');
+		
+		$('.detail2').parent().remove();
+		$('.carousel-indicators').append('<li data-target="#detailCarousel" data-slide-to="1" class="active"></li>');
+		$('.modalContent').append($('<div class="item row"><div class="detail2 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10"></div></div>'));
+		
+		var detailSub = ['행사 일정', '행사 지역', '추천 수', '상세 설명'], 
+		detail = [];
+		$(this).children('input').each(function(k, v) {
+			detail[k] = $(this).val();
+		});
+		
+		for(var i=0; i<detail.length; i++){
+			var spanSub = $('<span/>').attr('class','spanSub').text(detailSub[i]),
+			spanVal = $('<span/>').attr('class','spanVal').text(detail[i]);
+			
+			$('.detail2').append($('<hr>'));
+			var div = $('<div/>').attr('class','justifyDiv');
+			div.append(spanSub);
+			div.append(spanVal);
+			$('.detail2').append(div);
+		}
 		
 	});
 	

@@ -183,6 +183,9 @@ public class SearchService {
 											.getAttributeValue("data-person_capacity_string"));
 									map.put("bedCnt", divList.get(i).getAllElements(HTMLElementName.SPAN).get(j)
 											.getAttributeValue("data-bedrooms_string"));
+									map.put("starRating", divList.get(i).getAllElements(HTMLElementName.SPAN).get(j)
+											.getAttributeValue("data-star_rating"));
+									
 									map.put("href", "https://www.airbnb.co.kr" + divList.get(i)
 											.getAllElements(HTMLElementName.H3).get(0).getAllElements(HTMLElementName.A)
 											.get(0).getAttributeValue("href"));

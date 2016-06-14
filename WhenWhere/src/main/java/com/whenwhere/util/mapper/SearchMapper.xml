@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getEventList" resultMap="eventResultMap" parameterType="java.util.HashMap">
-		select e.e_no, TO_CHAR(e.e_sdate, 'YYYY/MM/DD') e_sdate, TO_CHAR(e.e_edate, 'YYYY/MM/DD') e_edate, b.boardcode, b.b_title, b.b_wdate, b.b_recommend, b.b_no, l.loc_subject, l.loc_name, i.filename
+		select e.e_no, TO_CHAR(e.e_sdate, 'YYYY/MM/DD') e_sdate, TO_CHAR(e.e_edate, 'YYYY/MM/DD') e_edate, b.boardcode, b.b_title, b.b_wdate, b.b_recommend, b.b_content, b.b_no, l.loc_subject, l.loc_name, i.filename
 		from (select * 
 		      from event
 		      where 
@@ -66,6 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result javaType="String" column="b_title" property="title"/>
         <result javaType="String" column="b_wdate" property="bDate"/>
         <result javaType="String" column="b_auth" property="bAuth"/>
+        <result javaType="String" column="b_content" property="bContent"/>
         <result javaType="integer" column="b_recommend" property="bRecommend"/>
         <result javaType="String" column="e_sdate" property="eSDate"/>
         <result javaType="String" column="e_edate" property="eEDate"/>
