@@ -77,7 +77,7 @@
 								</div>
 
 							</div>
-
+ 
 							<!-- Left and right controls -->
 							<a class="left carousel-control" href="#detailCarousel"
 								role="button" data-slide="prev"> <span
