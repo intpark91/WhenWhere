@@ -82,7 +82,7 @@ var category='${sessionScope.category}';
 	var result = '${modify}';
 	if (result == 'true') {
 		alert('글 수정 성공');
-		location.href = "reviewRead?no="+no+"&category="+category+"";
+		location.href = "eventRead?no="+no+"&category="+category+"";
 	}
 	else if(result =='false'){
 		alert('글 수정 실패');
@@ -129,7 +129,7 @@ var category='${sessionScope.category}';
 							<!-- 2015.12.07 수정-->
 							<!--//-->
 							<form id="inForm" name="inForm" method="post"
-								action="reviewmodify"
+								action="eventModify"
 								enctype="multipart/form-data">
 								<input type="hidden" name="category" value="3">	
 								<input type="hidden" name="eno" value="${EventDate.no}">

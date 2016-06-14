@@ -13,6 +13,7 @@ $(function() {
 	run_wait('#myCarousel1');
 	getWeather(locName);
 	getEventList();
+	getDetailContent();
 	
 	$('#locSel').on('change', function() {
 		locName = $('#locSel option:selected').text();
@@ -20,6 +21,12 @@ $(function() {
 		run_wait('#myCarousel1');
 		getWeather(locName);
 		getEventList();
+	});
+	
+	$('.carousel').each(function() {
+		$(this).carousel({
+		        interval : 3000
+		    });
 	});
 
 	
@@ -719,6 +726,23 @@ function getEventList(){
 		}
 	});
 
+	
+}
+
+function getDetailContent(){
+	
+	$(document).on('click', '.searchImgA', function() {
+		$('.carousel-indicators').children('.active').attr('class','');
+		$('.carousel-indicators').children('li:first-child').attr('class','active');
+		$('.detailImg1').parent().siblings().attr('class','item row');
+		$('.detailImg1').parent().attr('class','item active row');
+		$('.detailImg1').attr('src', $(this).children('img').attr('src'));
+		$('.modal-title').text($(this).parent().next().children('h4').text());
+		$('.readMore').attr('href',$(this).parent().next().children('input').val());
+		
+		$('.modal-footer').css('display','block');
+		
+	});
 	
 }
 
