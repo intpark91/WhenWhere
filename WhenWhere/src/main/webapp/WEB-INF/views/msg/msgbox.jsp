@@ -102,13 +102,13 @@
 		
 		function readChecked(){
 			var jobj = {};
-			jobj.no = new Array();
+			jobj.arr = new Array();
 			$(".msgCheckBox").each(function(){
 				if($(this).is(":checked")){
-					jobj.no.push($(this).val())
+					jobj.arr.push("{'num':" +$(this).val()+"}")
 				}
 			});
-			
+			console.log(jobj);
 			$.ajax({
 				url : "../user/readChecked",
 				type : "post",
