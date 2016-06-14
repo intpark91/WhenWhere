@@ -44,7 +44,6 @@ function userObj (param) {
     		+  '<td class="sorting_1 nick">' + this.nickname + '</td>'
     		+  '<td class="hidden-xs">'+ this.email +'</td>'
 			+  '<td class="hidden-xs">'+ this.phone + '</td>'
-			/* +  '<td>' + className + select +'</span></td>' */
 			+  '<td>' +  select +'</span></td>'
 			+  '<td><input class="input_class" type="checkbox"></td>'
 			+  '<td style="max-width: 50px; min-width: 40px;"><button type="button" onclick="delUser($(this).closest(\'tr\').find(\'input\').is(\':checked\'),$(this).closest(\'tr\').children(\'.nick\').text())" class="btn btn-block btn-success">삭제</button></td></tr>';
@@ -67,7 +66,6 @@ function boardObj (param) {
     		+  '<td class="hidden-xs">' + this.num + '</td>'
     		+  '<td style="max-width: 100px;">'+ this.title +'</td>'
 			+  '<td >'+ this.writer + '</td>'
-			/* +  '<td>' + className + select +'</span></td>' */
 			+  '<td><input class="input_class" type="checkbox"></td>'
 			+  '<td style="max-width: 50px; min-width: 40px;"><button type="button" onclick="delBoard($(this).closest(\'tr\').find(\'input\').is(\':checked\'),$(this).closest(\'tr\').attr(\'class\'))" class="btn btn-block btn-success">삭제</button></td></tr>';
 		return str;
@@ -113,7 +111,7 @@ function delUser(ischeck,nickname){
 
 function delBoard(ischeck,bnum){
 	if(!ischeck){
-		alert('선택된 회원이 없습니다');
+		alert('선택된 게시글이 없습니다');
 		return;
 	}
 	
@@ -172,7 +170,124 @@ function changeAuth(changeVal,nickname){
 }
 
 function changeBoard(type){
-	alert(type);
 	boardType = type;
 	eventFunc(1);
+}
+
+function userFunc(){
+	search='';
+	search +='<div class="input-group input-group-sm" style="width: 150px;">'
+			+ '<input type="text" name="table_search" class="form-control pull-right" placeholder="Search">'
+			+ '<div class="input-group-btn">'
+			+ '<button type="submit" class="btn btn-default">'
+			+ '<i class="fa fa-search"></i>'
+			+ '</button></div></div>';
+	
+	$('.box-tools').html(search);
+	$('.box-title').text('회원 관리 리스트');
+	theadStr = '';
+	theadStr += '<tr><th>닉네임</th><th class="hidden-xs">이메일</th>'
+			  + '<th class="hidden-xs">휴대폰번호</th>'
+			  + '<th>권한</th>'
+			  + '<th style="max-width: 30px;">회원선택</th>'
+			  + '<th style="max-width: 50px; min-width: 50px;"></th>'
+			  + '</tr>';
+	
+	$('thead').append(theadStr);
+	
+	$.ajax({
+           type:"POST",
+           url:"../admin/getUserList",
+           dataType:"JSON",
+           data : { "page": 1 },
+           success : function(data) {
+        	   console.log(data);
+        	   if(data[0].ok){
+        		   $('.mainTr').html('');
+        		   for(var i=1; i<data.length;i++){
+        			   
+        			   var json_param = new Array();
+        			   json_param.push(data[i].nickname);
+        			   json_param.push(data[i].email);
+        			   json_param.push(data[i].phone);
+        			   json_param.push(data[i].authority);
+        			   
+        			   user = new userObj(json_param);
+        			   str_Txt = user.user_format();
+        			   
+        			   $('.box-body tbody').append(str_Txt);
+        		   }
+        	   }
+           },
+           complete : function(data) {
+        	   
+           },
+           error : function(xhr, status, error) {
+                 console.log(error);
+           }
+    });
+}
+
+function boardFunc(){
+	var selectArr = new Array("공지사항","커뮤니티","리뷰","행사");
+	var selectB = selectArr[boardType-1];
+	selectArr.splice(boardType-1, 1);
+	
+	select='';
+	select +='<div class="form-group">'
+			+ '<select class="form-control board-class" onchange="changeBoard(this.value)">'
+			+ '<option value="1">' + selectB + '</option>'
+			+ '<option value="2">' + selectArr[0] + '</option>'
+			+ '<option value="3">' + selectArr[1] + '</option>'
+			+ '<option value="4">' + selectArr[2] + '</option></select></div>';
+	
+	$('.box-tools').html(select);
+	$('.box-title').text('게시판 관리 리스트');
+	
+	theadStr = '';
+	theadStr += '<tr><th style="max-width: 30px;" class="hidden-xs">글번호</th>'
+			  +	'<th>제목</th>'
+			  + '<th>작성자</th>'
+			  + '<th style="max-width: 30px;">게시글선택</th>'
+			  + '<th style="max-width: 20px; min-width: 20px;"></th>'
+			  + '</tr>';
+	
+	$('thead').append(theadStr);
+	
+	alert(boardType);
+	$.ajax({
+           type:"POST",
+           url:"../admin/getBoardList",
+           dataType:"JSON",
+           data : { "type": boardType },
+           success : function(data) {
+        	   console.log(data);
+        	   if(data[0].ok){
+        		   $('.box-body tbody').html('');
+        		   for(var i=1; i<data.length;i++){
+        			   
+        			   var json_param = new Array();
+        			   json_param.push(data[i].no);
+        			   json_param.push(data[i].title);
+        			   json_param.push(data[i].writer);
+        			   
+        			   board = new boardObj(json_param);
+        			   str_Txt = board.board_format();
+        			   
+        			   $('.box-body tbody').append(str_Txt);
+        		   }
+        	   }
+           },
+           complete : function(data) {
+        	   
+           },
+           error : function(xhr, status, error) {
+                 console.log(error);
+           }
+    });
+}
+
+function localProductFunc(){
+	
+	//////////// 지역 특산물 트리구조로 보이게 ~~
 }
