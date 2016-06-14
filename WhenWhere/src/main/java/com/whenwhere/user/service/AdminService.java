@@ -48,7 +48,7 @@ public class AdminService {
 		
 		boolean ok = false;
 		JSONObject jobj = new JSONObject();
-		jobj.put("ok", true);
+		jobj.put("ok", ok);
 		
 		AdminDAO dao = sqlSessionTemplate.getMapper(AdminDAO.class);
 		int rows = dao.changeUserAuth(value,nickname);
@@ -66,7 +66,7 @@ public class AdminService {
 		
 		boolean ok = false;
 		JSONObject jobj = new JSONObject();
-		jobj.put("ok", true);
+		jobj.put("ok", ok);
 		
 		AdminDAO dao = sqlSessionTemplate.getMapper(AdminDAO.class);
 		int rows = dao.delUser(nickname);
