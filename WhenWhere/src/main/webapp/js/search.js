@@ -288,8 +288,6 @@ $(document).ready(function() {
 	});
 
 	$(document).on('click', '.searchImgA', function() {
-		//$('.carousel-indicators').children('.active').attr('class','');
-		//$('.carousel-indicators').children('li:first-child').attr('class','active');
 		$('.carousel-indicators').empty();
 		$('.carousel-indicators').append('<li data-target="#detailCarousel" data-slide-to="0" class="active"></li>');
 		$('.detailImg1').parent().siblings().attr('class','item row');

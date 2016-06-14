@@ -88,26 +88,16 @@ desired effect
 								<ol class="carousel-indicators">
 									<li data-target="#detailCarousel" data-slide-to="0"
 										class="active"></li>
-									<li data-target="#detailCarousel" data-slide-to="1"></li>
 								</ol>
 
 								<!-- Wrapper for slides -->
 
-								<div class="carousel-inner" role="listbox">
+								<div class="carousel-inner modalContent" role="listbox">
 									<div class="item active row">
 										<img src="../resources/img/item-1.jpg"
 											class="detailImg1 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">
-										<!-- <div class="carousel-caption">
-										<h3>Test</h3>
-      									<p>Test Contents</p>
-      								</div> -->
 									</div>
 
-									<div class="item row">
-										<div
-											class="detail2 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">
-										</div>
-									</div>
 
 								</div>
 
