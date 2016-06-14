@@ -58,7 +58,7 @@ public class AdminService {
 		}
 		
 		jobj.put("ok", ok);
-		
+		System.out.println();
 		return jobj.toString();
 	}
 
