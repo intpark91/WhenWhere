@@ -16,6 +16,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM member where nickname = #{nickname}
 	</delete>
 	
+	<select id="getBoardList" resultType="com.whenwhere.board.vo.BoardVO">
+		select b_no as no, b_title as title, b_auth as writer from Board where BOARDCODE=#{type} ORDER BY b_no
+	</select>
+	
 	<!-- <select id="login" parameterType="com.whenwhere.user.vo.MemberVO" resultType="com.whenwhere.user.vo.MemberVO">
 		select * from member where email = #{email} and password = #{password}
 	</select> -->

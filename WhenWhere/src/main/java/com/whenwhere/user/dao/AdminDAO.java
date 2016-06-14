@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.whenwhere.board.vo.BoardVO;
 import com.whenwhere.user.vo.MemberVO;
 
 public interface AdminDAO {
@@ -12,4 +13,5 @@ public interface AdminDAO {
 	public void getLocalProductList(MemberVO member);
 	public int changeUserAuth(@Param("auth") String auth,@Param("nickname") String nickname);
 	public int delUser(String nickname);
+	public List<BoardVO> getBoardList(int type);
 }

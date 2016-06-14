@@ -10,6 +10,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.whenwhere.board.vo.BoardVO;
 import com.whenwhere.user.dao.AdminDAO;
 import com.whenwhere.user.dao.MemberDAO;
 import com.whenwhere.user.vo.MemberVO;
@@ -78,5 +79,27 @@ public class AdminService {
 		jobj.put("ok", ok);
 		
 		return jobj.toString();
+	}
+
+	public String getBoardList(int type) {
+		JSONArray jarr = new JSONArray();
+		JSONObject jobj = new JSONObject();
+		jobj.put("ok", true);
+		jarr.add(jobj);
+		
+		AdminDAO dao = sqlSessionTemplate.getMapper(AdminDAO.class);
+		List<BoardVO> memberList = dao.getBoardList(type);
+		
+		for(int i=0;i<memberList.size();i++){
+			jobj = new JSONObject();
+			
+			jobj.put("title", memberList.get(i).getTitle());
+			jobj.put("writer", memberList.get(i).getAuth());
+			jobj.put("no", memberList.get(i).getNo());
+			
+			jarr.add(jobj);
+		}
+		
+		return jarr.toJSONString();
 	}
 }
