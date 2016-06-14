@@ -27,7 +27,7 @@
 			<li><a href="../board/notice?category=1"> <i
 					class="fa fa-bullhorn" aria-hidden="true"></i> <span>Notice</span></a>
 			</li>
-			<li><a href="../board/event"> <i class="fa fa-gift"
+			<li><a href="../board/event?cateogory=4"> <i class="fa fa-gift"
 					aria-hidden="true"></i><span>Event</span>
 			</a></li>
 			<li class="treeview"><a href="#"> <i class="fa fa-users"
