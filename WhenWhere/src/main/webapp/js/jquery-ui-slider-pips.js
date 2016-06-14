@@ -671,9 +671,13 @@ function getEventList(){
 
 			carousel1.empty();
 
-			carousel1.append($('<h1 class="slideLabel"><span class="label">※ 행사지</span></h1>'));
+			carousel1.append($('<h1 class="slideLabel"><span class="label">※ 행사</span></h1>'));
 			carousel1.append($('<div/>').attr('class','carousel-inner'));
 
+			if(data.searchEventList.length == 0){
+				carousel1.children('h1').text('※ 행사 정보가 존재하지 않습니다.').attr('class','label searchFail item active');
+			}
+			
 			var carouselDiv = carousel1.children('.carousel-inner');
 
 			for(var j=0; j<data.searchEventList.length; j++){
