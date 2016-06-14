@@ -143,3 +143,36 @@ function delBoard(ischeck,bnum){
 	    });
 	}
 }
+
+function changeAuth(changeVal,nickname){
+	console.log(parent);
+	if(confirm(changeVal+'로 변경하시겠습니까?')){
+		$.ajax({
+	           type:"POST",
+	           url:"../admin/changeUserAuth",
+	           dataType:"JSON",
+	           data : { "val": changeVal , "nickname" : nickname },
+	           success : function(data) {
+	        	   if(data.ok){
+	        		  alert('회원의 권한이 '+ changeVal + '로 변경되었습니다.');
+	        	   }else{
+	        		   $('auth-class').val(beforeChangeValue);
+	        	   }
+	           },
+	           complete : function(data) {
+	        	   
+	           },
+	           error : function(xhr, status, error) {
+	                 console.log(error);
+	           }
+	    });
+	}else{
+		$('auth-class').val(beforeChangeValue);
+	}
+}
+
+function changeBoard(type){
+	alert(type);
+	boardType = type;
+	eventFunc(1);
+}
