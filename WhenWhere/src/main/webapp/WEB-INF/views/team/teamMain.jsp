@@ -21,6 +21,7 @@
 			padding: 10px;
 			background-color: #ffffff;
 		}
+		
 		table{
 			text-align: center;
 		}
@@ -32,25 +33,26 @@
 		input.form-control.pull-right {
    			 width: 150px;
 		}
+		
 		.chat .item > .message {
 		    margin-left: 15px;
 		    margin-top: 0px; */
 		}
+		
 		input#reservation {
 		    width: 95%;
     		margin-right: 5%;
 		}
+		
 		.label-col-sm-2 {
 		    text-align: right;
 		    padding-top: 7px;
 		}
+		
 		.input-group[class*=col-] {
 		    margin-left: 4%;
 		}
-		/* .box.box-success {
-		    height: 700px;
-		    overflow: auto;
-		} */
+		
 	</style>
 	<script type="text/javascript">
 	
