@@ -254,7 +254,6 @@ function boardFunc(){
 	
 	$('thead').append(theadStr);
 	
-	alert(boardType);
 	$.ajax({
            type:"POST",
            url:"../admin/getBoardList",

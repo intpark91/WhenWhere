@@ -33,12 +33,6 @@ public class BoardController {
 	@Autowired
 	EventBoardSVC eventboardSVC;
 	
-	@RequestMapping(value = "/no")
-	public String no(Model model,HttpServletRequest request) {			
-		return 	"board/notice/notice";
-	}
-	
-	
 	@RequestMapping(value = "/notice")
 	public String notice(Model model,HttpServletRequest request) {			
 		return 	noticeBoardSVC.noticeList(model, request);

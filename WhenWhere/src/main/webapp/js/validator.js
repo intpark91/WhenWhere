@@ -62,7 +62,7 @@
     custom: {},
     errors: {
       match: 'Does not match',
-      minlength: 'Not long enough'
+      minlength: '너무 짧습니다.'
     },
     feedback: {
       success: 'glyphicon-ok',

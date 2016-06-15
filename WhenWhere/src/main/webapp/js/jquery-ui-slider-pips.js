@@ -621,7 +621,7 @@ function getWeather(locName) {
 		data:{locName:locName},
 		success:function(data){
 			if(data.ok){
-				weathers = ['CH','S','S'];
+				weathers = ['DR','S','S'];
 				
 				for(var i=0; i<data.wf.length; i++){
 					weathers.push(data.wf[i]);
