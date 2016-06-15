@@ -5,7 +5,7 @@
 <head>
 	<jsp:include page="../component/core_head.jsp" />
 	<title>WhenWhereTest</title>
-	<link rel="stylesheet" href="../css/home/login.css" /> 
+	<!-- <link rel="stylesheet" href="../css/home/login.css" />  -->
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 </head>
 
@@ -25,7 +25,7 @@
 			<section class="content">
 				<form class="form-horizontal">
 					<!-- LOGIN FORM -->
-					<div class="container">
+					<!-- <div class="container">
 						<div class="row login_box">
 							<div class="col-md-12 col-xs-12" align="center">
 								<div class="line">
@@ -51,6 +51,42 @@
 								<div align="center">
 									<button type="button" class="btn btn-orange" onclick="login();">LOGIN</button>
 								</div>
+							</div>
+						</div>
+					</div> -->
+					<!-- 로그인 폼 바꿔봄봄봄봄봄보몹몹모 -->
+					<div class="login-box">
+						<div class="login-logo">
+							<a href="../../index2.html"><b>WhenWhere</b></a>
+						</div>
+						<!-- /.login-logo -->
+						<div class="login-box-body">
+							<p class="login-box-msg">
+								<b>로그인</b>
+							</p>
+							<form action="../../index2.html" method="post">
+								<div class="form-group has-feedback">
+									<input type="email" class="form-control" placeholder="Email">
+									<span
+										class="glyphicon glyphicon-envelope form-control-feedback"></span>
+								</div>
+								<div class="form-group has-feedback">
+									<input type="password" class="form-control"
+										placeholder="Password"> <span
+										class="glyphicon glyphicon-lock form-control-feedback"></span>
+								</div>
+								<div class="row">
+									<button type="submit"
+										class="btn btn-success btn-block btn-flat">로그인</button>
+								</div>
+							</form>
+
+							<div class="row">
+								<p class="text-center">- OR -</p>
+								<a href="../home/register" class="btn btn-primary btn-block btn-flat">회원
+									가입</a>
+								<a href="#" class="btn btn-warning btn-block btn-flat">아이디/비밀번호
+									찾기</a>
 							</div>
 						</div>
 					</div>
