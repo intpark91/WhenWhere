@@ -57,39 +57,56 @@
 	<script type="text/javascript">
 	
 		function makeTeam() {
-			alert($('form').serialize());
-			$.ajax({
-				type : "POST",
-				url : "../team/makeTeam",
-				dataType : "JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
-				data : $('form').serialize(),
-				success : function(data) {
-					console.log(data);
+			var date = $('#reservation').val();
+			var formData = $('form').serialize() 
+			+ "&sdate=" + date.split(" - ")[0]
+			+ "&edate=" + date.split(" - ")[1];
+			
+			if(date == ''){
+				$.bootstrapGrowl("날짜를 선택해야징.. 이 바부야!", {
+					type: 'danger',
+					align: 'center',
+					width: 'auto',
+					allow_dismiss: false
+				});
+			}else{
+				$.ajax({
+					type : "POST",
+					url : "../team/makeTeam",
+					dataType : "JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+					data : formData,
+					success : function(data) {
+						console.log(data);
 
-					if (data.ok) {
-						$('input[name=title]').val('');
-						$('#roomMakeDiv').addClass('collapsed-box');
-						/* $('#roomMakeDiv .box-body').css('display','none'); */
-						$('#roomListDiv').addClass('collapsed-box');
-						$('#chattingRoom').removeClass('collapsed-box');
+						/*  if (data.ok) {
+							$('input[name=title]').val('');
+							$('#roomMakeDiv').addClass('collapsed-box');
+							//$('#roomMakeDiv .box-body').css('display','none'); 
+							$('#roomListDiv').addClass('collapsed-box');
+							$('#chattingRoom').removeClass('collapsed-box');
 
-						title = data.title;
-						user = data.name; 
+							title = data.title;
+							user = data.name; 
 
-						$('#roomTitle').text('방제목:');
-						$('.room-title').text(title);
+							$('#roomTitle').text('방제목:');
+							$('.room-title').text(title);
 
-						websocket(); //websocket연결
-						sendMsg(); //msg 출력
+							websocket(); //websocket연결
+							sendMsg(); //msg 출력
+						}  */
+						
+					},
+					complete : function(data) {
+
+					},
+					error : function(xhr, status, error) {
+						console.log(error);
 					}
-				},
-				complete : function(data) {
-
-				},
-				error : function(xhr, status, error) {
-					console.log(error);
-				}
-			});
+				});
+				
+			}
+			
+			
 		}
 	</script>
 </head>
@@ -101,7 +118,6 @@
 		<jsp:include page="../component/header.jsp" />
 		<jsp:include page="../component/linkSidebar.jsp" />
 		<!-- Content Wrapper. Contains page content -->
-
 		<div class="content-wrapper">
 			<section class="content-header"></section>
 			<!-- Content Header (Page header) -->
@@ -117,7 +133,7 @@
 		            	<div class="box-tools pull-right">
 		                	<button type="button" class="btn btn-box-tool" data-widget="collapse">
 		                		<i class="fa fa-plus"></i>
-		                	</button>
+		                	</button> 
 		              </div>
 		            </div>
 		            <div class="box-body">
@@ -127,20 +143,20 @@
 				                <div class="form-group">
 				                  	<label for="inputEmail3" class="col-sm-2 control-label">팀이름</label>
 				                 	 <div class="col-sm-4">
-				                    	<input name="title" type="text" class="form-control" id="inputEmail3" placeholder="방 제목을 입력해주세요">
+				                    	<input name="teamname" type="text" class="form-control" id="inputEmail3" placeholder="방 제목을 입력해주세요">
 				                  	</div>
 									<label class="col-sm-2 label-col-sm-2">여행 기간</label>
 									<div class="input-group col-sm-4">
 										<div class="input-group-addon">
 											<i class="fa fa-calendar"></i>
 										</div>
-										<input name="date" type="text" class="form-control pull-right col-sm-10" id="reservation">
+										<input type="text" class="form-control pull-right col-sm-10" id="reservation">
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-1 control-label ">주제</label>
 									<div class="col-sm-3">
-										<select name="type" class="form-control select2" style="width: 100%;">
+										<select name="subject" class="form-control select2" style="width: 100%;">
 											<option value="0" selected="selected">동행</option>
 											<option value="1">숙박</option>
 											<option value="2">예약</option>
@@ -160,9 +176,9 @@
 									</div>
 									<label class="col-sm-1 control-label">지역선택</label>
 									<div class="col-sm-3">
-										<select name="locName" class="form-control select2" style="width: 100%;">
+										<select name="loc_code" class="form-control select2" style="width: 100%;">
 											<c:forEach items="${locationSubList }" var="list">
-												<option value="${list }">${list }</option>
+												<option value='${list.get("locCode") }'>${list.get("locSubName") }</option>
 											</c:forEach>
 										</select>
 									</div>
@@ -178,89 +194,90 @@
 		            </div>
 		            <!-- /.box-body -->
 		          </div>
-			
-				<div class="col-sx-12 " >
-					<div id="roomListDiv" class="box box-default">
-						<div class="box-header">
-							<h3 class="box-title"><span class="hidden-xs"> 팀 리스트 </span></h3>
-							<div class="box-tools">
-								<div class="input-group input-group-sm " style="width: 150px;">
-									<input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-									<div class="input-group-btn ">
-										<button type="submit" class="btn btn-default">
-											<i class="fa fa-search"></i>
-										</button>
-										<button type="button" class="btn btn-box-tool " data-widget="collapse">
-											<i class="fa fa-minus"></i>
-		               					</button>
+				
+					<div class="col-sx-12 " >
+						<div id="roomListDiv" class="box box-default">
+							<div class="box-header">
+								<h3 class="box-title"><span class="hidden-xs"> 팀 리스트 </span></h3>
+								<div class="box-tools">
+									<div class="input-group input-group-sm " style="width: 150px;">
+										<input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+										<div class="input-group-btn ">
+											<button type="submit" class="btn btn-default">
+												<i class="fa fa-search"></i>
+											</button>
+											<button type="button" class="btn btn-box-tool " data-widget="collapse">
+												<i class="fa fa-minus"></i>
+			               					</button>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<!-- /.box-header -->
-						<div class="box-body table-responsive no-padding">
-							<table class="table table-hover mainTr">
-								<tr>
-									<th style="width: 10px;">#</th>
-									<th style="width: 80px;" class="hidden-xs">개설</th>
-									<th style="max-width: 20px;">
-					                    <select>
-						                    <option>전체</option>
-						                    <option>동행</option>
-						                    <option>숙박</option>
-						                    <option>예약</option>
-						                    <option>단체</option>
-						                    <option>기타</option>
-					                    </select>
-                					</th>
-                					<th style="width: 80px;" class="hidden-xs">방정보</th>
-									<th>방제목</th>
-								</tr>
-							</table>
-							<div class="box-footer clearfix">
-								<ul class="pagination pagination-sm no-margin pull-right">
-									<li><a href="#">&laquo;</a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">&raquo;</a></li>
-								</ul>
+							<!-- /.box-header -->
+							<div class="box-body table-responsive no-padding">
+								<table class="table table-hover mainTr">
+									<tr>
+										<th style="width: 10px;">#</th>
+										<th style="width: 80px;" class="hidden-xs">개설</th>
+										<th style="max-width: 20px;">
+						                    <select>
+							                    <option>전체</option>
+							                    <option>동행</option>
+							                    <option>숙박</option>
+							                    <option>예약</option>
+							                    <option>단체</option>
+							                    <option>기타</option>
+						                    </select>
+	                					</th>
+	                					<th style="width: 80px;" class="hidden-xs">방정보</th>
+										<th>방제목</th>
+									</tr>
+								</table>
+								<div class="box-footer clearfix">
+									<ul class="pagination pagination-sm no-margin pull-right">
+										<li><a href="#">&laquo;</a></li>
+										<li><a href="#">1</a></li>
+										<li><a href="#">2</a></li>
+										<li><a href="#">3</a></li>
+										<li><a href="#">4</a></li>
+										<li><a href="#">5</a></li>
+										<li><a href="#">&raquo;</a></li>
+									</ul>
+								</div>
 							</div>
+							<!-- /.box-body -->
 						</div>
-						<!-- /.box-body -->
+						<!-- /.box -->
 					</div>
-					<!-- /.box -->
 				</div>
+	
+				<!-- 채팅방 관련-->
+				<div id="chattingRoom" class="box box-success collapsed-box">
+					<div class="box-header">
+						<i class="fa fa-comments-o"></i>
+						<span id="roomTitle">선택된 팀이 없습니다.</span>
+						<h3 class="box-title room-title"> </h3>
+					</div>
+					<div class="box-body chat" id="chat-box">
+						<!-- chat item -->
+						<div class="item chat_main_body">
+							*
+						</div>
+						<!-- /.item -->
+						<div class="box-footer">
+				              <div class="input-group">
+				                <input class="form-control" placeholder="Type message..." name="chatInput">
+				
+				                <div class="input-group-btn">
+				                  <button type="button" onclick="sendMsg();" class="btn btn-success"><i class="fa fa-plus"></i></button>
+				                </div>
+				              </div>
+				            </div>
+						</div>
+					</div>
+				</div>
+				<!-- include -->
 			</div>
-
-			<!-- 채팅방 관련-->
-			<div id="chattingRoom" class="box box-success collapsed-box">
-				<div class="box-header">
-					<i class="fa fa-comments-o"></i>
-					<span id="roomTitle">선택된 팀이 없습니다.</span>
-					<h3 class="box-title room-title"> </h3>
-				</div>
-				<div class="box-body chat" id="chat-box">
-					<!-- chat item -->
-					<div class="item chat_main_body">
-						*
-					</div>
-					<!-- /.item -->
-					<div class="box-footer">
-			              <div class="input-group">
-			                <input class="form-control" placeholder="Type message..." name="chatInput">
-			
-			                <div class="input-group-btn">
-			                  <button type="button" onclick="sendMsg();" class="btn btn-success"><i class="fa fa-plus"></i></button>
-			                </div>
-			              </div>
-			            </div>
-					</div>
-				</div>
-			</div>
-			<!-- include -->
 		</div>
 		<jsp:include page="../component/footer.jsp" />
 		<jsp:include page="../component/controlSidebar.jsp" />

@@ -4,11 +4,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href=../css/board/reviewCSS/board.css>
+	<link rel="stylesheet" href=../css/board/reviewCSS/body.css>
+	<link rel="stylesheet" href=../css/board/reviewCSS/common.css>
+	<link rel="stylesheet" href=../css/board/reviewCSS/contents.css>
+	<link rel="stylesheet" href=../css/board/reviewCSS/sub1.css>
 	<jsp:include page="../../component/core_head.jsp" />
 	<title>WhenWhereTest</title>
-	<link rel="stylesheet" href=../css/board/reviewBoard.css>
-	<style type="text/css">
 	
+	<style type="text/css">
+.bandi2 {
+	max-height: 200px;
+	overflow: auto;
+}
+
+.fesival_view .bandi a  {
+	width: 150px;
+	height: 45px;
+	line-height: 33px;
+	text-align: center;
+	font-size: 22px;
+	border: 1px solid #dadada;  
+	margin: 30px 0 0 10px; 
+	padding: 5px 5px;
+}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -16,6 +35,9 @@
 			location.href="reviewwrite?category=3"					
 		});
 		$('.img p:has(img)').css('display','none');
+		
+		$('.bandi p:has(img)').css('display','none');
+		
 	});
 	
 	
@@ -29,12 +51,14 @@
 	}
 </style>
 
+<style type="text/css">
+	.commendtitle{
+	color:#111;
+	}
+</style>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
-						<div id="main_bg" class="info_main_bg" >
-							<div class="mainWrap">
-							</div>
-						</div>
 	<div class="wrapper">
 		<!-- include -->
 		<jsp:include page="../../component/header.jsp" />
@@ -42,81 +66,46 @@
 		<!-- Content Wrapper. Contains page content -->
 
 		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
-			<section class="content-header">
-			</section>
-			
 
-		<div class="container">				
-			<div class="row">
-
-				<div
-					class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2 text-center">
+				<!-- <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8  text-center"> -->
+				<div id="content01">
 					<div class="con_area">
 						<div class="festivalWrap">
 							<div class="thisMonth">
 								<h3>Focus</h3>
-								<h4>Best 행사</h4>
-								<div class="thisMonth2" style="position: relative;">6월</div>
+								<h4>Best 행사</h4>								
+								<div class="thisMonth2" style="position: relative;">6월</div>								
 								<div class="festival">
 									<ul class="festival_list">
+										<c:forEach var="item" items="${bestcommend}" varStatus="status" begin="0" end="2">
 										<li class="festival_list_child">
 											<ul class="bandi_list">
 												<li class="bandi_img">
-													<a href="#">
-														<img src="../images/reviewimg/reviewDemo.JPG"alt="">
+													<a href="reviewRead?no=${item.NO}&category=${bestcommend[0].category}">
+														<img src="http://localhost:8088/img/${item.FILENAME}"alt="">
 													</a>
 												</li>
 												<li>
-												<a href="noticeRead">[전주] 전주한지문화축제</a><br> <span class="bandi_list_date">2016.05.05~05.08</span></li>
+												<a href="reviewRead?no=${item.NO}&category=${item.category}" class="atage">[${item.loc}] ${item.title}</a><br> <span class="bandi_list_date">${item.SDATE} ~ ${item.EDATE}</span></li>            
 											</ul>
-										</li>
-										
-										<li class="festival_list_child">
-											<ul class="bandi_list">
-												<li class="bandi_img">
-													<a href="#">
-														<img src="../images/reviewimg/reviewDemo.JPG" alt="">
-													</a>
-												</li>
-												<li>
-													<a href="#">[전주] 전주국제영화제</a><br> 
-													<span class="bandi_list_date">2016.04.28~05.07</span>
-												</li>
-											</ul>
-										</li>
-
-										<li class="festival_list_child">
-											<ul class="bandi_list">
-												<li class="bandi_img">
-													<a href="#">
-														<img src="../images/reviewimg/reviewDemo.JPG" alt="#">
-													</a>
-												</li>
-												<li>
-													<a href="#">[남원] 바래봉 철쭉제</a> 
-													<br> <span class="bandi_list_date">2016.04.23~05.22</span>
-												</li>
-											</ul>
-										</li>
+										</li>	
+										</c:forEach>
 									</ul>
-
 								</div>
 							</div>
 
 							<div class="fesival_view">
-
-								<div class="this_month_event_view" style="display: block;">
+								<div class="this_month_event_view" >
 									<div class="bandi">
-										<h2>dxsadas</h2>
-										
-										<p>장소 : 전라북도 전주시 덕진구 덕진동 1가 1220</p>
-										<p>주최/주관 : 전주시/전주한지문화축제 조직위원회</p>
-										<p>연락처 : 063-271-2503</p>
-										<a href="#">상세보기</a>
+										<div class="bandi2">
+											<h2>${bestcommend[0].title}</h2>										
+											<p>${bestcommend[0].content}</p>
+											<p>기간:${bestcommend[0].SDATE} ~ ${bestcommend[0].EDATE} </p>									
+										</div>
+										<a href="reviewRead?no=${bestcommend[0].NO}&category=${bestcommend[0].category}">상세보기</a>
 									</div>
 									<p class="bandi_img">
-										<img src="../images/reviewimg/reviewDemo.JPG" alt="한지문화축제.jpg">
+										<img src="http://localhost:8088/img/${bestcommend[0].FILENAME}" alt="한지문화축제.jpg">
 									</p>
 								</div>
 							</div>
@@ -130,11 +119,9 @@
 								</li>
 								<li class="result_my"></li>
 							</ul>
-	
 						</div>
 
 						<div class="serchList">
-					
 							<c:forEach var="item" items="${ReviewboardList}" varStatus="status">	
 							<div class="photoWrap">
 								<a href="reviewRead?no=${item.NO}&category=3">
@@ -142,9 +129,9 @@
 								</a>
 								<h3>
 									<a href="reviewRead?no=${item.NO}&category=3">
-										<span class="jb_area">${item.LOC}</span> <span id="boardtitle">${item.TITLE}</span>
 									
-									<span class="jb_area">추천수: ${item.RECOMMEND}</span>					
+									<span id="boardtitle">${item.TITLE}</span>								
+												
 									</a>
 								</h3>
 								<ul class="stay_infobox">
@@ -152,6 +139,8 @@
 
 									<li class="img"> ${item.CONTENT}</li>
 								</ul>
+								<span class="jb_area">추천수: ${item.RECOMMEND}</span>	
+								<span class="jb_area">${item.LOC}</span> 
 							</div>
 							</c:forEach>
 						</div>
@@ -180,8 +169,7 @@
 										</c:when>
 									</c:choose>
 							</c:when>
-						
-						
+												
 							<c:otherwise>
 									<c:choose>
 										<c:when test="${searchpagenation.currPage>10}">
@@ -214,7 +202,7 @@
 						</div>												
 					</div>					
 				</div>
-			</div>
+			<!-- </div> -->
 		</div>
 		
 
@@ -227,7 +215,6 @@
 	</div>
 	<!-- scripts -->
 	<jsp:include page="../../component/core_js.jsp" />
-	<script src="../../js/jquery-ui-slider-pips.js"></script>
-	<script src="../../js/slider.js"></script>
+	<script src="../js/loadingSpinner.js"></script>
 </body>
 </html>

@@ -620,15 +620,24 @@ function getWeather(locName) {
 		url:"../home/weather",
 		data:{locName:locName},
 		success:function(data){
-			weathers = ['CH','S','S'];
-			
-			for(var i=0; i<data.wf.length; i++){
-				weathers.push(data.wf[i]);
+			if(data.ok){
+				weathers = ['DR','S','S'];
+				
+				for(var i=0; i<data.wf.length; i++){
+					weathers.push(data.wf[i]);
+				}
+				
+				$('.weatherSpan').each(function(k, v) {
+					$(this).html($('<img src="../resources/img/weather/' + weathers[k] + '.png" width="30" height="30">'));
+				});
+			}else{
+				$.bootstrapGrowl("날씨를 가져오는 중에 오류가 발생했습니다. 잠시 후에 다시 시도하세요.", {
+		            type: 'danger',
+		            align: 'center',
+		            width: 'auto',
+		            allow_dismiss: false
+		        });
 			}
-			
-			$('.weatherSpan').each(function(k, v) {
-				$(this).html($('<img src="../resources/img/weather/' + weathers[k] + '.png" width="30" height="30">'));
-			});
 			
 		},
 		error:function(){
@@ -706,15 +715,14 @@ function getEventList(){
 					carouselDiv.append(itemDiv);
 				}
 				
-				
 				captionDiv.append($('<span class="recommend glyphicon glyphicon-thumbs-up">' +data.searchEventList[j].bRecommend+ '</span>'));
 				captionDiv.append(title);
 				captionDiv.append(content);
 				captionDiv.append($('<input type="hidden" value="#?bNo='+data.searchEventList[j].bNo+'">'));
-				imgA.append($('<input type="hidden" value='+data.searchEventList[j].eSDate+'~'+data.searchEventList[j].eEDate+'>'));
-				imgA.append($('<input type="hidden" value='+data.searchEventList[j].locName+'>'));
-				imgA.append($('<input type="hidden" value='+data.searchEventList[j].bRecommend+'>'));
-				imgA.append($('<input type="hidden" value='+data.searchEventList[j].bContent+'>'));
+				imgA.append($('<input type="hidden" value="'+data.searchEventList[j].eSDate+'~'+data.searchEventList[j].eEDate+'">'));
+				imgA.append($('<input type="hidden" value="'+data.searchEventList[j].locName+'">'));
+				imgA.append($('<input type="hidden" value="'+data.searchEventList[j].bRecommend+'">'));
+				imgA.append($('<input type="hidden" value="'+data.searchEventList[j].bContent+'">'));
 				imgA.append(img);
 				thumbnailDiv.append(imgA);
 				fDiv.append(thumbnailDiv);

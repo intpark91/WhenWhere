@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,12 @@
 <script type="text/javascript">
 	var result = '${insert}';
 	if (result == 'true') {				
-		alert('글 쓰기 성공');
+		$.bootstrapGrowl("글 쓰기 성공!", {
+			type: 'success',
+			align: 'center',
+			width: 'auto',
+			allow_dismiss: false
+		});
 		location.href = "eventRead?no=0";
 	}
 	else if(result =='false'){
@@ -117,22 +123,43 @@ jQuery.browser = {};
 							var f = $("#inForm");
 							function formSubmit() {
 								if ($("#dataTitle").val() == '') {
-									alert("제목을 입력하시기 바랍니다.");
+									$.bootstrapGrowl("제목을 입력하세요.", {
+										type: 'warning',
+										align: 'center',
+										width: 'auto',
+										allow_dismiss: false
+									});
 									return;
 								}
 					
 								if ($("#dataContent").val() == '') {
-									alert("내용을 입력하시기 바랍니다.");
+									$.bootstrapGrowl("내용을 입력하세요.", {
+										type: 'warning',
+										align: 'center',
+										width: 'auto',
+										allow_dismiss: false
+									});
 									oEditors.getById["dataContent"].exec(
 											"FOCUS", []);
 									return;
 								}
-								
+								if ($("#Datepicker").val() == '' || $("#Datepicker2").val() == '') {
+									$.bootstrapGrowl("기간을 선택하세요.", {
+										type: 'warning',
+										align: 'center',
+										width: 'auto',
+										allow_dismiss: false
+									});
+									oEditors.getById["dataContent"].exec(
+											"FOCUS", []);
+									return;
+								}
+								 
 								$("#inForm").submit();
 							}
 						</script>
 						
-						<div id="content01">
+					
 							<!-- 2015.12.07 수정-->
 
 							<!--//-->
@@ -160,19 +187,11 @@ jQuery.browser = {};
 													<th scope="row"><label for="location">지역</label></th>
 														<td class="bbs_location">
 														<select name="location" id="location" class="location">
-																				<option value="01001">서울</option>
-																				<option value="02001">경기</option>
-																				<option value="03001">영서</option>
-																				<option value="04001">영동</option>
-																				<option value="05001">충북</option>
-																				
-																				<option value="06001">충남</option>
-																				<option value="07001">경북</option>
-																				<option value="08001">경남</option>
-																				<option value="09001">전북</option>
-																				<option value="10001">전남</option>
-																				<option value="11001">제주</option>
-																				</select> </td>
+															<c:forEach var="item" items="${location}" varStatus="status">
+																<option value="${item.FIRSTLOC}">${item.loc_subject}</option>
+															</c:forEach>		
+														</select>  
+														</td>
 													</tr>
 													<tr>
 														<th scope="row"><label for="dataTitle">기간 선택</label></th>
@@ -199,20 +218,18 @@ jQuery.browser = {};
 												</tbody>
 											</table>
 										</div>
+
+									</div>
 										<div class="bbs_btn">
 											<p class="fl">&nbsp;</p>
 											<p class="fr">
-												
 												<a href="#" onclick="formSubmit();">등록</a> 
 												<a href="#">취소</a>
 											</p>
 										</div>
-									</div>
 								</div>
 							</form>
 						</div>
-
-					</div>
 				</div>
 			</div>	
 		</div>

@@ -33,7 +33,6 @@ public class BoardController {
 	@Autowired
 	EventBoardSVC eventboardSVC;
 	
-	
 	@RequestMapping(value = "/notice")
 	public String notice(Model model,HttpServletRequest request) {			
 		return 	noticeBoardSVC.noticeList(model, request);
@@ -113,7 +112,7 @@ public class BoardController {
 	public String reViewWrite(HttpServletRequest request, Model model) {
 		String category = request.getParameter("category");
 		model.addAttribute("category", category);
-		
+		model.addAttribute("location", reviewboardSVC.location(request));
 		return "board/review/reviewwrite";	
 	}
 	
@@ -154,12 +153,14 @@ public class BoardController {
 	public String eventWrite(HttpServletRequest request, Model model) {
 		String category = request.getParameter("category");
 		model.addAttribute("category", category);
+		model.addAttribute("location", reviewboardSVC.location(request));
 		return "board/event/eventWrite";	
 	}
 	
 	@RequestMapping(value = "/eventInsert",method = RequestMethod.POST)
 	public String eventInsert(Model model,HttpServletRequest request, @RequestParam(required=false) MultipartFile upload) throws ParseException {
 		model.addAttribute("insert", eventboardSVC.insert(model,request));
+		
 		return "board/event/eventWrite";	
 	}
 	

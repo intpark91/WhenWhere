@@ -21,26 +21,51 @@ h2 {
 
 <script type="text/javascript">
 function delectAjax(no){
-
-	jQuery.ajax({
-		type: "post", 
-		url:"noticedelete",
-		data : {"no":no},
-		dataType : "json",
-		success : function(delect){
-			console.log(delect);
-			 if(delect.delect==true){			 	
-					alert('글 삭제 성공');
-					location.href="review?category="+${ReadBoard.category}+"";
-			     }
-		},
-		complete : function(res){					
-		}, 
-		error : function(xhr,status,error){
-				alert("에러 발생");
-				alert(status);
-		}  
-	});	
+	var category = '${ReadBoard.category}';
+	
+	bootbox.dialog({
+		message : "글을 삭제 하시겠습니까?",
+		buttons : {
+			success : {
+				label : "네",
+				className : "btn-success",
+				callback : function() {
+					jQuery.ajax({
+						type: "post", 
+						url:"noticedelete",
+						data : {"no":no,"category":category},
+						dataType : "json",
+						success : function(delect){
+							console.log(delect);
+							 if(delect.delect==true){
+								$.bootstrapGrowl("삭제 완료!", {
+									type: 'success',
+									align: 'center',
+									width: 'auto',
+									allow_dismiss: false
+								});
+								location.href="review?category="+${ReadBoard.category}+"";
+							 }else {
+								alert('삭제 실패');
+							 }
+						},
+						complete : function(res){					
+						}, 
+						error : function(xhr,status,error){
+								alert("에러 발생");
+								alert(status);
+						}  
+					});	
+				}
+			},
+			danger : {
+				label : "아니요",
+				className : "btn-danger",
+			}
+		}
+	});
+	
+	
 
 }	
 
@@ -48,7 +73,14 @@ function recommend(no){
 	var nickName = '${sessionScope.member.nickname}';
 	console.log("nickname"+nickName);
 	var category = '${ReadBoard.category}';
-	if(nickName=='')alert('로그인 후 이용 가능 합니다');
+	if(nickName==''){
+		$.bootstrapGrowl("로그인이 필요한 서비스입니다.", {
+			type: 'danger',
+			align: 'center',
+			width: 'auto',
+			allow_dismiss: false
+		});
+	}
 	else
 	jQuery.ajax({
 		
@@ -58,11 +90,21 @@ function recommend(no){
 		dataType : "json",
 		success : function(recommend){
 			 if(recommend.recommend==true){			 	
-					alert('추천을 누르셨습니다');
+					$.bootstrapGrowl("추천 성공!", {
+						type: 'success',
+						align: 'center',
+						width: 'auto',
+						allow_dismiss: false
+					});
 					location.href="review?category="+${ReadBoard.category}+"";
 			  }
 			 else{
-				 alert('이미 추천을 누르 셨습니다.');
+					$.bootstrapGrowl("이미 추천을 하였습니다.", {
+						type: 'warning',
+						align: 'center',
+						width: 'auto',
+						allow_dismiss: false
+					});
 			 }
 		},
 		complete : function(res){					
@@ -74,11 +116,6 @@ function recommend(no){
 	});	
 
 }	
-
-
-
-
-
 	$(function(){		
 		$('#submit').on('click',function(){
 			var serData = $('#commentform').serialize();
@@ -89,7 +126,13 @@ function recommend(no){
 				dataType : "json",
 				success : function(insert){
 					 if(insert.insert==true){			 	
-							alert('댓글 쓰기 성공');
+						 	$.bootstrapGrowl("댓글 쓰기 완료!", {
+								type: 'success',
+								align: 'center',
+								width: 'auto',
+								allow_dismiss: false
+							});
+
 							location.href="reviewRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
 					     }
 				},
@@ -103,8 +146,6 @@ function recommend(no){
 			
 		});
 	});
-
-
 
 	function modifyForm(no){	
 		location.href="reviewRead?no="+no+"&cmd=updateForm&category="+${ReadBoard.category}+"&eno="+${EventDate.no}+"";
@@ -141,7 +182,14 @@ function recommend(no){
 			dataType : "json",
 			success : function(update){
 				 if(update.update==true){			 	
-						alert('댓글 수정 성공');
+						$.bootstrapGrowl("댓글 수정 완료!", {
+							type: 'success',
+							align: 'center',
+							width: 'auto',
+							allow_dismiss: false
+						});
+
+
 						location.href="reviewRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
 				     }
 			},
@@ -162,7 +210,14 @@ function recommend(no){
 			dataType : "json",
 			success : function(cdelete){
 				 if(cdelete.cdelete==true){			 	
-						alert('댓글 삭제 성공');
+						$.bootstrapGrowl("댓글 삭제 완료!", {
+							type: 'success',
+							align: 'center',
+							width: 'auto',
+							allow_dismiss: false
+						});
+
+
 						location.href="reviewRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
 				     }
 			},
@@ -200,7 +255,7 @@ function recommend(no){
 				<div
 					class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2 text-center">
 					<div id="all" class="clearfix">
-						<div id="content01">
+						
 							<!--2015.12.07 수정-->
 
 							<!--//-->
@@ -345,13 +400,13 @@ function recommend(no){
 															<p class="comment-form-author">
 																<label for="author">이름<span class="required"></span></label>
 																<input id="author" name="auth" type="text"
-																	readonly="true" value="none" size="30"
+																	readonly="true" value="${sessionScope.member.nickname}" size="30"
 																	aria-required="true" required="required">
 															</p>
 															<p class="comment-form-comment">
 																<label for="comment">내용</label>
 																<textarea id="comment" name="content" cols="45" rows="8"
-																	aria-required="true" required="required"></textarea>
+																	aria-required="true" required="required" placeholder="댓글을 입력해 주세요"></textarea>
 															</p>
 															<p class="form-submit">
 																
@@ -378,14 +433,7 @@ function recommend(no){
 					</div>
 				</div>
 			</div>
-		</div>
-
-
-
-
-		</div>
 			
-
 		<!-- /.content-wrapper -->
 		<!-- include -->
 		<jsp:include page="../../component/footer.jsp" />

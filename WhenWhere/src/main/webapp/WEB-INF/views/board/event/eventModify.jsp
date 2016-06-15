@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>		
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,7 +82,12 @@ var category='${sessionScope.category}';
 
 	var result = '${modify}';
 	if (result == 'true') {
-		alert('글 수정 성공');
+		$.bootstrapGrowl("글 수정 성공!", {
+			type: 'success',
+			align: 'center',
+			width: 'auto',
+			allow_dismiss: false
+		});
 		location.href = "eventRead?no="+no+"&category="+category+"";
 	}
 	else if(result =='false'){
@@ -93,11 +99,21 @@ var category='${sessionScope.category}';
 	var f = $("#inForm");
 	function modify() {
 		if ($("#dataTitle").val() == '') {
-			alert("제목을 입력하시기 바랍니다.");
+			$.bootstrapGrowl("제목을 입력하세요!", {
+				type: 'warning',
+				align: 'center',
+				width: 'auto',
+				allow_dismiss: false
+			});
 			return;
 		}
 		if ($("#dataContent").val() == '') {
-			alert("내용을 입력하시기 바랍니다.");
+			$.bootstrapGrowl("내용을 입력하세요!", {
+				type: 'warning',
+				align: 'center',
+				width: 'auto',
+				allow_dismiss: false
+			});
 			oEditors.getById["dataContent"].exec("FOCUS", []);
 			return;
 		}
@@ -151,8 +167,13 @@ var category='${sessionScope.category}';
 															name="auth" id="userNick" readonly="readonly" value="${sessionScope.member.nickname}"></td>
 													</tr>																										<tr>
 													<th scope="row"><label for="location">지역</label></th>
-														<td class="bbs_location"><input type="text"
-															name="location" id="location"></td>
+														<td class="bbs_location">
+														<select name="location" id="location" class="location">
+															<c:forEach var="item" items="${location}" varStatus="status">
+																<option value="${item.FIRSTLOC}">${item.loc_subject}</option>
+															</c:forEach>		
+														</select>  
+														</td>
 													</tr>
 													<tr>
 														<th scope="row"><label for="dataTitle">기간 선택</label></th>

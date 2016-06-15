@@ -2,7 +2,13 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.whenwhere.user.dao.AdminDAO">
-
+<mapper namespace="com.whenwhere.team.dao.TeamDAO">
 	
-</mapper>
+	<insert id="makeTeam" parameterType="java.util.HashMap">
+		insert ALL
+     		 into team (T_NO, TEAMNAME, SUBJECT, T_SDATE, T_EDATE, LOC_CODE)  values (SEQ_TEAM.nextval, #{teamname}, #{subject}, #{sdate}, #{edate}, #{loc_code})
+     		 into jointeam (T_NO, nickname, t_status) values (SEQ_TEAM.currval, #{nickname}, '2')
+     	select * from dual
+	</insert>
+	
+</mapper> 

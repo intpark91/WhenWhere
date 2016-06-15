@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
 
@@ -45,6 +46,11 @@
 							class="fa fa-pencil-square-o" aria-hidden="true"></i>Review
 					</a></li>
 				</ul></li>
+			<c:if test="${sessionScope.member != null }">
+				<li><a href="../home/admin"> <i class="fa fa-database"
+						aria-hidden="true"></i><span>Admin</span>
+				</a></li>
+			</c:if>
 		</ul>
 		<!-- /.sidebar-menu -->
 	</section>

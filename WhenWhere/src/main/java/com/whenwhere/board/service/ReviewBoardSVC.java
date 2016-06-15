@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -57,8 +58,7 @@ public class ReviewBoardSVC {
         try{ 
             String fileName = upload.getOriginalFilename();
             byte[] bytes = upload.getBytes();
-            String uploadPath = "c:/img/"  + year+""+monthStr+ time+ fileName;
-            
+            String uploadPath = "c:/img/"  + year+""+monthStr+ time+ fileName;           
             out = new FileOutputStream(new File(uploadPath));
             out.write(bytes);
             String callback = request.getParameter("CKEditorFuncNum");
@@ -72,10 +72,10 @@ public class ReviewBoardSVC {
                     + callback
                     + ",'"
                     + fileUrl
-                    + "','ÀÌ¹ÌÁö ¾÷·Îµå ¼º°ø'"
+                    + "','ì´ë¯¸ì§€ê°€ ì„±ê³µì ìœ¼ë¡œ ì—…ë°ì´íŠ¸ ë˜ì—ˆìŠµë‹ˆë‹¤.'"
                     + ")</script>");
             printWriter.flush();
- 
+  
         }catch(IOException e){
             e.printStackTrace();
         } finally {
@@ -114,7 +114,8 @@ public class ReviewBoardSVC {
 		java.sql.Date sdate = new java.sql.Date(date.getTime());
 		java.sql.Date edate = new java.sql.Date(date1.getTime());		
 		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);
-		if (boardDAO.inserteventBoard(title,content,auth,sdate,edate,boardCode,loc,fileSaveName) > 0) {
+		System.out.println("sdate"+sdate);
+		if (boardDAO.insertReview(title,content,auth,sdate,edate,boardCode,loc,fileSaveName) > 0) {
 			return true;
 		} else {
 			return false;
@@ -157,6 +158,7 @@ public class ReviewBoardSVC {
 			boardVO.setContent(request.getParameter("content"));			
 			BoardVO boardvo = boardDAO.readBoard(boardVO);				
 			model.addAttribute("updateBoard", boardvo);
+			model.addAttribute("location", this.location(request));
 			return "board/review/reviewModify";
 		}
 		return null;
@@ -221,8 +223,14 @@ public class ReviewBoardSVC {
 		paginationVO.setNext(true);
 				
 		model.addAttribute("pagenation", paginationVO);
+		model.addAttribute("bestcommend", bestcommend());
 		return "board/review/reviewBoard";
 		
+	}
+	
+	public List<HashMap<String,Object>> bestcommend(){
+		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);			
+		return boardDAO.bestcommend();
 	}
 	
 	public int getTotalPageCnt(String boardCode, Model model) {
@@ -253,6 +261,10 @@ public class ReviewBoardSVC {
 			jsonobject.put("recommend", false);
 		}
 		return jsonobject.toString();
+	}
+	public List<HashMap<String,Object>> location(HttpServletRequest request) {
+		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);		
+		return boardDAO.getSubLocationList();
 	}
 	
 }
