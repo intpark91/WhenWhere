@@ -30,6 +30,8 @@ public class WeatherService {
 		String locNameRegex = ".*["+locName.charAt(0)+"].{0,1}["+locName.charAt(1)+"].*";
 		String urlStr = "http://www.kma.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=108";
 		String buffer = "";
+		
+		JSONObject jsonObject = new JSONObject();
 		try {
 			URL url = new URL(urlStr);
 			URLConnection connection = url.openConnection();
@@ -44,14 +46,20 @@ public class WeatherService {
 			e.printStackTrace();
 		}
 		JSONObject jobj = XML.toJSONObject(buffer);
-		JSONObject rss = (JSONObject) jobj.get("rss");
+		JSONObject rss;
+		try {
+			rss = (JSONObject) jobj.get("rss");	
+		} catch (Exception e) {
+			jsonObject.put("ok", false);
+			return jsonObject.toString();
+		}
 		JSONObject channel = (JSONObject) rss.get("channel");
 		JSONObject item = (JSONObject) channel.get("item");
 		JSONObject description = (JSONObject) item.get("description");
 		JSONObject body = (JSONObject) description.get("body");
 		JSONArray locArr= (JSONArray) body.get("location");
 		
-		JSONObject jsonObject = new JSONObject();
+		
 		List<String> weathers = new ArrayList<>();
 		for(int i = 0; i<locArr.length(); i++){
 			JSONObject loc = (JSONObject) locArr.get(i);

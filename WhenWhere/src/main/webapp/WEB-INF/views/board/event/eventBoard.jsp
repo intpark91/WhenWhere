@@ -10,7 +10,11 @@
 	<style>
 h1,h2,h3,h4 {
 	
-	color:#ffffff;
+	color:#111;
+}
+
+.eventtitle{
+	margin-top: 10px;
 }
 
 .banner {
@@ -19,7 +23,7 @@ h1,h2,h3,h4 {
 
 .page{
 margin-bottom : -35px;
-color:#ffffff;
+
 }
 </style>
 
@@ -33,10 +37,7 @@ color:#ffffff;
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
-	<div id="main_bg" class="info_main_bg" >
-		<div class="mainWrap">
-		</div>
-	</div>
+
 	<div class="wrapper">
 		<!-- include -->
 		<jsp:include page="../../component/header.jsp" />
@@ -45,8 +46,7 @@ color:#ffffff;
 
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
-			<section class="content-header">
-			</section>
+
 			<!-- Main content -->
 			<!-- /.content -->
 			<div class="container">
@@ -56,6 +56,7 @@ color:#ffffff;
 					<div class="con_area">
 						<div class="board_box">
 							<div class="bbs_info">
+							<h2 class="eventtitle">행사 리스트</h2>
 								<div class="page">
 									<c:choose>
 											<c:when test="${searchboardList eq null}">
@@ -91,7 +92,7 @@ color:#ffffff;
 									</div>
 							</div>
 							<div class="bbs_list">
-								<h2>행사 게시판 리스트</h2>
+							
 								<section class="board_photo">
 									<ul class="board_ebook">
 								<c:choose>
@@ -100,18 +101,27 @@ color:#ffffff;
 										<li>
 											<figure>
 												<a href="eventRead?no=${item.NO}&category=4" alt="" class="thum_photo"> 
-													<img src="${item.FILENAME}" alt="null">
+													<img src="http://localhost:8088/img/${item.FILENAME}" alt="null">
 												</a>
 												<figcaption>
 													<h3>													
-														<a href="eventRead?no=${item.NO}&category=4">${item.TITLE}</a>
+														<a href="eventRead?no=${item.NO}&category=4" >${item.TITLE}</a>
 													</h3>
 													<h4>
 														${item.CONTENT}												
 													</h4>
-													<p class="ebook_btn">
-														<a href="noticeRead" >자세히보기</a>
+													<p>
+													${item.SDATE} ~ ${item.EDATE}
 													</p>
+													<p>
+													<span class="jb_area">[${item.LOC}]</span>
+													<span class="jb_area">추천 : ${item.RECOMMEND}</span>
+													</p>
+													<div>
+													<p class="ebook_btn">
+														<a href="eventRead?no=${item.NO}&category=4" class="aLink">자세히보기</a>
+													</p>
+													</div>
 												</figcaption>
 											</figure>
 										</li>
@@ -122,7 +132,7 @@ color:#ffffff;
 										<li>
 											<figure>
 												<a href="eventRead?no=${item.NO}&category=4" alt="" class="thum_photo"> 
-													<img src="${item.FILENAME}" alt="null">
+													<img src="http://localhost:8088/img/${item.FILENAME}" alt="null">
 												</a>
 												<figcaption>
 													<h3>													
@@ -131,6 +141,13 @@ color:#ffffff;
 													<h4>
 														${item.CONTENT}												
 													</h4>
+													<p>
+													${item.SDATE} ~ ${item.EDATE}
+													</p>
+													<p>
+													<span class="jb_area">[${item.LOC}]</span>
+													<span class="jb_area">추천 : ${item.RECOMMEND}</span>
+													</p>
 													<p class="ebook_btn">
 														<a href="noticeRead" >자세히보기</a>
 													</p>

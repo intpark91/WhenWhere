@@ -4,82 +4,67 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>공지사항 게시판</title>
 <jsp:include page="../../component/core_head.jsp" />
-<title>WhenWhereTest</title>
-<link rel="stylesheet" href="../css/board/board.css" type="text/css">
-
 <style>
-h1, h2, h3, h4 {
-	color: #ffffff;
-}
+		.noticewrite { float: right; width: 100px;}
+		
+		.noticewrite{
+		border:1px solid #275d8b; -webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px;font-size:12px;font-family:arial, helvetica, sans-serif; padding: 10px 10px 10px 10px; text-decoration:none; display:inline-block;text-shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; color: #FFFFFF;
+		background-color: #337AB7; background-image: -webkit-gradient(linear, left top, left bottom, from(#337AB7), to(#337AB7));
+ 		background-image: -webkit-linear-gradient(top, #337AB7, #337AB7);
+ 		background-image: -moz-linear-gradient(top, #337AB7, #337AB7);
+ 		background-image: -ms-linear-gradient(top, #337AB7, #337AB7);
+ 		background-image: -o-linear-gradient(top, #337AB7, #337AB7);
+ 		background-image: linear-gradient(to bottom, #337AB7, #337AB7);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#337AB7, endColorstr=#337AB7);
+		}
 
-.banner {
-	background-color: black;
-}
-
-.page {
-	margin-bottom: 45px;
-	color: #ffffff;
-}
+		.noticewrite:hover{
+		 border:1px solid #1d4567;
+		 background-color: #285f8f; background-image: -webkit-gradient(linear, left top, left bottom, from(#285f8f), to(#285f8f));
+		 background-image: -webkit-linear-gradient(top, #285f8f, #285f8f);
+		 background-image: -moz-linear-gradient(top, #285f8f, #285f8f);
+ 		 background-image: -ms-linear-gradient(top, #285f8f, #285f8f);
+		 background-image: -o-linear-gradient(top, #285f8f, #285f8f);
+ 		 background-image: linear-gradient(to bottom, #285f8f, #285f8f);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#285f8f, endColorstr=#285f8f);
+		}
 </style>
 
 <script type="text/javascript">
 	$(function() {
 		$('.noticewrite').on('click', function() {
-
-			location.href = "noticewriteform?category=" + $
-			{
-				boardList[0].category
-			}
-			+"";
+			location.href = "noticewriteform?category=" + ${boardList[0].category}+"";
 		});
 	});
 </script>
 
-
 </head>
-
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
-	<div id="main_bg" class="info_main_bg">
-		<div class="mainWrap"></div>
-	</div>
 	<div class="wrapper">
-		<!-- include -->
 		<jsp:include page="../../component/header.jsp" />
 		<jsp:include page="../../component/linkSidebar.jsp" />
-		<!-- Content Wrapper. Contains page content -->
-
 		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
-			<section class="content-header"></section>
-			<div class="container">
+			<section class="content">
+				<!-- /.row -->
 				<div class="row">
-					<div
-						class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2 text-center">
-
-						<div id="all" class="clearfix">
-							<!--2015.12.07 수정-->
-							<div class="con_area">
-								<div class="board_box">
-									<div class="bbs_info">
-										<div class="page">
-											<c:choose>
-												<c:when test="${searchboardList eq null}">
-												Total : ${totalcount}개 / Page : <em>${pagenation.currPage}</em> / ${pagenation.totalPage}
-											</c:when>
-												<c:otherwise>				
-												Total : ${searchVO.no}개 / Page : <em>${searchpagenation.currPage}</em> / ${searchpagenation.totalPage}							
-											</c:otherwise>
-											</c:choose>
-
-										</div>
-										<div class="search">
+					<div class="col-xs-12">
+						<div class="box">
+							<div class="box-header">
+								<c:choose>
+									<c:when test="${searchboardList eq null}">
+										<h3 class="box-title">${boardList[0].boardName }리스트</h3>
+									</c:when>
+									<c:otherwise>
+										<h3 class="box-title">${searchboardList[0].boardName }리스트</h3>
+									</c:otherwise>
+								</c:choose>
 
 
-											<form action="search" id="searchForm"
-												name="rfc_bbs_searchForm" class="rfc_bbs_searchForm"
-												method="GET">
-												<c:choose>
+								<div class="box-tools">
+									<form action="search" id="searchForm" name="rfc_bbs_searchForm" class="rfc_bbs_searchForm" method="GET">									
+									<div class="input-group input-group-sm" style="width: 150px;">
+										<c:choose>
 													<c:when test="${searchboardList eq null}">
 														<input type="hidden" name="category"
 															value="${boardList[0].category}">
@@ -88,184 +73,158 @@ h1, h2, h3, h4 {
 														<input type="hidden" name="category"
 															value="${searchboardList[0].category}">
 													</c:otherwise>
-												</c:choose>
-												<select name="searchType" id="searchType" class="TypeSelect">
-													<option value="B_TITLE">제목</option>
-													<option value="B_CONTENT">내용</option>
-												</select> <input type="text" title="검색값입력" id="keyword"
-													name="keyword" class="b_search_input" value=""> <input
-													type="hidden" name="page" value="1">
-												<button type="submit" class="searchBtn">검색</button>
-											</form>
-
-
+										</c:choose>
+										<input type="hidden" name="searchType" value="B_TITLE">
+										<input type="hidden" name="page" value="1">										
+										<input type="text" name="keyword" class="form-control pull-right" placeholder="Search">
+										<div class="input-group-btn">
+											<button type="submit" class="btn btn-default">
+												<i class="fa fa-search"></i>
+											</button>
 										</div>
 									</div>
+									</form>
+								</div>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body table-responsive no-padding">
+								<table class="table table-hover">
+									<colgroup>
+										<col width="10%">
+										<col width="*">
+										<col width="8%">
+										<col width="6%">
+										<col width="10%">
+										<col width="12%">
+									</colgroup>
 
-									<div class="bbs_list">
-										<table class="list_1"
-											summary="글번호,제목,첨부파일,조회수,작성자,작성일를 표시하고 있다.">
-											<h2>
-												<c:choose>
-													<c:when test="${searchboardList eq null}">
-													${boardList[0].boardName } 리스트
-											</h2>
-											</c:when>
-											<c:otherwise>
-													${searchboardList[0].boardName } 리스트</h2>
-											</c:otherwise>
-											</c:choose>
-
-
-											<colgroup>
-												<col width="10%">
-												<col width="*">
-												<col width="8%">
-												<col width="6%">
-												<col width="10%">
-												<col width="12%">
-											</colgroup>
-											<thead>
+									<tr>
+										<th scope="col">글번호</th>
+										<th scope="col">제목</th>
+										<th scope="col">조회수</th>
+										<th scope="col">작성자</th>
+										<th scope="col">작성일</th>
+									</tr>
+									<c:choose>
+										<c:when test="${searchboardList eq null}">
+											<c:forEach var="item" items="${boardList}" varStatus="status">
 												<tr>
-													<th scope="col">글번호</th>
-													<th scope="col">제목</th>
-													<th scope="col">조회수</th>
-													<th scope="col">작성자</th>
-													<th scope="col">작성일</th>
+													<%-- <input type="hidden" name="num" value="${item.num}"> --%>
+													<td>${item.no}</td>
+													<td><a
+														href="noticeRead?no=${item.no}&category=${item.category}">${item.title}</a></td>
+													<td>${item.hit}</td>
+													<td>${item.auth}</td>
+													<td>${item.wdate}</td>
 												</tr>
-											</thead>
-											<tbody>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+											<c:forEach var="item" items="${searchboardList}"
+												varStatus="status">
+												<tr>
+													<%-- <input type="hidden" name="num" value="${item.num}"> --%>
+													<td>${item.no}</td>
+													<td><a
+														href="noticeRead?no=${item.no}&category=${item.category}">${item.title}</a></td>
+													<td>${item.hit}</td>
+													<td>${item.auth}</td>
+													<td>${item.wdate}</td>
+												</tr>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
+								</table>
+							</div>
+							<!-- /.box-body -->
+
+							<div class="box-footer clearfix">
+								<ul class="pagination pagination-sm no-margin pull-right">
+									<c:choose>
+										<c:when test="${searchpagenation eq null}">
+											<c:choose>
+												<c:when test="${pagenation.currPage>3}">
+													<li><a
+														href="notice?page=1&category=${boardList[0].category}"><<</a></li>
+													<li><a
+														href="notice?page=${pagenation.linkBegin-1}&category=${boardList[0].category}"><</a></li>
+												</c:when>
+											</c:choose>
+											<c:forEach var="i" begin="${pagenation.linkBegin}"
+												end="${pagenation.linkEnd}" step="1">
 												<c:choose>
-													<c:when test="${searchboardList eq null}">
-														<c:forEach var="item" items="${boardList}"
-															varStatus="status">
-															<tr>
-																<%-- <input type="hidden" name="num" value="${item.num}"> --%>
-																<td>${item.no}</td>
-																<td><a
-																	href="noticeRead?no=${item.no}&category=${item.category}">${item.title}</a></td>
-																<td>${item.hit}</td>
-																<td>${item.auth}</td>
-																<td>${item.wdate}</td>
-															</tr>
-														</c:forEach>
+													<c:when test="${i eq pagenation.currPage}">
+														<li class="page"><a
+															href="notice?page=${i}&category=${boardList[0].category}"
+															class="choice"><strong>${i}</strong></a></li>
 													</c:when>
 													<c:otherwise>
-														<c:forEach var="item" items="${searchboardList}"
-															varStatus="status">
-															<tr>
-																<%-- <input type="hidden" name="num" value="${item.num}"> --%>
-																<td>${item.no}</td>
-																<td><a
-																	href="noticeRead?no=${item.no}&category=${item.category}">${item.title}</a></td>
-																<td>${item.hit}</td>
-																<td>${item.auth}</td>
-																<td>${item.wdate}</td>
-															</tr>
-														</c:forEach>
+														<li class="page"><a
+															href="notice?page=${i}&category=${boardList[0].category}">${i}</a></li>
 													</c:otherwise>
 												</c:choose>
-
-
-											</tbody>
-										</table>
-
-									</div>
-
-									<div id="count">
-										<ul>
+											</c:forEach>
 											<c:choose>
-												<c:when test="${searchpagenation eq null}">
-													<c:choose>
-														<c:when test="${pagenation.currPage>10}">
-															<li><a
-																href="notice?page=1&category=${boardList[0].no}">&lt;&lt;</a></li>
-															<li><a
-																href="notice?page=${pagenation.linkBegin-1}&category=${boardList[0].category}">&lt;</a></li>
-														</c:when>
-													</c:choose>
-													<c:forEach var="i" begin="${pagenation.linkBegin}"
-														end="${pagenation.linkEnd}" step="1">
-														<c:choose>
-															<c:when test="${i eq pagenation.currPage}">
-																<li class="page"><a
-																	href="notice?page=${i}&category=${boardList[0].category}"
-																	class="choice"><strong>${i}</strong></a></li>
-															</c:when>
-															<c:otherwise>
-																<li class="page"><a
-																	href="notice?page=${i}&category=${boardList[0].category}">${i}</a></li>
-															</c:otherwise>
-														</c:choose>
-													</c:forEach>
-													<c:choose>
-														<c:when
-															test="${pagenation.linkEnd ne pagenation.totalPage}">
-															<li><a
-																href="notice?page=${pagenation.linkEnd+1}&category=${boardList[0].category}">[>]</a></li>
-															<li><a
-																href="notice?page=${pagenation.totalPage}&category=${boardList[0].category}">[>>]</a></li>
-														</c:when>
-													</c:choose>
+												<c:when test="${pagenation.linkEnd ne pagenation.totalPage}">
+													<li><a
+														href="notice?page=${pagenation.linkEnd+1}&category=${boardList[0].category}">></a></li>
+													<li><a
+														href="notice?page=${pagenation.totalPage}&category=${boardList[0].category}">>></a></li>
 												</c:when>
-
-
-												<c:otherwise>
-													<c:choose>
-														<c:when test="${searchpagenation.currPage>10}">
-															<li><a
-																href="search?page=1&searchType=${searchVO.title}&keyword=${searchVO.content}&category=${searchboardList[0].category}">&lt;&lt;</a></li>
-															<li><a
-																href="search?page=${pagenation.linkBegin-1}&searchType=${searchVO.title}&keyword=${searchVO.content}&category=${searchboardList[0].category}">&lt;</a></li>
-														</c:when>
-													</c:choose>
-													<c:forEach var="i" begin="${searchpagenation.linkBegin}"
-														end="${searchpagenation.linkEnd}" step="1">
-														<c:choose>
-															<c:when
-																test="${i eq searchpagenation.currPage}&searchType=${searchVO.title}&keyword=${searchVO.content}">
-																<li class="page"><a
-																	href="search?page=${i}&category=${searchboardList[0].category}"
-																	class="choice"><strong>${i}</strong></a></li>
-															</c:when>
-															<c:otherwise>
-																<li class="page"><a
-																	href="search?page=${i}&searchType=${searchVO.title}&keyword=${searchVO.content}&category=${searchboardList[0].category}">${i}</a></li>
-															</c:otherwise>
-														</c:choose>
-													</c:forEach>
-													<c:choose>
-														<c:when
-															test="${searchpagenation.linkEnd ne searchpagenation.totalPage}">
-															<li><a
-																href="search?page=${searchpagenation.linkEnd+1}&searchType=${searchVO.title}&keyword=${searchVO.content}&category=${searchboardList[0].category}">&gt;</a></li>
-															<li><a
-																href="search?page=${searchpagenation.totalPage}&searchType=${searchVO.title}&keyword=${searchVO.content}&category=${searchboardList[0].category}">&gt;&gt;</a></li>
-														</c:when>
-													</c:choose>
-												</c:otherwise>
 											</c:choose>
-										</ul>
-
-									</div>
-									<div id="btnWrap">
-										<button class="noticewrite" id="noticewrite">글쓰기</button>
-									</div>
-								</div>
-
+										</c:when>
+										<c:otherwise>
+											<c:choose>
+												<c:when test="${searchpagenation.currPage>10}">
+													<li><a
+														href="search?page=1&searchType=${searchVO.title}&keyword=${searchVO.content}&category=${searchboardList[0].category}">&lt;&lt;</a></li>
+													<li><a
+														href="search?page=${pagenation.linkBegin-1}&searchType=${searchVO.title}&keyword=${searchVO.content}&category=${searchboardList[0].category}">&lt;</a></li>
+												</c:when>
+											</c:choose>
+											<c:forEach var="i" begin="${searchpagenation.linkBegin}"
+												end="${searchpagenation.linkEnd}" step="1">
+												<c:choose>
+													<c:when
+														test="${i eq searchpagenation.currPage}&searchType=${searchVO.title}&keyword=${searchVO.content}">
+														<li class="page"><a
+															href="search?page=${i}&category=${searchboardList[0].category}"
+															class="choice"><strong>${i}</strong></a></li>
+													</c:when>
+													<c:otherwise>
+														<li class="page"><a
+															href="search?page=${i}&searchType=${searchVO.title}&keyword=${searchVO.content}&category=${searchboardList[0].category}">${i}</a></li>
+													</c:otherwise>
+												</c:choose>
+											</c:forEach>
+											<c:choose>
+												<c:when
+													test="${searchpagenation.linkEnd ne searchpagenation.totalPage}">
+													<li><a
+														href="search?page=${searchpagenation.linkEnd+1}&searchType=${searchVO.title}&keyword=${searchVO.content}&category=${searchboardList[0].category}">&gt;</a></li>
+													<li><a
+														href="search?page=${searchpagenation.totalPage}&searchType=${searchVO.title}&keyword=${searchVO.content}&category=${searchboardList[0].category}">&gt;&gt;</a></li>
+												</c:when>
+											</c:choose>
+										</c:otherwise>
+									</c:choose>
+								</ul>
+							</div>
+							<div id="btnWrap">
+								<button class="noticewrite" id="noticewrite">글쓰기</button>
 							</div>
 						</div>
+						<!-- /.box -->
 					</div>
 				</div>
-			</div>
+			</section>
 		</div>
-
-		<!-- /.content-wrapper -->
-		<!-- include -->
 		<jsp:include page="../../component/footer.jsp" />
 		<jsp:include page="../../component/controlSidebar.jsp" />
 	</div>
-	<!-- scripts -->
+
 	<jsp:include page="../../component/core_js.jsp" />
+	<script src="../../js/jquery-ui-slider-pips.js"></script>
+	<script src="../../js/slider.js"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -132,7 +133,7 @@ jQuery.browser = {};
 							}
 						</script>
 						
-						<div id="content01">
+					
 							<!-- 2015.12.07 수정-->
 
 							<!--//-->
@@ -160,19 +161,11 @@ jQuery.browser = {};
 													<th scope="row"><label for="location">지역</label></th>
 														<td class="bbs_location">
 														<select name="location" id="location" class="location">
-																				<option value="01001">서울</option>
-																				<option value="02001">경기</option>
-																				<option value="03001">영서</option>
-																				<option value="04001">영동</option>
-																				<option value="05001">충북</option>
-																				
-																				<option value="06001">충남</option>
-																				<option value="07001">경북</option>
-																				<option value="08001">경남</option>
-																				<option value="09001">전북</option>
-																				<option value="10001">전남</option>
-																				<option value="11001">제주</option>
-																				</select> </td>
+															<c:forEach var="item" items="${location}" varStatus="status">
+																<option value="${item.FIRSTLOC}">${item.loc_subject}</option>
+															</c:forEach>		
+														</select>  
+														</td>
 													</tr>
 													<tr>
 														<th scope="row"><label for="dataTitle">기간 선택</label></th>
@@ -199,20 +192,18 @@ jQuery.browser = {};
 												</tbody>
 											</table>
 										</div>
+
+									</div>
 										<div class="bbs_btn">
 											<p class="fl">&nbsp;</p>
 											<p class="fr">
-												
 												<a href="#" onclick="formSubmit();">등록</a> 
 												<a href="#">취소</a>
 											</p>
 										</div>
-									</div>
 								</div>
 							</form>
 						</div>
-
-					</div>
 				</div>
 			</div>	
 		</div>

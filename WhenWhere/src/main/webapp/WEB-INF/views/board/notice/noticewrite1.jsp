@@ -6,25 +6,21 @@
 <jsp:include page="../../component/core_head.jsp" />
 <title>WhenWhereTest</title>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<link rel="stylesheet" href="../css/board/boardwrite.css"
-	type="text/css">
 <script src="../ckEditor/ckeditor.js"></script>
 
 
 <script type="text/javascript">
 	var result = '${insert}';
-	if (result == 'true') {				
+	if (result == 'true') {
 		alert('글 쓰기 성공');
 		location.href = "noticeRead?no=0";
 	}
-	
-	else if(result =='false'){
+
+	else if (result == 'false') {
 		alert('글 쓰기 실패');
 	}
 </script>
 <script type="text/javascript">
-	
-
 	var f = $("#inForm");
 	function formSubmit() {
 		if ($("#dataTitle").val() == '') {
@@ -37,7 +33,7 @@
 			return;
 		}
 		$("#inForm").submit();
-		
+
 	}
 </script>
 </head>
@@ -54,26 +50,23 @@
 
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
-			<section class="content-header"></section>
-			<div class="container">
-				<div class="row">
-					<div
-						class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2 text-center">
-						<div id="all" class="clearfix">							
-								<!-- 2015.12.07 수정-->
 
-								<!--//-->
-								<form id="inForm" name="inForm" method="post"
-									action="noticewrite" enctype="multipart/form-data">
-									
-									<input type="hidden" name="category" value="${category}">
-									
-									<div class="con_area">
-										<div class="board_box">
-											 <div class="box-header"><h3>게시판 글 쓰기</h3></div>
-											<div class="bbs_write">
-												<table class="write_1">
-													
+			<section class="content">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="box box-info">
+							<div class="box-header">
+								<h3 class="box-title">
+									게시판 글 쓰기
+								</h3>
+								<!-- tools box -->
+
+								<!-- /. tools -->
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body pad">
+								<form>
+										<table class="write_1">													
 													<tbody>
 														<tr>
 															<th scope="row"><label for="dataTitle">제 목</label></th>
@@ -85,54 +78,25 @@
 															<td class="bbs_name"><input type="text" name="auth"
 															 readonly="readonly" id="userNick" value="${sessionScope.member.nickname}"></td>
 														</tr>
-														<!-- 에디터영역 시작-->
-														<tr>
-															<td colspan="2" class="bbs_write">
-																<div class="bbs_write_wrap">
-																	<!-- <textarea name="dataContent" id="dataContent"
-																	style="width: 100%; height: 300px;" rows="10" cols="50"></textarea> -->
-																	<textarea name="content" id="editor"
-																		style="width: 100%; height: 800px;" rows="10"
-																		cols="20">
-																		
-																	</textarea>
-																	<script>
-																		CKEDITOR
-																				.replace(
-																						'editor',
-																						{
-																							toolbar : 'witetoolbar',
-																							height : '800px'
-																						});
-																	</script>
-																</div>
-															</td>
-														</tr>
-
-
-														<!-- 에디터영역 끝.-->
 													</tbody>
-												</table>
-											</div>
-										</div>
-											<div class="bbs_btn">
-												
-												<p class="fr">
-													<a href="#" onclick="formSubmit();">등록</a>
-													<a href="notice">취소</a>
-												</p>
-											</div>
-									</div>
+										 </table>
+									<textarea name="content" id="editor" rows="10" cols="80"></textarea>
+									<script>
+										CKEDITOR.replace('editor', {
+											toolbar : 'witetoolbar',
+											height : '800px'
+										});
+									</script>
+
+
 								</form>
-							
-
+							</div>
 						</div>
-
-
+						<!-- /.box -->
+						<!-- /.col-->
 					</div>
-				</div>
-			</div>
-
+					<!-- ./row -->
+			</section>
 		</div>
 
 		<!-- /.content-wrapper -->

@@ -119,7 +119,6 @@
 		<jsp:include page="../component/header.jsp" />
 		<jsp:include page="../component/linkSidebar.jsp" />
 		<!-- Content Wrapper. Contains page content -->
-
 		<div class="content-wrapper">
 			<section class="content-header"></section>
 			<!-- Content Header (Page header) -->
@@ -196,89 +195,90 @@
 		            </div>
 		            <!-- /.box-body -->
 		          </div>
-			
-				<div class="col-sx-12 " >
-					<div id="roomListDiv" class="box box-default">
-						<div class="box-header">
-							<h3 class="box-title"><span class="hidden-xs"> 팀 리스트 </span></h3>
-							<div class="box-tools">
-								<div class="input-group input-group-sm " style="width: 150px;">
-									<input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-									<div class="input-group-btn ">
-										<button type="submit" class="btn btn-default">
-											<i class="fa fa-search"></i>
-										</button>
-										<button type="button" class="btn btn-box-tool " data-widget="collapse">
-											<i class="fa fa-minus"></i>
-		               					</button>
+				
+					<div class="col-sx-12 " >
+						<div id="roomListDiv" class="box box-default">
+							<div class="box-header">
+								<h3 class="box-title"><span class="hidden-xs"> 팀 리스트 </span></h3>
+								<div class="box-tools">
+									<div class="input-group input-group-sm " style="width: 150px;">
+										<input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+										<div class="input-group-btn ">
+											<button type="submit" class="btn btn-default">
+												<i class="fa fa-search"></i>
+											</button>
+											<button type="button" class="btn btn-box-tool " data-widget="collapse">
+												<i class="fa fa-minus"></i>
+			               					</button>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<!-- /.box-header -->
-						<div class="box-body table-responsive no-padding">
-							<table class="table table-hover mainTr">
-								<tr>
-									<th style="width: 10px;">#</th>
-									<th style="width: 80px;" class="hidden-xs">개설</th>
-									<th style="max-width: 20px;">
-					                    <select>
-						                    <option>전체</option>
-						                    <option>동행</option>
-						                    <option>숙박</option>
-						                    <option>예약</option>
-						                    <option>단체</option>
-						                    <option>기타</option>
-					                    </select>
-                					</th>
-                					<th style="width: 80px;" class="hidden-xs">방정보</th>
-									<th>방제목</th>
-								</tr>
-							</table>
-							<div class="box-footer clearfix">
-								<ul class="pagination pagination-sm no-margin pull-right">
-									<li><a href="#">&laquo;</a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">&raquo;</a></li>
-								</ul>
+							<!-- /.box-header -->
+							<div class="box-body table-responsive no-padding">
+								<table class="table table-hover mainTr">
+									<tr>
+										<th style="width: 10px;">#</th>
+										<th style="width: 80px;" class="hidden-xs">개설</th>
+										<th style="max-width: 20px;">
+						                    <select>
+							                    <option>전체</option>
+							                    <option>동행</option>
+							                    <option>숙박</option>
+							                    <option>예약</option>
+							                    <option>단체</option>
+							                    <option>기타</option>
+						                    </select>
+	                					</th>
+	                					<th style="width: 80px;" class="hidden-xs">방정보</th>
+										<th>방제목</th>
+									</tr>
+								</table>
+								<div class="box-footer clearfix">
+									<ul class="pagination pagination-sm no-margin pull-right">
+										<li><a href="#">&laquo;</a></li>
+										<li><a href="#">1</a></li>
+										<li><a href="#">2</a></li>
+										<li><a href="#">3</a></li>
+										<li><a href="#">4</a></li>
+										<li><a href="#">5</a></li>
+										<li><a href="#">&raquo;</a></li>
+									</ul>
+								</div>
 							</div>
+							<!-- /.box-body -->
 						</div>
-						<!-- /.box-body -->
+						<!-- /.box -->
 					</div>
-					<!-- /.box -->
 				</div>
+	
+				<!-- 채팅방 관련-->
+				<div id="chattingRoom" class="box box-success collapsed-box">
+					<div class="box-header">
+						<i class="fa fa-comments-o"></i>
+						<span id="roomTitle">선택된 팀이 없습니다.</span>
+						<h3 class="box-title room-title"> </h3>
+					</div>
+					<div class="box-body chat" id="chat-box">
+						<!-- chat item -->
+						<div class="item chat_main_body">
+							*
+						</div>
+						<!-- /.item -->
+						<div class="box-footer">
+				              <div class="input-group">
+				                <input class="form-control" placeholder="Type message..." name="chatInput">
+				
+				                <div class="input-group-btn">
+				                  <button type="button" onclick="sendMsg();" class="btn btn-success"><i class="fa fa-plus"></i></button>
+				                </div>
+				              </div>
+				            </div>
+						</div>
+					</div>
+				</div>
+				<!-- include -->
 			</div>
-
-			<!-- 채팅방 관련-->
-			<div id="chattingRoom" class="box box-success collapsed-box">
-				<div class="box-header">
-					<i class="fa fa-comments-o"></i>
-					<span id="roomTitle">선택된 팀이 없습니다.</span>
-					<h3 class="box-title room-title"> </h3>
-				</div>
-				<div class="box-body chat" id="chat-box">
-					<!-- chat item -->
-					<div class="item chat_main_body">
-						*
-					</div>
-					<!-- /.item -->
-					<div class="box-footer">
-			              <div class="input-group">
-			                <input class="form-control" placeholder="Type message..." name="chatInput">
-			
-			                <div class="input-group-btn">
-			                  <button type="button" onclick="sendMsg();" class="btn btn-success"><i class="fa fa-plus"></i></button>
-			                </div>
-			              </div>
-			            </div>
-					</div>
-				</div>
-			</div>
-			<!-- include -->
 		</div>
 		<jsp:include page="../component/footer.jsp" />
 		<jsp:include page="../component/controlSidebar.jsp" />
