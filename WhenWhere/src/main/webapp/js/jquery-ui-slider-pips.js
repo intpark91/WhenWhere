@@ -715,15 +715,14 @@ function getEventList(){
 					carouselDiv.append(itemDiv);
 				}
 				
-				
 				captionDiv.append($('<span class="recommend glyphicon glyphicon-thumbs-up">' +data.searchEventList[j].bRecommend+ '</span>'));
 				captionDiv.append(title);
 				captionDiv.append(content);
 				captionDiv.append($('<input type="hidden" value="#?bNo='+data.searchEventList[j].bNo+'">'));
-				imgA.append($('<input type="hidden" value='+data.searchEventList[j].eSDate+'~'+data.searchEventList[j].eEDate+'>'));
-				imgA.append($('<input type="hidden" value='+data.searchEventList[j].locName+'>'));
-				imgA.append($('<input type="hidden" value='+data.searchEventList[j].bRecommend+'>'));
-				imgA.append($('<input type="hidden" value='+data.searchEventList[j].bContent+'>'));
+				imgA.append($('<input type="hidden" value="'+data.searchEventList[j].eSDate+'~'+data.searchEventList[j].eEDate+'">'));
+				imgA.append($('<input type="hidden" value="'+data.searchEventList[j].locName+'">'));
+				imgA.append($('<input type="hidden" value="'+data.searchEventList[j].bRecommend+'">'));
+				imgA.append($('<input type="hidden" value="'+data.searchEventList[j].bContent+'">'));
 				imgA.append(img);
 				thumbnailDiv.append(imgA);
 				fDiv.append(thumbnailDiv);
