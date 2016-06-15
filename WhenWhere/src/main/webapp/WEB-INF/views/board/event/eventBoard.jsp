@@ -35,16 +35,12 @@ margin-bottom : -35px;
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
 
 	<div class="wrapper">
-		<!-- include -->
+
 		<jsp:include page="../../component/header.jsp" />
 		<jsp:include page="../../component/linkSidebar.jsp" />
-		<!-- Content Wrapper. Contains page content -->
-
+		
 		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
 
-			<!-- Main content -->
-			<!-- /.content -->
 			<div class="container">
 			<div class="row">
 				<div
@@ -83,8 +79,7 @@ margin-bottom : -35px;
 											<button type="submit" class="searchBtn">검색</button>
 										</form>
 									</div>
-							</div>
-							
+							</div>							
 							<div class="bbs_list">
 								<h2 class="eventtitle">행사 리스트</h2>							
 								<section class="board_photo">
@@ -106,9 +101,7 @@ margin-bottom : -35px;
 													</h4>
 													<p>
 													${item.SDATE} ~ ${item.EDATE}
-													</p>
-					
-													
+													</p>		
 													<p>
 													<span class="jb_area">[${item.LOC}] &nbsp&nbsp&nbsp 추천 : ${item.RECOMMEND}</span>
 													
@@ -177,9 +170,7 @@ margin-bottom : -35px;
 											<li><a href="review?page=${pagenation.totalPage}&category=3">[>>]</a></li>
 										</c:when>
 									</c:choose>
-							</c:when>
-						
-						
+							</c:when>																				
 							<c:otherwise>
 									<c:choose>
 										<c:when test="${searchpagenation.currPage>10}">
@@ -214,13 +205,10 @@ margin-bottom : -35px;
 			</div>
 		</div>
 		</div>
-
-		<!-- /.content-wrapper -->
-		<!-- include -->
 		<jsp:include page="../../component/footer.jsp" />
 		<jsp:include page="../../component/controlSidebar.jsp" />
 	</div>
-	<!-- scripts -->
+	
 	<jsp:include page="../../component/core_js.jsp" />
 
 </body>
