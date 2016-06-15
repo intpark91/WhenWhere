@@ -51,7 +51,14 @@ function delectAjax(no){
 function recommend(no){
 	var NickName = '${sessionScope.member.nickname}';
 	var category = '${ReadBoard.category}';
-	if(NickName=='null')alert('로그인 후 이용 가능 합니다');
+	if(NickName=='null'){
+		$.bootstrapGrowl("로그인이 필요한 서비스 입니다.", {
+			type: 'danger',
+			align: 'center',
+			width: 'auto',
+			allow_dismiss: false
+		});
+	}
 	else
 	jQuery.ajax({
 		
@@ -61,11 +68,21 @@ function recommend(no){
 		dataType : "json",
 		success : function(recommend){
 			 if(recommend.recommend==true){			 	
-					alert('추천을 누르셨습니다');
+				 $.bootstrapGrowl("추천 되었습니다!", {
+						type: 'success',
+						align: 'center',
+						width: 'auto',
+						allow_dismiss: false
+				});
 					location.href="event?category="+${ReadBoard.category}+"";
 			  }
 			 else{
-				 alert('이미 추천을 누르 셨습니다.');
+				 $.bootstrapGrowl("이미 추천한 행사입니다!", {
+						type: 'info',
+						align: 'center',
+						width: 'auto',
+						allow_dismiss: false
+				});
 			 }
 		},
 		complete : function(res){					
@@ -92,7 +109,12 @@ function recommend(no){
 				dataType : "json",
 				success : function(insert){
 					 if(insert.insert==true){			 	
-							alert('댓글 쓰기 성공');
+						 	$.bootstrapGrowl("댓글 작성 완료!", {
+								type: 'success',
+								align: 'center',
+								width: 'auto',
+								allow_dismiss: false
+							});
 							location.href="eventRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
 					     }
 				},
@@ -144,7 +166,12 @@ function recommend(no){
 			dataType : "json",
 			success : function(update){
 				 if(update.update==true){			 	
-						alert('댓글 수정 성공');
+					 $.bootstrapGrowl("댓글 수정 완료!", {
+							type: 'success',
+							align: 'center',
+							width: 'auto',
+							allow_dismiss: false
+					});
 						location.href="eventRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
 				     }
 			},
@@ -158,24 +185,47 @@ function recommend(no){
 	}
 	
 	function commentdelete(no){
-		jQuery.ajax({
-			type: "post", 
-			url:"commentdelect",
-			data : {"no":no},
-			dataType : "json",
-			success : function(cdelete){
-				 if(cdelete.cdelete==true){			 	
-						alert('댓글 삭제 성공');
-						location.href="eventRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
-				     }
-			},
-			complete : function(res){					
-			}, 
-			error : function(xhr,status,error){
-					alert("에러 발생");
-					alert(status);
-			}  
-		});	
+		bootbox.dialog({
+			message : "댓글을 삭제 하시겠습니까?",
+			buttons : {
+				success : {
+					label : "네",
+					className : "btn-success",
+					callback : function() {
+						jQuery.ajax({
+							type: "post", 
+							url:"commentdelect",
+							data : {"no":no},
+							dataType : "json",
+							success : function(cdelete){
+								 if(cdelete.cdelete==true){			 	
+									 $.bootstrapGrowl("댓글 삭제 완료!", {
+											type: 'success',
+											align: 'center',
+											width: 'auto',
+											allow_dismiss: false
+									});
+										location.href="eventRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
+								     }
+							},
+							complete : function(res){					
+							}, 
+							error : function(xhr,status,error){
+									alert("에러 발생");
+									alert(status);
+							}  
+						});	
+					}
+				},
+				danger : {
+					label : "아니요",
+					className : "btn-danger",
+				}
+			}
+		});
+		
+		
+
 	}
 	
 	
