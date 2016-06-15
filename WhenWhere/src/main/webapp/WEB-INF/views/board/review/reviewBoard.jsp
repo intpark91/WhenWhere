@@ -4,7 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href=../css/board/reviewBoard.css>
+	<link rel="stylesheet" href=../css/board/reviewCSS/board.css>
+	<link rel="stylesheet" href=../css/board/reviewCSS/body.css>
+	<link rel="stylesheet" href=../css/board/reviewCSS/common.css>
+	<link rel="stylesheet" href=../css/board/reviewCSS/contents.css>
+	<link rel="stylesheet" href=../css/board/reviewCSS/sub1.css>
 	<jsp:include page="../../component/core_head.jsp" />
 	<title>WhenWhereTest</title>
 	

@@ -47,7 +47,7 @@ public class EventBoardSVC {
 		imageVO.setFileName(fileurl);		
 		Date date = null;
 		Date date1 = null;
-		DateFormat formatter ; 		 
+		DateFormat formatter; 		 
 		formatter = new SimpleDateFormat("yyyy-MM-dd");
 		date = (Date)formatter.parse(sDate);
 		date1 = (Date)formatter.parse(eDate);
