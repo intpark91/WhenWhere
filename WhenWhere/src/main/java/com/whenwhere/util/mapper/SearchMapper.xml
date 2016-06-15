@@ -3,16 +3,15 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.whenwhere.main.dao.SearchDAO">
-
+ 
 	<select id="getLocationList" resultType="String">
-		select LOC_NAME from location where LOC_SUBJECT=#{sub_loc}
+		select loc_name from location where LOC_SUBJECT=#{sub_loc}
 	</select>
 	
-	<select id="getSubLocationList" resultType="String">
-		select loc_subject
-		from(select LOC_SUBJECT, MIN(LOC_CODE) as firstLoc 
+	<select id="getSubLocationList" resultMap="eventResultMap">
+		select loc_subject, MIN(LOC_CODE) as loc_code
 			 from location 
-			 group by LOC_SUBJECT order by firstLoc)
+			 group by LOC_SUBJECT order by loc_code
 	</select>
 	
 	<select id="getEventList" resultMap="eventResultMap" parameterType="java.util.HashMap">
@@ -70,6 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result javaType="integer" column="b_recommend" property="bRecommend"/>
         <result javaType="String" column="e_sdate" property="eSDate"/>
         <result javaType="String" column="e_edate" property="eEDate"/>
+        <result javaType="String" column="loc_code" property="locCode"/>
         <result javaType="String" column="loc_subject" property="locSubName"/>
         <result javaType="String" column="loc_name" property="locName"/>
         <result javaType="String" column="filename" property="imgName"/>

@@ -18,9 +18,7 @@
 		<div class="content-wrapper">
 			<section class="content-header">
 			</section>
-			<!-- Content Header (Page header) -->
-			<!-- Main content -->
-			<div class="contentwrap">
+			<!-- <div class="contentwrap">
 				<article class="container">
 				<div class="page-header">
 					<h1>
@@ -92,45 +90,41 @@
 				</form>
 				</article>
 			</div>
-			<!-- /.content -->
-		</div>
+			/.content -->
+			
 		<div class="register-box">
 			<div class="register-logo">
-				<a href="../../index2.html"><b>WhenWhere</b></a>
+				<a href="../../index2.html" class="hidden-xs"><b>WhenWhere</b></a>
 			</div>
 
 			<div class="register-box-body">
 				<p class="login-box-msg">가입하기</p>
-
 				<form data-toggle="validator" role="form">
 				
 					<div class="form-group has-feedback">
-						<label for="inputEmail" class="control-label">E-Mail</label>
 						<div class="input-group">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-							<input type="text" pattern="^[_A-z0-9]{1,}$" maxlength="15" class="form-control"
+							<input type="text" pattern="^[_A-z0-9]{1,}$" maxlength="50" class="form-control"
 								id="inputEmail" placeholder="E-Mail" required>
 						</div>
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 						<div class="help-block with-errors"></div>
 					</div>
-					
+
 					<div class="form-group has-feedback">
-						<label for="inputTwitter" class="control-label">Nickname</label>
 						<div class="input-group">
-							<span class="input-group-addon glyphicon glyphicon-user"></span> <input type="text"
-								pattern="^[_A-z0-9]{1,}$" maxlength="15" class="form-control"
-								id="inputTwitter" placeholder="Nickname" required>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span> 
+							<input type="text" pattern="^[_A-z0-9]{1,}$" maxlength="50" class="form-control"
+								id="inputNickname" placeholder="Nickname" required>
 						</div>
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 						<div class="help-block with-errors"></div>
 					</div>
 					
 					<div class="form-group has-feedback">
-						<label for="inputPassword" class="control-label">Password</label>
 						<div class="input-group">
-							<span class="input-group-addon glyphicon glyphicon-lock"></span> 
-							<input type="password" pattern="^[_A-z0-9]{1,}$" maxlength="15" class="form-control"
+							<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span> 
+							<input type="password" data-minlength="6" maxlength="20" class="form-control"
 								id="inputPassword" placeholder="Password" required>
 						</div>
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -138,85 +132,30 @@
 					</div>
 					
 					<div class="form-group has-feedback">
-						<label for="inputPassword" class="control-label">Password</label>
 						<div class="input-group">
-							<span class="input-group-addon glyphicon glyphicon-log-in"></span> 
-							<input type="password" pattern="^[_A-z0-9]{1,}$" maxlength="15" class="form-control"
-								id="inputPassword" placeholder="Password" required>
-						</div>
-						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-						<div class="help-block with-errors"></div>
-					</div>
-					
-					<div class="form-group">
-						<label for="inputPassword" class="control-label">Confirm</label>
-						<div class="input-group">
-							<span class="input-group-addon "></span> <input type="password" data-minlength="6" class="form-control"
-								id="inputPassword" placeholder="Password" required>
-							
-						</div>
-						<div class="help-block">Minimum of 6 characters</div>
-						<div class="form-group">
-							<input type="password" class="form-control"
-								id="inputPasswordConfirm" data-match="#inputPassword"
+							<span class="input-group-addon"><span class="glyphicon glyphicon-log-in"></span></span> 
+							<input type="password" data-minlength="6" maxlength="20" class="form-control"
+								id="inputPasswordConfirm" data-match="#inputPassword" 
 								data-match-error="Whoops, these don't match"
-								placeholder="Confirm" required>
-							<div class="help-block with-errors"></div>
+								placeholder="PasswordConfirm" required>
+								
 						</div>
-					</div>
-					<div class="form-group">
-						<div class="radio">
-							<label> <input type="radio" name="underwear" required>
-								Boxers
-							</label>
-						</div>
-						<div class="radio">
-							<label> <input type="radio" name="underwear" required>
-								Briefs
-							</label>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="checkbox">
-							<label> <input type="checkbox" id="terms"
-								data-error="Before you wreck yourself" required> Check
-								yourself
-							</label>
-							<div class="help-block with-errors"></div>
-						</div>
-					</div>
-					<div class="form-group">
-						<button type="submit" class="btn btn-primary">Submit</button>
+						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+						<div class="help-block with-errors"></div>
+						
 					</div>
 					
-					<!-- asdfasdf -->
-					<div class="form-group has-feedback">
-						<input type="email" class="form-control" placeholder="ID/Email">
-						<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span> 
+							<input type="password" data-minlength="10" class="form-control"
+								id="inputPasswordConfirm" placeholder="PhoneNumber" required>
+						</div>
+						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+						<div class="help-block with-errors"></div>
 					</div>
-					<div class="form-group has-feedback">
-						<button type="button">
-							이메일인증
-						</button>
-					</div>
-					<div class="form-group has-feedback">
-						<input type="text" class="form-control" placeholder="Nickname">
-						<span class="glyphicon glyphicon-user form-control-feedback"></span>
-					</div>
-					<div class="form-group has-feedback">
-						<input type="password" class="form-control" placeholder="Password">
-						<span class="glyphicon glyphicon-lock form-control-feedback"></span>
-					</div>
-					<div class="form-group has-feedback">
-						<input type="password" class="form-control"
-							placeholder="Retype password"> <span
-							class="glyphicon glyphicon-log-in form-control-feedback"></span>
-					</div>
-					<div class="form-group has-feedback">
-						<input type="password" class="form-control"
-							placeholder="phone-number"> <span
-							class="glyphicon glyphicon-phone form-control-feedback"></span>
-					</div>
+				
+					
 					<div class="row">
 						<button type="submit" class="btn btn-primary btn-block btn-flat">가입하기</button>
 					</div>
@@ -227,7 +166,10 @@
 						계정이 있습니다.</a>
 				</div>
 			</div>
-			<!-- /.form-box -->
+		</div>
+			
+			
+			
 		</div>
 		<!-- /.content-wrapper -->
 		<!-- include -->
@@ -236,6 +178,7 @@
 	</div>
 	<!-- scripts -->
 	<jsp:include page="../component/core_js.jsp" />
+	<script src="../js/validator.js"></script>
 <!-- 	<script src="../js/jqBootstrapValidation.js"></script> -->
 <!-- 	<script type="text/javascript">
 	var error = "${error}";
