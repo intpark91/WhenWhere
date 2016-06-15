@@ -64,7 +64,7 @@ public class ReviewBoardSVC {
             String callback = request.getParameter("CKEditorFuncNum");
             
             printWriter = response.getWriter();
-            fileUrl = "http://192.168.8.13:8088/img/" + year+""+monthStr +time + fileName;
+            fileUrl = "http://localhost:8088/img/" + year+""+monthStr +time + fileName;
             String fileSaveName = year+monthStr+time+fileName;
             request.getSession().setAttribute("fileUrl", fileUrl);
             request.getSession().setAttribute("fileSaveName", fileSaveName);
@@ -72,7 +72,7 @@ public class ReviewBoardSVC {
                     + callback
                     + ",'"
                     + fileUrl
-                    + "','�̹��� ���ε� ����'"
+                    + "','이미지가 성공적으로 업데이트 되었습니다.'"
                     + ")</script>");
             printWriter.flush();
   

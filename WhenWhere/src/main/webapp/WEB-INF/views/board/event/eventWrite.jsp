@@ -15,7 +15,12 @@
 <script type="text/javascript">
 	var result = '${insert}';
 	if (result == 'true') {				
-		alert('글 쓰기 성공');
+		$.bootstrapGrowl("글 쓰기 성공!", {
+			type: 'success',
+			align: 'center',
+			width: 'auto',
+			allow_dismiss: false
+		});
 		location.href = "eventRead?no=0";
 	}
 	else if(result =='false'){
@@ -118,12 +123,33 @@ jQuery.browser = {};
 							var f = $("#inForm");
 							function formSubmit() {
 								if ($("#dataTitle").val() == '') {
-									alert("제목을 입력하시기 바랍니다.");
+									$.bootstrapGrowl("제목을 입력하세요.", {
+										type: 'warning',
+										align: 'center',
+										width: 'auto',
+										allow_dismiss: false
+									});
 									return;
 								}
 					
 								if ($("#dataContent").val() == '') {
-									alert("내용을 입력하시기 바랍니다.");
+									$.bootstrapGrowl("내용을 입력하세요.", {
+										type: 'warning',
+										align: 'center',
+										width: 'auto',
+										allow_dismiss: false
+									});
+									oEditors.getById["dataContent"].exec(
+											"FOCUS", []);
+									return;
+								}
+								if ($("#Datepicker").val() == '' || $("#Datepicker2").val() == '') {
+									$.bootstrapGrowl("기간을 선택하세요.", {
+										type: 'warning',
+										align: 'center',
+										width: 'auto',
+										allow_dismiss: false
+									});
 									oEditors.getById["dataContent"].exec(
 											"FOCUS", []);
 									return;
