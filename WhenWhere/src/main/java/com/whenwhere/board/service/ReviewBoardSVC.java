@@ -75,7 +75,7 @@ public class ReviewBoardSVC {
                     + "','�̹��� ���ε� ����'"
                     + ")</script>");
             printWriter.flush();
- 
+  
         }catch(IOException e){
             e.printStackTrace();
         } finally {
