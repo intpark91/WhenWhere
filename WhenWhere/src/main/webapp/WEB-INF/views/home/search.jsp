@@ -108,7 +108,7 @@
 						<nav>
 							<ul class="cd-tabs-navigation">
 								<c:forEach items="${locationSubList }" var="subList">
-									<li><a data-content="${subList }" href="#0">${subList }</a></li>
+									<li><a data-content='${subList }' href="#0">${subList.get("locSubName") }</a></li>
 								</c:forEach>
 							</ul>
 							<!-- cd-tabs-navigation -->
@@ -120,7 +120,7 @@
 								<li data-content="${sublist }">
 									<ul class="locationUL">
 										<c:set var="cnt" value="${status.index}" />
-										<c:forEach items="${locationList.get(cnt) }" var="list">
+										<c:forEach items='${locationList.get(cnt) }' var="list">
 											<li><input type="checkbox" id="${list }"
 												class="checkbox" /> <label for="${list }">${list }</label>
 											</li>
