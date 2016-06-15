@@ -36,7 +36,7 @@ $(document).ready(function() {
 		var startDate = $('#start').val(), 
 		endDate = $('#end').val(),
 		locations = [];
-
+ 
 		if(startDate == '' || endDate == ''){
 			$.bootstrapGrowl("날짜를 선택해야징.. 이 바부야!", {
 				type: 'danger',
