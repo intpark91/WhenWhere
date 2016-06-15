@@ -124,6 +124,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    	 	 update board set b_recommend = (select max(b_recommend+1) from board where b_no=#{no}) 
    	 	 where b_no = #{no} and boardcode = #{boardCode}
    	 </update>
+	
+   	<select id="getSubLocationList" resultMap="location">
+		select firstLoc,loc_subject
+		from(select LOC_SUBJECT, MIN(LOC_CODE) as firstLoc 
+			 from location 
+			 group by LOC_SUBJECT order by firstLoc)
+	</select>
+	
+	 <resultMap id="location" type="java.util.HashMap">
+   	    <id property="firstLoc" column="LOC_CODE" />
+  		<result property="loc_subject" column="loc_subject"/> 		
+   	 </resultMap>
    	 
+   	 <select id="bestcommend" resultMap="bestcommendmap">
+  SELECT rownum as rnum, b.b_no as no , b.b_title , b.b_wdate, b.b_auth, b.b_hit, b.boardCode, c.boardname, b.b_content, to_char(e.e_sdate, 'YYYY-MM-DD') as sdate, to_char(e.e_edate, 'YYYY-MM-DD') as edate, i.filename,l.loc_subject,MAX(b.b_recommend) as recommend
+  FROM BOARD b , boardcategory c, event e, image i, location l
+  where b.boardCode =3
+  and b.b_NO = i.NO
+  and b.boardcode = c.boardcode
+  and b.e_no =  e.e_no 
+  and b.boardcode = i.boardcode 
+  and e.loc_code = l.loc_code
+  and rownum <![CDATA[ < ]]> 4
+  GROUP BY b.b_no, b.b_title, b.b_wdate, b.b_auth, b.b_hit, b.boardCode, c.boardname, b.b_content,e.E_EDATE,e.E_SDATE, i.filename,l.loc_subject,rownum
+  order by recommend desc
+  
+  	
+   	 </select>
+   	 
+   	 <resultMap id="bestcommendmap" type="java.util.HashMap">
+   	    <id property="no" column="b_no" />
+  		<result property="auth" column="b_auth"/>
+  		<result property="title" column="b_title"/>
+  		<result property="sDate" column="e_edate"/>
+  		<result property="eDate" column="e_edate"/>
+  		<result property="loc" column="loc_subject"/>
+  		<result property="hit" column="b_hit"/>
+  		<result property="category" column="boardCode"/>
+  		<result property="boardName" column="boardname"/>
+  		<result property="content" column="b_content"/>
+  		<result property="recommend" column="b_recommend"/> 		
+   	 </resultMap>
    	   
 </mapper>

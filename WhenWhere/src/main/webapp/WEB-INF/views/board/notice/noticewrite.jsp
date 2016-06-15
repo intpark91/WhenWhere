@@ -23,8 +23,7 @@
 	}
 </script>
 <script type="text/javascript">
-	var editContact = CKEDITOR.instances.editContact.getData();
-	console.log(editContact);
+	
 
 	var f = $("#inForm");
 	function formSubmit() {
@@ -60,11 +59,7 @@
 				<div class="row">
 					<div
 						class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2 text-center">
-						<div id="all" class="clearfix">
-
-
-
-							<div id="content01">
+						<div id="all" class="clearfix">							
 								<!-- 2015.12.07 수정-->
 
 								<!--//-->
@@ -75,9 +70,10 @@
 									
 									<div class="con_area">
 										<div class="board_box">
+											 <div class="box-header"><h3>게시판 글 쓰기</h3></div>
 											<div class="bbs_write">
 												<table class="write_1">
-													<h3>게시판 글 쓰기</h3>
+													
 													<tbody>
 														<tr>
 															<th scope="row"><label for="dataTitle">제 목</label></th>
@@ -118,17 +114,17 @@
 													</tbody>
 												</table>
 											</div>
+										</div>
 											<div class="bbs_btn">
-												<p class="fl">&nbsp;</p>
+												
 												<p class="fr">
 													<a href="#" onclick="formSubmit();">등록</a>
 													<a href="notice">취소</a>
 												</p>
 											</div>
-										</div>
 									</div>
 								</form>
-							</div>
+							
 
 						</div>
 

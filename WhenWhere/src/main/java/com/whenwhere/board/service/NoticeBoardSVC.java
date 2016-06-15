@@ -7,13 +7,14 @@ import org.json.simple.JSONObject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import com.whenwhere.board.dao.BoardDAO;
 import com.whenwhere.board.vo.BoardVO;
 import com.whenwhere.board.vo.CommentVO;
 import com.whenwhere.user.vo.MemberVO;
 import com.whenwhere.util.PaginationVO;
-
+@Transactional  
 @Service("noticeBoardService")
 public class NoticeBoardSVC implements BoardService {
 	private static final int ROWCNT = 12;
@@ -24,7 +25,7 @@ public class NoticeBoardSVC implements BoardService {
 
 	public boolean insert(BoardVO boardVO) {
 		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);
-		if (boardDAO.insertBoard(boardVO) == 1) {
+		if (boardDAO.insertBoard(boardVO) == 1) {			
 			return true;
 		} else {
 			return false;
@@ -72,13 +73,21 @@ public class NoticeBoardSVC implements BoardService {
 	}
 
 	public String delectBoard(BoardVO boardVO) {
+		
 		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);
 		JSONObject jsonobejct = new JSONObject();
-		if (boardDAO.deleteBoard(boardVO) == 1) {
-			jsonobejct.put("delect", true);
-		} else {
-			jsonobejct.put("delect", false);
+		try{
+		boardDAO.deleteBoardimage(boardVO);	
+		boardDAO.deleteboardcomment(boardVO);
+		boardDAO.deleterecommend(boardVO);		
+		boardDAO.deleteBoard(boardVO);
+		jsonobejct.put("delect", true);
 		}
+		catch(Exception e){
+			jsonobejct.put("delect", false);
+			e.printStackTrace();
+		}
+		
 		return jsonobejct.toJSONString();
 	}
 

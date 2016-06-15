@@ -21,21 +21,13 @@ h2 {
 
 <script type="text/javascript">
 function delectAjax(no){
-<<<<<<< HEAD
+	var category = '${ReadBoard.category}';
 
 	jQuery.ajax({
 		type: "post", 
 		url:"noticedelete",
-		data : {"no":no},
-=======
-	var category = '${ReadBoard.category}';
-	jQuery.ajax({
-		type: "post", 
-		url:"noticedelete",
-		data : {"no":no
-				,"category":category
-		},
->>>>>>> refs/heads/main_js
+		data : {"no":no,"category":category},
+
 		dataType : "json",
 		success : function(delect){
 			console.log(delect);
@@ -43,6 +35,9 @@ function delectAjax(no){
 					alert('글 삭제 성공');
 					location.href="notice?category="+${ReadBoard.category}+"";
 			     }
+			 else {
+				 alert('삭제 실패');
+			 }
 		},
 		complete : function(res){					
 		}, 
@@ -51,8 +46,9 @@ function delectAjax(no){
 				alert(status);
 		}  
 	});	
+}
 
-}	
+	
 	$(function(){		
 		$('#submit').on('click',function(){
 			var serData = $('#commentform').serialize();
@@ -175,7 +171,7 @@ function delectAjax(no){
 				<div
 					class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2 text-center">
 					<div id="all" class="clearfix">
-						<div id="content01">
+						
 							<!--2015.12.07 수정-->
 
 							<!--//-->
@@ -314,13 +310,13 @@ function delectAjax(no){
 															<p class="comment-form-author">
 																<label for="author">이름<span class="required"></span></label>
 																<input id="author" name="auth" type="text"
-																	readonly="true" value="none" size="30"
+																	readonly="true" value="${sessionScope.member.nickname}" size="30"
 																	aria-required="true" required="required">
 															</p>
 															<p class="comment-form-comment">
 																<label for="comment">내용</label>
 																<textarea id="comment" name="content" cols="45" rows="8"
-																	aria-required="true" required="required"></textarea>
+																	aria-required="true" required="required" placeholder="댓글을 입력해 주세요"></textarea>
 															</p>
 															<p class="form-submit">
 																
@@ -347,12 +343,7 @@ function delectAjax(no){
 					</div>
 				</div>
 			</div>
-		</div>
-
-
-
-
-		</div>
+		
 			
 
 		<!-- /.content-wrapper -->
