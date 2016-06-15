@@ -154,7 +154,7 @@ jQuery.browser = {};
 											"FOCUS", []);
 									return;
 								}
-								
+								 
 								$("#inForm").submit();
 							}
 						</script>
