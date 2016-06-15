@@ -66,17 +66,17 @@
 							</p>
 							<form action="../../index2.html" method="post">
 								<div class="form-group has-feedback">
-									<input type="email" class="form-control" placeholder="Email">
+									<input type="email" class="form-control" placeholder="Email" name="email" value="whenwhere@gmail.com" >
 									<span
 										class="glyphicon glyphicon-envelope form-control-feedback"></span>
 								</div>
 								<div class="form-group has-feedback">
 									<input type="password" class="form-control"
-										placeholder="Password"> <span
+										placeholder="Password" name="password" value="whenwhere"> <span
 										class="glyphicon glyphicon-lock form-control-feedback"></span>
 								</div>
 								<div class="row">
-									<button type="submit"
+									<button type="button" onclick="login();"
 										class="btn btn-success btn-block btn-flat">로그인</button>
 								</div>
 							</form>
