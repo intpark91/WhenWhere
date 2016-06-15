@@ -110,9 +110,11 @@
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 						<div class="help-block with-errors"></div>
 					</div>
-					<div class="pull-right">
-						<button type="button" class="">이메일 인증</button>
-					</div>
+					<!-- <div class="row">
+						<div class="col-xs-12">
+							<button type="button" class="">이메일 인증</button>
+						</div>
+					</div> -->
 					<div class="form-group has-feedback">
 						<div class="input-group">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span> 

@@ -95,7 +95,7 @@ margin-bottom : -35px;
 										<li>
 											<figure>
 												<a href="eventRead?no=${item.NO}&category=4" alt="" class="thum_photo"> 
-													<img src="http://localhost:8088/img/${item.FILENAME}" alt="null">
+													<img src="http://192.168.8.13:8088/img/${item.FILENAME}" alt="null">
 												</a>
 												<figcaption>
 													<h3>													
@@ -124,7 +124,7 @@ margin-bottom : -35px;
 										<li>
 											<figure>
 												<a href="eventRead?no=${item.NO}&category=4" alt="" class="thum_photo"> 
-													<img src="http://localhost:8088/img/${item.FILENAME}" alt="null">
+													<img src="http://192.168.8.13:8088/img/${item.FILENAME}" alt="null">
 												</a>
 												<figcaption>
 													<h3>													

@@ -158,7 +158,7 @@
 				dataType : "json",
 				success : function(result) {
 					if (result.ok) {
-						location.href = "main";
+						location.href = "../home/main";
 					} else {
 						alert("server error");
 					}
