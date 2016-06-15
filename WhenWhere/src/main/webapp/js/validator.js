@@ -61,7 +61,7 @@
     focus: true,
     custom: {},
     errors: {
-      match: 'Does not match',
+      match: '일치하지 않습니다.',
       minlength: '너무 짧습니다.'
     },
     feedback: {
