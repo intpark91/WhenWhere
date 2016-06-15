@@ -134,7 +134,7 @@
 		            	<div class="box-tools pull-right">
 		                	<button type="button" class="btn btn-box-tool" data-widget="collapse">
 		                		<i class="fa fa-plus"></i>
-		                	</button>
+		                	</button> 
 		              </div>
 		            </div>
 		            <div class="box-body">
