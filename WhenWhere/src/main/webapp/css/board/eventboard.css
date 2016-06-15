@@ -41,7 +41,7 @@
 		/* 검색 */
 		.bbs_info .search {float:right; margin-top:-40px;}
 		.bbs_info .search select {height:26px; padding:2px;}
-		.bbs_info .search input {color:#666666; height:20px; width:170px; padding:2px; vertical-align:middle; border:#cccccc solid 1px;}
+		.bbs_info .search input {color:#666666; height:20px; width:40%; padding:2px; vertical-align:middle; border:#cccccc solid 1px;}
 		.bbs_info .search .searchBtn {display:inline-block; cursor:pointer; border-radius:2px;padding:0px 8px;line-height:20px;font-size:12px;vertical-align:middle;color:#fff; border:#6a6a6a solid 1px;height:25px;background-color:#777777;width:60px;}
 		/* 리스트 : 일반게시판 */
 		.bbs_list {margin-top:10px;float:left;width:97%;border-top:2px solid #00c0ef ;padding-top:15px;}
@@ -142,7 +142,7 @@
 }
 
 .jb_area  {display:block;width:100%;font-size:110%;color:#2d2d2d;line-height:33px;text-indent:5px;font-weight:900;}
-.jb_area{margin-top:5px; display:block;width:40%;height:auto;padding:0% 2% 0% 1%;background-color:#d92737;color:#fff;font-size:85%;text-align:center;float:right;margin-right:10px;border-radius:8px;}
+.jb_area{margin-top:23px; display:block;height:auto;padding:0% 2% 0% 1%;background-color:#d92737;color:#fff;font-size:85%;text-align:center;margin-right:10px;border-radius:8px;}
 /* photo board */
 .board_photo {padding:25px 0;border-top:0px solid #dddddd;border-bottom:0px solid #dddddd;}
 .board_photo ul {width:100%;}
