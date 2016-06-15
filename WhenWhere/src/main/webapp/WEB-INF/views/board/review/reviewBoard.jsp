@@ -24,7 +24,7 @@
 	line-height: 33px;
 	text-align: center;
 	font-size: 22px;
-	border: 1px solid #dadada;
+	border: 1px solid #dadada;  
 	margin: 30px 0 0 10px; 
 	padding: 5px 5px;
 }
