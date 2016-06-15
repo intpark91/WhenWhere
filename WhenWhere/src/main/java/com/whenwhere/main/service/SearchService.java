@@ -13,6 +13,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.whenwhere.main.dao.SearchDAO;
+import com.whenwhere.main.vo.LocationVO;
+
 import net.htmlparser.jericho.Element;
 import net.htmlparser.jericho.HTMLElementName;
 import net.htmlparser.jericho.Source;
@@ -23,7 +25,7 @@ public class SearchService {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
-	public List<String> getSubLocationList() {
+	public List<Map<String, Object>> getSubLocationList() {
 		SearchDAO dao = sqlSessionTemplate.getMapper(SearchDAO.class);
 		return dao.getSubLocationList();
 	}
@@ -35,13 +37,14 @@ public class SearchService {
 
 	public List<List<String>> getAllLocationList() {
 		List<List<String>> list = new ArrayList<List<String>>();
-		List<String> subLocationList = getSubLocationList();
+		List<Map<String, Object>> subLocationList = getSubLocationList();
 
 		for (int i = 0; i < subLocationList.size(); i++) {
-			list.add(getLocationList(subLocationList.get(i)));
+			list.add(getLocationList(subLocationList.get(i).get("locSubName").toString())); 
+			System.out.println(list.get(i));
 		}
 
-		return list;
+		return list; 
 	}
 
 	public String getSearchList(HttpServletRequest request) {

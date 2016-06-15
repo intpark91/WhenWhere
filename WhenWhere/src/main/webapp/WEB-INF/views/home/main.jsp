@@ -62,7 +62,7 @@ desired effect
 					<div class="locSelect">
 						<select class="locSel btn" id="locSel">
 							<c:forEach items="${locationSubList }" var="list">
-								<option>${list }</option>
+								<option>${list.get("locSubName") }</option>
 							</c:forEach>
 						</select>
 					</div>
