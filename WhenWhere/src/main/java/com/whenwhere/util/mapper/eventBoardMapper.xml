@@ -13,6 +13,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       	  into image (no,filename,boardcode) values (SEQ_BOARD_EVENT.CURRVAL,#{fileName},#{category})
 		  select * from dual
 	</insert>
+	
+	<insert id="insertReview" parameterType="map">
+		  insert all
+  		  into event (E_no, e_sdate, e_edate, loc_code)
+  		  values (SEQ_EVENT.NEXTVAL, #{sDate}, #{eDate}, #{loc})
+  		  into board (B_NO, BOARDCODE, B_AUTH, B_TITLE, B_WDATE, B_CONTENT, B_HIT, B_RECOMMEND, E_NO)
+      	  values (SEQ_BOARD_EVENT.NEXTVAL, #{category}, #{auth}, #{title}, sysdate, #{content}, 0, 0, SEQ_EVENT.CURRVAL)
+      	  into image (no,filename,boardcode) values (SEQ_BOARD_EVENT.CURRVAL,#{fileName},#{category})
+		  select * from dual
+	</insert>
+	
+	
+	
+	
 		
 	<select id="eventDate" parameterType="com.whenwhere.board.vo.BoardVO" resultType="com.whenwhere.board.vo.EventVO">       
            select e_no as no, e_sdate as sDate, e_edate as eDate from (select * from event order by e_no desc) where rownum = 1

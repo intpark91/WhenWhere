@@ -114,7 +114,8 @@ public class ReviewBoardSVC {
 		java.sql.Date sdate = new java.sql.Date(date.getTime());
 		java.sql.Date edate = new java.sql.Date(date1.getTime());		
 		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);
-		if (boardDAO.inserteventBoard(title,content,auth,sdate,edate,boardCode,loc,fileSaveName) > 0) {
+		System.out.println("sdate"+sdate);
+		if (boardDAO.insertReview(title,content,auth,sdate,edate,boardCode,loc,fileSaveName) > 0) {
 			return true;
 		} else {
 			return false;

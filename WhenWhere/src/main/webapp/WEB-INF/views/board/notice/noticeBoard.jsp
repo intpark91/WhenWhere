@@ -8,7 +8,7 @@
 <title>공지사항 게시판</title>
 <jsp:include page="../../component/core_head.jsp" />
 <style>
-	.noticewrite { float: right; width: 100px;}
+		.noticewrite { float: right; width: 100px;}
 		
 		.noticewrite{
 		border:1px solid #275d8b; -webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px;font-size:12px;font-family:arial, helvetica, sans-serif; padding: 10px 10px 10px 10px; text-decoration:none; display:inline-block;text-shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; color: #FFFFFF;
@@ -53,7 +53,6 @@
 							<div class="box-header">
 								<c:choose>
 									<c:when test="${searchboardList eq null}">
-
 										<h3 class="box-title">${boardList[0].boardName }리스트</h3>
 									</c:when>
 									<c:otherwise>
@@ -64,7 +63,7 @@
 
 								<div class="box-tools">
 									<form action="search" id="searchForm" name="rfc_bbs_searchForm" class="rfc_bbs_searchForm" method="GET">									
-									<div class="input-group input-group-sm" style="width: 250px;">
+									<div class="input-group input-group-sm" style="width: 150px;">
 										<c:choose>
 													<c:when test="${searchboardList eq null}">
 														<input type="hidden" name="category"
@@ -144,11 +143,11 @@
 									<c:choose>
 										<c:when test="${searchpagenation eq null}">
 											<c:choose>
-												<c:when test="${pagenation.currPage>10}">
+												<c:when test="${pagenation.currPage>3}">
 													<li><a
-														href="notice?page=1&category=${boardList[0].no}">&lt;&lt;</a></li>
+														href="notice?page=1&category=${boardList[0].category}"><<</a></li>
 													<li><a
-														href="notice?page=${pagenation.linkBegin-1}&category=${boardList[0].category}">&lt;</a></li>
+														href="notice?page=${pagenation.linkBegin-1}&category=${boardList[0].category}"><</a></li>
 												</c:when>
 											</c:choose>
 											<c:forEach var="i" begin="${pagenation.linkBegin}"
@@ -168,9 +167,9 @@
 											<c:choose>
 												<c:when test="${pagenation.linkEnd ne pagenation.totalPage}">
 													<li><a
-														href="notice?page=${pagenation.linkEnd+1}&category=${boardList[0].category}">[>]</a></li>
+														href="notice?page=${pagenation.linkEnd+1}&category=${boardList[0].category}">></a></li>
 													<li><a
-														href="notice?page=${pagenation.totalPage}&category=${boardList[0].category}">[>>]</a></li>
+														href="notice?page=${pagenation.totalPage}&category=${boardList[0].category}">>></a></li>
 												</c:when>
 											</c:choose>
 										</c:when>

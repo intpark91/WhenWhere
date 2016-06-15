@@ -41,5 +41,7 @@ public interface BoardDAO {
 	public void deleteboardcomment(BoardVO boardVO);
 	public void deleterecommend(BoardVO boardVO);
 	public void deleteBoardimage(BoardVO boardVO);
+	public int insertReview(@Param("title") String title, @Param("content") String content, @Param("auth") String auth, 
+			@Param("sDate") Date sdate, @Param("eDate") Date edate, @Param("category") String boardCode,@Param("loc") String loc, @Param("fileName") String fileurl);
 	
 }

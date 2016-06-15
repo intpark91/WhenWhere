@@ -13,6 +13,10 @@ h1,h2,h3,h4 {
 	color:#111;
 }
 
+.eventtitle{
+	margin-top: 10px;
+}
+
 .banner {
 	background-color: black;
 }
@@ -52,7 +56,7 @@ margin-bottom : -35px;
 					<div class="con_area">
 						<div class="board_box">
 							<div class="bbs_info">
-							<h2>행사 게시판 리스트</h2>
+							<h2 class="eventtitle">행사 리스트</h2>
 								<div class="page">
 									<c:choose>
 											<c:when test="${searchboardList eq null}">
