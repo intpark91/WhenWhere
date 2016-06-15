@@ -36,13 +36,13 @@ public class MainController {
 		return weatherService.getMidTermWeather(locName);
 	}
 
-	@RequestMapping(value = "/joinForm")
-	public String join(HttpSession session, HttpServletRequest request) {
+	@RequestMapping(value = "/register")
+	public String register(HttpSession session, HttpServletRequest request) {
 		ServletContext application = request.getServletContext();
 		application.setAttribute(session.getId(), session);
-		return "home/join";
+		return "home/register";
 	}
-
+	
 	@RequestMapping(value = "/loginForm")
 	public String login() {
 		return "home/login";
