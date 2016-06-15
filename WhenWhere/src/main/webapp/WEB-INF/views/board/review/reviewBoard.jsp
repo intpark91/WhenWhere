@@ -18,7 +18,7 @@
 	overflow: auto;
 }
 
-.fesival_view .bandi a {
+.fesival_view .bandi a  {
 	width: 150px;
 	height: 45px;
 	line-height: 33px;
