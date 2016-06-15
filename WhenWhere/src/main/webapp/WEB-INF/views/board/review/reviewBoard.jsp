@@ -162,8 +162,7 @@
 										</c:when>
 									</c:choose>
 							</c:when>
-						
-						
+												
 							<c:otherwise>
 									<c:choose>
 										<c:when test="${searchpagenation.currPage>10}">
