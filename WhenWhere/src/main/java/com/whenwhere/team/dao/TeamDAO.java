@@ -1,5 +1,10 @@
 package com.whenwhere.team.dao;
 
-public class TeamDAO {
+
+import java.util.Map;
+
+public interface TeamDAO {
+	
+	public int makeTeam(Map<String, Object> map);
 
 }
