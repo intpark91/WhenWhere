@@ -98,24 +98,26 @@
 			</div>
 
 			<div class="register-box-body">
-				<p class="login-box-msg">가입하기</p>
+				<p class="login-box-msg"><b>가입하기</b></p>
 				<form data-toggle="validator" role="form">
 				
 					<div class="form-group has-feedback">
 						<div class="input-group">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-							<input type="text" pattern="^[_A-z0-9]{1,}$" maxlength="50" class="form-control"
-								id="inputEmail" placeholder="E-Mail" required>
+							<input type="email" pattern="^[_A-z0-9]+[@].+[.].+$" maxlength="50" class="form-control"
+								id="inputEmail" placeholder="you@example.com" required>
 						</div>
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 						<div class="help-block with-errors"></div>
 					</div>
-
+					<div class="pull-right">
+						<button type="button" class="">이메일 인증</button>
+					</div>
 					<div class="form-group has-feedback">
 						<div class="input-group">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span> 
-							<input type="text" pattern="^[_A-z0-9]{1,}$" maxlength="50" class="form-control"
-								id="inputNickname" placeholder="Nickname" required>
+							<input type="text" data-minlength="2" maxlength="10" class="form-control"
+								id="inputNickname" placeholder="별명 2~10 글자" required>
 						</div>
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 						<div class="help-block with-errors"></div>
@@ -124,8 +126,8 @@
 					<div class="form-group has-feedback">
 						<div class="input-group">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span> 
-							<input type="password" data-minlength="6" maxlength="20" class="form-control"
-								id="inputPassword" placeholder="Password" required>
+							<input type="password" data-minlength="8" maxlength="20" class="form-control"
+								id="inputPassword" placeholder="비밀번호 영문, 숫자 포함  8에서 20자" required>
 						</div>
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 						<div class="help-block with-errors"></div>
@@ -134,10 +136,10 @@
 					<div class="form-group has-feedback">
 						<div class="input-group">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-log-in"></span></span> 
-							<input type="password" data-minlength="6" maxlength="20" class="form-control"
+							<input type="password" maxlength="20" class="form-control"
 								id="inputPasswordConfirm" data-match="#inputPassword" 
-								data-match-error="Whoops, these don't match"
-								placeholder="PasswordConfirm" required>
+								data-match-error="입력하신 비밀번호와 일치하지 않습니다."
+								placeholder="비밀번호 확인" required>
 								
 						</div>
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -149,7 +151,7 @@
 						<div class="input-group">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span> 
 							<input type="password" data-minlength="10" class="form-control"
-								id="inputPasswordConfirm" placeholder="PhoneNumber" required>
+								id="inputPasswordConfirm" placeholder="핸드폰 번호(필수X)">
 						</div>
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 						<div class="help-block with-errors"></div>
@@ -162,7 +164,7 @@
 				</form>
 				<div class="row">
 					<p class="text-center">- OR -</p>
-					<a href="login.html" class="btn btn-block btn-success btn-flat">이미
+					<a href="../home/loginForm" class="btn btn-block btn-success btn-flat">이미
 						계정이 있습니다.</a>
 				</div>
 			</div>

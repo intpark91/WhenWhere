@@ -57,7 +57,7 @@
 					<!-- 로그인 폼 바꿔봄봄봄봄봄보몹몹모 -->
 					<div class="login-box">
 						<div class="login-logo">
-							<a href="../../index2.html"><b>WhenWhere</b></a>
+							<a href="../../index2.html" class="hidden-xs"><b>WhenWhere</b></a>
 						</div>
 						<!-- /.login-logo -->
 						<div class="login-box-body">
