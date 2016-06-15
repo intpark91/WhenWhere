@@ -13,7 +13,21 @@
 	<title>WhenWhereTest</title>
 	
 	<style type="text/css">
-	
+.bandi2 {
+	max-height: 200px;
+	overflow: auto;
+}
+
+.fesival_view .bandi a {
+	width: 150px;
+	height: 45px;
+	line-height: 33px;
+	text-align: center;
+	font-size: 22px;
+	border: 1px solid #dadada;
+	margin: 30px 0 0 10px;
+	padding: 5px 5px;
+}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -45,10 +59,6 @@
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
-						<div id="main_bg" class="info_main_bg" >
-							<div class="mainWrap">
-							</div>
-						</div>
 	<div class="wrapper">
 		<!-- include -->
 		<jsp:include page="../../component/header.jsp" />
@@ -56,15 +66,9 @@
 		<!-- Content Wrapper. Contains page content -->
 
 		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
-			<section class="content-header">
-			</section>
-			
-
-		<div class="container">				
-			<div class="row">
 
 				<!-- <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8  text-center"> -->
+				<div id="content01">
 					<div class="con_area">
 						<div class="festivalWrap">
 							<div class="thisMonth">
@@ -91,12 +95,13 @@
 							</div>
 
 							<div class="fesival_view">
-
 								<div class="this_month_event_view" >
 									<div class="bandi">
-										<h2>${bestcommend[0].title}</h2>										
-										<p>${bestcommend[0].content}</p>
-										<p>기간:${bestcommend[0].SDATE} ~ ${bestcommend[0].EDATE} </p>									
+										<div class="bandi2">
+											<h2>${bestcommend[0].title}</h2>										
+											<p>${bestcommend[0].content}</p>
+											<p>기간:${bestcommend[0].SDATE} ~ ${bestcommend[0].EDATE} </p>									
+										</div>
 										<a href="reviewRead?no=${bestcommend[0].NO}&category=${bestcommend[0].category}">상세보기</a>
 									</div>
 									<p class="bandi_img">
@@ -114,11 +119,9 @@
 								</li>
 								<li class="result_my"></li>
 							</ul>
-	
 						</div>
 
 						<div class="serchList">
-					
 							<c:forEach var="item" items="${ReviewboardList}" varStatus="status">	
 							<div class="photoWrap">
 								<a href="reviewRead?no=${item.NO}&category=3">
