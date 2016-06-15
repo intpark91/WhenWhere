@@ -110,8 +110,8 @@ margin-bottom : -35px;
 					
 													
 													<p>
-													<span class="jb_area">[${item.LOC}]</span>
-													<span class="jb_area">추천 : ${item.RECOMMEND}</span>
+													<span class="jb_area">[${item.LOC}] &nbsp&nbsp&nbsp 추천 : ${item.RECOMMEND}</span>
+													
 													</p>
 													
 												</figcaption>
