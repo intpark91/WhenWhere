@@ -56,21 +56,23 @@
 						<div class="festivalWrap">
 							<div class="thisMonth">
 								<h3>Focus</h3>
-								<h4>Best 행사</h4>
-								<div class="thisMonth2" style="position: relative;">6월</div>
+								<h4>Best 행사</h4>								
+								<div class="thisMonth2" style="position: relative;">6월</div>								
 								<div class="festival">
 									<ul class="festival_list">
+										<c:forEach var="item" items="${bestcommend}" varStatus="status" begin="0" end="2">
 										<li class="festival_list_child">
 											<ul class="bandi_list">
 												<li class="bandi_img">
-													<a href="#">
-														<img src="../images/reviewimg/reviewDemo.JPG"alt="">
+													<a href="reviewRead=no?${bestcommend.no}&category=${bestcommend.category}">
+														<img src="http://localhost:8088/img/${item.FILENAME}"alt="">
 													</a>
 												</li>
 												<li>
-												<a href="noticeRead">[전주] 전주한지문화축제</a><br> <span class="bandi_list_date">2016.05.05~05.08</span></li>
+												<a href="noticeRead">[${item.loc}] ${item.title}</a><br> <span class="bandi_list_date">${item.SDATE} ~ ${item.EDATE}</span></li>            
 											</ul>
 										</li>	
+										</c:forEach>
 									</ul>
 
 								</div>
@@ -80,8 +82,7 @@
 
 								<div class="this_month_event_view" style="display: block;">
 									<div class="bandi">
-										<h2>dxsadas</h2>
-										
+										<h2>dxsadas</h2>										
 										<p>장소 : 전라북도 전주시 덕진구 덕진동 1가 1220</p>
 										<p>주최/주관 : 전주시/전주한지문화축제 조직위원회</p>
 										<p>연락처 : 063-271-2503</p>

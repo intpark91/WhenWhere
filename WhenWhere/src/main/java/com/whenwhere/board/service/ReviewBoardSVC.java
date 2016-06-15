@@ -222,8 +222,14 @@ public class ReviewBoardSVC {
 		paginationVO.setNext(true);
 				
 		model.addAttribute("pagenation", paginationVO);
+		model.addAttribute("bestcommend", bestcommend());
 		return "board/review/reviewBoard";
 		
+	}
+	
+	public List<HashMap<String,Object>> bestcommend(){
+		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);			
+		return boardDAO.bestcommend();
 	}
 	
 	public int getTotalPageCnt(String boardCode, Model model) {
@@ -255,9 +261,9 @@ public class ReviewBoardSVC {
 		}
 		return jsonobject.toString();
 	}
-/*	public List<HashMap<String,Object>> location(HttpServletRequest request) {
+	public List<HashMap<String,Object>> location(HttpServletRequest request) {
 		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);		
 		return boardDAO.getSubLocationList();
-	}*/
+	}
 	
 }

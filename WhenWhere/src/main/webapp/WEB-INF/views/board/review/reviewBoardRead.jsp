@@ -74,11 +74,6 @@ function recommend(no){
 	});	
 
 }	
-
-
-
-
-
 	$(function(){		
 		$('#submit').on('click',function(){
 			var serData = $('#commentform').serialize();
@@ -103,8 +98,6 @@ function recommend(no){
 			
 		});
 	});
-
-
 
 	function modifyForm(no){	
 		location.href="reviewRead?no="+no+"&cmd=updateForm&category="+${ReadBoard.category}+"&eno="+${EventDate.no}+"";
