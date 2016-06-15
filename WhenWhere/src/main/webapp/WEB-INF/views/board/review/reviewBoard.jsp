@@ -4,9 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href=../css/board/reviewBoard.css>
 	<jsp:include page="../../component/core_head.jsp" />
 	<title>WhenWhereTest</title>
-	<link rel="stylesheet" href=../css/board/reviewBoard.css>
+	
 	<style type="text/css">
 	
 </style>
@@ -16,6 +17,9 @@
 			location.href="reviewwrite?category=3"					
 		});
 		$('.img p:has(img)').css('display','none');
+		
+		$('.bandi p:has(img)').css('display','none');
+		
 	});
 	
 	
@@ -26,6 +30,12 @@
 		white-space:nowrap;
 		overflow:hidden;
 		text-overflow:ellipsis;
+	}
+</style>
+
+<style type="text/css">
+	.commendtitle{
+	color:#111;
 	}
 </style>
 
@@ -50,8 +60,7 @@
 		<div class="container">				
 			<div class="row">
 
-				<div
-					class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2 text-center">
+				<!-- <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8  text-center"> -->
 					<div class="con_area">
 						<div class="festivalWrap">
 							<div class="thisMonth">
@@ -64,12 +73,12 @@
 										<li class="festival_list_child">
 											<ul class="bandi_list">
 												<li class="bandi_img">
-													<a href="reviewRead=no?${bestcommend.no}&category=${bestcommend.category}">
+													<a href="reviewRead?no=${item.NO}&category=${bestcommend[0].category}">
 														<img src="http://localhost:8088/img/${item.FILENAME}"alt="">
 													</a>
 												</li>
 												<li>
-												<a href="noticeRead">[${item.loc}] ${item.title}</a><br> <span class="bandi_list_date">${item.SDATE} ~ ${item.EDATE}</span></li>            
+												<a href="reviewRead?no=${item.NO}&category=${item.category}" class="atage">[${item.loc}] ${item.title}</a><br> <span class="bandi_list_date">${item.SDATE} ~ ${item.EDATE}</span></li>            
 											</ul>
 										</li>	
 										</c:forEach>
@@ -80,16 +89,15 @@
 
 							<div class="fesival_view">
 
-								<div class="this_month_event_view" style="display: block;">
+								<div class="this_month_event_view" >
 									<div class="bandi">
-										<h2>dxsadas</h2>										
-										<p>장소 : 전라북도 전주시 덕진구 덕진동 1가 1220</p>
-										<p>주최/주관 : 전주시/전주한지문화축제 조직위원회</p>
-										<p>연락처 : 063-271-2503</p>
-										<a href="#">상세보기</a>
+										<h2>${bestcommend[0].title}</h2>										
+										<p>${bestcommend[0].content}</p>
+										<p>기간:${bestcommend[0].SDATE} ~ ${bestcommend[0].EDATE} </p>									
+										<a href="reviewRead?no=${bestcommend[0].NO}&category=${bestcommend[0].category}">상세보기</a>
 									</div>
 									<p class="bandi_img">
-										<img src="../images/reviewimg/reviewDemo.JPG" alt="한지문화축제.jpg">
+										<img src="http://localhost:8088/img/${bestcommend[0].FILENAME}" alt="한지문화축제.jpg">
 									</p>
 								</div>
 							</div>
@@ -115,9 +123,9 @@
 								</a>
 								<h3>
 									<a href="reviewRead?no=${item.NO}&category=3">
-										<span class="jb_area">${item.LOC}</span> <span id="boardtitle">${item.TITLE}</span>
 									
-									<span class="jb_area">추천수: ${item.RECOMMEND}</span>					
+									<span id="boardtitle">${item.TITLE}</span>								
+												
 									</a>
 								</h3>
 								<ul class="stay_infobox">
@@ -125,6 +133,8 @@
 
 									<li class="img"> ${item.CONTENT}</li>
 								</ul>
+								<span class="jb_area">추천수: ${item.RECOMMEND}</span>	
+								<span class="jb_area">${item.LOC}</span> 
 							</div>
 							</c:forEach>
 						</div>
@@ -187,7 +197,7 @@
 						</div>												
 					</div>					
 				</div>
-			</div>
+			<!-- </div> -->
 		</div>
 		
 

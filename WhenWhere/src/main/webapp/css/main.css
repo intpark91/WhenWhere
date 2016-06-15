@@ -68,7 +68,7 @@ video {
 
 @media only screen and (min-width: 767px) {
 .container {
-		margin-top: 80px;
+		margin-top: 95px;
 	}
 }
 
@@ -87,10 +87,11 @@ video {
 }
 
 /* Chrome, Safari, Opera */
-@-webkit-keyframes recommend { 0% {
+@-webkit-keyframes recommend { 
+	0% {
 	/* background-color: rgb(54, 127, 169); */
 	color: rgba(255, 255, 255, 0.41);
-}
+	}
 
 }
 
@@ -99,4 +100,11 @@ video {
 	/* background-color: rgb(54, 127, 169); */
 	color: rgba(255, 255, 255, 0.41);
 }
+}
+
+
+.searchFail{
+	color: rgb(255, 0, 0);
+    background: white;
+    font-size: 15px;
 }

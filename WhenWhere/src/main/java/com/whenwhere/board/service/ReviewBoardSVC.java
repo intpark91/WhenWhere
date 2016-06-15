@@ -58,8 +58,7 @@ public class ReviewBoardSVC {
         try{ 
             String fileName = upload.getOriginalFilename();
             byte[] bytes = upload.getBytes();
-            String uploadPath = "c:/img/"  + year+""+monthStr+ time+ fileName;
-            
+            String uploadPath = "c:/img/"  + year+""+monthStr+ time+ fileName;           
             out = new FileOutputStream(new File(uploadPath));
             out.write(bytes);
             String callback = request.getParameter("CKEditorFuncNum");
@@ -158,6 +157,7 @@ public class ReviewBoardSVC {
 			boardVO.setContent(request.getParameter("content"));			
 			BoardVO boardvo = boardDAO.readBoard(boardVO);				
 			model.addAttribute("updateBoard", boardvo);
+			model.addAttribute("location", this.location(request));
 			return "board/review/reviewModify";
 		}
 		return null;

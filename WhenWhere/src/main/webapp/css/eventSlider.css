@@ -191,3 +191,34 @@ ul {
 .justifyDiv {
 	text-align: justify;
 }
+
+.starRating{
+	color: rgb(239, 206, 74);
+	font-size: 18px;
+	padding-top:4px;
+	animation: starRating 1s infinite alternate;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes starRating { 0% {
+	/* background-color: rgb(54, 127, 169); */
+	color: rgba(239, 206, 74, 0.41);
+}
+}
+
+/* Standard syntax */
+@-keyframes myfirst starRating { 
+	0% {
+	/* background-color: rgb(54, 127, 169); */
+	color: rgba(239, 206, 74, 0.41);
+	}
+}
+
+
+
+
+
+
+
+
+

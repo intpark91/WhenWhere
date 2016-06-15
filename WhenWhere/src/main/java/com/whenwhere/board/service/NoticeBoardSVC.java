@@ -73,13 +73,21 @@ public class NoticeBoardSVC implements BoardService {
 	}
 
 	public String delectBoard(BoardVO boardVO) {
+		
 		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);
 		JSONObject jsonobejct = new JSONObject();
-		if (boardDAO.deleteBoard(boardVO) == 1) {
-			jsonobejct.put("delect", true);
-		} else {
-			jsonobejct.put("delect", false);
+		try{
+		boardDAO.deleteBoardimage(boardVO);	
+		boardDAO.deleteboardcomment(boardVO);
+		boardDAO.deleterecommend(boardVO);		
+		boardDAO.deleteBoard(boardVO);
+		jsonobejct.put("delect", true);
 		}
+		catch(Exception e){
+			jsonobejct.put("delect", false);
+			e.printStackTrace();
+		}
+		
 		return jsonobejct.toJSONString();
 	}
 

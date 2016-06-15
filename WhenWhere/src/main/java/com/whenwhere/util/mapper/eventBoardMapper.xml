@@ -138,7 +138,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    	 </resultMap>
    	 
    	 <select id="bestcommend" resultMap="bestcommendmap">
-  SELECT b.b_no as no , b.b_title , b.b_wdate, b.b_auth, b.b_hit, b.boardCode, c.boardname, b.b_content, to_char(e.e_sdate, 'YYYY-MM-DD') as sdate, to_char(e.e_edate, 'YYYY-MM-DD') as edate, i.filename,l.loc_subject,MAX(b.b_recommend) as recommend
+  SELECT rownum as rnum, b.b_no as no , b.b_title , b.b_wdate, b.b_auth, b.b_hit, b.boardCode, c.boardname, b.b_content, to_char(e.e_sdate, 'YYYY-MM-DD') as sdate, to_char(e.e_edate, 'YYYY-MM-DD') as edate, i.filename,l.loc_subject,MAX(b.b_recommend) as recommend
   FROM BOARD b , boardcategory c, event e, image i, location l
   where b.boardCode =3
   and b.b_NO = i.NO
@@ -146,8 +146,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   and b.e_no =  e.e_no 
   and b.boardcode = i.boardcode 
   and e.loc_code = l.loc_code
-  GROUP BY b.b_no, b.b_title, b.b_wdate, b.b_auth, b.b_hit, b.boardCode, c.boardname, b.b_content,e.E_EDATE,e.E_SDATE, i.filename,l.loc_subject
-  order by b.b_no desc
+  and rownum <![CDATA[ < ]]> 4
+  GROUP BY b.b_no, b.b_title, b.b_wdate, b.b_auth, b.b_hit, b.boardCode, c.boardname, b.b_content,e.E_EDATE,e.E_SDATE, i.filename,l.loc_subject,rownum
+  order by recommend desc
   
   	
    	 </select>

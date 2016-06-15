@@ -17,6 +17,8 @@
 		<jsp:include page="../component/header.jsp" />
 		<jsp:include page="../component/linkSidebar.jsp" />
 		<!-- include -->
+		
+		<!-- Title -->
 		<section class="section1">
 			<div class="row">
 				<div class="input-daterange" id="datepicker" align="center">
@@ -52,14 +54,13 @@
 							data-ride="carousel">
 							<!-- Indicators -->
 							<ol class="carousel-indicators">
-								<li data-target="#detailCarousel" data-slide-to="0"
-									class="active"></li>
+								<li data-target="#detailCarousel" data-slide-to="0" class="active"></li>
 								<li data-target="#detailCarousel" data-slide-to="1"></li>
 							</ol>
 
 							<!-- Wrapper for slides -->
 
-							<div class="carousel-inner" role="listbox">
+							<div class="carousel-inner modalContent" role="listbox">
 								<div class="item active row">
 									<img src="../resources/img/item-1.jpg"
 										class="detailImg1 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">
@@ -69,11 +70,7 @@
       								</div> -->
 								</div>
 
-								<div class="item row">
-									<div
-										class="detail2 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">
-									</div>
-								</div>
+								
 
 							</div>
  
@@ -100,8 +97,6 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- /modal contents -->
 
 		<!-- 지역 탭목록 -->
 		<section class="section2">

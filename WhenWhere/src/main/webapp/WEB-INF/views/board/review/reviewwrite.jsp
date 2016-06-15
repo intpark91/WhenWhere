@@ -133,7 +133,7 @@ jQuery.browser = {};
 							}
 						</script>
 						
-						<div id="content01">
+						
 							<!-- 2015.12.07 수정-->
 
 							<!--//-->
@@ -147,6 +147,7 @@ jQuery.browser = {};
 										<div class="bbs_write">
 											<table class="write_1">
 												<h3>게시판 글 쓰기</h3>
+												
 												<tbody>
 													<tr>
 														<th scope="row"><label for="dataTitle">제 목</label></th>
@@ -161,6 +162,7 @@ jQuery.browser = {};
 													<th scope="row"><label for="location">지역</label></th>
 														<td class="bbs_location">
 														<select name="location" id="location" class="location">
+														
 															<c:forEach var="item" items="${location}" varStatus="status">
 																<option value="${item.FIRSTLOC}">${item.loc_subject}</option>
 															</c:forEach>		
@@ -192,6 +194,7 @@ jQuery.browser = {};
 												</tbody>
 											</table>
 										</div>
+									</div>
 										<div class="bbs_btn">
 											<p class="fl">&nbsp;</p>
 											<p class="fr">
@@ -200,12 +203,11 @@ jQuery.browser = {};
 												<a href="#">취소</a>
 											</p>
 										</div>
-									</div>
 								</div>
 							</form>
 						</div>
 
-					</div>
+					
 				</div>
 			</div>	
 		</div>

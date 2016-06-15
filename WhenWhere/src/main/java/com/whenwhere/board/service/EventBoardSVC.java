@@ -37,8 +37,7 @@ public class EventBoardSVC {
 	private static final int ROWCNT = 12;
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-	String fileUrl=null;
-	static File newFile=null; 
+	
 	
 	
 	public boolean insert(Model model, HttpServletRequest request) throws ParseException {
@@ -50,6 +49,7 @@ public class EventBoardSVC {
 		String boardCode = request.getParameter("category");
 		String loc = request.getParameter("location");
 		String fileurl = (String)request.getSession().getAttribute("fileUrl");
+		String fileSaveName = (String)request.getSession().getAttribute("fileSaveName");
 		ImageVO imageVO = new ImageVO();
 		imageVO.setBoardCode(boardCode);				
 		imageVO.setFileName(fileurl);		
@@ -62,7 +62,7 @@ public class EventBoardSVC {
 		java.sql.Date sdate = new java.sql.Date(date.getTime());
 		java.sql.Date edate = new java.sql.Date(date1.getTime());		
 		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);
-		if (boardDAO.inserteventBoard(title,content,auth,sdate,edate,boardCode,loc,fileurl) > 0) {
+		if (boardDAO.inserteventBoard(title,content,auth,sdate,edate,boardCode,loc,fileSaveName) > 0) {
 			return true;
 		} else {
 			return false;
@@ -103,13 +103,18 @@ public class EventBoardSVC {
 			boardVO.setTitle(request.getParameter("title"));
 			model.addAttribute("EventDate", boardDAO.eventDate(boardVO));
 			boardVO.setContent(request.getParameter("content"));			
-			BoardVO boardvo = boardDAO.readBoard(boardVO);				
+			BoardVO boardvo = boardDAO.readBoard(boardVO);	
+			model.addAttribute("location", this.location(request));
 			model.addAttribute("updateBoard", boardvo);
 			return "board/event/eventModify";
 		}
 		return null;
 	}
 	
+	public List<HashMap<String,Object>> location(HttpServletRequest request) {
+		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);		
+		return boardDAO.getSubLocationList();
+	}
 	public void hit(int no){
 		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);
 		boardDAO.hitBoard(no);	

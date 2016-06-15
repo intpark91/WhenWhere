@@ -33,6 +33,11 @@ public class BoardController {
 	@Autowired
 	EventBoardSVC eventboardSVC;
 	
+	@RequestMapping(value = "/no")
+	public String no(Model model,HttpServletRequest request) {			
+		return 	"board/notice/notice";
+	}
+	
 	
 	@RequestMapping(value = "/notice")
 	public String notice(Model model,HttpServletRequest request) {			
@@ -113,7 +118,7 @@ public class BoardController {
 	public String reViewWrite(HttpServletRequest request, Model model) {
 		String category = request.getParameter("category");
 		model.addAttribute("category", category);
-		/*model.addAttribute("location", reviewboardSVC.location(request));*/
+		model.addAttribute("location", reviewboardSVC.location(request));
 		return "board/review/reviewwrite";	
 	}
 	
@@ -154,7 +159,7 @@ public class BoardController {
 	public String eventWrite(HttpServletRequest request, Model model) {
 		String category = request.getParameter("category");
 		model.addAttribute("category", category);
-	/*	model.addAttribute("location", reviewboardSVC.location(request));*/
+		model.addAttribute("location", reviewboardSVC.location(request));
 		return "board/event/eventWrite";	
 	}
 	

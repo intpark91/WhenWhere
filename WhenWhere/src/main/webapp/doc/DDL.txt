@@ -1,0 +1,604 @@
+-- 게시판
+ALTER TABLE Board
+	DROP CONSTRAINT FK_Member_TO_Board; -- 회원 -> 게시판
+
+-- 게시판
+ALTER TABLE Board
+	DROP CONSTRAINT FK_BoardCategory_TO_Board; -- 게시판종류 -> 게시판
+
+-- 게시판
+ALTER TABLE Board
+	DROP CONSTRAINT FK_Event_TO_Board; -- 행사 -> 게시판
+
+-- 특산물
+ALTER TABLE RegionalFood
+	DROP CONSTRAINT FK_location_TO_RegionalFood; -- 지역 -> 특산물
+
+-- 사진
+ALTER TABLE Image
+	DROP CONSTRAINT FK_Board_TO_Image; -- 게시판 -> 사진
+
+-- 사진
+ALTER TABLE Image
+	DROP CONSTRAINT FK_RegionalFood_TO_Image; -- 특산물 -> 사진
+
+-- 쪽지
+ALTER TABLE Message
+	DROP CONSTRAINT FK_Member_TO_Message; -- 회원 -> 쪽지
+
+-- 쪽지
+ALTER TABLE Message
+	DROP CONSTRAINT FK_Member_TO_Message2; -- 회원 -> 쪽지2
+
+-- 추천
+ALTER TABLE recommend
+	DROP CONSTRAINT FK_Member_TO_recommend; -- 회원 -> 추천
+
+-- 추천
+ALTER TABLE recommend
+	DROP CONSTRAINT FK_Board_TO_recommend; -- 게시판 -> 추천
+
+-- 댓글
+ALTER TABLE BoardComment
+	DROP CONSTRAINT FK_Board_TO_BoardComment; -- 게시판 -> 댓글
+
+-- 댓글
+ALTER TABLE BoardComment
+	DROP CONSTRAINT FK_Member_TO_BoardComment; -- 회원 -> 댓글
+
+-- 댓글
+ALTER TABLE BoardComment
+	DROP CONSTRAINT FK_BoardComment_TO_BoardComment; -- 댓글 -> 댓글
+
+-- 행사
+ALTER TABLE Event
+	DROP CONSTRAINT FK_location_TO_Event; -- 지역 -> 행사
+
+-- 팀
+ALTER TABLE TEAM
+	DROP CONSTRAINT FK_location_TO_TEAM; -- 지역 -> 팀
+
+-- 팀대화
+ALTER TABLE TEAMCHAT
+	DROP CONSTRAINT FK_Member_TO_TEAMCHAT; -- 회원 -> 팀대화
+
+-- 팀대화
+ALTER TABLE TEAMCHAT
+	DROP CONSTRAINT FK_TEAM_TO_TEAMCHAT; -- 팀 -> 팀대화
+
+-- 가입한팀목록
+ALTER TABLE JOINTEAM
+	DROP CONSTRAINT FK_TEAM_TO_JOINTEAM; -- 팀 -> 가입한팀목록
+
+-- 가입한팀목록
+ALTER TABLE JOINTEAM
+	DROP CONSTRAINT FK_Member_TO_JOINTEAM; -- 회원 -> 가입한팀목록
+
+-- 회원
+ALTER TABLE Member
+	DROP CONSTRAINT PK_Member; -- 회원 기본키
+
+-- 게시판
+ALTER TABLE Board
+	DROP CONSTRAINT PK_Board; -- 게시판 기본키2
+
+-- 특산물
+ALTER TABLE RegionalFood
+	DROP CONSTRAINT PK_RegionalFood; -- 특산물 기본키
+
+-- 사진
+ALTER TABLE Image
+	DROP CONSTRAINT PK_Image; -- 사진 기본키
+
+-- 지역
+ALTER TABLE location
+	DROP CONSTRAINT PK_location; -- 지역 기본키
+
+-- 쪽지
+ALTER TABLE Message
+	DROP CONSTRAINT PK_MESSAGE; -- 쪽지 기본키
+
+-- 추천
+ALTER TABLE recommend
+	DROP CONSTRAINT PK_recommend; -- 추천 기본키
+
+-- 게시판종류
+ALTER TABLE BoardCategory
+	DROP CONSTRAINT PK_BoardCategory; -- 게시판종류 기본키
+
+-- 댓글
+ALTER TABLE BoardComment
+	DROP CONSTRAINT PK_BoardComment; -- 댓글 기본키
+
+-- 행사
+ALTER TABLE Event
+	DROP CONSTRAINT PK_Event; -- 행사 기본키
+
+-- 팀
+ALTER TABLE TEAM
+	DROP CONSTRAINT PK_TEAM; -- 팀 기본키
+
+-- 팀대화
+ALTER TABLE TEAMCHAT
+	DROP CONSTRAINT PK_TEAMCHAT; -- 팀대화 기본키
+
+-- 가입한팀목록
+ALTER TABLE JOINTEAM
+	DROP CONSTRAINT PK_JOINTEAM; -- 가입한팀목록 기본키
+
+-- 회원
+DROP TABLE Member;
+
+-- 게시판
+DROP TABLE Board;
+
+-- 특산물
+DROP TABLE RegionalFood;
+
+-- 사진
+DROP TABLE Image;
+
+-- 지역
+DROP TABLE location;
+
+-- 쪽지
+DROP TABLE Message;
+
+-- 추천
+DROP TABLE recommend;
+
+-- 게시판종류
+DROP TABLE BoardCategory;
+
+-- 댓글
+DROP TABLE BoardComment;
+
+-- 행사
+DROP TABLE Event;
+
+-- 팀
+DROP TABLE TEAM;
+
+-- 팀대화
+DROP TABLE TEAMCHAT;
+
+-- 가입한팀목록
+DROP TABLE JOINTEAM;
+
+-- 회원
+CREATE TABLE Member (
+	NickName    varchar2(24) NOT NULL, -- 별명
+	Email       varchar2(50) NOT NULL, -- 이메일
+	Password    varchar2(20) NOT NULL, -- 비밀번호
+	PhoneNumber varchar2(15) NULL,     -- 핸드폰번호
+	Authority   varchar2(20) NOT NULL  -- 권한
+);
+
+-- 회원
+ALTER TABLE Member
+	ADD
+		CONSTRAINT PK_Member -- 회원 기본키
+		PRIMARY KEY (
+			NickName -- 별명
+		);
+
+-- 게시판
+CREATE TABLE Board (
+	B_no        number         NOT NULL, -- 번호
+	BoardCode   varchar2(10)   NOT NULL, -- 게시판 코드
+	B_auth      varchar2(24)   NULL,     -- 별명
+	B_title     varchar2(90)   NOT NULL, -- 제목
+	B_wdate     DATE           NOT NULL, -- 작성일
+	B_content   varchar2(4000) NOT NULL, -- 본문
+	B_hit       number         NOT NULL, -- 조회수
+	B_recommend number         NOT NULL, -- 추천수
+	E_no        number         NULL      -- 행사번호
+);
+
+-- 게시판
+ALTER TABLE Board
+	ADD
+		CONSTRAINT PK_Board -- 게시판 기본키2
+		PRIMARY KEY (
+			B_no,      -- 번호
+			BoardCode  -- 게시판 코드
+		);
+
+-- 특산물
+CREATE TABLE RegionalFood (
+	f_name   VARCHAR2(20) NOT NULL, -- 이름
+	loc_code VARCHAR2(10) NOT NULL, -- 지역코드
+	f_sDate  DATE         NOT NULL, -- 시작일
+	f_eDate  DATE         NOT NULL  -- 종료일
+);
+
+-- 특산물
+ALTER TABLE RegionalFood
+	ADD
+		CONSTRAINT PK_RegionalFood -- 특산물 기본키
+		PRIMARY KEY (
+			f_name,   -- 이름
+			loc_code  -- 지역코드
+		);
+
+-- 사진
+CREATE TABLE Image (
+	fileName  varchar2(50) NOT NULL, -- 파일이름
+	no        number       NULL,     -- 번호
+	BoardCode varchar2(10) NULL,     -- 게시판 코드
+	f_name    VARCHAR2(20) NULL,     -- 이름
+	loc_code  VARCHAR2(10) NULL      -- 지역코드
+);
+
+-- 사진
+ALTER TABLE Image
+	ADD
+		CONSTRAINT PK_Image -- 사진 기본키
+		PRIMARY KEY (
+			fileName -- 파일이름
+		);
+
+-- 지역
+CREATE TABLE location (
+	loc_code    VARCHAR2(10) NOT NULL, -- 지역코드
+	loc_name    VARCHAR2(15) NOT NULL, -- 지역명
+	loc_subject VARCHAR2(12) NULL      -- 지역구분
+);
+
+-- 지역
+ALTER TABLE location
+	ADD
+		CONSTRAINT PK_location -- 지역 기본키
+		PRIMARY KEY (
+			loc_code -- 지역코드
+		);
+
+-- 쪽지
+CREATE TABLE Message (
+	m_no      number        NOT NULL, -- 쪽지번호
+	sender    varchar2(24)  NULL,     -- 보낸이
+	receiver  varchar2(24)  NULL,     -- 받는이
+	m_title   varchar2(60)  NOT NULL, -- 제목
+	m_content varchar2(600) NOT NULL, -- 내용
+	m_status  char(1)       NOT NULL, -- 상태
+	m_wdate   DATE          NOT NULL  -- 받은날짜
+);
+
+-- 쪽지
+ALTER TABLE Message
+	ADD
+		CONSTRAINT PK_MESSAGE -- 쪽지 기본키
+		PRIMARY KEY (
+			m_no -- 쪽지번호
+		);
+
+-- 추천
+CREATE TABLE recommend (
+	B_no      number       NOT NULL, -- 번호
+	BoardCode varchar2(10) NOT NULL, -- 게시판 코드
+	NickName  varchar2(24) NULL      -- 별명
+);
+
+-- 추천
+ALTER TABLE recommend
+	ADD
+		CONSTRAINT PK_recommend -- 추천 기본키
+		PRIMARY KEY (
+			B_no,      -- 번호
+			BoardCode  -- 게시판 코드
+		);
+
+-- 게시판종류
+CREATE TABLE BoardCategory (
+	BoardCode varchar2(10) NOT NULL, -- 게시판 코드
+	BoardName varchar2(20) NOT NULL  -- 게시판 명
+);
+
+-- 게시판종류
+ALTER TABLE BoardCategory
+	ADD
+		CONSTRAINT PK_BoardCategory -- 게시판종류 기본키
+		PRIMARY KEY (
+			BoardCode -- 게시판 코드
+		);
+
+-- 댓글
+CREATE TABLE BoardComment (
+	comm_no      number        NOT NULL, -- 댓글번호
+	NickName     varchar2(24)  NULL,     -- 작성자
+	B_no         number        NOT NULL, -- 번호
+	comm_content VARCHAR2(600) NULL,     -- 댓글 내용
+	BoardCode    varchar2(10)  NOT NULL, -- 게시판 코드
+	ref          number        NULL      -- 부모댓글번호
+);
+
+-- 댓글
+ALTER TABLE BoardComment
+	ADD
+		CONSTRAINT PK_BoardComment -- 댓글 기본키
+		PRIMARY KEY (
+			comm_no -- 댓글번호
+		);
+
+-- 행사
+CREATE TABLE Event (
+	E_no     number       NOT NULL, -- 행사번호
+	E_sdate  DATE         NOT NULL, -- 시작일
+	E_edate  DATE         NOT NULL, -- 종료일
+	loc_code VARCHAR2(10) NULL      -- 지역코드
+);
+
+-- 행사
+ALTER TABLE Event
+	ADD
+		CONSTRAINT PK_Event -- 행사 기본키
+		PRIMARY KEY (
+			E_no -- 행사번호
+		);
+
+-- 팀
+CREATE TABLE TEAM (
+	T_NO     NUMBER       NOT NULL, -- 팀번호
+	TeamName VARCHAR2(60) NULL,     -- 팀이름
+	SUBJECT  VARCHAR2(12) NULL,     -- 주제
+	T_sdate  DATE         NULL,     -- 시작일
+	T_edate  DATE         NULL,     -- 종료일
+	loc_code VARCHAR2(10) NULL      -- 지역코드
+);
+
+-- 팀
+ALTER TABLE TEAM
+	ADD
+		CONSTRAINT PK_TEAM -- 팀 기본키
+		PRIMARY KEY (
+			T_NO -- 팀번호
+		);
+
+-- 팀대화
+CREATE TABLE TEAMCHAT (
+	COL3     NUMBER       NOT NULL, -- 대화번호
+	NickName varchar2(24) NULL,     -- 별명
+	COL      VARCHAR(300) NULL,     -- 내용
+	T_NO     NUMBER       NULL      -- 팀번호
+);
+
+-- 팀대화
+ALTER TABLE TEAMCHAT
+	ADD
+		CONSTRAINT PK_TEAMCHAT -- 팀대화 기본키
+		PRIMARY KEY (
+			COL3 -- 대화번호
+		);
+
+-- 가입한팀목록
+CREATE TABLE JOINTEAM (
+	T_NO     NUMBER       NOT NULL, -- 팀번호
+	NickName varchar2(24) NOT NULL, -- 별명
+	T_Status CHAR(1)      NULL      -- 상태
+);
+
+-- 가입한팀목록
+ALTER TABLE JOINTEAM
+	ADD
+		CONSTRAINT PK_JOINTEAM -- 가입한팀목록 기본키
+		PRIMARY KEY (
+			T_NO,     -- 팀번호
+			NickName  -- 별명
+		);
+
+-- 게시판
+ALTER TABLE Board
+	ADD
+		CONSTRAINT FK_Member_TO_Board -- 회원 -> 게시판
+		FOREIGN KEY (
+			B_auth -- 별명
+		)
+		REFERENCES Member ( -- 회원
+			NickName -- 별명
+		);
+
+-- 게시판
+ALTER TABLE Board
+	ADD
+		CONSTRAINT FK_BoardCategory_TO_Board -- 게시판종류 -> 게시판
+		FOREIGN KEY (
+			BoardCode -- 게시판 코드
+		)
+		REFERENCES BoardCategory ( -- 게시판종류
+			BoardCode -- 게시판 코드
+		);
+
+-- 게시판
+ALTER TABLE Board
+	ADD
+		CONSTRAINT FK_Event_TO_Board -- 행사 -> 게시판
+		FOREIGN KEY (
+			E_no -- 행사번호
+		)
+		REFERENCES Event ( -- 행사
+			E_no -- 행사번호
+		);
+
+-- 특산물
+ALTER TABLE RegionalFood
+	ADD
+		CONSTRAINT FK_location_TO_RegionalFood -- 지역 -> 특산물
+		FOREIGN KEY (
+			loc_code -- 지역코드
+		)
+		REFERENCES location ( -- 지역
+			loc_code -- 지역코드
+		);
+
+-- 사진
+ALTER TABLE Image
+	ADD
+		CONSTRAINT FK_Board_TO_Image -- 게시판 -> 사진
+		FOREIGN KEY (
+			no,        -- 번호
+			BoardCode  -- 게시판 코드
+		)
+		REFERENCES Board ( -- 게시판
+			B_no,      -- 번호
+			BoardCode  -- 게시판 코드
+		);
+
+-- 사진
+ALTER TABLE Image
+	ADD
+		CONSTRAINT FK_RegionalFood_TO_Image -- 특산물 -> 사진
+		FOREIGN KEY (
+			f_name,   -- 이름
+			loc_code  -- 지역코드
+		)
+		REFERENCES RegionalFood ( -- 특산물
+			f_name,   -- 이름
+			loc_code  -- 지역코드
+		);
+
+-- 쪽지
+ALTER TABLE Message
+	ADD
+		CONSTRAINT FK_Member_TO_Message -- 회원 -> 쪽지
+		FOREIGN KEY (
+			sender -- 보낸이
+		)
+		REFERENCES Member ( -- 회원
+			NickName -- 별명
+		);
+
+-- 쪽지
+ALTER TABLE Message
+	ADD
+		CONSTRAINT FK_Member_TO_Message2 -- 회원 -> 쪽지2
+		FOREIGN KEY (
+			receiver -- 받는이
+		)
+		REFERENCES Member ( -- 회원
+			NickName -- 별명
+		);
+
+-- 추천
+ALTER TABLE recommend
+	ADD
+		CONSTRAINT FK_Member_TO_recommend -- 회원 -> 추천
+		FOREIGN KEY (
+			NickName -- 별명
+		)
+		REFERENCES Member ( -- 회원
+			NickName -- 별명
+		);
+
+-- 추천
+ALTER TABLE recommend
+	ADD
+		CONSTRAINT FK_Board_TO_recommend -- 게시판 -> 추천
+		FOREIGN KEY (
+			B_no,      -- 번호
+			BoardCode  -- 게시판 코드
+		)
+		REFERENCES Board ( -- 게시판
+			B_no,      -- 번호
+			BoardCode  -- 게시판 코드
+		);
+
+-- 댓글
+ALTER TABLE BoardComment
+	ADD
+		CONSTRAINT FK_Board_TO_BoardComment -- 게시판 -> 댓글
+		FOREIGN KEY (
+			B_no,      -- 번호
+			BoardCode  -- 게시판 코드
+		)
+		REFERENCES Board ( -- 게시판
+			B_no,      -- 번호
+			BoardCode  -- 게시판 코드
+		);
+
+-- 댓글
+ALTER TABLE BoardComment
+	ADD
+		CONSTRAINT FK_Member_TO_BoardComment -- 회원 -> 댓글
+		FOREIGN KEY (
+			NickName -- 작성자
+		)
+		REFERENCES Member ( -- 회원
+			NickName -- 별명
+		);
+
+-- 댓글
+ALTER TABLE BoardComment
+	ADD
+		CONSTRAINT FK_BoardComm_TO_BoardComm -- 댓글 -> 댓글
+		FOREIGN KEY (
+			ref -- 부모댓글번호
+		)
+		REFERENCES BoardComment ( -- 댓글
+			comm_no -- 댓글번호
+		);
+
+-- 행사
+ALTER TABLE Event
+	ADD
+		CONSTRAINT FK_location_TO_Event -- 지역 -> 행사
+		FOREIGN KEY (
+			loc_code -- 지역코드
+		)
+		REFERENCES location ( -- 지역
+			loc_code -- 지역코드
+		);
+
+-- 팀
+ALTER TABLE TEAM
+	ADD
+		CONSTRAINT FK_location_TO_TEAM -- 지역 -> 팀
+		FOREIGN KEY (
+			loc_code -- 지역코드
+		)
+		REFERENCES location ( -- 지역
+			loc_code -- 지역코드
+		);
+
+-- 팀대화
+ALTER TABLE TEAMCHAT
+	ADD
+		CONSTRAINT FK_Member_TO_TEAMCHAT -- 회원 -> 팀대화
+		FOREIGN KEY (
+			NickName -- 별명
+		)
+		REFERENCES Member ( -- 회원
+			NickName -- 별명
+		);
+
+-- 팀대화
+ALTER TABLE TEAMCHAT
+	ADD
+		CONSTRAINT FK_TEAM_TO_TEAMCHAT -- 팀 -> 팀대화
+		FOREIGN KEY (
+			T_NO -- 팀번호
+		)
+		REFERENCES TEAM ( -- 팀
+			T_NO -- 팀번호
+		);
+
+-- 가입한팀목록
+ALTER TABLE JOINTEAM
+	ADD
+		CONSTRAINT FK_TEAM_TO_JOINTEAM -- 팀 -> 가입한팀목록
+		FOREIGN KEY (
+			T_NO -- 팀번호
+		)
+		REFERENCES TEAM ( -- 팀
+			T_NO -- 팀번호
+		);
+
+-- 가입한팀목록
+ALTER TABLE JOINTEAM
+	ADD
+		CONSTRAINT FK_Member_TO_JOINTEAM -- 회원 -> 가입한팀목록
+		FOREIGN KEY (
+			NickName -- 별명
+		)
+		REFERENCES Member ( -- 회원
+			NickName -- 별명
+		);

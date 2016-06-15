@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -151,8 +152,13 @@ var category='${sessionScope.category}';
 															name="auth" id="userNick" readonly="readonly" value="${sessionScope.member.nickname}"></td>
 													</tr>																										<tr>
 													<th scope="row"><label for="location">지역</label></th>
-														<td class="bbs_location"><input type="text"
-															name="location" id="location"></td>
+														<td class="bbs_location">
+														<select name="location" id="location" class="location">
+															<c:forEach var="item" items="${location}" varStatus="status">
+																<option value="${item.FIRSTLOC}">${item.loc_subject}</option>
+															</c:forEach>		
+														</select>  
+														</td>
 													</tr>
 													<tr>
 														<th scope="row"><label for="dataTitle">기간 선택</label></th>

@@ -45,8 +45,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       </where>      
    </select>
       
+   <delete id="deleteboardcomment" parameterType="com.whenwhere.board.vo.BoardVO">
+   	  delete from boardcomment where b_no = #{no} and boardCode = #{category} 
+  
+   </delete>
+   
+   <delete id="deleterecommend" parameterType="com.whenwhere.board.vo.BoardVO">
+   	  delete from recommend where b_no = #{no} and boardCode = #{category} 
+   </delete>
+   
+   <delete id="deleteBoardimage" parameterType="com.whenwhere.board.vo.BoardVO">
+   	  delete from image where no = #{no} and boardCode = #{category} 
+   </delete>
+   
    <delete id="deleteBoard" parameterType="com.whenwhere.board.vo.BoardVO">
-      delete from board where b_no = #{no}
+   	  delete from board where b_no = #{no} and boardCode = #{category} 
    </delete>
    
    <update id="modifyBoard" parameterType="com.whenwhere.board.vo.BoardVO">

@@ -133,7 +133,7 @@ jQuery.browser = {};
 							}
 						</script>
 						
-						<div id="content01">
+					
 							<!-- 2015.12.07 수정-->
 
 							<!--//-->
@@ -192,20 +192,18 @@ jQuery.browser = {};
 												</tbody>
 											</table>
 										</div>
+
+									</div>
 										<div class="bbs_btn">
 											<p class="fl">&nbsp;</p>
 											<p class="fr">
-												
 												<a href="#" onclick="formSubmit();">등록</a> 
 												<a href="#">취소</a>
 											</p>
 										</div>
-									</div>
 								</div>
 							</form>
 						</div>
-
-					</div>
 				</div>
 			</div>	
 		</div>
