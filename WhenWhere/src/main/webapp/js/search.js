@@ -130,7 +130,7 @@ $(document).ready(function() {
 							case '4':
 								subject = '기타';
 								label = 'label label-danger';
-								imgName = 'etc.png'; break;
+								imgName = 'etc.png'; break; 
 							}
 							
 							var itemDiv = carouselDiv.children('.item:last-child'),
