@@ -54,14 +54,15 @@
 			margin-left: 4%;
 		}
 		
-		/* div#roomListDiv {
-			min-height: 335px;
+		.list-group-unbordered > .list-group-item {
+		    text-overflow: ellipsis;
+		    overflow: hidden;
+		    word-break: break-word;
 		}
 		
-		.box-body>.table {
-			margin-bottom: 0;
-			height: 276px;
-		} */
+		b#a_url {
+		    color: #E91E63;
+		}
 </style>
 </head>
 
@@ -172,18 +173,19 @@
 								<!-- <li class="list-group-item"><b>팀 인원</b> 
 									<a id="a_no" class="pull-right"> 알수없음 </a>
 								</li> -->
-								<li class="list-group-item"><b>팀 URL</b> 
-									<a id="a_url" class="pull-right"> 알수없음 </a>
+								<li class="list-group-item">
+									<b>팀 URL</b> 
+									<b id="a_url"> </b> 
 								</li>
 								<li class="list-group-item"><b>팀 상태</b>
-								 	<a id="a_sts" class="pull-right"> 알수없음 </a>
+								 	<a id="a_sts" class="pull-right">  </a>
 								</li>
 								<li class="list-group-item"><b>팀원 목록</b>
-								 	<a id="a_sts" class="pull-right"> 알수없음 </a>
+								 	<a id="a_list" class="pull-right">  </a>
 								</li>
 							</ul>
 
-							<a href="#" class="btn btn-primary btn-block"><b>팀을 선택하세요!</b></a>
+							<a href="#" class="btn btn-primary btn-block"><b>팀 가입하기 ♡</b></a>
 						</div>
 						<!-- /.box-body -->
 					</div>
@@ -270,6 +272,7 @@
 	<script type="text/javascript">
 	
 	var teamList = new Array();
+	var sessionNick = '';
 	
 	$(function() {
 		/* ************ 팀 리스트에 대한 정보를 불러옴 ******************/
@@ -296,40 +299,47 @@
 			
 			teamNum = trInfo.split(' ')[0].split('_no_')[1];
 			teamName = trInfo.split(' ')[1].split('_name_')[1];
-			
+			dataVal = '';
 			teamurl = 'http://192.168.8.31:8088/WhenWhere/home/team?teanNum='+teamNum+'&teamname='+teamName;
 			console.log(teamurl);
+			
 			$('#a_sts').text($(this).find('#status').text());
 			$('#a_no').text();
-			$('#a_url').text();
+			$('#a_url').text(teamurl);
 			$('h3.profile-username').text($(this).find('#teamname').text());
 			
-			
-			if(false){
-				$.ajax({
-			           type:"POST",
-			           url:"../chat/checkRoomPwd",
-			           dataType:"JSON",
-			           data : pwdObject,
-			           success : function(data) {
-			        	   if(data.ok){
-			        		    alert('비밀번호가 일치합니다.');
-			        		    
-	        			   		$('.chat_main_body').html('');
-			       				$('#roomTitle').removeClass('nowRoom');
-			       				$('#roomTitle').text('아직 채팅방이 개설되지 않았습니다.');
-			        	   }else{
-			        		   alert('비밀번호가 일치하지 않습니다');
-			        		   return;
-			        	   }
-			           },
-			           complete : function(data) {
-			           },
-			           error : function(xhr, status, error) {
-			                 console.log(error + "return : " + xhr.responseText);
-			           }
-			    	});
-			}
+			$.ajax({
+		           type:"POST",
+		           url:"../team/getTeamUserList",
+		           dataType:"JSON",
+		           data : {"teamNum":teamNum },
+		           success : function(data) {
+		        	   if(data[0].ok){
+        			   		$('.chat_main_body').html('');
+		       				$('#roomTitle').removeClass('nowRoom');
+		       				
+							console.log(data[1]);
+							j = 0;
+		       				while(true){
+		       					dataVal += data[1].split(',')[j++];
+		       					dataVal += ' ';
+		       					if(data[1].split(',')[j] == 'end')
+		       						break;
+		       					console.log(dataVal);
+		        	  		 }
+		       				$('#a_list').text(dataVal);
+		        	   }else{
+		        		   alert('비밀번호가 일치하지 않습니다');
+		        		   return;
+		        	   }
+		           },
+		           complete : function(data) {
+		           },
+		           error : function(xhr, status, error) {
+		                 console.log(error + "return : " + xhr.responseText);
+		           }
+		    	});
+		});
 			
 			/* $.ajax({
 		           type:"POST",
@@ -363,7 +373,6 @@
 		                 console.log(error);
 		           }
 		    }); */
-		});
 	}
 	
 	function getTeamList() {
@@ -389,7 +398,8 @@
 
 						team = new teamObj(json_param);
 						str_Txt = team.team_format();
-
+						sessionNick = data[i].nickname;
+						
 						$('.mainTr tbody').append(str_Txt);
 					}
 				}

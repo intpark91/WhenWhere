@@ -103,5 +103,35 @@ public class TeamService {
 		System.out.println(jsonArr.toJSONString());
 		return jsonArr.toJSONString();
 	}
+
+	public String getTeamUserList(HttpServletRequest request, HttpSession session, int teamNum) {
+		TeamDAO dao = sqlSessionTemplate.getMapper(TeamDAO.class);
+		JSONObject obj = new JSONObject();
+		JSONArray jsonArr = new JSONArray();
+		
+		obj.put("ok", true);
+		jsonArr.add(obj);
+		
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		
+		if (member != null){
+			String sessionNick = member.getNickname();
+			
+			List<String> teamList = new ArrayList<String>();
+			teamList = dao.getTeamUserList(sessionNick, teamNum);
+			
+			String str="";
+			for(int i=0;i<teamList.size();i++){
+				str +=teamList.get(i) + ",";
+			}
+			str += "end";
+			jsonArr.add(str);
+			
+		}else{
+			System.out.println("로그인해");
+		}
+		System.out.println(jsonArr.toJSONString());
+		return jsonArr.toJSONString();
+	}
 }
  
