@@ -207,7 +207,7 @@
 						$("#nicknameCk").css("color", "green");
 						$("#nickname").css("border", "green 1px solid");
 						$("#nickname").css("color", "green");
-					}
+					} 
 				}
 			})   
 		} 
