@@ -10,22 +10,24 @@
 	<link rel="stylesheet" href="../css/board/boardwrite.css" type="text/css">
 	<link rel="stylesheet" href="../css/datepicker/jquery-ui.css" type="text/css" />
 	<script src="../ckEditor/ckeditor.js"></script>
+	
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>	
 
 <script type="text/javascript">
+$(function() {
 	var result = '${insert}';
-	if (result == 'true') {				
-		$.bootstrapGrowl("글 쓰기 성공!", {
-			type: 'success',
+	if (result == 'true') {
+		location.href = "eventRead?no=0";
+	}
+	else if(result =='false'){
+		$.bootstrapGrowl("내용을 입력해주세요!", {
+			type: 'danger',
 			align: 'center',
 			width: 'auto',
 			allow_dismiss: false
 		});
-		location.href = "eventRead?no=0";
 	}
-	else if(result =='false'){
-		alert('글 쓰기 실패');
-	}
+});
 </script>
 
 
@@ -132,7 +134,8 @@ jQuery.browser = {};
 
 									return;
 								}
-								if ($("#dataContent").val() == '') {
+								alert($("#content").val());
+								if ($("#content").val() == '') {
 									$.bootstrapGrowl("내용을 입력하세요.", {
 										type: 'danger',
 										align: 'center',
@@ -165,7 +168,8 @@ jQuery.browser = {};
 											"FOCUS", []);
 									return;
 								} 
-								 
+								
+							 
 								$("#inForm").submit();
 							}
 						</script>
@@ -234,7 +238,7 @@ jQuery.browser = {};
 											<p class="fl">&nbsp;</p>
 											<p class="fr">
 												<a href="#" onclick="formSubmit();">등록</a> 
-												<a href="#">취소</a>
+												<a href="../board/event?category=4">취소</a>
 											</p>
 										</div>
 								</div>

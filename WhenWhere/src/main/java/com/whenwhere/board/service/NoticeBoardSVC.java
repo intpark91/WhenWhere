@@ -24,6 +24,9 @@ public class NoticeBoardSVC implements BoardService {
 
 	public boolean insert(BoardVO boardVO) {
 		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);
+		if(boardVO.getContent().equals("")){
+			return false;
+		}
 		if (boardDAO.insertBoard(boardVO) == 1) {
 			return true;
 		} else {

@@ -82,7 +82,6 @@ var category='${sessionScope.category}';
 
 	var result = '${modify}';
 	if (result == 'true') {
-		alert('글 수정 성공');
 		location.href = "reviewRead?no="+no+"&category="+category+"";
 	}
 	else if(result =='false'){
@@ -190,7 +189,7 @@ var category='${sessionScope.category}';
 											<p class="fr">
 												
 												<a href="#" onclick="modify();">수정</a> 
-												<a href="#">취소</a>
+												<a href="../board/reviewRead?category=3&no=${sessionScope.no}">취소</a>
 											</p>
 										</div>
 									</div>
