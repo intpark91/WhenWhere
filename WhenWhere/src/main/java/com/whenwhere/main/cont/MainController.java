@@ -76,7 +76,7 @@ public class MainController {
 
 	@RequestMapping(value = "/admin")
 	public String admin(Model model) {
-		model.addAttribute("path", "5");
+		model.addAttribute("path", "3");
 		return "manage/adminHome";
 	}
 	
