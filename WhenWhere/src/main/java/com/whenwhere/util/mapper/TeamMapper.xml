@@ -17,6 +17,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where join.T_NO = t.T_NO and nickname = #{nickName}
 	</select>
 	
+	<select id="getTeamInfo" resultType="com.whenwhere.team.vo.TeamVO">
+		select LOC_CODE, T_SDATE as sdate, T_EDATE as edate, SUBJECT, TEAMNAME, T_NO as no 
+		from team
+		where t_no = #{teamNum}
+	</select>
+	
 	<select id="getTeamUserList" resultType="String">
 		select nickname from JOINTEAM where t_no = #{teamNum}
 	</select>
