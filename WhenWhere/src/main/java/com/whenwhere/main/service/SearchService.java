@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.whenwhere.main.dao.SearchDAO;
 import com.whenwhere.main.vo.LocationVO;
+import com.whenwhere.team.dao.TeamDAO;
+import com.whenwhere.team.vo.TeamVO;
 
 import net.htmlparser.jericho.Element;
 import net.htmlparser.jericho.HTMLElementName;
@@ -43,8 +45,7 @@ public class SearchService {
 			list.add(getLocationList(subLocationList.get(i).get("locSubName").toString())); 
 			System.out.println(list.get(i));
 		}
-
-		return list; 
+		return list;
 	}
 
 	public String getSearchList(HttpServletRequest request) {
@@ -53,11 +54,11 @@ public class SearchService {
 		String sDate = request.getParameter("sDate");
 		String eDate = request.getParameter("eDate");
 		String locations[] = request.getParameterValues("locations");
-
+		
 		List<Map<String, Object>> searchEventList = new ArrayList<Map<String, Object>>();
 		List<Map<String, Object>> searchFoodList = new ArrayList<Map<String, Object>>();
 		List<Map<String, Object>> searchHotelList = new ArrayList<Map<String, Object>>();
-
+		List<Map<String, Object>> searchTeamList = new ArrayList<Map<String, Object>>();
 
 		for (int i = 0; i < locations.length; i++) {
 			HashMap<String, Object> map = new HashMap<String, Object>();
@@ -65,10 +66,12 @@ public class SearchService {
 			map.put("eDate", eDate);
 			map.put("location", locations[i]);
 			map.put("locSub", "all");
+			map.put("loc_code", dao.getSubLocation(locations[i]));
 
 			List<Map<String, Object>> eventlist = dao.getEventList(map);
 			List<Map<String, Object>> foodlist = dao.getFoodList(map);
 			List<Map<String, Object>> hotellist = hotelCrawler(sDate, eDate, locations[i]);
+			List<Map<String, Object>> teamlist = dao.getSearchTeamList(map);
 
 			for (int j = 0; j < eventlist.size(); j++) {
 				searchEventList.add(eventlist.get(j));
@@ -81,11 +84,18 @@ public class SearchService {
 			for (int j = 0; j < hotellist.size(); j++) {
 				searchHotelList.add(hotellist.get(j));
 			}
+			 
+			for (int j = 0; j < teamlist.size(); j++) {
+				searchTeamList.add(teamlist.get(j));
+				System.out.println(searchTeamList.get(j).get("tSDate"));
+			}
+			
 		}
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("searchEventList", searchEventList);
 		jsonObject.put("searchFoodList", searchFoodList);
 		jsonObject.put("searchHotelList", searchHotelList);
+		jsonObject.put("searchTeamList", searchTeamList);
 		return jsonObject.toJSONString();
 	}
 	

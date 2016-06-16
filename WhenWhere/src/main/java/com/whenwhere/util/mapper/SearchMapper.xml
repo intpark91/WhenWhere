@@ -3,6 +3,10 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.whenwhere.main.dao.SearchDAO">
+ 	
+ 	<select id="getSubLocation" resultType="String">
+		select loc_code from location where loc_name = #{loc}
+	</select>
  
 	<select id="getLocationList" resultType="String">
 		select loc_name from location where LOC_SUBJECT=#{sub_loc}
@@ -57,6 +61,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 	</select>
 	
+	<select id="getSearchTeamList" parameterType="java.util.HashMap" resultMap="eventResultMap">
+		select t_no, teamname, subject, TO_CHAR(t_sdate,'YYYY/MM/DD') as t_sdate, TO_CHAR(t_edate,'YYYY/MM/DD') as t_edate, l.loc_code, l.loc_name, l.loc_subject
+		from 
+			(select * from team 
+			where 
+				T_SDATE >= TO_DATE(#{sDate}, 'MM/DD/YYYY') and T_EDATE <![CDATA[<]]>= TO_DATE(#{eDate}, 'MM/DD/YYYY') or
+				T_SDATE <![CDATA[<]]>= TO_DATE(#{sDate}, 'MM/DD/YYYY') and T_EDATE >= TO_DATE(#{sDate}, 'MM/DD/YYYY') and T_EDATE <![CDATA[<]]>= TO_DATE(#{eDate}, 'MM/DD/YYYY') or
+				T_SDATE >= TO_DATE(#{sDate}, 'MM/DD/YYYY') and T_SDATE <![CDATA[<]]>= TO_DATE(#{eDate}, 'MM/DD/YYYY') and T_EDATE >= TO_DATE(#{eDate}, 'MM/DD/YYYY') or
+				T_SDATE <![CDATA[<]]>= TO_DATE(#{sDate}, 'MM/DD/YYYY') and T_EDATE >= TO_DATE(#{eDate}, 'MM/DD/YYYY')) t, location l
+		where 
+		t.loc_code = l.loc_code
+		<if test="location != 'all'">
+		and t.loc_code = #{loc_code}
+		</if>
+	</select>
+	
 	<resultMap id="eventResultMap" type="java.util.HashMap">
 	<!-- <result javaType="데이터타입" column="db컬럼명" property="맵에서 키값"/> -->
 		<result javaType="integer" column="e_no" property="eNo"/>
@@ -76,6 +96,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result javaType="String" column="f_name" property="foodName"/>
         <result javaType="String" column="f_sdate" property="fSDate"/>
         <result javaType="String" column="f_edate" property="fEDate"/>
+        
+        <result javaType="String" column="t_no" property="tNo"/>
+        <result javaType="String" column="teamname" property="teamName"/>
+        <result javaType="String" column="subject" property="subject"/>
+        <result javaType="String" column="t_sdate" property="tSDate"/>
+        <result javaType="String" column="t_edate" property="tEDate"/>
 	</resultMap> 
 	
 </mapper>
