@@ -107,6 +107,8 @@ public class NoticeBoardSVC implements BoardService {
 			sPageNum = "1";
 		int pageNum = Integer.parseInt(sPageNum);
 		String boardCode = request.getParameter("category");
+		
+		model.addAttribute("category", boardCode);
 		model.addAttribute("boardList", boardDAO.noticeList(boardCode, ROWCNT, pageNum));
 		final int linkSceen = 3;
 
