@@ -63,7 +63,7 @@ function delectAjax(no){
 				label : "아니요",
 				className : "btn-danger",
 			}
-		}
+		} 
 	});
 	
 
