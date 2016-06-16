@@ -251,6 +251,5 @@ jQuery.browser = {};
 	</div>
 	<!-- scripts -->
 	<jsp:include page="../../component/core_js.jsp" />
-	<script src="../../js/slider.js"></script>
 </body>
 </html>
