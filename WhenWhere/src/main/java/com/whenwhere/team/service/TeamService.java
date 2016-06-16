@@ -1,6 +1,7 @@
 package com.whenwhere.team.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.whenwhere.team.dao.TeamDAO;
-import com.whenwhere.team.vo.JoinTeamVO;
 import com.whenwhere.team.vo.TeamVO;
 import com.whenwhere.user.vo.MemberVO;
 
@@ -63,21 +63,21 @@ public class TeamService {
 		return obj.toJSONString();
 	}
 
+	@SuppressWarnings("unchecked")
 	public String getTeamList(HttpServletRequest request, HttpSession session) {
 		TeamDAO dao = sqlSessionTemplate.getMapper(TeamDAO.class);
 		JSONObject obj = new JSONObject();
 		JSONArray jsonArr = new JSONArray();
 		
-		obj.put("ok", false);
+		obj.put("ok", true);
 		jsonArr.add(obj);
 		
-		List<JoinTeamVO> teamList = null;
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		
 		if (member != null){
 			String sessionNick = member.getNickname();
 			
-			teamList = new ArrayList();
+			List<TeamVO> teamList = new ArrayList<TeamVO>();
 			teamList = dao.getTeamList(sessionNick);
 			System.out.println(teamList.size());
 			for(int i=0;i<teamList.size();i++){
@@ -85,16 +85,22 @@ public class TeamService {
 				
 				obj.put("no", teamList.get(i).getNo());
 				obj.put("status", teamList.get(i).getStatus()); 
-				obj.put("nickname", teamList.get(i).getNickname());
+				obj.put("nickname", teamList.get(i).getNickName());
+				obj.put("teamname", teamList.get(i).getTeamname());
+				obj.put("subject", teamList.get(i).getSubject());
+				Date date = teamList.get(i).getSdate();
+				String dateS = date.toString().split(" 00")[0];
+				obj.put("sdate",dateS);
+				date =teamList.get(i).getEdate();
+				dateS = date.toString().split(" 00")[0];
+				obj.put("edate", dateS);
 				
 				jsonArr.add(obj);
 			}
-			obj.put("ok", true);
-			System.out.println(jsonArr.size());
-			System.out.println(sessionNick);
 		}else{
 			System.out.println("로그인해");
 		}
+		System.out.println(jsonArr.toJSONString());
 		return jsonArr.toJSONString();
 	}
 }
