@@ -147,6 +147,6 @@ public class UserController {
 	@ResponseBody
 	public String emailValidator(@RequestParam String email) {
 		System.out.println("email : " + email);
-		return "false";
+		return "{\"400\" : \"aa\"}";
 	}
 }

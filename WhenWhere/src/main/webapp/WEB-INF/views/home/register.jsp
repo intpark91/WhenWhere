@@ -27,8 +27,6 @@
 					</p>
 					<form data-toggle="validator" role="form">
 
-
-
 						<div class="form-group has-feedback">
 							<div class="input-group">
 								<span class="input-group-addon"><span
@@ -39,7 +37,7 @@
 							</div>
 							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 							<div class="help-block with-errors"></div>
-							<button type="button" class="btn btn-primary">이메일 인증</button>
+							<a href="javascript:checkEmail();" class="btn btn-primary">이메일 인증</a>
 						</div>
 
 						<div class="form-group has-feedback">
@@ -146,47 +144,46 @@
 		})
 
 		function checkEmail() {
-			var email = new Object();
-			email.receiver = $('#inputEmail').val();
-			$.ajax({
-				url : '../user/sendEmail',
-				type : 'POST',
-				data : email,
-				success : function(check) {
-					if (check.ok) {
-						alert('이메일 인증을 위한 메일보내기 성공');
-					} else {
-						alert('이메일 인증을 위한 메일보내기 실패');
+			var dup;
+			function emailDupCk() {
+				jobj = {};
+				jobj.email = $("#inputEmail").val();
+				$.ajax({
+					type : "post",
+					url : "../user/emailDupCk",
+					data : jobj,
+					dataType : "json",
+					success : function(data) {
+						dup = data.ok;	
 					}
-				},
-				error : function(hxr, data, error) {
-					console.log(error);
-				},
-				complete : function() {
-					//alert('요청처리 완료');
-				}
-			});
-		}
-
-		function emailDupCk(str) {
-			jobj = {};
-			jobj.email = $("#inputEmail").val();
-			$.ajax({
-				type : "post",
-				url : "../user/emailDupCk",
-				data : jobj,
-				dataType : "json",
-				success : function(data) {
-					if (data.ok) {
-						//data-match-error="입력하신 비밀번호와 일치하지 않습니다."
-						
-						$(".input-group input:eq(0)").attr("errors", "match").attr("data-match-error", str+"은(는) 이미 가입된 이메일 입니다.");
-					} else {
-						$("#inputEmailCk").html($("#inputEmail").val() + '는 사용가능한 이메일 입니다.');
+				})
+			}
+			if(dup){
+				var email = new Object();
+				email.receiver = $('#inputEmail').val();
+				$.ajax({
+					url : '../user/sendEmail',
+					type : 'POST',
+					data : email,
+					success : function(check) {
+						if (check.ok) {
+							alert('이메일 인증을 위한 메일보내기 성공');
+						} else {
+							alert('이메일 인증을 위한 메일보내기 실패');
+						}
+					},
+					error : function(hxr, data, error) {
+						console.log(error);
+					},
+					complete : function() {
+						//alert('요청처리 완료');
 					}
-				}
-			})
+				});
+			}else{
+				alert("already signed up");
+			}
 		}
+		
 		function nicknameDupCk() {
 			jobj = {};
 			jobj.nickname = $("#nickname").val();
