@@ -33,7 +33,7 @@ $(document).ready(function() {
 		}, 1000);
 		
 
-		//start, end Date 가져오기
+		//start, end Date 가져오기 
 		var startDate = $('#start').val(), 
 		endDate = $('#end').val(),
 		locations = [];
