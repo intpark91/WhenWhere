@@ -24,4 +24,9 @@ public class TeamController {
 		return teamService.makeTeam(teamVO, request, session);
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/getTeamList")
+	public String getTeamList(HttpServletRequest request, HttpSession session) {
+		return teamService.getTeamList(request, session);
+	}
 }
