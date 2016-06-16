@@ -688,7 +688,7 @@ function getEventList(){
 			}
 			
 			var carouselDiv = carousel1.children('.carousel-inner');
-
+ 
 			for(var j=0; j<data.searchEventList.length; j++){
   
 				var itemDiv = carouselDiv.children('.item:last-child'),
