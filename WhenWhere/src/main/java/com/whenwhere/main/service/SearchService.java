@@ -53,7 +53,7 @@ public class SearchService {
 		String sDate = request.getParameter("sDate");
 		String eDate = request.getParameter("eDate");
 		String locations[] = request.getParameterValues("locations");
-
+ 
 		List<Map<String, Object>> searchEventList = new ArrayList<Map<String, Object>>();
 		List<Map<String, Object>> searchFoodList = new ArrayList<Map<String, Object>>();
 		List<Map<String, Object>> searchHotelList = new ArrayList<Map<String, Object>>();
