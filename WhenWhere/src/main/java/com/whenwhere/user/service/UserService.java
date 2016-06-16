@@ -46,7 +46,7 @@ public class UserService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		System.out.println(rows);
 		if(rows>0){
 			ok = true;
 		}
@@ -58,6 +58,9 @@ public class UserService {
 	public String joinMember(MemberVO member){
 		MemberDAO dao = sqlSessionTemplate.getMapper(MemberDAO.class);
 		boolean ok = true;
+		
+		System.out.println(member.getPhoneNumber());
+		
 		dao.joinMember(member);
 		
 		JSONObject jobj = new JSONObject();
