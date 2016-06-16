@@ -153,7 +153,7 @@ jQuery.browser = {};
 									oEditors.getById["dataContent"].exec(
 											"FOCUS", []);
 									return;
-								}
+								} 
 								 
 								$("#inForm").submit();
 							}
