@@ -1,17 +1,21 @@
 package com.whenwhere.team.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.whenwhere.team.dao.TeamDAO;
+import com.whenwhere.team.vo.JoinTeamVO;
 import com.whenwhere.team.vo.TeamVO;
 import com.whenwhere.user.vo.MemberVO;
 
@@ -24,6 +28,7 @@ public class TeamService {
 	public String makeTeam(TeamVO teamVO, HttpServletRequest request, HttpSession session) {
 		TeamDAO dao = sqlSessionTemplate.getMapper(TeamDAO.class);
 		JSONObject obj = new JSONObject();
+		obj.put("ok", false);
 		
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		String sessionNick; 
@@ -51,12 +56,46 @@ public class TeamService {
 				System.out.println("팀만들기 실패");
 			}
 			
+			obj.put("ok", true);
 		}else{
 			System.out.println("로그인해");
 		}
-			
-		return null;
+		return obj.toJSONString();
 	}
 
+	public String getTeamList(HttpServletRequest request, HttpSession session) {
+		TeamDAO dao = sqlSessionTemplate.getMapper(TeamDAO.class);
+		JSONObject obj = new JSONObject();
+		JSONArray jsonArr = new JSONArray();
+		
+		obj.put("ok", false);
+		jsonArr.add(obj);
+		
+		List<JoinTeamVO> teamList = null;
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		
+		if (member != null){
+			String sessionNick = member.getNickname();
+			
+			teamList = new ArrayList();
+			teamList = dao.getTeamList(sessionNick);
+			System.out.println(teamList.size());
+			for(int i=0;i<teamList.size();i++){
+				obj = new JSONObject();
+				
+				obj.put("no", teamList.get(i).getNo());
+				obj.put("status", teamList.get(i).getStatus()); 
+				obj.put("nickname", teamList.get(i).getNickname());
+				
+				jsonArr.add(obj);
+			}
+			obj.put("ok", true);
+			System.out.println(jsonArr.size());
+			System.out.println(sessionNick);
+		}else{
+			System.out.println("로그인해");
+		}
+		return jsonArr.toJSONString();
+	}
 }
  
