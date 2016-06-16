@@ -72,8 +72,9 @@ public class ReviewBoardSVC {
                     + callback
                     + ",'"
                     + fileUrl
-                    + "','�̹��� ���ε� ����'"
+                    + "','이미지가 성공적으로 업데이트 되었습니다.'"
                     + ")</script>");
+            
             printWriter.flush();
   
         }catch(IOException e){
