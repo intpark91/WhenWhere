@@ -38,12 +38,8 @@ function delectAjax(no){
 						success : function(delect){
 							console.log(delect);
 							 if(delect.delect==true){			 	
-									location.href="event?category="+${ReadBoard.category}+"";
-									$.bootstrapGrowl("글 삭제 완료.", {
-										type: 'success',
-										align: 'center',
-										width: 'auto',
-										allow_dismiss: false
+									bootbox.alert("해당 글 삭제 완료.", function() {
+										location.href="event?category="+${ReadBoard.category}+"";
 									});
 							     }
 							 else {
@@ -90,13 +86,9 @@ function recommend(no){
 		dataType : "json",
 		success : function(recommend){
 			 if(recommend.recommend==true){			 	
-					location.href="event?category="+${ReadBoard.category}+"";
-					$.bootstrapGrowl("추천 되었습니다!", {
-						type: 'success',
-						align: 'center',
-						width: 'auto',
-						allow_dismiss: false
-				});
+					bootbox.alert("해당 글 삭제 완료.", function() {
+						location.href="event?category="+${ReadBoard.category}+"";
+					});
 			  }
 			 else{
 				 $.bootstrapGrowl("이미 추천한 행사입니다!", {
@@ -132,12 +124,6 @@ function recommend(no){
 				success : function(insert){
 					 if(insert.insert==true){			 	
 							location.href="eventRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
-							$.bootstrapGrowl("댓글 작성 완료!", {
-								type: 'success',
-								align: 'center',
-								width: 'auto',
-								allow_dismiss: false
-							});
 					     }
 				},
 				complete : function(res){					
@@ -188,13 +174,9 @@ function recommend(no){
 			dataType : "json",
 			success : function(update){
 				 if(update.update==true){			 	
-						location.href="eventRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
-						$.bootstrapGrowl("댓글 수정 완료!", {
-							type: 'success',
-							align: 'center',
-							width: 'auto',
-							allow_dismiss: false
-					});
+						bootbox.alert("댓글 수정 완료.", function() {
+							location.href="eventRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
+						});
 				     }
 			},
 			complete : function(res){					
@@ -221,13 +203,9 @@ function recommend(no){
 							dataType : "json",
 							success : function(cdelete){
 								 if(cdelete.cdelete==true){			 	
-										location.href="eventRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
-										$.bootstrapGrowl("댓글 삭제 완료!", {
-											type: 'success',
-											align: 'center',
-											width: 'auto',
-											allow_dismiss: false
-									});
+										bootbox.alert("댓글 삭제 완료.", function() {
+											location.href="eventRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
+										});
 								     }
 							},
 							complete : function(res){					

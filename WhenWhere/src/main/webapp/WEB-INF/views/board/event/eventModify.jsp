@@ -83,12 +83,6 @@ var category='${sessionScope.category}';
 
 	var result = '${modify}';
 	if (result == 'true') {
-		$.bootstrapGrowl("글 수정 성공!", {
-			type: 'success',
-			align: 'center',
-			width: 'auto',
-			allow_dismiss: false
-		});
 		location.href = "eventRead?no="+no+"&category="+category+"";
 	}
 	else if(result =='false'){

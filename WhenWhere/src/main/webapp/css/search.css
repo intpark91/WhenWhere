@@ -492,8 +492,7 @@ body {
     color: #222;
     webkit-tap-highlight-color: #222;
     background: url(../resources/img/search_bg_img.jpg);
-    background-repeat: no-repeat;
-    background-size:100%;
+  	background-size: cover;
 }
 
 .section1, .section2, .section3, .scrollDiv{

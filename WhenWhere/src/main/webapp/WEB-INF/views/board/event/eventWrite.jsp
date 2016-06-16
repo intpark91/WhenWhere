@@ -17,16 +17,10 @@
 $(function() {
 	var result = '${insert}';
 	if (result == 'true') {
-		$.bootstrapGrowl("글 쓰기 성공!", {
-			type: 'success',
-			align: 'center',
-			width: 'auto',
-			allow_dismiss: false
-		});
 		location.href = "eventRead?no=0";
 	}
 	else if(result =='false'){
-		$.bootstrapGrowl("내용을 입력해 주세요.", {
+		$.bootstrapGrowl("내용을 입력해주세요!", {
 			type: 'danger',
 			align: 'center',
 			width: 'auto',

@@ -105,7 +105,11 @@ public class ReviewBoardSVC {
 		String loc = request.getParameter("location");
 		String fileurl = (String)request.getSession().getAttribute("fileUrl");
 		String fileSaveName = (String)request.getSession().getAttribute("fileSaveName");
-		
+		System.out.println(content);
+		if(content.equals("")){
+			return false;
+		}
+		 
 		Date date = null;
 		Date date1 = null;
 		DateFormat formatter ; 		 
@@ -115,7 +119,6 @@ public class ReviewBoardSVC {
 		java.sql.Date sdate = new java.sql.Date(date.getTime());
 		java.sql.Date edate = new java.sql.Date(date1.getTime());		
 		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);
-		System.out.println("sdate"+sdate);
 		if (boardDAO.insertReview(title,content,auth,sdate,edate,boardCode,loc,fileSaveName) > 0) {
 			return true;
 		} else {

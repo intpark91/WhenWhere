@@ -12,15 +12,21 @@
 
 
 <script type="text/javascript">
+$(function() {
 	var result = '${insert}';
 	if (result == 'true') {				
-		alert('글 쓰기 성공');
 		location.href = "noticeRead?no=0";
 	}
 	
 	else if(result =='false'){
-		alert('글 쓰기 실패');
+		$.bootstrapGrowl("내용을 입력해주세요!", {
+			type: 'danger',
+			align: 'center',
+			width: 'auto',
+			allow_dismiss: false
+		});
 	}
+});
 </script>
 <script type="text/javascript">
 	
@@ -28,12 +34,12 @@
 	var f = $("#inForm");
 	function formSubmit() {
 		if ($("#dataTitle").val() == '') {
-			alert("제목을 입력하시기 바랍니다.");
-			return;
-		}
-		if ($("#dataContent").val() == '') {
-			alert("내용을 입력하시기 바랍니다.");
-			oEditors.getById["dataContent"].exec("FOCUS", []);
+			$.bootstrapGrowl("제목을 입력하세요!", {
+				type: 'danger',
+				align: 'center',
+				width: 'auto',
+				allow_dismiss: false
+			});
 			return;
 		}
 		$("#inForm").submit();
@@ -119,7 +125,7 @@
 												
 												<p class="fr">
 													<a href="#" onclick="formSubmit();">등록</a>
-													<a href="notice">취소</a>
+													<a href="../board/notice?category=1">취소</a>
 												</p>
 											</div>
 									</div>

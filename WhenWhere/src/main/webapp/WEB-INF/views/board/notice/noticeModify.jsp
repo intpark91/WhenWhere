@@ -16,10 +16,9 @@
 
 <script type="text/javascript">
 var no = '${sessionScope.no}';
-var category='${sessionScope.category}'
+var category='${sessionScope.category}';
 	var result = '${modify}';
 	if (result == 'true') {
-		alert('글 수정 성공');
 		location.href = "noticeRead?no="+no+"&category="+category+"";
 	}
 	else if(result =='false'){
@@ -31,11 +30,21 @@ var category='${sessionScope.category}'
 	var f = $("#inForm");
 	function modify() {
 		if ($("#dataTitle").val() == '') {
-			alert("제목을 입력하시기 바랍니다.");
+			$.bootstrapGrowl("제목을 입력하세요!", {
+				type: 'danger',
+				align: 'center',
+				width: 'auto',
+				allow_dismiss: false
+			});
 			return;
 		}
 		if ($("#dataContent").val() == '') {
-			alert("내용을 입력하시기 바랍니다.");
+			$.bootstrapGrowl("내용을 입력하세요!", {
+				type: 'danger',
+				align: 'center',
+				width: 'auto',
+				allow_dismiss: false
+			});
 			oEditors.getById["dataContent"].exec("FOCUS", []);
 			return;
 		}
@@ -122,7 +131,7 @@ var category='${sessionScope.category}'
 												<p class="fl">&nbsp;</p>
 												<p class="fr">
 													<a href="#" onclick="modify();">수정</a> 
-													<a href="notice">취소</a>
+													<a href="../board/noticeRead?category=1&no=${sessionScope.no}">취소</a>
 												</p>
 											</div>
 										</div>
