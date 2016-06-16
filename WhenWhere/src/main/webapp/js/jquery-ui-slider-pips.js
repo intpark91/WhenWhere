@@ -628,7 +628,7 @@ function getWeather(locName) {
 				}
 				
 				$('.weatherSpan').each(function(k, v) {
-					$(this).html($('<img src="http://192.168.8.13/img/weather/' + weathers[k] + '.png" width="30" height="30">'));
+					$(this).html($('<img src="http://192.168.8.13:8088/img/weather/' + weathers[k] + '.png" width="30" height="30">'));
 				});
 			}else{
 				$.bootstrapGrowl("날씨를 가져오는 중에 오류가 발생했습니다. 잠시 후에 다시 시도하세요.", {
