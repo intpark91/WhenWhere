@@ -46,7 +46,7 @@
 							class="fa fa-pencil-square-o" aria-hidden="true"></i>Review
 					</a></li>
 				</ul></li>
-			<c:if test="${sessionScope.member != null }">
+			<c:if test="${sessionScope.member.getAuthority() != 'admin' }">
 				<li><a href="../home/admin"> <i class="fa fa-database"
 						aria-hidden="true"></i><span>Admin</span>
 				</a></li>
