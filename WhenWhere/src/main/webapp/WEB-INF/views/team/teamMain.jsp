@@ -538,10 +538,20 @@ span#roomTitle {
 		        		   $('input[name=title]').val('');
 		        		   $('.ddo-chat').removeClass('collapsed-box');
 		        		 
+		        		   for(var i=1; i<data.length;i++){
+		        			   var json_param = new Array();
+		        			   json_param.push(data[i].nickName);
+		        			   json_param.push(data[i].content);
+		        			   
+		        			   var msgObject = new msgObj(json_param);
+		        			   str_Txt = msgObject.msg_format();
+		        			   
+		        			   $('.mainTr').append(str_Txt);
+		        			   console.log(str_Txt);
+		        		   }
+		        		   
 		        		   $('#roomTitle').text('팀이름:');
 		        		   $('.room-title').text(teamName);
-		        		   
-		        		   
 		        		   
 		        	   }
 		           },
@@ -668,6 +678,23 @@ span#roomTitle {
 		this.msg_format = function() {
 			
 			//내가쓴글이면 오른쪽배치 아닐시 왼쪽 배치 
+			
+			/* <div class="direct-chat-msg">
+					<div class="direct-chat-info clearfix">
+						<span class="direct-chat-name pull-left">
+							Alexander Pierce
+						</span> 
+						<span class="direct-chat-timestamp pull-right">
+							23 Jan 2:00 pm
+						</span>
+					</div>
+					<img class="direct-chat-img" src="../images/team/team2.PNG" alt="Message User Image">
+					<div class="direct-chat-text">
+						Is this template really
+						for free? That's unbelievable!
+					</div>
+				</div> */
+			
 			switch (this.subject) {
 	    	  case '0' :  typeName = '전체';
 	    	 			 className = '<span class="label label-danger">';
