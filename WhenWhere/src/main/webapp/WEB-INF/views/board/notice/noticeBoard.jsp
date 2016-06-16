@@ -29,12 +29,25 @@
 		 background-image: -o-linear-gradient(top, #285f8f, #285f8f);
  		 background-image: linear-gradient(to bottom, #285f8f, #285f8f);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#285f8f, endColorstr=#285f8f);
 		}
+		
+		.noticebox {
+  		position: relative;
+  		border-radius: 3px;
+  		background: #ffffff;
+  		border-top: 3px solid #d2d6de;
+  		margin-bottom: 20px;
+  		width: 75%;
+  		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  		margin: 0 auto;
+		}
 </style>
 
 <script type="text/javascript">
 	$(function() {
 		$('.noticewrite').on('click', function() {
-			location.href = "noticewriteform?category=" + ${boardList[0].category}+"";
+			var category = ""+${category}+"";
+			
+			 location.href = "noticewriteform?category=" + category+""; 
 		});
 	});
 </script>
@@ -49,14 +62,15 @@
 				<!-- /.row -->
 				<div class="row">
 					<div class="col-xs-12">
-						<div class="box">
+						<div class="box_wrapper">
+						<div class="noticebox">
 							<div class="box-header">
 								<c:choose>
 									<c:when test="${searchboardList eq null}">
-										<h3 class="box-title">${boardList[0].boardName }리스트</h3>
+										<h3 class="box-title">${boardList[0].boardName }</h3>
 									</c:when>
 									<c:otherwise>
-										<h3 class="box-title">${searchboardList[0].boardName }리스트</h3>
+										<h3 class="box-title">${searchboardList[0].boardName }</h3>
 									</c:otherwise>
 								</c:choose>
 
@@ -95,7 +109,7 @@
 										<col width="8%">
 										<col width="6%">
 										<col width="10%">
-										<col width="12%">
+										<col width="19%">
 									</colgroup>
 
 									<tr>
@@ -215,6 +229,7 @@
 							</div>
 						</div>
 						<!-- /.box -->
+					</div>
 					</div>
 				</div>
 			</section>
