@@ -399,7 +399,7 @@ function recommend(no){
 													<!-- #comment-## -->
 
 												</ol>
-											</div>
+											</div> 
 
 											<div id="respond" class="comment-respond">
 												<h3 id="reply-title" class="comment-reply-title">
