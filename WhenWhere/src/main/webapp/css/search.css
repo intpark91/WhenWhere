@@ -578,6 +578,21 @@ body {
 	}
 }
 
+#subName0, #subName1, #subName2, #subName3, #subName4{
+	background: rgb(99, 208, 196);
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 55px;
+    height: 33px;
+    color: white;
+    padding-top: 5px;
+    font-size: 11px;
+    border-radius: 4px;
+    animation: recommend 1s infinite alternate;
+}
+
+
 .searchFail{
 	color: rgb(255, 0, 0);
     background: white;

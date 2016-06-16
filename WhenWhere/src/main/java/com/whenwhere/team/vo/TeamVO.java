@@ -9,6 +9,8 @@ public class TeamVO {
 	private Date sdate;
 	private Date edate;
 	private String loc_code;
+	private int status;
+	private String nickName;
 
 	public int getNo() {
 		return no;
@@ -57,5 +59,22 @@ public class TeamVO {
 	public void setLoc_code(String loc_code) {
 		this.loc_code = loc_code;
 	}
+	
+	public int getStatus() {
+		return status;
+	}
+	
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+	
 
 }
