@@ -209,7 +209,7 @@
 						$("#nickname").css("color", "green");
 					}
 				}
-			})
+			}) 
 		}
 	</script> 
 </body>
