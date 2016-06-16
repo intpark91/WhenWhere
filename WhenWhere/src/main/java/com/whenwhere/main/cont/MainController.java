@@ -74,7 +74,7 @@ public class MainController {
 
 	@RequestMapping(value = "/admin")
 	public String admin() {
-		return "admin/manage";
+		return "manage/adminHome";
 	}
 	
 	@RequestMapping(value = "/team")

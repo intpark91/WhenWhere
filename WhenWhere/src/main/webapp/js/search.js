@@ -36,7 +36,7 @@ $(document).ready(function() {
 		var startDate = $('#start').val(), 
 		endDate = $('#end').val(),
 		locations = [];
-
+ 
 		if(startDate == '' || endDate == ''){
 			$.bootstrapGrowl("날짜를 선택해야징.. 이 바부야!", {
 				type: 'danger',
@@ -133,10 +133,10 @@ $(document).ready(function() {
 							captionDiv.append($('<span class="recommend glyphicon glyphicon-thumbs-up">' +data.searchEventList[j].bRecommend+ '</span>'));
 							captionDiv.append(content);
 							captionDiv.append($('<input type="hidden" value="#?bNo='+data.searchEventList[j].bNo+'">'));
-							imgA.append($('<input type="hidden" value='+data.searchEventList[j].eSDate+'~'+data.searchEventList[j].eEDate+'>'));
-							imgA.append($('<input type="hidden" value='+data.searchEventList[j].locName+'>'));
-							imgA.append($('<input type="hidden" value='+data.searchEventList[j].bRecommend+'>'));
-							imgA.append($('<input type="hidden" value='+data.searchEventList[j].bContent+'>'));
+							imgA.append($('<input type="hidden" value="'+data.searchEventList[j].eSDate+'~'+data.searchEventList[j].eEDate+'">'));
+							imgA.append($('<input type="hidden" value="'+data.searchEventList[j].locName+'">'));
+							imgA.append($('<input type="hidden" value="'+data.searchEventList[j].bRecommend+'">'));
+							imgA.append($('<input type="hidden" value="'+data.searchEventList[j].bContent+'">'));
 							imgA.append(img);
 							thumbnailDiv.append(imgA);
 							fDiv.append(thumbnailDiv);
@@ -242,11 +242,11 @@ $(document).ready(function() {
 							
 							captionDiv.append(title);
 							captionDiv.append(content);
-							captionDiv.append($('<input type="hidden" value='+data.searchHotelList[j].href+'>'));
-							imgA.append($('<input type="hidden" value='+data.searchHotelList[j].roomType+'>'));
-							imgA.append($('<input type="hidden" value='+data.searchHotelList[j].hotelType+'>'));
-							imgA.append($('<input type="hidden" value='+data.searchHotelList[j].capacity+'>'));
-							imgA.append($('<input type="hidden" value='+data.searchHotelList[j].bedCnt+'>'));
+							captionDiv.append($('<input type="hidden" value='+data.searchHotelList[j].href+'">'));
+							imgA.append($('<input type="hidden" value="'+data.searchHotelList[j].roomType+'">'));
+							imgA.append($('<input type="hidden" value="'+data.searchHotelList[j].hotelType+'">'));
+							imgA.append($('<input type="hidden" value="'+data.searchHotelList[j].capacity+'">'));
+							imgA.append($('<input type="hidden" value="'+data.searchHotelList[j].bedCnt+'">'));
 							imgA.append(img);
 							thumbnailDiv.append(imgA);
 							fDiv.append(thumbnailDiv);

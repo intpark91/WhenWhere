@@ -139,4 +139,14 @@ public class UserController {
 	public String changeStatus(@RequestParam String arr, @RequestParam String type) {
 		return msgService.updateMsgStauts(arr, type);
 	}
+	
+	/**********************************
+	 * Validators
+	 **********************************/
+	@RequestMapping("/emailValidator")
+	@ResponseBody
+	public String emailValidator(@RequestParam String email) {
+		System.out.println("email : " + email);
+		return null;
+	}
 }
