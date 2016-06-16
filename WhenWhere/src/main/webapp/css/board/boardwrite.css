@@ -250,7 +250,7 @@ button {cursor:pointer;border:none;}
 
 
 /*콘텐츠 외곽박스*/
-#content01 {float:left;width:100%;height:auto;margin:0 auto;color:#ffffff;}
+#content01 {float:left;width:100%;height:auto;margin:0 auto;}
 .con_area {  width:1120px;margin:0 auto;padding:0;}
 /*게시물*/
 .board_box{background-color:#fff; float:left;width:100%;  display:inline-block;}

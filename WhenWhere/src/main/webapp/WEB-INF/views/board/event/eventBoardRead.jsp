@@ -22,29 +22,51 @@ h2 {
 <script type="text/javascript">
 function delectAjax(no){
 	var category = '${ReadBoard.category}';
-	jQuery.ajax({
-		type: "post", 
-		url:"noticedelete",
-		data : {"no":no,"category":category},
-		dataType : "json",
-		success : function(delect){
-			console.log(delect);
-			 if(delect.delect==true){			 	
-					alert('글 삭제 성공');
-					location.href="event?category="+${ReadBoard.category}+"";
-			     }
-			 else {
-				 alert('삭제 실패');
-			 }
-			 
-		},
-		complete : function(res){					
-		}, 
-		error : function(xhr,status,error){
-				alert("에러 발생");
-				alert(status);
-		}  
-	});	
+	
+	bootbox.dialog({
+		message : "해당 글을 삭제 하시겠습니까?",
+		buttons : {
+			success : {
+				label : "네",
+				className : "btn-success",
+				callback : function() {
+					jQuery.ajax({
+						type: "post", 
+						url:"noticedelete",
+						data : {"no":no,"category":category},
+						dataType : "json",
+						success : function(delect){
+							console.log(delect);
+							 if(delect.delect==true){			 	
+									 $.bootstrapGrowl("글 삭제 완료.", {
+										type: 'success',
+										align: 'center',
+										width: 'auto',
+										allow_dismiss: false
+									});
+									location.href="event?category="+${ReadBoard.category}+"";
+							     }
+							 else {
+								 alert('삭제 실패');
+							 }
+							 
+						},
+						complete : function(res){					
+						}, 
+						error : function(xhr,status,error){
+								alert("에러 발생");
+								alert(status);
+						}  
+					});	
+				}
+			},
+			danger : {
+				label : "아니요",
+				className : "btn-danger",
+			}
+		}
+	});
+	
 
 }	
 
