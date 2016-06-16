@@ -491,7 +491,7 @@ body {
     /* background-color: rgba(6, 212, 255, 0.39); */
     color: #222;
     webkit-tap-highlight-color: #222;
-    background: url(http://192.168.8.13:8088/img/search_bg_img.jpg);
+    background: url(http://192.168.8.13:8088/img/background/searchBg.jpg);
   	background-size: cover;
 }
 
