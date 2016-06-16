@@ -187,7 +187,7 @@
 		}
 		
 		function websocket(){
-			ws = new WebSocket("ws://192.168.8.31:8088/WhenWhere/wsclient");
+			ws = new WebSocket("ws://192.168.8.13:8088/WhenWhere/wsclient");
 		}
 		
 		function sendMsg(){
@@ -211,7 +211,7 @@
 		                $('input[name=chatInput]').val('');
 		            }
 		        });
-		    }
+		    } 
 		    ws.onmessage = function (event) {
 		    	var obj = eval("("+event.data+")");
 		    	msgObject = new MsgObj(0, obj.name, obj.msg, 0);
