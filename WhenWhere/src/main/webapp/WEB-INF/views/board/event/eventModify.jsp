@@ -77,6 +77,7 @@ jQuery.browser = {};
 </script>
 
 <script type="text/javascript">
+$(function () {
 var no = '${sessionScope.no}';
 var category='${sessionScope.category}';
 
@@ -93,6 +94,7 @@ var category='${sessionScope.category}';
 	else if(result =='false'){
 		alert('글 수정 실패');
 	}
+});
 </script>
 
 <script type="text/javascript">

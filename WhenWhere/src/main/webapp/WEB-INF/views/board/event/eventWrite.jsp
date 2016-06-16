@@ -10,11 +10,13 @@
 	<link rel="stylesheet" href="../css/board/boardwrite.css" type="text/css">
 	<link rel="stylesheet" href="../css/datepicker/jquery-ui.css" type="text/css" />
 	<script src="../ckEditor/ckeditor.js"></script>
+	
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>	
 
 <script type="text/javascript">
+$(function() {
 	var result = '${insert}';
-	if (result == 'true') {				
+	if (result == 'true') {
 		$.bootstrapGrowl("글 쓰기 성공!", {
 			type: 'success',
 			align: 'center',
@@ -26,6 +28,7 @@
 	else if(result =='false'){
 		alert('글 쓰기 실패');
 	}
+});
 </script>
 
 
@@ -122,6 +125,9 @@ jQuery.browser = {};
 						<script type="text/javascript">
 							var f = $("#inForm");
 							function formSubmit() {
+								alert($('#cke_1_contents').children('span').attr('class'));
+								
+								
 								if ($("#dataTitle").val() == '') {
 									$.bootstrapGrowl("제목을 입력하세요.", {
 										type: 'danger',
@@ -165,7 +171,8 @@ jQuery.browser = {};
 											"FOCUS", []);
 									return;
 								} 
-								 
+								
+							 
 								$("#inForm").submit();
 							}
 						</script>
