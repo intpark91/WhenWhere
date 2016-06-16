@@ -124,17 +124,17 @@ jQuery.browser = {};
 							function formSubmit() {
 								if ($("#dataTitle").val() == '') {
 									$.bootstrapGrowl("제목을 입력하세요.", {
-										type: 'warning',
+										type: 'danger',
 										align: 'center',
 										width: 'auto',
 										allow_dismiss: false
 									});
+
 									return;
 								}
-					
 								if ($("#dataContent").val() == '') {
 									$.bootstrapGrowl("내용을 입력하세요.", {
-										type: 'warning',
+										type: 'danger',
 										align: 'center',
 										width: 'auto',
 										allow_dismiss: false
@@ -145,7 +145,18 @@ jQuery.browser = {};
 								}
 								if ($("#Datepicker").val() == '' || $("#Datepicker2").val() == '') {
 									$.bootstrapGrowl("기간을 선택하세요.", {
-										type: 'warning',
+										type: 'danger',
+										align: 'center',
+										width: 'auto',
+										allow_dismiss: false
+									});
+									oEditors.getById["dataContent"].exec(
+											"FOCUS", []);
+									return;
+								}
+								if ($("#Datepicker").val() > $("#Datepicker2").val()) {
+									$.bootstrapGrowl("행사 종료일이 행사 시작일보다 빠를 수 없습니다.", {
+										type: 'danger',
 										align: 'center',
 										width: 'auto',
 										allow_dismiss: false
@@ -202,8 +213,7 @@ jQuery.browser = {};
 														<td colspan="2" class="bbs_write">
 															<div class="bbs_write_wrap">
 																							
-															    <textarea id="content" name="content" rows="10" cols="80">
-                       		                                              내용을 입력해주세요.                     		
+															    <textarea id="content" name="content" rows="10" cols="80" placeholder="내용을 입력하세요.">
                                                                 </textarea>
 																<script>	
    																 CKEDITOR.replace('content',{
@@ -240,6 +250,7 @@ jQuery.browser = {};
 		<jsp:include page="../../component/controlSidebar.jsp" />
 	</div>
 	<!-- scripts -->
+	<jsp:include page="../../component/core_js.jsp" />
 	<script src="../../js/slider.js"></script>
 </body>
 </html>

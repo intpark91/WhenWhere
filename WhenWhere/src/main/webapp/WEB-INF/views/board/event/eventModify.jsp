@@ -117,6 +117,29 @@ var category='${sessionScope.category}';
 			oEditors.getById["dataContent"].exec("FOCUS", []);
 			return;
 		}
+		if ($("#Datepicker").val() == '' || $("#Datepicker2").val() == '') {
+			$.bootstrapGrowl("기간을 선택하세요.", {
+				type: 'danger',
+				align: 'center',
+				width: 'auto',
+				allow_dismiss: false
+			});
+			oEditors.getById["dataContent"].exec(
+					"FOCUS", []);
+			return;
+		}
+		if ($("#Datepicker").val() > $("#Datepicker2").val()) {
+			$.bootstrapGrowl("행사 종료일이 행사 시작일보다 빠를 수 없습니다.", {
+				type: 'danger',
+				align: 'center',
+				width: 'auto',
+				allow_dismiss: false
+			});
+			oEditors.getById["dataContent"].exec(
+					"FOCUS", []);
+			return;
+		}
+		
 		$("#inForm").submit();
 
 	}
