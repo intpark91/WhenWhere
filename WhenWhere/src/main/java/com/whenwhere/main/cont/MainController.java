@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.whenwhere.main.service.SearchService;
+import com.whenwhere.team.service.TeamService;
 import com.whenwhere.util.WeatherService;
 
 @Controller
@@ -22,6 +23,8 @@ public class MainController {
 	private SearchService searchService;
 	@Autowired
 	private WeatherService weatherService;
+	@Autowired
+	private TeamService teamService;
 
 	@RequestMapping(value = "/main")
 	public String main(Model model) {
@@ -78,7 +81,13 @@ public class MainController {
 	}
 	
 	@RequestMapping(value = "/team")
-	public String team(Model model) {
+	public String team(Model model,
+			@RequestParam(required = false, defaultValue="") String teamname,
+			@RequestParam(required = false, defaultValue="0") int teamNum) {
+		if(!teamname.equals("")){
+			model.addAttribute("teamInfo", teamService.getTeamInfo(teamNum));
+			model.addAttribute("teamList", teamService.getTeamUserList(teamNum));
+		}
 		model.addAttribute("locationSubList", searchService.getSubLocationList());
 		return "team/teamMain";
 	}
