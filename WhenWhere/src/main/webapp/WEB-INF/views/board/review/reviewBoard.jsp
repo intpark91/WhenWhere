@@ -66,7 +66,7 @@
 		<!-- Content Wrapper. Contains page content -->
 
 		<div class="content-wrapper">
-
+ 
 				<!-- <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8  text-center"> -->
 				<div id="content01">
 					<div class="con_area"> 
