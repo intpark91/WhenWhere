@@ -29,4 +29,10 @@ public class TeamController {
 	public String getTeamList(HttpServletRequest request, HttpSession session) {
 		return teamService.getTeamList(request, session);
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getTeamUserList")
+	public String getTeamUserList(HttpServletRequest request, HttpSession session) {
+		return teamService.getTeamUserList(request, session,Integer.parseInt(request.getParameter("teamNum")));
+	}
 }

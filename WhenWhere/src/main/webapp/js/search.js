@@ -108,7 +108,8 @@ $(document).ready(function() {
 						var carouselDiv = carousel4.children('.carousel-inner');
 
 						for(var j=0; j<data.searchTeamList.length; j++){
-							var imgName, subject;
+							var imgName, subject, teamUrl;
+							teamUrl = 'http://192.168.8.31:8088/WhenWhere/home/team?teamNum='+data.searchTeamList[j].tNo+'&teamname='+data.searchTeamList[j].teamName;
 							switch (data.searchTeamList[j].subject) {
 							case '0':
 								subject = '동행'
@@ -155,6 +156,7 @@ $(document).ready(function() {
 							captionDiv.append(title);
 							captionDiv.append($('<span class="subName glyphicon">' +subject+ '</span>').attr('id','subName'+data.searchTeamList[j].subject));
 							captionDiv.append(content);
+							captionDiv.append($('<input type="hidden" value='+teamUrl+'">'));
 							imgA.append($('<input type="hidden" value="'+data.searchTeamList[j].teamName+'">'));
 							imgA.append($('<input type="hidden" value="'+data.searchTeamList[j].tSDate+'~'+data.searchTeamList[j].tEDate+'">'));
 							imgA.append($('<input type="hidden" value="'+data.searchTeamList[j].locName+'">'));
@@ -217,7 +219,7 @@ $(document).ready(function() {
 							imgA.append($('<input type="hidden" value="'+data.searchEventList[j].locName+'">'));
 							imgA.append($('<input type="hidden" value="'+data.searchEventList[j].bRecommend+'">'));
 							imgA.append($('<input type="hidden" value="'+data.searchEventList[j].bContent+'">'));
-							imgA.append(img);
+							imgA.append(img); 
 							thumbnailDiv.append(imgA);
 							fDiv.append(thumbnailDiv);
 							fDiv.append(captionDiv);
