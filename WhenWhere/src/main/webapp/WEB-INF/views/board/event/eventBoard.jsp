@@ -46,7 +46,7 @@ margin-bottom : -35px;
 
 			<div class="container">
 			<div class="row">
-				<div
+				<div 
 					class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2 text-center">
 					<div class="con_area">
 						<div class="board_box">
