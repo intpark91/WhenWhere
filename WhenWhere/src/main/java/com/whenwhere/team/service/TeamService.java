@@ -108,6 +108,16 @@ public class TeamService {
 		return jsonArr.toJSONString();
 	}
 
+	public List<String> getTeamUserList(int teamNum) {
+		System.out.println("teamNum : "+teamNum);
+		TeamDAO dao = sqlSessionTemplate.getMapper(TeamDAO.class);
+
+		List<String> teamList = new ArrayList<String>();
+		teamList = dao.getTeamUserList(teamNum);
+		
+		return teamList;
+	}
+	
 	public String getTeamUserList(HttpServletRequest request, HttpSession session, int teamNum) {
 		TeamDAO dao = sqlSessionTemplate.getMapper(TeamDAO.class);
 		JSONObject obj = new JSONObject();
@@ -229,7 +239,7 @@ public class TeamService {
 		System.out.println(jsonArr.toJSONString());
 		return jsonArr.toJSONString();
 	}
-
+	
 	public String sendMsg(HttpServletRequest request, HttpSession session, int teamNum, String nickName,
 			String msg) {
 		TeamDAO dao = sqlSessionTemplate.getMapper(TeamDAO.class);
@@ -254,6 +264,13 @@ public class TeamService {
 			System.out.println("로그인해");
 		}
 		return jsonArr.toJSONString();
+	}
+	
+	public TeamVO getTeamInfo(int teamNum) {
+		TeamDAO dao = sqlSessionTemplate.getMapper(TeamDAO.class);
+		TeamVO team = dao.getTeamInfo(teamNum);
+		
+		return team;
 	}
 }
  
