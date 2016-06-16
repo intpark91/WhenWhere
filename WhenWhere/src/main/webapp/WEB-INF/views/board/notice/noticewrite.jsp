@@ -26,6 +26,14 @@ $(function() {
 			allow_dismiss: false
 		});
 	}
+	
+	$(".ui-helper-hidden-accessible").css('display','none');
+	$(".ui-helper-hidden-accessible").html('');
+	
+	$(".ui-tooltip ui-widget ui-corner-all ui-widget-content").css('display','none');
+	$(".ui-tooltip ui-widget ui-corner-all ui-widget-content").html('');
+	
+	
 });
 </script>
 <script type="text/javascript">

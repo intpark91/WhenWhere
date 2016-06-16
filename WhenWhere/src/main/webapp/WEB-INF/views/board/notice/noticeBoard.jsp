@@ -40,6 +40,32 @@
   		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   		margin: 0 auto;
 		}
+		
+		@media (max-width: 767px) {
+  		.noticebox {
+  		position: relative;
+  		border-radius: 3px;
+  		background: #ffffff;
+  		border-top: 3px solid #d2d6de;
+  		margin-bottom: 20px;
+  		width: 100%;
+  		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  		margin: 0 auto;
+		}
+  }
+  		@media (max-width: 1160px) {
+  		.noticebox {
+  		position: relative;
+  		border-radius: 3px;
+  		background: #ffffff;
+  		border-top: 3px solid #d2d6de;
+  		margin-bottom: 20px;
+  		width: 100%;
+  		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  		margin: 0 auto;
+		}
+  }
+}
 </style>
 
 <script type="text/javascript">
@@ -109,7 +135,7 @@
 										<col width="8%">
 										<col width="6%">
 										<col width="10%">
-										<col width="19%">
+										<col width="25%">
 									</colgroup>
 
 									<tr>

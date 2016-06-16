@@ -6,9 +6,9 @@
 <head>
 <jsp:include page="../../component/core_head.jsp" />
 <title>WhenWhere</title>
-<link rel="stylesheet" href="../css/board/noticeBoardRead.css"
-	type="text/css">
-<link rel="stylesheet" href="../css/board/comment.css" />
+<link rel="stylesheet" href="../css/slider.css" />
+	<link rel="stylesheet" href="../css/board/noticeBoardRead.css" type="text/css">  
+	<link rel="stylesheet" href="../css/board/comment.css" />
 <style>
 h2 {
 	padding-top: 10px;
@@ -249,7 +249,7 @@ function recommend(no){
 			<div class="container">
 				<div class="row">
 					<div
-						class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2 text-center">
+						class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2">
 						<div id="all" class="clearfix">
 
 							<!--2015.12.07 수정-->
@@ -301,7 +301,7 @@ function recommend(no){
 													<tr>
 														<td colspan="6" class="bbs_detail">
 
-															<div align="center" class="body_div"
+															<div class="body_div"
 																style="line-height: 160%; font-family: NanumG; font-size: 14px;">
 																${ReadBoard.content} <br>
 															</div>
@@ -380,24 +380,13 @@ function recommend(no){
 											</div> 
 
 											<div id="respond" class="comment-respond">
-												<h3 id="reply-title" class="comment-reply-title">
-													댓글 쓰기 <small> <a rel="nofollow"
-														id="cancel-comment-reply-link"
-														href="http://myforum.dothome.co.kr/my-favorite-model/#respond"
-														style="display: none;">댓글 취소</a>
-													</small>
-												</h3>
-
-
 												<form action="reviewcommend" method="post" id="commentform"
 													class="comment-form">
 													<p class="comment-notes">
 														<input type="hidden" name="boardNo"
 															value="${ReadBoard.no}"> <input type="hidden"
-															name="category" value="${ReadBoard.category}"> <span
-															id="email-notes">여러분의 생각을 댓글을 남겨 주세요! <span
-															class="required">*</span>
-														</span>
+															name="category" value="${ReadBoard.category}">
+														
 													</p>
 													<p class="comment-form-author">
 														<label for="author">이름<span class="required"></span></label>

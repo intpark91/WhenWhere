@@ -17,6 +17,8 @@ h2 {
 .banner {
 	background-color: black;
 }
+
+
 </style>
 
 <script type="text/javascript">
@@ -201,11 +203,12 @@ function delectAjax(no){
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
+				
 			</section>
 			<div class="container">
 			<div class="row">
 				<div
-					class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2 text-center">
+					class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2">
 					<div id="all" class="clearfix">
 						
 							<!--2015.12.07 수정-->
@@ -221,7 +224,7 @@ function delectAjax(no){
 											<input type="hidden" name="no" value="${ReadBoard.no}"> --%>
 											<table class="view_1"
 												summary="토론마당 제목, 토론기간, 진행상태와 조회를 표시하고 있다.">
-												<h2>${ReadBoard.boardName} 상세 보기</h2>
+												<h2 align="center">${ReadBoard.boardName} 상세 보기</h2>
 												<colgroup>
 													<col width="15%">
 													<col width="20%">
@@ -251,7 +254,7 @@ function delectAjax(no){
 													<tr>
 														<td colspan="6" class="bbs_detail">
 
-															<div align="center" class="body_div"
+															<div class="body_div"
 																style="line-height: 160%; font-family: NanumG; font-size: 14px;">
 																${ReadBoard.content}
 																<br>
@@ -263,7 +266,7 @@ function delectAjax(no){
 										<!-- 	</form> -->
 											<div class="bbs_btn">
 												<p class="fl">
-													<a href="notice?category=${ReadBoard.category}"><h4>목록</h4></a>
+													<a href="notice?category=${ReadBoard.category}"><h4 align="center">목록</h4></a>
 												</p>
 											</div>		
 										</div>
@@ -388,7 +391,7 @@ function delectAjax(no){
 		<!-- include -->
 		<jsp:include page="../../component/footer.jsp" />
 		<jsp:include page="../../component/controlSidebar.jsp" />
-	</div>
+	
 	<!-- scripts -->
 	<jsp:include page="../../component/core_js.jsp" />
 </body>
