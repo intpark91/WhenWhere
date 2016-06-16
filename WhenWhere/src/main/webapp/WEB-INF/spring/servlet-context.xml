@@ -96,7 +96,7 @@
 	
 	<beans:bean id="dataSource" class="oracle.jdbc.pool.OracleDataSource">
 		<beans:property name="dataSourceName" value="ds" />
-		<beans:property name="URL" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<beans:property name="URL" value="jdbc:oracle:thin:@192.168.8.13:1521:xe" />
 		<beans:property name="user" value="whenwhere" />
 		<beans:property name="password" value="whenwhere" />
 	</beans:bean>
