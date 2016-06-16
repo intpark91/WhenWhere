@@ -287,7 +287,7 @@ function recommend(no){
 											<input type="hidden" name="no" value="${ReadBoard.no}"> --%>
 											<table class="view_1"
 												summary="토론마당 제목, 토론기간, 진행상태와 조회를 표시하고 있다.">
-												<h2>${ReadBoard.boardName}상세 보기</h2>
+												<h2>${ReadBoard.boardName}상세보기</h2>
 												<colgroup>
 													<col width="15%">
 													<col width="20%">
