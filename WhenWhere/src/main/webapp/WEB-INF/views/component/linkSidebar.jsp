@@ -25,13 +25,13 @@
 			<li class="active"><a href="../home/searchForm"> <i
 					class="fa fa-search" aria-hidden="true"></i> <span>Search</span>
 			</a></li>
-			<li><a href="../board/notice?category=1"> <i
+			<li class="active"><a href="../board/notice?category=1"> <i
 					class="fa fa-bullhorn" aria-hidden="true"></i> <span>Notice</span></a>
 			</li>
-			<li><a href="../board/event?category=4"> <i class="fa fa-gift"
+			<li class="active"><a href="../board/event?category=4"> <i class="fa fa-gift"
 					aria-hidden="true"></i><span>Event</span>
 			</a></li>
-			<li class="treeview"><a href="#"> <i class="fa fa-users"
+			<li class="treeview active"><a href="#"> <i class="fa fa-users"
 					aria-hidden="true"></i><span>Communitiy</span> <i
 					class="fa fa-angle-left pull-right"></i>
 			</a>
@@ -47,7 +47,7 @@
 					</a></li>
 				</ul></li>
 			<c:if test="${sessionScope.member != null }">
-				<li><a href="../home/admin"> <i class="fa fa-database"
+				<li class="active"><a href="../home/admin"> <i class="fa fa-database"
 						aria-hidden="true"></i><span>Admin</span>
 				</a></li>
 			</c:if>

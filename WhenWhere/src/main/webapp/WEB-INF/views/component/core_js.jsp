@@ -7,3 +7,11 @@
 <script src="../js/app.js"></script>
 <script src="../js/jquery.bootstrap-growl.min.js"></script>
 <script src="../js/detect-device.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("ul.sidebar-menu li").each(function() {
+			$(this).toggleClass("active");
+		})
+		$("ul.sidebar-menu li:eq(${path})").toggleClass("active");
+	});
+</script>
