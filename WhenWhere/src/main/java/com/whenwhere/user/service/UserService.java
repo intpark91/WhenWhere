@@ -68,6 +68,7 @@ public class UserService {
 	public String login(MemberVO member, HttpSession session){
 		MemberDAO dao = sqlSessionTemplate.getMapper(MemberDAO.class);
 		boolean ok = false;
+		
 		try {
 			member.setEmail(URLDecoder.decode(member.getEmail(), "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
