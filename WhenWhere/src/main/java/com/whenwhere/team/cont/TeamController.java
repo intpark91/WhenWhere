@@ -60,4 +60,10 @@ public class TeamController {
 	public String chatTeam(HttpServletRequest request, HttpSession session) {
 		return teamService.chatTeam(request, session,Integer.parseInt(request.getParameter("teamNum")));
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/sendMsg")
+	public String sendMsg(HttpServletRequest request, HttpSession session) {
+		return teamService.sendMsg(request, session, Integer.parseInt(request.getParameter("teamNum")), request.getParameter("nickName"),request.getParameter("msg"));
+	}
 }

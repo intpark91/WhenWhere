@@ -364,10 +364,9 @@ span#roomTitle {
 							<div class="box-footer">
 								<form action="#" method="post">
 									<div class="input-group">
-										<input type="text" name="message"
-											placeholder="Type Message ..." class="form-control">
+										<input id="sendMsg" type="text" name="message" placeholder="Type Message ..." class="form-control">
 										<span class="input-group-btn">
-											<button type="submit" class="btn btn-primary btn-flat">Send</button>
+											<button type="button" onclick="sendMsg();" class="btn btn-primary btn-flat">메세지 보내기</button>
 										</span>
 									</div>
 								</form>
@@ -615,6 +614,51 @@ span#roomTitle {
 		});
 	}
 	
+	function sendMsg(){
+		if($('#sendMsg').text() == ''){
+			alert('메세지가 입력되지 않았습니다');
+			return;
+		}	
+		
+		$.ajax({
+	           type:"POST",
+	           url:"../team/sendMsg",
+	           dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+	           data : { "teamNum": teamNum , "nickName":sessionNick , "msg" : $('#sendMsg').text()},
+	           success : function(data) {
+	        	   console.log(data);
+	        	  
+	        	   if(data.ok){
+	        		  /*  $('input[name=title]').val('');
+	        		   $('.ddo-chat').removeClass('collapsed-box');
+	        		 
+	        		   for(var i=1; i<data.length;i++){
+	        			   var json_param = new Array();
+	        			   json_param.push(data[i].nickName);
+	        			   json_param.push(data[i].content);
+	        			   
+	        			   var msgObject = new msgObj(json_param);
+	        			   str_Txt = msgObject.msg_format();
+	        			   $('.item.chat_main_body').append(str_Txt);
+	        			   console.log(str_Txt);
+	        		   }
+	        		   
+	        		   $('#roomTitle').text('팀이름:');
+	        		   $('.room-title').text(teamName); */
+	        		   alert(' 메세지저장성공');
+	        		   
+	        	   }
+	           },
+	           complete : function(data) {
+	        	   
+	           },
+	           error : function(xhr, status, error) {
+	                 console.log(error);
+	           }
+	   		}); 
+		//nickname content tno 
+	}
+		
 	function getTeamList() {
 		$.ajax({
 			type : "POST",
