@@ -208,7 +208,7 @@
 						$("#nickname").css("border", "green 1px solid");
 						$("#nickname").css("color", "green");
 					}  
-				}
+				} 
 			})   
 		}  
 	</script> 
