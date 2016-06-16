@@ -28,6 +28,7 @@ margin-bottom : -35px;
 		$('.eventwrite').on('click',function(){
 			location.href="eventWrite?category=4";
 		});
+		$('.img p:has(img)').css('display','none'); 
 	});
 </script>
 </head>
@@ -92,11 +93,11 @@ margin-bottom : -35px;
 												<a href="eventRead?no=${item.NO}&category=4" alt="" class="thum_photo"> 
 													<img src="http://192.168.8.13:8088/img/${item.FILENAME}" alt="null">
 												</a>
-												<figcaption>
+												<figcaption class="img">
 													<h3>													
 														<a href="eventRead?no=${item.NO}&category=4" >${item.TITLE}</a>
 													</h3>
-													<h4>
+													<h4 >
 														${item.CONTENT}												
 													</h4>
 													<p>

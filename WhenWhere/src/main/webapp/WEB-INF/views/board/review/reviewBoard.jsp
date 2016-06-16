@@ -38,7 +38,7 @@
 		
 		$('.bandi p:has(img)').css('display','none');
 		
-	});
+});
 	
 	
 </script>
