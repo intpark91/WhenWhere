@@ -219,7 +219,7 @@
 		    	strTxt = msgObject.msg_format();
 		    	//받은메세지
 		    	$('.chat_main_body').append(strTxt);
-		    }
+		    } 
 		    ws.onclose = function (event) {
 		    	/* strTxt=msg_format('admin','Info: 채팅방이 종료되었습니다..'); */
 		    	msgObj = new MsgObj(0, 'admin', 'Info: 채팅방이 종료되었습니다.', 0);
