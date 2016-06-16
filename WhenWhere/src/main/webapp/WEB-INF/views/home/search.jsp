@@ -5,7 +5,7 @@
 <html>
 <head>
 <jsp:include page="../component/core_head.jsp" />
-<title>searchTest</title>
+<title>WhenWhere</title>
 <link rel="stylesheet" href="../css/search.css">
 <link rel="stylesheet" href="../css/locationTab.css" />
 <link rel="stylesheet" href="../css/eventSlider.css" />
@@ -101,7 +101,7 @@
 		<!-- 지역 탭목록 -->
 		<section class="section2">
 			<div class="row">
-				<div
+				<div 
 					class="tabs col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">
 					<div class="cd-tabs">
 

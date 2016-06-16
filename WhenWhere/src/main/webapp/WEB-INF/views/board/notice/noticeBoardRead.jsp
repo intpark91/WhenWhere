@@ -5,7 +5,7 @@
 <html>
 <head>
 	<jsp:include page="../../component/core_head.jsp" />
-	<title>WhenWhereTest</title>
+	<title>WhenWhere</title>
 	<link rel="stylesheet" href="../css/slider.css" />
 	<link rel="stylesheet" href="../css/board/noticeBoardRead.css" type="text/css">  
 	<link rel="stylesheet" href="../css/board/comment.css" />
@@ -113,7 +113,7 @@ function delectAjax(no){
 	}
 	
 	function read(){
-		location.href="noticeRead?no="+${ReadBoard.no}+"";
+		location.href="noticeRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
 	}
 	
 	function updatecomment(no){
@@ -323,30 +323,32 @@ function delectAjax(no){
 													</div>
 
 													<div id="respond" class="comment-respond">
-														<h3 id="reply-title" class="comment-reply-title">
+<!-- 														<h3 id="reply-title" class="comment-reply-title">
 															댓글 쓰기 <small> <a rel="nofollow"
 																id="cancel-comment-reply-link"
 																href="http://myforum.dothome.co.kr/my-favorite-model/#respond"
 																style="display: none;">댓글 취소</a>
 															</small>
-														</h3>
+														</h3> -->
 														
 														
 														<form action="comment" method="post" id="commentform" class="comment-form">
 															<p class="comment-notes">
 																<input type="hidden" name="boardNo" value="${ReadBoard.no}">
 																<input type="hidden" name="category" value="${ReadBoard.category}">
-															
+															<!-- 
 																<span id="email-notes">여러분의 생각을 댓글을 남겨 주세요! <span
 																	class="required">*</span>
-																</span>
+																</span> -->
 															</p>
+															<div>
 															<p class="comment-form-author">
 																<label for="author">이름<span class="required"></span></label>
 																<input id="author" name="auth" type="text"
 																	readonly="true" value="${sessionScope.member.nickname}" size="30"
 																	aria-required="true" required="required">
 															</p>
+															</div>
 															<p class="comment-form-comment">
 																<label for="comment">내용</label>
 																<textarea id="comment" name="content" cols="45" rows="8"

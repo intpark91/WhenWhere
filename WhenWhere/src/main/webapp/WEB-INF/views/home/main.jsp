@@ -6,7 +6,7 @@
 <html>
 <head>
 <jsp:include page="../component/core_head.jsp" />
-<title>WhenWhereTest</title>
+<title>WhenWhere</title>
 <link rel="stylesheet"
 	href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
 <link rel="stylesheet" href="../css/jquery-ui-slider-pips.css" />
@@ -154,6 +154,5 @@ desired effect
 	<script src="../js/jquery-ui-slider-pips.js"></script>
 	<script src="../js/slider.js"></script>
 	<script src='../js/loadingSpinner.js'></script>
-	
 </body>
 </html>
