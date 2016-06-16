@@ -268,13 +268,16 @@ function delectAjax(no){
 											</div>		
 										</div>
 
-									</div>									
+									</div>		
+									<c:if test="${sessionScope.member.getAuthority() != 'admin' }">							
 											<div id="btnWrap">
 												<button class="noticeboard" id="reviewwrite" type="button" onclick="delectAjax(${ReadBoard.no});">삭제하기</button>
 												<button class="noticeboard" id="reviewwrite" type="button" onclick="modifyForm(${ReadBoard.no});">수정하기</button>
 												
 											</div>
+										</c:if>
 										</div>
+										
 									</div>
 									<div class="comment_wrap">
 										<div class="con_area">
