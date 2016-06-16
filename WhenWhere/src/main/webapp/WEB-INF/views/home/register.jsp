@@ -211,6 +211,6 @@
 				}
 			})
 		}
-	</script>
+	</script> 
 </body>
 </html>
