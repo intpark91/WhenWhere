@@ -440,6 +440,7 @@ $(document).ready(function() {
 			 
 			
 		}else{
+			$('.readMore').text('Read more...');
 			$('.modal-footer').css('display','block');
 			$('.detail2').parent().remove();
 			$('.carousel-indicators').append('<li data-target="#detailCarousel" data-slide-to="1" class="active"></li>');
