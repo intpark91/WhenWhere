@@ -132,7 +132,7 @@ $(document).ready(function() {
 							captionDiv.append(title);
 							captionDiv.append($('<span class="recommend glyphicon glyphicon-thumbs-up">' +data.searchEventList[j].bRecommend+ '</span>'));
 							captionDiv.append(content);
-							captionDiv.append($('<input type="hidden" value="#?bNo='+data.searchEventList[j].bNo+'">'));
+							captionDiv.append($('<input type="hidden" value="../board/eventRead?no='+data.searchEventList[j].bNo+'&category=4">'));
 							imgA.append($('<input type="hidden" value="'+data.searchEventList[j].eSDate+'~'+data.searchEventList[j].eEDate+'">'));
 							imgA.append($('<input type="hidden" value="'+data.searchEventList[j].locName+'">'));
 							imgA.append($('<input type="hidden" value="'+data.searchEventList[j].bRecommend+'">'));
@@ -347,6 +347,13 @@ $(document).ready(function() {
 				div.append(spanVal);
 				$('.detail2').append(div);
 			}
+			var spanSub = $('<span/>').attr('class','spanSub').text(detailSub[detail.length-1]),
+			spanVal = $('<span/>').attr('class','spanVal').html(detail[detail.length-1]);
+			$('.detail2').append($('<hr>'));
+			var div = $('<div/>').attr('class','justifyDiv');
+			div.append(spanSub);
+			div.append(spanVal);
+			$('.detail2').append(div);
 		}
 		
 

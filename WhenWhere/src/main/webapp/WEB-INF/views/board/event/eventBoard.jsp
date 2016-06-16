@@ -28,7 +28,9 @@ margin-bottom : -35px;
 		$('.eventwrite').on('click',function(){
 			location.href="eventWrite?category=4";
 		});
-		$('.img p:has(img)').css('display','none'); 
+		$('.eventContent').find('img').each(function() {
+			$(this).css('display','none');
+		})
 	});
 </script>
 </head>
@@ -97,8 +99,8 @@ margin-bottom : -35px;
 													<h3>													
 														<a href="eventRead?no=${item.NO}&category=4" >${item.TITLE}</a>
 													</h3>
-													<h4 >
-														${item.CONTENT}												
+													<h4 class="eventContent">
+														${item.CONTENT}
 													</h4>
 													<p>
 													${item.SDATE} ~ ${item.EDATE}
@@ -125,7 +127,7 @@ margin-bottom : -35px;
 														<a href="eventRead?no=${item.NO}&category=4">${item.TITLE}</a>
 													</h3>
 													<h4>
-														${item.CONTENT}												
+														${item.CONTENT}										
 													</h4>
 													<p>
 													${item.SDATE} ~ ${item.EDATE}

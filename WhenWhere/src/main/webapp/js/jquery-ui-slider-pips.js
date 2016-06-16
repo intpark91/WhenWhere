@@ -641,7 +641,7 @@ function getWeather(locName) {
 			
 		},
 		error:function(){
-			alert('error');
+			alert('weather error');
 		}
 	});
 }
@@ -715,10 +715,11 @@ function getEventList(){
 					carouselDiv.append(itemDiv);
 				}
 				
+				
 				captionDiv.append($('<span class="recommend glyphicon glyphicon-thumbs-up">' +data.searchEventList[j].bRecommend+ '</span>'));
 				captionDiv.append(title);
 				captionDiv.append(content);
-				captionDiv.append($('<input type="hidden" value="#?bNo='+data.searchEventList[j].bNo+'">'));
+				captionDiv.append($('<input type="hidden" value="../board/eventRead?no='+data.searchEventList[j].bNo+'&category=4">'));
 				imgA.append($('<input type="hidden" value="'+data.searchEventList[j].eSDate+'~'+data.searchEventList[j].eEDate+'">'));
 				imgA.append($('<input type="hidden" value="'+data.searchEventList[j].locName+'">'));
 				imgA.append($('<input type="hidden" value="'+data.searchEventList[j].bRecommend+'">'));
@@ -770,7 +771,7 @@ function getDetailContent(){
 			detail[k] = $(this).val();
 		});
 		
-		for(var i=0; i<detail.length; i++){
+		for(var i=0; i<detail.length-1; i++){
 			var spanSub = $('<span/>').attr('class','spanSub').text(detailSub[i]),
 			spanVal = $('<span/>').attr('class','spanVal').text(detail[i]);
 			
@@ -780,6 +781,13 @@ function getDetailContent(){
 			div.append(spanVal);
 			$('.detail2').append(div);
 		}
+		var spanSub = $('<span/>').attr('class','spanSub').text(detailSub[detail.length-1]),
+		spanVal = $('<span/>').attr('class','spanVal').html(detail[detail.length-1]);
+		$('.detail2').append($('<hr>'));
+		var div = $('<div/>').attr('class','justifyDiv');
+		div.append(spanSub);
+		div.append(spanVal);
+		$('.detail2').append(div);
 		
 	});
 	
