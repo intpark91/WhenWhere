@@ -232,7 +232,7 @@ $(document).ready(function() {
 							}
 
 						}
-						
+						 
 						if(data.searchFoodList.length == 0){
 							carousel2.children('h1').text('※ 해당 기간내에 특산물 검색결과가 존재하지 않습니다.').attr('class','label searchFail');
 						}
