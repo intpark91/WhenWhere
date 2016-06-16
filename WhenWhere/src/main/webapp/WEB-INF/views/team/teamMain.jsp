@@ -692,7 +692,7 @@ span#roomTitle {
 	    	  default :  typeName = '기타';
 	    	  			 className = '<span class="label label-danger">';
 	    	             break;
-	    	}
+	    	} 
 
 			str += '<tr role="row" class="'+ class_no + ' ' + class_team + ' ' + class_sts + '\">'
 					+ '<td id="teamname" style="width: 80px;">' + this.teamname + '</td>'
