@@ -5,7 +5,7 @@
 <html>
 <head>
 	<jsp:include page="../component/core_head.jsp" />
-	<title>WhenWhereTest</title>
+	<title>WhenWhere</title>
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 	<!-- Select2 -->
     <link rel="stylesheet" href="../css/daterangepicker-bs3.css">
@@ -54,14 +54,38 @@
 			margin-left: 4%;
 		}
 		
-		/* div#roomListDiv {
-			min-height: 335px;
+		.list-group-unbordered > .list-group-item {
+		    text-overflow: ellipsis;
+		    overflow: hidden;
+		    word-break: break-word;
 		}
 		
-		.box-body>.table {
-			margin-bottom: 0;
-			height: 276px;
-		} */
+		b#a_url {
+		    color: #E91E63;
+		}
+		
+		.box.box-primary {
+		    padding: 5%;
+		}
+		
+		.list-group {
+		    padding: 5px 30px;
+		}
+		
+		.col-sm-6.join-btn {
+    		margin-bottom: 10px;
+		}
+		
+		.direct-chat-img {
+     border-radius: 0%; 
+}
+div#chat-box {
+    height: 600px;
+} 
+span#roomTitle {
+    font-size: 20px;
+    color: darkblue;
+}
 </style>
 </head>
 
@@ -156,7 +180,46 @@
 						<!-- /.box-body -->
 					</div>
 				</div>
-				<div class="col-sm-3 ">
+				<div class="col-sm-6">
+					<div class="col-sm-12 teamList">
+						<div id="roomListDiv" class="box box-default">
+							<div class="box-header">
+								<h3 class="box-title">
+									<span> 팀 목록을 선택하면 <b style="color : red;">상세보기</b>를 할 수 있어요 </span>
+								</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body table-responsive no-padding">
+								<table class="table table-hover mainTr">
+									<thead>	
+										<tr>
+											<th style="width: 80px;" >팀 이름</th>
+											<th style="max-width: 20px;">시작 일</th>
+											<th style="max-width: 20px;">종료 일</th>
+											<th style="width: 80px;" class="hidden-xs">팀 상태</th>
+											<th style="width: 80px;" class="hidden-xs">팀 유형</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+								<div class="box-footer clearfix">
+									<ul class="pagination pagination-sm no-margin pull-right">
+										<li><a href="#">&laquo;</a></li>
+										<li><a href="#">1</a></li>
+										<li><a href="#">2</a></li>
+										<li><a href="#">3</a></li>
+										<li><a href="#">4</a></li>
+										<li><a href="#">5</a></li>
+										<li><a href="#">&raquo;</a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- /.box-body -->
+						</div>
+						<!-- /.box -->
+					</div>
+					<div class="col-sm-12 ">
 					<!-- Profile Image -->
 					<div class="box box-primary">
 						<div class="box-body box-profile">
@@ -172,83 +235,103 @@
 								<!-- <li class="list-group-item"><b>팀 인원</b> 
 									<a id="a_no" class="pull-right"> 알수없음 </a>
 								</li> -->
-								<li class="list-group-item"><b>팀 URL</b> 
-									<a id="a_url" class="pull-right"> 알수없음 </a>
+								<li class="list-group-item">
+									<b>팀 URL</b> 
+									<a>
+										<b class="pull-right" id="a_url"></b>
+									</a>
 								</li>
 								<li class="list-group-item"><b>팀 상태</b>
-								 	<a id="a_sts" class="pull-right"> 알수없음 </a>
+								 	<a id="a_sts" class="pull-right">  </a>
 								</li>
 								<li class="list-group-item"><b>팀원 목록</b>
-								 	<a id="a_sts" class="pull-right"> 알수없음 </a>
+								 	<a id="a_list" class="pull-right">  </a>
+								</li>
+								<li class="list-group-item"><b>팀 유형</b>
+								 	<a id="a_type" class="pull-right">  </a>
 								</li>
 							</ul>
-
-							<a href="#" class="btn btn-primary btn-block"><b>팀을 선택하세요!</b></a>
-						</div>
-						<!-- /.box-body -->
-					</div>
-				</div>
-				<div class="col-sm-9 teamList">
-					<div id="roomListDiv" class="box box-default">
-						<div class="box-header">
-							<h3 class="box-title">
-								<span> 팀 목록을 선택하면 <b style="color : red;">상세보기</b>를 할 수 있어요 </span>
-							</h3>
-						</div>
-						<!-- /.box-header -->
-						<div class="box-body table-responsive no-padding">
-							<table class="table table-hover mainTr">
-								<thead>	
-									<tr>
-										<th style="width: 80px;" >팀 이름</th>
-										<th style="max-width: 20px;">시작 일</th>
-										<th style="max-width: 20px;">종료 일</th>
-										<th style="width: 80px;" class="hidden-xs">팀 상태</th>
-										<th style="width: 80px;" class="hidden-xs">팀 유형</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
-							<div class="box-footer clearfix">
-								<ul class="pagination pagination-sm no-margin pull-right">
-									<li><a href="#">&laquo;</a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">&raquo;</a></li>
-								</ul>
+							
+							<div class="col-sm-12 ">
+								<div class="col-sm-6 join-btn">
+									<a href="#" class="btn btn-primary btn-block btn-type"><b> 선택된 팀 없음 </b></a>
+								</div>
+								<div class="col-sm-6">
+									<a href="#" class="btn btn-primary btn-block"><b>팀원 관리하기</b></a>
+								</div>
 							</div>
 						</div>
 						<!-- /.box-body -->
 					</div>
-					<!-- /.box -->
 				</div>
-				<div class="col-sm-12">
-					<div id="chattingRoom" class="box box-success collapsed-box">
-						<div class="box-header">
-							<i class="fa fa-comments-o"></i> <span id="roomTitle">선택된
-								팀이 없습니다.</span>
-							<h3 class="box-title room-title"></h3>
-						</div>
-						<div class="box-body chat" id="chat-box">
-							<!-- chat item -->
-							<div class="item chat_main_body">*</div>
-							<!-- /.item -->
-							<div class="box-footer">
-								<div class="input-group">
-									<input class="form-control" placeholder="Type message..."
-										name="chatInput">
-	
-									<div class="input-group-btn">
-										<button type="button" onclick="sendMsg();"
-											class="btn btn-success">
-											<i class="fa fa-plus"></i>
+				</div>
+				<div class="col-sm-6">
+					<div id="chattingRoom">
+						<div class="ddo-chat box box-primary direct-chat direct-chat-primary collapsed-box">
+							<div class="box-header with-border">
+								<i class="fa fa-comments-o"></i> 
+									<span id="roomTitle">선택된 팀이 없습니다.</span>
+									<h3 class="box-title room-title">g</h3>
+									<div class="box-tools pull-right">
+										<span data-toggle="tooltip" title="3 New Messages"
+											class="badge bg-light-blue">3</span>
+										<button type="button" class="btn btn-box-tool"
+											data-widget="collapse">
+											<i class="fa fa-minus"></i>
+										</button>
+										<button type="button" class="btn btn-box-tool" data-widget="remove">
+											<i class="fa fa-times"></i>
 										</button>
 									</div>
+							</div>
+							<div class="box-body chat direct-chat-messages" id="chat-box">
+								<!-- chat item -->
+								<div class="item chat_main_body">
+									
+									<div class="direct-chat-msg">
+										<div class="direct-chat-info clearfix">
+											<span class="direct-chat-name pull-left">
+												Alexander Pierce
+											</span> 
+											<span class="direct-chat-timestamp pull-right">
+												23 Jan 2:00 pm
+											</span>
+										</div>
+										<img class="direct-chat-img" src="../images/team/team2.PNG" alt="Message User Image">
+										<div class="direct-chat-text">
+											Is this template really
+											for free? That's unbelievable!
+										</div>
+									</div>
+
+									<!-- Message to the right -->
+									<div class="direct-chat-msg right">
+										<div class="direct-chat-info clearfix">
+											<span class="direct-chat-name pull-right">
+												Sarah
+												Bullock
+											</span> 
+											<span class="direct-chat-timestamp pull-left">
+												23 Jan 2:05 pm
+											</span>
+										</div>
+										<img class="direct-chat-img" src="../images/team/team1.PNG" alt="Message User Image">
+										<div class="direct-chat-text">You better believe it!</div>
+									</div>
+									
 								</div>
+							</div>
+							<!-- /.item -->
+							<div class="box-footer">
+								<form action="#" method="post">
+									<div class="input-group">
+										<input type="text" name="message"
+											placeholder="Type Message ..." class="form-control">
+										<span class="input-group-btn">
+											<button type="submit" class="btn btn-primary btn-flat">Send</button>
+										</span>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -270,6 +353,7 @@
 	<script type="text/javascript">
 	
 	var teamList = new Array();
+	var sessionNick = '';
 	
 	$(function() {
 		/* ************ 팀 리스트에 대한 정보를 불러옴 ******************/
@@ -283,6 +367,28 @@
 	    });
 	    
 	    clickTr();
+	    
+	    $('.btn-type').click(function(){
+	    	var teamSts = $('#a_sts').text()
+	    	var selectArr = new Array("가입가능", "승낙대기중", "팀 방장", "팀원");
+			/*  a_sts a_no a_url  */
+			switch (teamSts) {
+				case '0':
+					alert('팀에 가입하시겠습니까?');
+					//가입신청 후 대기중 상태로 텍스트 바꿔주기
+					break;
+				case '1':
+					alert('승낙 대기중 상태입니다');
+					break;
+				case '2':
+					alert('방장입니다 ');
+					break;
+				case '3':
+					alert('정말로 팀에서 탈퇴하시겠습니까?');
+					// 탈퇴후 가입신청으로 텍스트 바꿔주기
+					break;
+			} 
+	    });
 	});
 
 	function clickTr(){
@@ -296,64 +402,85 @@
 			
 			teamNum = trInfo.split(' ')[0].split('_no_')[1];
 			teamName = trInfo.split(' ')[1].split('_name_')[1];
-			
-			teamurl = 'http://192.168.8.31:8088/WhenWhere/home/team?teanNum='+teamNum+'&teamname='+teamName;
+			teamSts = trInfo.split(' ')[2].split('_sts_')[1];
+			dataVal = '';
+			teamurl = 'http://192.168.8.31:8088/WhenWhere/home/team?teamNum='+teamNum+'&teamname='+teamName;
 			console.log(teamurl);
+			
+			var span = $(this).find('#spanTag span').clone();
+			
 			$('#a_sts').text($(this).find('#status').text());
 			$('#a_no').text();
-			$('#a_url').text();
+			$('#a_url').text(teamurl);
+			$('#a_type').html(span);
 			$('h3.profile-username').text($(this).find('#teamname').text());
 			
+			switch (teamSts) {
+				case '0':
+					$('.btn-type b').text('팀에 가입하기');
+					//가입신청 후 대기중 상태로 텍스트 바꿔주기
+					break;
+				case '1':
+					$('.btn-type b').text('승낙 대기중');
+					break;
+				case '2':
+					$('.btn-type b').text('팀 폭파하기');
+					break;
+				case '3':
+					$('.btn-type b').text('팀 탈퇴하기');
+					break;
+			} 
 			
-			if(false){
-				$.ajax({
-			           type:"POST",
-			           url:"../chat/checkRoomPwd",
-			           dataType:"JSON",
-			           data : pwdObject,
-			           success : function(data) {
-			        	   if(data.ok){
-			        		    alert('비밀번호가 일치합니다.');
-			        		    
-	        			   		$('.chat_main_body').html('');
-			       				$('#roomTitle').removeClass('nowRoom');
-			       				$('#roomTitle').text('아직 채팅방이 개설되지 않았습니다.');
-			        	   }else{
-			        		   alert('비밀번호가 일치하지 않습니다');
-			        		   return;
-			        	   }
-			           },
-			           complete : function(data) {
-			           },
-			           error : function(xhr, status, error) {
-			                 console.log(error + "return : " + xhr.responseText);
-			           }
-			    	});
-			}
-			
-			/* $.ajax({
+			$.ajax({
 		           type:"POST",
-		           url:"../chat/enterRoom",
+		           url:"../team/getTeamUserList",
+		           dataType:"JSON",
+		           data : {"teamNum":teamNum },
+		           success : function(data) {
+		        	   if(data[0].ok){
+        			   		$('.chat_main_body').html('');
+		       				$('#roomTitle').removeClass('nowRoom');
+		       				
+							console.log(data[1]);
+							j = 0;
+		       				while(true){
+		       					dataVal += data[1].split(',')[j++];
+		       					dataVal += ' ';
+		       					if(data[1].split(',')[j] == 'end')
+		       						break;
+		       					console.log(dataVal);
+		        	  		 }
+		       				$('#a_list').text(dataVal);
+		        	   }else{
+		        		   alert('비밀번호가 일치하지 않습니다');
+		        		   return;
+		        	   }
+		           },
+		           complete : function(data) {
+		           },
+		           error : function(xhr, status, error) {
+		                 console.log(error + "return : " + xhr.responseText);
+		           }
+		    	});
+			
+			if(teamSts == 2 || teamSts == 3){
+				$.ajax({
+		           type:"POST",
+		           url:"../team/chatTeam",
 		           dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
-		           data : { "roomNum": click_num },
+		           data : { "teamNum": teamNum },
 		           success : function(data) {
 		        	   console.log(data);
 		        	  
-		        	   if(data.ok){
+		        	   if(data[0].ok){
 		        		   $('input[name=title]').val('');
-		        	   	   $('#roomMakeDiv').addClass('collapsed-box');
-		        	   	   /* $('#roomMakeDiv .box-body').css('display','none'); 
-		        		   $('#roomListDiv').addClass('collapsed-box');
-		        		   $('#chattingRoom').removeClass('collapsed-box');
+		        		   $('.ddo-chat').removeClass('collapsed-box');
 		        		 
-		        		   title=data.title;
-		        		   user=data.name;
+		        		   $('#roomTitle').text('팀이름:');
+		        		   $('.room-title').text(teamName);
 		        		   
-		        		   $('#roomTitle').text('방제목:');
-		        		   $('.room-title').text(title);
 		        		   
-		        		   websocket(); //websocket연결
-		        		   sendMsg(); //msg 출력
+		        		   
 		        	   }
 		           },
 		           complete : function(data) {
@@ -362,7 +489,12 @@
 		           error : function(xhr, status, error) {
 		                 console.log(error);
 		           }
-		    }); */
+		   		}); 
+			}else if(teamSts == 0){
+				alert('팀 구성원이 아닙니다');
+			}else{
+				alert('팀 승낙 대기상태입니다.');
+			}
 		});
 	}
 	
@@ -389,7 +521,8 @@
 
 						team = new teamObj(json_param);
 						str_Txt = team.team_format();
-
+						sessionNick = data[i].nickname;
+						
 						$('.mainTr tbody').append(str_Txt);
 					}
 				}
@@ -419,7 +552,8 @@
 			var str='';
 			var class_no = 'team_no_'+this.no;
 			var class_team = 'team_name_'+this.teamname;
-			var selectArr = new Array("가입가능", "승낙대기중", "팀 방장");
+			var class_sts = 'team_sts_'+this.status;
+			var selectArr = new Array("가입가능", "승낙대기", "팀장", "팀원");
 			/*  a_sts a_no a_url  */
 			switch (this.status) {
 				case 0:
@@ -430,6 +564,9 @@
 					break;
 				case 2:
 					status = selectArr[2];
+					break;
+				case 3:
+					status = selectArr[3];
 					break;
 			} 
 			
@@ -451,16 +588,52 @@
 	    	             break;
 	    	}
 
-			str += '<tr role="row" class="'+ class_no + ' ' + class_team +'">'
+			str += '<tr role="row" class="'+ class_no + ' ' + class_team + ' ' + class_sts + '\">'
 					+ '<td id="teamname" style="width: 80px;">' + this.teamname + '</td>'
-					+ '<td id="sdate" style="max-width: 20px;" class="hidden-xs">'	+ this.sdate + '</td>'
+					+ '<td id="sdate" style="max-width: 20px;">'	+ this.sdate + '</td>'
 					+ '<td id="edate" style="max-width: 20px;">'+ this.edate + '</td>'
-					+ '<td style="width: 80px;" class="hidden-xs">' + className + typeName +'</span></td>'
-					+'<td id="status" style="width: 80px;" class="hidden-xs">' + status + '</td></tr>';
+					+ '<td id="status" style="width: 80px;" class="hidden-xs">' + status + '</td>'
+					+ '<td id="spanTag" style="width: 80px;" class="hidden-xs">' + className + typeName +'</span></td></tr>';
 			return str;
 			}
 		}
 
+	function msgObj(param) {
+
+		this.nickName = param[0];
+		this.content = param[1];
+
+		this.msg_format = function() {
+			
+			//내가쓴글이면 오른쪽배치 아닐시 왼쪽 배치 
+			switch (this.subject) {
+	    	  case '0' :  typeName = '전체';
+	    	 			 className = '<span class="label label-danger">';
+	    	  			 break;
+	    	  case '1' :  typeName = '동행';
+		 	 			 className = '<span class="label label-success">';
+		 	  			 break;
+	    	  case '2'  :  typeName = '숙박';
+	 			 		 className = '<span class="label label-warning">';
+	 			 		 break;
+	    	  case '3'  :  typeName = '예약';
+				 		 className = '<span class="label label-primary">';
+				 		 break;
+	    	  default :  typeName = '기타';
+	    	  			 className = '<span class="label label-danger">';
+	    	             break;
+	    	}
+
+			str += '<tr role="row" class="'+ class_no + ' ' + class_team + ' ' + class_sts + '\">'
+					+ '<td id="teamname" style="width: 80px;">' + this.teamname + '</td>'
+					+ '<td id="sdate" style="max-width: 20px;">'	+ this.sdate + '</td>'
+					+ '<td id="edate" style="max-width: 20px;">'+ this.edate + '</td>'
+					+ '<td id="status" style="width: 80px;" class="hidden-xs">' + status + '</td>'
+					+ '<td id="spanTag" style="width: 80px;" class="hidden-xs">' + className + typeName +'</span></td></tr>';
+			return str;
+			}
+		}
+	
 		function makeTeam() {
 			var date = $('#reservation').val();
 			var formData = $('form').serialize() + "&sdate="

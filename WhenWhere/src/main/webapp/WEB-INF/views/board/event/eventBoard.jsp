@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!DOCTYPE html>
 <html>
 <head>
 	<jsp:include page="../../component/core_head.jsp" />
+	
 	<title>WhenWhere</title>
 	<link rel="stylesheet" href="../css/board/eventboard.css" type="text/css">
 	<style>
@@ -213,6 +214,5 @@ margin-bottom : -35px;
 	</div>
 	
 	<jsp:include page="../../component/core_js.jsp" />
-
 </body>
 </html>

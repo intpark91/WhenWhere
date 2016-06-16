@@ -22,7 +22,7 @@
 		<!-- Sidebar Menu -->
 		<ul class="sidebar-menu">
 			<!-- Optionally, you can add icons to the links -->
-			<li class="active"><a href="../home/searchForm"> <i
+			<li><a href="../home/searchForm"> <i
 					class="fa fa-search" aria-hidden="true"></i> <span>Search</span>
 			</a></li>
 			<li><a href="../board/notice?category=1"> <i
@@ -52,7 +52,5 @@
 				</a></li>
 			</c:if>
 		</ul>
-		<!-- /.sidebar-menu -->
 	</section>
-	<!-- /.sidebar -->
 </aside>

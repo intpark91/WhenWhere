@@ -103,17 +103,19 @@ function delectAjax(no){
 	   }
 	});
 	
-	function commentmodify(no){
-			$('#'+no+' .comm_comment').html('');			
-			$('<p><form><textarea id="comment2" name="comment_rp" cols="45" rows="8"></textarea </form></p>').appendTo('#'+no+'');
-			$('#'+no+' #commentdelete').html('수정 취소');
-			$('#'+no+' #commentdelete').attr('onclick','read();');
-			$('#'+no+' #commentmodify').html('수정 확인');
-			$('#'+no+' #commentmodify').attr('onclick','updatecomment('+no+');');
+	function commentmodify(no,commentcontent){
+			console.log(commentcontent);
+						
+			$('<p><form><textarea id="comment2" name="comment_rp" cols="45" rows="8"  placeholder="'+commentcontent+'"></textarea </form></p>').appendTo('#'+no+'');
+			$('.comm_comment').html('');
+			$(' #commentdelete').html('수정 취소');
+			$(' #commentdelete').attr('onclick','read();');
+			$(' #commentmodify').html('수정 확인');
+			$(' #commentmodify').attr('onclick','updatecomment('+no+');');
 	}
 	
 	function read(){
-		location.href="noticeRead?no="+${ReadBoard.no}+"";
+		location.href="noticeRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
 	}
 	
 	function updatecomment(no){
@@ -288,7 +290,7 @@ function delectAjax(no){
 																<div id="comment-27">
 																
 																<c:forEach var="item" items="${Noticecomment}" varStatus="status">																
-																	<div class="post-wrap rel" id="${item.no}">
+																	<div class="post-wrap rel">
 																		<div class="reply_text"></div>
 																		<div class="postcontentreply">
 																			<div class="comment-guts">
@@ -296,7 +298,7 @@ function delectAjax(no){
 																					<img src="../images/eventimg/user.JPG">
 																				</div>
 																				<div class="comment-guts-pads">																					
-																					<div class="says">${item.auth}</div>
+																					<div id="${item.no}"  class="says">${item.auth}</div>
 																					<p class="comm_comment">${item.content}</p>
 																				</div>																																				
 																			</div>
@@ -307,7 +309,7 @@ function delectAjax(no){
 																		</div>	 -->
 																		<!-- END postcontentreply -->	
 																		<button class="commentdelete" id="commentdelete" onclick="commentdelete(${item.no});">댓글 삭제</button>
-																		<button class="commentdelete" id="commentmodify" onclick="commentmodify(${item.no});">댓글 수정</button>
+																		<button class="commentdelete" id="commentmodify" onclick="commentmodify(${item.no},'${item.content}');">댓글 수정</button>
 																																																				
 																	</div>
 																</c:forEach>	
@@ -323,30 +325,32 @@ function delectAjax(no){
 													</div>
 
 													<div id="respond" class="comment-respond">
-														<h3 id="reply-title" class="comment-reply-title">
+<!-- 														<h3 id="reply-title" class="comment-reply-title">
 															댓글 쓰기 <small> <a rel="nofollow"
 																id="cancel-comment-reply-link"
 																href="http://myforum.dothome.co.kr/my-favorite-model/#respond"
 																style="display: none;">댓글 취소</a>
 															</small>
-														</h3>
+														</h3> -->
 														
 														
 														<form action="comment" method="post" id="commentform" class="comment-form">
 															<p class="comment-notes">
 																<input type="hidden" name="boardNo" value="${ReadBoard.no}">
 																<input type="hidden" name="category" value="${ReadBoard.category}">
-															
+															<!-- 
 																<span id="email-notes">여러분의 생각을 댓글을 남겨 주세요! <span
 																	class="required">*</span>
-																</span>
+																</span> -->
 															</p>
+															<div>
 															<p class="comment-form-author">
 																<label for="author">이름<span class="required"></span></label>
 																<input id="author" name="auth" type="text"
 																	readonly="true" value="${sessionScope.member.nickname}" size="30"
 																	aria-required="true" required="required">
 															</p>
+															</div>
 															<p class="comment-form-comment">
 																<label for="comment">내용</label>
 																<textarea id="comment" name="content" cols="45" rows="8"

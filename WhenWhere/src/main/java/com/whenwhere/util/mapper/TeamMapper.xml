@@ -36,4 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update jointeam set t_status = '3' where t_no = #{tNo} and nickname = #{nickname}
 	</update>
 	
+	<select id="getchatTeam" resultType="com.whenwhere.team.vo.TeamChatVO">
+		select CHAT_NO as msgNo, nickname, content, T_NO as teamNo from TEAMCHAT where t_no = #{teamNum}
+	</select>
 </mapper> 

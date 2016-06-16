@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.whenwhere.team.dao.TeamDAO;
+import com.whenwhere.team.vo.TeamChatVO;
 import com.whenwhere.team.vo.TeamVO;
 import com.whenwhere.user.vo.MemberVO;
 
@@ -196,6 +197,37 @@ public class TeamService {
 		}
 		
 		return jsonObject.toJSONString();
+	}
+	public String chatTeam(HttpServletRequest request, HttpSession session, int teamNum) {
+		TeamDAO dao = sqlSessionTemplate.getMapper(TeamDAO.class);
+		JSONObject obj = new JSONObject();
+		JSONArray jsonArr = new JSONArray();
+		
+		obj.put("ok", true);
+		jsonArr.add(obj);
+		
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		
+		if (member != null){
+			String sessionNick = member.getNickname();
+			
+			List<TeamChatVO> teamList = new ArrayList<TeamChatVO>();
+			teamList = dao.getchatTeam(teamNum);
+			
+			for(int i=0;i<teamList.size();i++){
+				obj = new JSONObject();
+				
+				obj.put("nickName", teamList.get(i).getNickName());
+				obj.put("msgNo", teamList.get(i).getMsgNo());
+				obj.put("content", teamList.get(i).getContent());
+				
+				jsonArr.add(obj);
+			}
+		}else{
+			System.out.println("로그인해");
+		}
+		System.out.println(jsonArr.toJSONString());
+		return jsonArr.toJSONString();
 	}
 }
  

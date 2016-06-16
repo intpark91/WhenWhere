@@ -7,3 +7,4 @@
 <script src="../js/app.js"></script>
 <script src="../js/jquery.bootstrap-growl.min.js"></script>
 <script src="../js/detect-device.js"></script>
+<script src="../js/board_js/boardbackground.js"></script>
