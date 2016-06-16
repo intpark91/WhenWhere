@@ -200,7 +200,7 @@
 		        $('input[name=chatInput]').on('keydown', function(evt){
 		            if(evt.keyCode==13){
 		               
-		            	var msg = $('input[name=chatInput]').val();
+		            	var msg = $('input[name=chatInput]').val(); 
 		                
 		                sendObj = new Object();
 		                sendObj.msg = msg;
