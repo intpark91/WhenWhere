@@ -2,7 +2,7 @@
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Left side column. contains the logo and sidebar -->
-<aside class="main-sidebar">
+<aside class="main-sidebar" style="background-color: rgba(255, 255, 255, 0.3)">
 
 	<!-- sidebar: style can be found in sidebar.less -->
 	<section class="sidebar">

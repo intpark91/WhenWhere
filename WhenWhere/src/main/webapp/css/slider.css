@@ -120,7 +120,7 @@
 #flat-slider .ui-slider-handle, #flat-slider .ui-slider-range,
 	#flat-slider .ui-slider-pip[class*=ui-slider-pip-selected] .ui-slider-line,
 	#flat-slider .ui-slider-pip.ui-slider-pip-inrange .ui-slider-line {
-	background-color: #EFBFEA;
+	background-color: #31b0d5;
 	    border: 2px solid white;
 }
 
