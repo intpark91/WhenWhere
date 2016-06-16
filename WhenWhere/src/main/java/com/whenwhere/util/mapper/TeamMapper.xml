@@ -16,4 +16,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from JOINTEAM join,TEAM t
 		where join.T_NO = t.T_NO and nickname = #{nickName}
 	</select>
+	
+	
 </mapper> 

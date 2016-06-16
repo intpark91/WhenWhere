@@ -84,24 +84,104 @@ $(document).ready(function() {
 						var carousel1 = $('#myCarousel1'),
 						carousel2 = $('#myCarousel2'),
 						carousel3 = $('#myCarousel3');
+						carousel4 = $('#myCarousel4');
 
 						carousel1.empty();
 						carousel2.empty();
 						carousel3.empty();
-
+						carousel4.empty();
+						
+						carousel4.append($('<h1 class="slideLabel"><span class="label">※ 팀</span></h1>'));
 						carousel1.append($('<h1 class="slideLabel"><span class="label">※ 행사</span></h1>'));
 						carousel2.append($('<h1 class="slideLabel"><span class="label">※ 먹거리</span></h1>'));
 						carousel3.append($('<h1 class="slideLabel"><span class="label">※ 숙박</span></h1>'));
+						carousel4.append($('<div/>').attr('class','carousel-inner'));
 						carousel1.append($('<div/>').attr('class','carousel-inner'));
 						carousel2.append($('<div/>').attr('class','carousel-inner'));
 						carousel3.append($('<div/>').attr('class','carousel-inner'));
 
 						
+						if(data.searchTeamList.length == 0){
+							carousel4.children('h1').text('※ 해당 기간내에 팀 검색결과가 존재하지 않습니다.').attr('class','label searchFail');
+						}
+
+						var carouselDiv = carousel4.children('.carousel-inner');
+
+						for(var j=0; j<data.searchTeamList.length; j++){
+							var imgName, subject;
+							switch (data.searchTeamList[j].subject) {
+							case '0':
+								subject = '동행'
+								imgName = 'partnership.png'; break;
+							case '1':
+								subject = '숙박'
+								imgName = 'partnership.png'; break;
+							case '2':
+								subject = '예약'
+								imgName = 'partnership.png'; break;
+							case '3':
+								subject = '단체'
+								imgName = 'partnership.png'; break;
+							case '4':
+								subject = '기타'
+								imgName = 'partnership.png'; break;
+							}
+							
+							var itemDiv = carouselDiv.children('.item:last-child'),
+							thumbnailsUl = itemDiv.children('.thumbnails'),
+							colLi = $('<li/>').attr('class','col-sm-3'),
+							fDiv = $('<div/>').attr('class','fff'),
+							thumbnailDiv = $('<div/>').attr('class','thumbnail'),
+							img = $('<img/>').attr('src','../resources/img/partnership.png').attr('width','200px'),
+							/*img = $('<img/>').attr('src','http://192.168.8.13:8088/'+imgName+'').attr('width','200px'),*/
+							imgA = $('<a href="#" class="searchImgA" data-toggle="modal" data-target="#basicModal"></a>'),
+							captionDiv = $('<div/>').attr('class','caption'),
+							nav = $('<nav/>'),
+							navUl = $('<ul/>').attr('class','control-box pager'),
+							title = $('<h4>'+"["+data.searchTeamList[j].locName+"] "+data.searchTeamList[j].teamName+'</h4>').attr('class','label'),
+							content = $('<p>'+data.searchTeamList[j].tSDate+"~"+data.searchTeamList[j].tEDate+'</p>');
+
+							if(j % 4 == 0){
+								if(j == 0){
+									itemDiv = $('<div/>').attr('class','item active');
+								}else{
+									itemDiv = $('<div/>').attr('class','item');
+								}
+								thumbnailsUl = $('<ul/>').attr('class','thumbnails');
+								itemDiv.append(thumbnailsUl);
+								carouselDiv.append(itemDiv);
+							}
+
+							captionDiv.append(title);
+							captionDiv.append($('<span class="subName glyphicon">' +subject+ '</span>').attr('id','subName'+data.searchTeamList[j].subject));
+							captionDiv.append(content);
+							imgA.append($('<input type="hidden" value="'+data.searchTeamList[j].teamName+'">'));
+							imgA.append($('<input type="hidden" value="'+data.searchTeamList[j].tSDate+'~'+data.searchTeamList[j].tEDate+'">'));
+							imgA.append($('<input type="hidden" value="'+data.searchTeamList[j].locName+'">'));
+							imgA.append($('<input type="hidden" value="'+subject+'">'));
+							imgA.append(img);
+							thumbnailDiv.append(imgA);
+							fDiv.append(thumbnailDiv);
+							fDiv.append(captionDiv);
+							colLi.append(fDiv);
+							thumbnailsUl.append(colLi);
+
+							if(j == data.searchFoodList.length-1){
+								navUl.append($('<li><a data-slide="prev" href="#myCarousel4"><i class="glyphicon glyphicon-chevron-left"></i></a></li>'));
+								navUl.append($('<li><a data-slide="next" href="#myCarousel4"><i class="glyphicon glyphicon-chevron-right"></i></a></li>'));
+								nav.append(navUl);
+								carousel4.append(nav);
+							}
+
+						}
+						
+						
+						
 						if(data.searchEventList.length == 0){
 							carousel1.children('h1').text('※ 해당 기간내에 행사 검색결과가 존재하지 않습니다.').attr('class','label searchFail');
 						}
 						
-						var carouselDiv = carousel1.children('.carousel-inner');
+						carouselDiv = carousel1.children('.carousel-inner');
 
 						for(var j=0; j<data.searchEventList.length; j++){
 
@@ -308,6 +388,30 @@ $(document).ready(function() {
 			$('.modalContent').append($('<div class="item row"><div class="detail2 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10"></div></div>'));
 			
 			var detailSub = ['숙소 유형', '집 유형', '수용 인원', '침실 수'], 
+			detail = [];
+			$(this).children('input').each(function(k, v) {
+				detail[k] = $(this).val();
+			});
+			
+			for(var i=0; i<detail.length; i++){
+				var spanSub = $('<span/>').attr('class','spanSub').text(detailSub[i]),
+				spanVal = $('<span/>').attr('class','spanVal').text(detail[i]);
+				
+				$('.detail2').append($('<hr>'));
+				var div = $('<div/>').attr('class','justifyDiv');
+				div.append(spanSub);
+				div.append(spanVal);
+				$('.detail2').append(div);
+			}
+			 
+			
+		}else if($(this).parents('.carousel').attr('id') == 'myCarousel4'){
+			$('.modal-footer').css('display','block');
+			$('.detail2').parent().remove();
+			$('.carousel-indicators').append('<li data-target="#detailCarousel" data-slide-to="1" class="active"></li>');
+			$('.modalContent').append($('<div class="item row"><div class="detail2 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10"></div></div>'));
+			
+			var detailSub = ['팀 이름', '여행 기간', '지역', '모집 유형'], 
 			detail = [];
 			$(this).children('input').each(function(k, v) {
 				detail[k] = $(this).val();
