@@ -46,6 +46,9 @@
 							class="fa fa-pencil-square-o" aria-hidden="true"></i>Review
 					</a></li>
 				</ul></li>
+			<li><a href="../home/team"> <i
+					class="fa fa-user-plus" aria-hidden="true"></i> <span>Team</span>
+			</a></li>
 			<c:if test="${sessionScope.member != null }">
 				<li><a href="../home/admin"> <i class="fa fa-database"
 						aria-hidden="true"></i><span>Admin</span>
