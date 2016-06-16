@@ -156,7 +156,7 @@ $(document).ready(function() {
 							captionDiv.append(title);
 							captionDiv.append($('<span class="subName glyphicon">' +subject+ '</span>').attr('id','subName'+data.searchTeamList[j].subject));
 							captionDiv.append(content);
-							captionDiv.append($('<input type="hidden" value='+teamUrl+'">'));
+							captionDiv.append($('<input type="hidden" value='+teamUrl+'>'));
 							imgA.append($('<input type="hidden" value="'+data.searchTeamList[j].teamName+'">'));
 							imgA.append($('<input type="hidden" value="'+data.searchTeamList[j].tSDate+'~'+data.searchTeamList[j].tEDate+'">'));
 							imgA.append($('<input type="hidden" value="'+data.searchTeamList[j].locName+'">'));

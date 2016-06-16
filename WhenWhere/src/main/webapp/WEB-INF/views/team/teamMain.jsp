@@ -327,7 +327,7 @@ span#roomTitle {
 								<!-- chat item -->
 								<div class="item chat_main_body">
 									
-									<div class="direct-chat-msg">
+								<!-- 	<div class="direct-chat-msg">
 										<div class="direct-chat-info clearfix">
 											<span class="direct-chat-name pull-left">
 												Alexander Pierce
@@ -343,7 +343,7 @@ span#roomTitle {
 										</div>
 									</div>
 
-									<!-- Message to the right -->
+									Message to the right
 									<div class="direct-chat-msg right">
 										<div class="direct-chat-info clearfix">
 											<span class="direct-chat-name pull-right">
@@ -357,7 +357,7 @@ span#roomTitle {
 										<img class="direct-chat-img" src="../images/team/team1.PNG" alt="Message User Image">
 										<div class="direct-chat-text">You better believe it!</div>
 									</div>
-									
+									 -->
 								</div>
 							</div>
 							<!-- /.item -->
@@ -447,6 +447,8 @@ span#roomTitle {
 	var teamList = new Array();
 	var sessionNick = '';
 	var teamNum = 0;
+	var teamName = '';
+	
 	$(function() {
 		/* ************ 팀 리스트에 대한 정보를 불러옴 ******************/
 		getTeamList();
@@ -578,8 +580,7 @@ span#roomTitle {
 		        			   
 		        			   var msgObject = new msgObj(json_param);
 		        			   str_Txt = msgObject.msg_format();
-		        			   
-		        			   $('.mainTr').append(str_Txt);
+		        			   $('.item.chat_main_body').append(str_Txt);
 		        			   console.log(str_Txt);
 		        		   }
 		        		   
@@ -687,16 +688,16 @@ span#roomTitle {
 			} 
 			
 			switch (this.subject) {
-	    	  case '0' :  typeName = '전체';
+	    	  case '0' : typeName = '전체';
 	    	 			 className = '<span class="label label-danger">';
 	    	  			 break;
-	    	  case '1' :  typeName = '동행';
+	    	  case '1' : typeName = '동행';
 		 	 			 className = '<span class="label label-success">';
 		 	  			 break;
-	    	  case '2'  :  typeName = '숙박';
+	    	  case '2'  :typeName = '숙박';
 	 			 		 className = '<span class="label label-warning">';
 	 			 		 break;
-	    	  case '3'  :  typeName = '예약';
+	    	  case '3'  :typeName = '예약';
 				 		 className = '<span class="label label-primary">';
 				 		 break;
 	    	  default :  typeName = '기타';
@@ -720,26 +721,25 @@ span#roomTitle {
 		this.content = param[1];
 
 		this.msg_format = function() {
-			
 			//내가쓴글이면 오른쪽배치 아닐시 왼쪽 배치 
-			
-			/* <div class="direct-chat-msg">
-					<div class="direct-chat-info clearfix">
-						<span class="direct-chat-name pull-left">
-							Alexander Pierce
-						</span> 
-						<span class="direct-chat-timestamp pull-right">
-							23 Jan 2:00 pm
-						</span>
-					</div>
-					<img class="direct-chat-img" src="../images/team/team2.PNG" alt="Message User Image">
-					<div class="direct-chat-text">
-						Is this template really
-						for free? That's unbelievable!
-					</div>
-				</div> */
-			
-			switch (this.subject) {
+			if(this.nickName != sessionNick){
+				str ='';
+				str += '<div class="direct-chat-msg">'
+					+ '<div class="direct-chat-info clearfix">'
+					+ '<span class="direct-chat-name pull-left">' + this.nickName + '</span> '
+					+ '<span class="direct-chat-timestamp pull-right">' + '23 Jan 2:00 pm' + '</span></div> '
+					+ '<img class="direct-chat-img" src="../images/team/team2.PNG" alt="Message User Image">'
+					+ '<div class="direct-chat-text">' + this.content + '</div></div>';
+			}else{
+				str ='';
+				str += '<div class="direct-chat-msg right">'
+					+ '<div class="direct-chat-info clearfix">'
+					+ '<span class="direct-chat-name pull-right">' + this.nickName + '</span> '
+					+ '<span class="direct-chat-timestamp pull-left">' + '23 Jan 2:00 pm' + '</span></div> '
+					+ '<img class="direct-chat-img" src="../images/team/team1.PNG" alt="Message User Image">'
+					+ '<div class="direct-chat-text">' + this.content + '</div></div>';
+			}
+			/* switch (this.subject) {
 	    	  case '0' :  typeName = '전체';
 	    	 			 className = '<span class="label label-danger">';
 	    	  			 break;
@@ -755,14 +755,8 @@ span#roomTitle {
 	    	  default :  typeName = '기타';
 	    	  			 className = '<span class="label label-danger">';
 	    	             break;
-	    	}
+	    	} */
 
-			str += '<tr role="row" class="'+ class_no + ' ' + class_team + ' ' + class_sts + '\">'
-					+ '<td id="teamname" style="width: 80px;">' + this.teamname + '</td>'
-					+ '<td id="sdate" style="max-width: 20px;">'	+ this.sdate + '</td>'
-					+ '<td id="edate" style="max-width: 20px;">'+ this.edate + '</td>'
-					+ '<td id="status" style="width: 80px;" class="hidden-xs">' + status + '</td>'
-					+ '<td id="spanTag" style="width: 80px;" class="hidden-xs">' + className + typeName +'</span></td></tr>';
 			return str;
 			}
 		}
