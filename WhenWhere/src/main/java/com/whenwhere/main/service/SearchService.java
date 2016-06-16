@@ -87,7 +87,6 @@ public class SearchService {
 			 
 			for (int j = 0; j < teamlist.size(); j++) {
 				searchTeamList.add(teamlist.get(j));
-				System.out.println(searchTeamList.get(j).get("tSDate"));
 			}
 			
 		}

@@ -586,8 +586,8 @@ body {
     width: 55px;
     height: 33px;
     color: white;
-    padding-top: 5px;
-    font-size: 11px;
+    padding-top: 7px;
+    font-size: 15px;
     border-radius: 4px;
     animation: recommend 1s infinite alternate;
 }
