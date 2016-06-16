@@ -5,7 +5,7 @@
 <html>
 <head>
 	<jsp:include page="../component/core_head.jsp" />
-	<title>WhenWhereTest</title>
+	<title>WhenWhere</title>
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 	<!-- Select2 -->
     <link rel="stylesheet" href="../css/daterangepicker-bs3.css">

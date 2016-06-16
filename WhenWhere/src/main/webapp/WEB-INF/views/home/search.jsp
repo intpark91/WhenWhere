@@ -5,7 +5,7 @@
 <html>
 <head>
 <jsp:include page="../component/core_head.jsp" />
-<title>searchTest</title>
+<title>WhenWhere</title>
 <link rel="stylesheet" href="../css/search.css">
 <link rel="stylesheet" href="../css/locationTab.css" />
 <link rel="stylesheet" href="../css/eventSlider.css" />

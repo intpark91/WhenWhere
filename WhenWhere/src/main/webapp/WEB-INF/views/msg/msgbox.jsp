@@ -5,7 +5,7 @@
 <html>
 <head>
 <jsp:include page="../component/core_head.jsp" />
-<title>쪽지함</title>
+<title>WhenWhere</title>
 <link rel="stylesheet" href="../css/jquery-ui-slider-pips.css" />
 <link rel="stylesheet" href="../css/slider.css" />
 <link rel="stylesheet" href="../css/iCheck/flat/blue.css">
