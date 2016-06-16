@@ -492,12 +492,13 @@ body {
     color: #222;
     webkit-tap-highlight-color: #222;
     background: url(../resources/img/search_bg_img.jpg);
+  	background-size: cover;
 }
 
 .section1, .section2, .section3, .scrollDiv{
 	/* background-color: rgb(91, 192, 222); */
 	padding-bottom: 30px;
-}
+} 
 
 @media only screen and (min-width: 767px) {
 	.section1, .section2, .section3 {

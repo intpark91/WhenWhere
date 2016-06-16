@@ -13,14 +13,20 @@
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>	
 
 <script type="text/javascript">
+$(function() {
 	var result = '${insert}';
 	if (result == 'true') {				
-		alert('글 쓰기 성공');
 		location.href = "reviewRead?no=0";
 	}
 	else if(result =='false'){
-		alert('글 쓰기 실패');
+		$.bootstrapGrowl("내용을 입력해주세요!", {
+			type: 'danger',
+			align: 'center',
+			width: 'auto',
+			allow_dismiss: false
+		});
 	}
+});
 </script>
 
 
@@ -129,6 +135,29 @@ jQuery.browser = {};
 									return;
 								}
 								
+								if ($("#Datepicker").val() == '' || $("#Datepicker2").val() == '') {
+									$.bootstrapGrowl("기간을 선택하세요.", {
+										type: 'danger',
+										align: 'center',
+										width: 'auto',
+										allow_dismiss: false
+									});
+									oEditors.getById["dataContent"].exec(
+											"FOCUS", []);
+									return;
+								}
+								if ($("#Datepicker").val() > $("#Datepicker2").val()) {
+									$.bootstrapGrowl("행사 종료일이 행사 시작일보다 빠를 수 없습니다.", {
+										type: 'danger',
+										align: 'center',
+										width: 'auto',
+										allow_dismiss: false
+									});
+									oEditors.getById["dataContent"].exec(
+											"FOCUS", []);
+									return;
+								} 
+								
 								$("#inForm").submit();
 							}
 						</script>
@@ -179,7 +208,6 @@ jQuery.browser = {};
 															<div class="bbs_write_wrap">
 																							
 															    <textarea id="content" name="content" rows="10" cols="80">
-                       		                                              내용을 입력해주세요.                     		
                                                                 </textarea>
 																<script>	
    																 CKEDITOR.replace('content',{
@@ -200,7 +228,7 @@ jQuery.browser = {};
 											<p class="fr">
 												
 												<a href="#" onclick="formSubmit();">등록</a> 
-												<a href="#">취소</a>
+												<a href="../board/review?category=3">취소</a>
 											</p>
 										</div>
 								</div>
@@ -218,6 +246,6 @@ jQuery.browser = {};
 		<jsp:include page="../../component/controlSidebar.jsp" />
 	</div>
 	<!-- scripts -->
-	<script src="../../js/slider.js"></script>
+	<jsp:include page="../../component/core_js.jsp" />
 </body>
 </html>

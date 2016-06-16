@@ -83,12 +83,6 @@ var category='${sessionScope.category}';
 
 	var result = '${modify}';
 	if (result == 'true') {
-		$.bootstrapGrowl("글 수정 성공!", {
-			type: 'success',
-			align: 'center',
-			width: 'auto',
-			allow_dismiss: false
-		});
 		location.href = "eventRead?no="+no+"&category="+category+"";
 	}
 	else if(result =='false'){
@@ -173,7 +167,7 @@ var category='${sessionScope.category}';
 								action="eventModify"
 								enctype="multipart/form-data">
 								<input type="hidden" name="category" value="3">	
-								<input type="hidden" name="eno" value="${EventDate.no}">
+								<input type="hidden" name="eno" id="eno" value="${EventDate.no}">
 								<input type="hidden" name="no" id="no" value="${updateBoard.no}">								
 								<div class="con_area">
 									<div class="board_box">
@@ -230,7 +224,7 @@ var category='${sessionScope.category}';
 											<p class="fr">
 												
 												<a href="#" onclick="modify();">수정</a> 
-												<a href="#">취소</a>
+												<a href="../board/eventRead?category=4&no=${sessionScope.no}">취소</a>
 											</p>
 										</div>
 									</div>

@@ -126,7 +126,7 @@ margin-bottom : -35px;
 													<h3>													
 														<a href="eventRead?no=${item.NO}&category=4">${item.TITLE}</a>
 													</h3>
-													<h4>
+													<h4 class="eventContent">
 														${item.CONTENT}										
 													</h4>
 													<p>

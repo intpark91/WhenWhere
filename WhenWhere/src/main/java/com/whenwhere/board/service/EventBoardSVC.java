@@ -54,6 +54,10 @@ public class EventBoardSVC {
 		java.sql.Date sdate = new java.sql.Date(date.getTime());
 		java.sql.Date edate = new java.sql.Date(date1.getTime());		
 		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);
+		if(content.equals("")){
+			return false;
+		}
+		
 		if (boardDAO.inserteventBoard(title,content,auth,sdate,edate,boardCode,loc,fileSaveName) > 0) {
 			return true;
 		} else {

@@ -17,16 +17,15 @@
 $(function() {
 	var result = '${insert}';
 	if (result == 'true') {
-		$.bootstrapGrowl("글 쓰기 성공!", {
-			type: 'success',
+		location.href = "eventRead?no=0";
+	}
+	else if(result =='false'){
+		$.bootstrapGrowl("내용을 입력해주세요!", {
+			type: 'danger',
 			align: 'center',
 			width: 'auto',
 			allow_dismiss: false
 		});
-		location.href = "eventRead?no=0";
-	}
-	else if(result =='false'){
-		alert('글 쓰기 실패');
 	}
 });
 </script>
@@ -125,9 +124,6 @@ jQuery.browser = {};
 						<script type="text/javascript">
 							var f = $("#inForm");
 							function formSubmit() {
-								alert($('#cke_1_contents').children('span').attr('class'));
-								
-								
 								if ($("#dataTitle").val() == '') {
 									$.bootstrapGrowl("제목을 입력하세요.", {
 										type: 'danger',
@@ -138,7 +134,8 @@ jQuery.browser = {};
 
 									return;
 								}
-								if ($("#dataContent").val() == '') {
+								alert($("#content").val());
+								if ($("#content").val() == '') {
 									$.bootstrapGrowl("내용을 입력하세요.", {
 										type: 'danger',
 										align: 'center',
@@ -241,7 +238,7 @@ jQuery.browser = {};
 											<p class="fl">&nbsp;</p>
 											<p class="fr">
 												<a href="#" onclick="formSubmit();">등록</a> 
-												<a href="#">취소</a>
+												<a href="../board/event?category=4">취소</a>
 											</p>
 										</div>
 								</div>

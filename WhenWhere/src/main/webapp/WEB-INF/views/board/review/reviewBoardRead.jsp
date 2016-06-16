@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<jsp:include page="../../component/core_head.jsp" />
-	<title>WhenWhereTest</title>
-	<link rel="stylesheet" href="../css/slider.css" />
-	<link rel="stylesheet" href="../css/board/noticeBoardRead.css" type="text/css">  
-	<link rel="stylesheet" href="../css/board/comment.css" />
-	<style>
+<jsp:include page="../../component/core_head.jsp" />
+<title>WhenWhereTest</title>
+<link rel="stylesheet" href="../css/slider.css" />
+<link rel="stylesheet" href="../css/board/noticeBoardRead.css"
+	type="text/css">
+<link rel="stylesheet" href="../css/board/comment.css" />
+<style>
 h2 {
 	padding-top: 10px;
 }
@@ -38,13 +39,10 @@ function delectAjax(no){
 						success : function(delect){
 							console.log(delect);
 							 if(delect.delect==true){
-								$.bootstrapGrowl("삭제 완료!", {
-									type: 'success',
-									align: 'center',
-									width: 'auto',
-									allow_dismiss: false
+								 bootbox.alert("해당 글 삭제 완료.", function() {
+									 location.href="review?category="+${ReadBoard.category}+"";
 								});
-								location.href="review?category="+${ReadBoard.category}+"";
+								
 							 }else {
 								alert('삭제 실패');
 							 }
@@ -90,13 +88,9 @@ function recommend(no){
 		dataType : "json",
 		success : function(recommend){
 			 if(recommend.recommend==true){			 	
-					$.bootstrapGrowl("추천 성공!", {
-						type: 'success',
-						align: 'center',
-						width: 'auto',
-						allow_dismiss: false
-					});
-					location.href="review?category="+${ReadBoard.category}+"";
+				 bootbox.alert("추천 성공!", function() {
+					 location.href="review?category="+${ReadBoard.category}+"";
+				 });
 			  }
 			 else{
 					$.bootstrapGrowl("이미 추천을 하였습니다.", {
@@ -126,13 +120,6 @@ function recommend(no){
 				dataType : "json",
 				success : function(insert){
 					 if(insert.insert==true){			 	
-						 	$.bootstrapGrowl("댓글 쓰기 완료!", {
-								type: 'success',
-								align: 'center',
-								width: 'auto',
-								allow_dismiss: false
-							});
-
 							location.href="reviewRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
 					     }
 				},
@@ -182,15 +169,9 @@ function recommend(no){
 			dataType : "json",
 			success : function(update){
 				 if(update.update==true){			 	
-						$.bootstrapGrowl("댓글 수정 완료!", {
-							type: 'success',
-							align: 'center',
-							width: 'auto',
-							allow_dismiss: false
-						});
-
-
-						location.href="reviewRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
+					 	bootbox.alert("추천 성공!", function() {
+							 location.href="reviewRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
+						 });
 				     }
 			},
 			complete : function(res){					
@@ -210,15 +191,9 @@ function recommend(no){
 			dataType : "json",
 			success : function(cdelete){
 				 if(cdelete.cdelete==true){			 	
-						$.bootstrapGrowl("댓글 삭제 완료!", {
-							type: 'success',
-							align: 'center',
-							width: 'auto',
-							allow_dismiss: false
+					 	bootbox.alert("댓글 삭제 완료", function() {
+					 		location.href="reviewRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
 						});
-
-
-						location.href="reviewRead?no="+${ReadBoard.no}+"&category="+${ReadBoard.category}+"";
 				     }
 			},
 			complete : function(res){					
@@ -236,9 +211,8 @@ function recommend(no){
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
-	<div id="main_bg" class="info_main_bg" >
-			<div class="mainWrap">
-			</div>
+	<div id="main_bg" class="info_main_bg">
+		<div class="mainWrap"></div>
 	</div>
 	<div class="wrapper">
 		<!-- include -->
@@ -248,14 +222,13 @@ function recommend(no){
 
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
-			<section class="content-header">
-			</section>
+			<section class="content-header"></section>
 			<div class="container">
-			<div class="row">
-				<div
-					class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2 text-center">
-					<div id="all" class="clearfix">
-						
+				<div class="row">
+					<div
+						class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2 text-center">
+						<div id="all" class="clearfix">
+
 							<!--2015.12.07 수정-->
 
 							<!--//-->
@@ -269,7 +242,7 @@ function recommend(no){
 											<input type="hidden" name="no" value="${ReadBoard.no}"> --%>
 											<table class="view_1"
 												summary="토론마당 제목, 토론기간, 진행상태와 조회를 표시하고 있다.">
-												<h2>${ReadBoard.boardName} 상세 보기</h2>
+												<h2>${ReadBoard.boardName}상세보기</h2>
 												<colgroup>
 													<col width="15%">
 													<col width="20%">
@@ -285,7 +258,7 @@ function recommend(no){
 															<div>${ReadBoard.title}</div>
 														</td>
 													</tr>
-													<tr>														
+													<tr>
 														<th scope="row">작 성 자</th>
 														<td>${ReadBoard.auth}</td>
 														<th scope="row">등록일</th>
@@ -301,143 +274,150 @@ function recommend(no){
 														<th>추&nbsp;&nbsp;&nbsp;천</th>
 														<td>${ReadBoard.recommend}</td>
 													</tr>
-	
+
 													<tr>
 														<td colspan="6" class="bbs_detail">
 
 															<div align="center" class="body_div"
 																style="line-height: 160%; font-family: NanumG; font-size: 14px;">
-																${ReadBoard.content}
-																<br>
-															</div>															
+																${ReadBoard.content} <br>
+															</div>
 														</td>
 													</tr>
 												</tbody>
 											</table>
-										<!-- 	</form> -->
+											<!-- 	</form> -->
 											<div class="bbs_btn">
-												<p class="fl">													
+												<p class="fl">
 													<a href="review?category=${ReadBoard.category}"><h4>목록</h4></a>
 												</p>
-											</div>		
-										</div>
-
-									</div>									
-											<div id="btnWrap">		
-												<button class="noticeboard" id="reviewwrite" type="button" onclick="recommend(${ReadBoard.no});">추천하기</button>										
-												<button class="noticeboard" id="reviewwrite" type="button" onclick="delectAjax(${ReadBoard.no});">삭제하기</button>
-												<button class="noticeboard" id="reviewwrite" type="button" onclick="modifyForm(${ReadBoard.no});">수정하기</button>												
 											</div>
 										</div>
-									</div>
-									<div class="comment_wrap">
-										<div class="con_area">
-											<div class="board_box">
-												<div class="bbs_view">
-														
 
-													<div class="singlewrap pushpull">
-														전체 댓글
-														<ol class="commentlist">
-															<li class="comment odd alt thread-odd thread-alt depth-1"
-																id="li-comment-27">
-																<div id="comment-27">
-																
-																<c:forEach var="item" items="${Noticecomment}" varStatus="status">																
-																	<div class="post-wrap rel" id="${item.no}">
-																		<div class="reply_text"></div>
-																		<div class="postcontentreply">
-																			<div class="comment-guts">
-																				<div class="avatar-comments">
-																					<img src="../images/eventimg/user.JPG">
-																				</div>
-																				<div class="comment-guts-pads">																					
-																					<div class="says">${item.auth}</div>
-																					<p class="comm_comment">${item.content}</p>
-																				</div>																																				
+									</div>
+									<div id="btnWrap">
+										<button class="noticeboard" id="reviewwrite" type="button"
+											onclick="recommend(${ReadBoard.no});">추천하기</button>
+										<button class="noticeboard" id="reviewwrite" type="button"
+											onclick="delectAjax(${ReadBoard.no});">삭제하기</button>
+										<button class="noticeboard" id="reviewwrite" type="button"
+											onclick="modifyForm(${ReadBoard.no});">수정하기</button>
+									</div>
+								</div>
+							</div>
+							<div class="comment_wrap">
+								<div class="con_area">
+									<div class="board_box">
+										<div class="bbs_view">
+
+
+											<div class="singlewrap pushpull">
+												전체 댓글
+												<ol class="commentlist">
+													<li class="comment odd alt thread-odd thread-alt depth-1"
+														id="li-comment-27">
+														<div id="comment-27">
+
+															<c:forEach var="item" items="${Noticecomment}"
+																varStatus="status">
+																<div class="post-wrap rel" id="${item.no}">
+																	<div class="reply_text"></div>
+																	<div class="postcontentreply">
+																		<div class="comment-guts">
+																			<div class="avatar-comments">
+																				<img src="../images/eventimg/user.JPG">
 																			</div>
-																		</div>	
-<!-- 																	<div class="reply">
+																			<div class="comment-guts-pads">
+																				<div class="says">${item.auth}</div>
+																				<p class="comm_comment">${item.content}</p>
+																			</div>
+																		</div>
+																	</div>
+																	<!-- 																	<div class="reply">
 																		<lable for="reply" >reply</lable>
 																		<input type="checkbox" name="reply">		
 																		</div>	 -->
-																		<!-- END postcontentreply -->	
-																		<button class="commentdelete" id="commentdelete" onclick="commentdelete(${item.no});">댓글 삭제</button>
-																		<button class="commentdelete" id="commentmodify" onclick="commentmodify(${item.no});">댓글 수정</button>
-																																																				
-																	</div>
-																</c:forEach>	
-																	
-																	
-																	
-																	<!-- END comment -->
-																</div> <!--end entire post wrap-->
-															</li>
-															<!-- #comment-## -->
+																	<!-- END postcontentreply -->
+																	<button class="commentdelete" id="commentdelete"
+																		onclick="commentdelete(${item.no});">댓글 삭제</button>
+																	<button class="commentdelete" id="commentmodify"
+																		onclick="commentmodify(${item.no});">댓글 수정</button>
 
-														</ol>
-													</div>
+																</div>
+															</c:forEach>
 
-													<div id="respond" class="comment-respond">
-														<h3 id="reply-title" class="comment-reply-title">
-															댓글 쓰기 <small> <a rel="nofollow"
-																id="cancel-comment-reply-link"
-																href="http://myforum.dothome.co.kr/my-favorite-model/#respond"
-																style="display: none;">댓글 취소</a>
-															</small>
-														</h3>
-														
-														
-														<form action="reviewcommend" method="post" id="commentform" class="comment-form">
-															<p class="comment-notes">
-																<input type="hidden" name="boardNo" value="${ReadBoard.no}">
-																<input type="hidden" name="category" value="${ReadBoard.category}">
-															
-																<span id="email-notes">여러분의 생각을 댓글을 남겨 주세요! <span
-																	class="required">*</span>
-																</span>
-															</p>
-															<p class="comment-form-author">
-																<label for="author">이름<span class="required"></span></label>
-																<input id="author" name="auth" type="text"
-																	readonly="true" value="${sessionScope.member.nickname}" size="30"
-																	aria-required="true" required="required">
-															</p>
-															<p class="comment-form-comment">
-																<label for="comment">내용</label>
-																<textarea id="comment" name="content" cols="45" rows="8"
-																	aria-required="true" required="required" placeholder="댓글을 입력해 주세요"></textarea>
-															</p>
-															<p class="form-submit">
-																
-																<input name="submit" type="button" id="submit"
-																	class="submit" value="댓글 쓰기"> 															
-															</p>
-															
-														</form>
-													</div>
-													<!-- #respond -->
-												</div>
+
+
+															<!-- END comment -->
+														</div> <!--end entire post wrap-->
+													</li>
+													<!-- #comment-## -->
+
+												</ol>
 											</div>
-											<!--end col8-->
+
+											<div id="respond" class="comment-respond">
+												<h3 id="reply-title" class="comment-reply-title">
+													댓글 쓰기 <small> <a rel="nofollow"
+														id="cancel-comment-reply-link"
+														href="http://myforum.dothome.co.kr/my-favorite-model/#respond"
+														style="display: none;">댓글 취소</a>
+													</small>
+												</h3>
 
 
+												<form action="reviewcommend" method="post" id="commentform"
+													class="comment-form">
+													<p class="comment-notes">
+														<input type="hidden" name="boardNo"
+															value="${ReadBoard.no}"> <input type="hidden"
+															name="category" value="${ReadBoard.category}"> <span
+															id="email-notes">여러분의 생각을 댓글을 남겨 주세요! <span
+															class="required">*</span>
+														</span>
+													</p>
+													<p class="comment-form-author">
+														<label for="author">이름<span class="required"></span></label>
+														<input id="author" name="auth" type="text" readonly="true"
+															value="${sessionScope.member.nickname}" size="30"
+															aria-required="true" required="required">
+													</p>
+													<p class="comment-form-comment">
+														<label for="comment">내용</label>
+														<textarea id="comment" name="content" cols="45" rows="8"
+															aria-required="true" required="required"
+															placeholder="댓글을 입력해 주세요"></textarea>
+													</p>
+													<p class="form-submit">
+
+														<input name="submit" type="button" id="submit"
+															class="submit" value="댓글 쓰기">
+													</p>
+
+												</form>
+											</div>
+											<!-- #respond -->
 										</div>
 									</div>
+									<!--end col8-->
+
+
 								</div>
-
-
-
 							</div>
 						</div>
+
+
+
 					</div>
 				</div>
 			</div>
-			
-		<!-- /.content-wrapper -->
-		<!-- include -->
-		<jsp:include page="../../component/footer.jsp" />
-		<jsp:include page="../../component/controlSidebar.jsp" />
+		</div>
+	</div>
+
+	<!-- /.content-wrapper -->
+	<!-- include -->
+	<jsp:include page="../../component/footer.jsp" />
+	<jsp:include page="../../component/controlSidebar.jsp" />
 	</div>
 	<!-- scripts -->
 	<jsp:include page="../../component/core_js.jsp" />
