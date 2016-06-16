@@ -892,7 +892,7 @@ span#roomTitle {
 							applyCheckClass = "non-applyBtn";
 							break;
 						case 3:
-							status = "팀원"; 
+							status = "팀원";  
 							applybtnClass = "non-applyBtn";
 							break;
 						default:
