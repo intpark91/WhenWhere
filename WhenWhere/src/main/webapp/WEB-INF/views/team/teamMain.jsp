@@ -108,7 +108,6 @@
 			+ "&sdate=" + date.split(" - ")[0]
 			+ "&edate=" + date.split(" - ")[1];
 			
-			alert(formData);
 			if(date == ''){
 				$.bootstrapGrowl("날짜를 선택해야징.. 이 바부야!", {
 					type: 'danger',

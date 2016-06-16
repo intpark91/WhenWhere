@@ -133,8 +133,7 @@ public class EventBoardSVC {
 		eventVO.setLoc(request.getParameter("location"));
 		eventVO.seteDate(edate);
 		eventVO.setsDate(sdate);
-		eventVO.setNo(Integer.parseInt(request.getParameter("eno")));
-		System.out.println(eventVO.getNo());
+		eventVO.setNo(Integer.parseInt(request.getParameter("eno")));		
 		BoardDAO boardDAO = sqlSessionTemplate.getMapper(BoardDAO.class);
 		if(boardDAO.eventmodifyBoard(boardVO)==1&&boardDAO.dateModify(eventVO)==1){
 			return true;

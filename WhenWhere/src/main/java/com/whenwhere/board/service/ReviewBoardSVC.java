@@ -64,7 +64,7 @@ public class ReviewBoardSVC {
             String callback = request.getParameter("CKEditorFuncNum");
             
             printWriter = response.getWriter();
-            fileUrl = "http://localhost:8088/img/" + year+""+monthStr +time + fileName;
+            fileUrl = "http://192.168.8.13:8088/img/" + year+""+monthStr +time + fileName;
             String fileSaveName = year+monthStr+time+fileName;
             request.getSession().setAttribute("fileUrl", fileUrl);
             request.getSession().setAttribute("fileSaveName", fileSaveName);
@@ -72,10 +72,11 @@ public class ReviewBoardSVC {
                     + callback
                     + ",'"
                     + fileUrl
-                    + "','ÀÌ¹ÌÁö ¾÷·Îµå ¼º°ø'"
+                    + "','ì´ë¯¸ì§€ê°€ ì„±ê³µì ìœ¼ë¡œ ì—…ë°ì´íŠ¸ ë˜ì—ˆìŠµë‹ˆë‹¤.'"
                     + ")</script>");
+            
             printWriter.flush();
- 
+  
         }catch(IOException e){
             e.printStackTrace();
         } finally {

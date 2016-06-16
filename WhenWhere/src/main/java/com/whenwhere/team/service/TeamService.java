@@ -41,7 +41,7 @@ public class TeamService {
 			map.put("sdate", teamVO.getSdate());
 			map.put("edate", teamVO.getEdate()); 
 			map.put("loc_code", teamVO.getLoc_code());
-			map.put("subject", teamVO.getSubject());
+			map.put("subject", teamVO.getSubject()); 
 			map.put("teamname", teamVO.getTeamname());
 			
 			System.out.println(map.get("nickname"));
@@ -50,7 +50,7 @@ public class TeamService {
 			System.out.println(map.get("loc_code"));
 			System.out.println(map.get("subject"));
 			System.out.println(map.get("teamname"));
-			 
+			
 			int row = dao.makeTeam(map);
 			if(row == 0){
 				System.out.println("팀만들기 실패");
@@ -97,6 +97,5 @@ public class TeamService {
 		}
 		return jsonArr.toJSONString();
 	}
-
 }
  

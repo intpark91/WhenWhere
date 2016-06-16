@@ -15,7 +15,12 @@
 <script type="text/javascript">
 	var result = '${insert}';
 	if (result == 'true') {				
-		alert('글 쓰기 성공');
+		$.bootstrapGrowl("글 쓰기 성공!", {
+			type: 'success',
+			align: 'center',
+			width: 'auto',
+			allow_dismiss: false
+		});
 		location.href = "eventRead?no=0";
 	}
 	else if(result =='false'){
@@ -118,17 +123,49 @@ jQuery.browser = {};
 							var f = $("#inForm");
 							function formSubmit() {
 								if ($("#dataTitle").val() == '') {
-									alert("제목을 입력하시기 바랍니다.");
+									$.bootstrapGrowl("제목을 입력하세요.", {
+										type: 'danger',
+										align: 'center',
+										width: 'auto',
+										allow_dismiss: false
+									});
+
 									return;
 								}
-					
 								if ($("#dataContent").val() == '') {
-									alert("내용을 입력하시기 바랍니다.");
+									$.bootstrapGrowl("내용을 입력하세요.", {
+										type: 'danger',
+										align: 'center',
+										width: 'auto',
+										allow_dismiss: false
+									});
 									oEditors.getById["dataContent"].exec(
 											"FOCUS", []);
 									return;
 								}
-								
+								if ($("#Datepicker").val() == '' || $("#Datepicker2").val() == '') {
+									$.bootstrapGrowl("기간을 선택하세요.", {
+										type: 'danger',
+										align: 'center',
+										width: 'auto',
+										allow_dismiss: false
+									});
+									oEditors.getById["dataContent"].exec(
+											"FOCUS", []);
+									return;
+								}
+								if ($("#Datepicker").val() > $("#Datepicker2").val()) {
+									$.bootstrapGrowl("행사 종료일이 행사 시작일보다 빠를 수 없습니다.", {
+										type: 'danger',
+										align: 'center',
+										width: 'auto',
+										allow_dismiss: false
+									});
+									oEditors.getById["dataContent"].exec(
+											"FOCUS", []);
+									return;
+								} 
+								 
 								$("#inForm").submit();
 							}
 						</script>
@@ -176,8 +213,7 @@ jQuery.browser = {};
 														<td colspan="2" class="bbs_write">
 															<div class="bbs_write_wrap">
 																							
-															    <textarea id="content" name="content" rows="10" cols="80">
-                       		                                              내용을 입력해주세요.                     		
+															    <textarea id="content" name="content" rows="10" cols="80" placeholder="내용을 입력하세요.">
                                                                 </textarea>
 																<script>	
    																 CKEDITOR.replace('content',{
@@ -214,6 +250,6 @@ jQuery.browser = {};
 		<jsp:include page="../../component/controlSidebar.jsp" />
 	</div>
 	<!-- scripts -->
-	<script src="../../js/slider.js"></script>
+	<jsp:include page="../../component/core_js.jsp" />
 </body>
 </html>

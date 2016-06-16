@@ -36,7 +36,7 @@ $(document).ready(function() {
 		var startDate = $('#start').val(), 
 		endDate = $('#end').val(),
 		locations = [];
-
+ 
 		if(startDate == '' || endDate == ''){
 			$.bootstrapGrowl("날짜를 선택해야징.. 이 바부야!", {
 				type: 'danger',
@@ -110,7 +110,7 @@ $(document).ready(function() {
 							colLi = $('<li/>').attr('class','col-sm-3'),
 							fDiv = $('<div/>').attr('class','fff'),
 							thumbnailDiv = $('<div/>').attr('class','thumbnail'), 
-							img = $('<img/>').attr('src','../resources/img/'+data.searchEventList[j].imgName+'.jpg').attr('width','200px'),
+							img = $('<img/>').attr('src','http://192.168.8.13:8088/img/'+data.searchEventList[j].imgName+'').attr('width','200px'),
 							imgA = $('<a href="#" class="searchImgA" data-toggle="modal" data-target="#basicModal"></a>'),
 							captionDiv = $('<div/>').attr('class','caption'),
 							nav = $('<nav/>'),
@@ -132,11 +132,11 @@ $(document).ready(function() {
 							captionDiv.append(title);
 							captionDiv.append($('<span class="recommend glyphicon glyphicon-thumbs-up">' +data.searchEventList[j].bRecommend+ '</span>'));
 							captionDiv.append(content);
-							captionDiv.append($('<input type="hidden" value="#?bNo='+data.searchEventList[j].bNo+'">'));
-							imgA.append($('<input type="hidden" value='+data.searchEventList[j].eSDate+'~'+data.searchEventList[j].eEDate+'>'));
-							imgA.append($('<input type="hidden" value='+data.searchEventList[j].locName+'>'));
-							imgA.append($('<input type="hidden" value='+data.searchEventList[j].bRecommend+'>'));
-							imgA.append($('<input type="hidden" value='+data.searchEventList[j].bContent+'>'));
+							captionDiv.append($('<input type="hidden" value="../board/eventRead?no='+data.searchEventList[j].bNo+'&category=4">'));
+							imgA.append($('<input type="hidden" value="'+data.searchEventList[j].eSDate+'~'+data.searchEventList[j].eEDate+'">'));
+							imgA.append($('<input type="hidden" value="'+data.searchEventList[j].locName+'">'));
+							imgA.append($('<input type="hidden" value="'+data.searchEventList[j].bRecommend+'">'));
+							imgA.append($('<input type="hidden" value="'+data.searchEventList[j].bContent+'">'));
 							imgA.append(img);
 							thumbnailDiv.append(imgA);
 							fDiv.append(thumbnailDiv);
@@ -166,7 +166,7 @@ $(document).ready(function() {
 							colLi = $('<li/>').attr('class','col-sm-3'),
 							fDiv = $('<div/>').attr('class','fff'),
 							thumbnailDiv = $('<div/>').attr('class','thumbnail'),  
-							img = $('<img/>').attr('src','../resources/img/'+data.searchFoodList[j].imgName+'.jpg').attr('width','200px'),
+							img = $('<img/>').attr('src','http://192.168.8.13:8088/'+data.searchFoodList[j].imgName+'').attr('width','200px'),
 							imgA = $('<a href="#" class="searchImgA" data-toggle="modal" data-target="#basicModal"></a>'),
 							captionDiv = $('<div/>').attr('class','caption'),
 							nav = $('<nav/>'),
@@ -242,11 +242,11 @@ $(document).ready(function() {
 							
 							captionDiv.append(title);
 							captionDiv.append(content);
-							captionDiv.append($('<input type="hidden" value='+data.searchHotelList[j].href+'>'));
-							imgA.append($('<input type="hidden" value='+data.searchHotelList[j].roomType+'>'));
-							imgA.append($('<input type="hidden" value='+data.searchHotelList[j].hotelType+'>'));
-							imgA.append($('<input type="hidden" value='+data.searchHotelList[j].capacity+'>'));
-							imgA.append($('<input type="hidden" value='+data.searchHotelList[j].bedCnt+'>'));
+							captionDiv.append($('<input type="hidden" value='+data.searchHotelList[j].href+'">'));
+							imgA.append($('<input type="hidden" value="'+data.searchHotelList[j].roomType+'">'));
+							imgA.append($('<input type="hidden" value="'+data.searchHotelList[j].hotelType+'">'));
+							imgA.append($('<input type="hidden" value="'+data.searchHotelList[j].capacity+'">'));
+							imgA.append($('<input type="hidden" value="'+data.searchHotelList[j].bedCnt+'">'));
 							imgA.append(img);
 							thumbnailDiv.append(imgA);
 							fDiv.append(thumbnailDiv);
@@ -347,6 +347,13 @@ $(document).ready(function() {
 				div.append(spanVal);
 				$('.detail2').append(div);
 			}
+			var spanSub = $('<span/>').attr('class','spanSub').text(detailSub[detail.length-1]),
+			spanVal = $('<span/>').attr('class','spanVal').html(detail[detail.length-1]);
+			$('.detail2').append($('<hr>'));
+			var div = $('<div/>').attr('class','justifyDiv');
+			div.append(spanSub);
+			div.append(spanVal);
+			$('.detail2').append(div);
 		}
 		
 

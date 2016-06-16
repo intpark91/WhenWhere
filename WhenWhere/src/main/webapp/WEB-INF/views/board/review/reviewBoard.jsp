@@ -38,7 +38,7 @@
 		
 		$('.bandi p:has(img)').css('display','none');
 		
-	});
+});
 	
 	
 </script>
@@ -66,10 +66,10 @@
 		<!-- Content Wrapper. Contains page content -->
 
 		<div class="content-wrapper">
-
+   
 				<!-- <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8  text-center"> -->
 				<div id="content01">
-					<div class="con_area">
+					<div class="con_area"> 
 						<div class="festivalWrap">
 							<div class="thisMonth">
 								<h3>Focus</h3>
@@ -82,7 +82,7 @@
 											<ul class="bandi_list">
 												<li class="bandi_img">
 													<a href="reviewRead?no=${item.NO}&category=${bestcommend[0].category}">
-														<img src="http://localhost:8088/img/${item.FILENAME}"alt="">
+														<img src="http://192.168.8.13:8088/img/${item.FILENAME}"alt="">
 													</a>
 												</li>
 												<li>
@@ -105,7 +105,7 @@
 										<a href="reviewRead?no=${bestcommend[0].NO}&category=${bestcommend[0].category}">상세보기</a>
 									</div>
 									<p class="bandi_img">
-										<img src="http://localhost:8088/img/${bestcommend[0].FILENAME}" alt="한지문화축제.jpg">
+										<img src="http://192.168.8.13:8088/img/${bestcommend[0].FILENAME}" alt="한지문화축제.jpg">
 									</p>
 								</div>
 							</div>
@@ -125,7 +125,7 @@
 							<c:forEach var="item" items="${ReviewboardList}" varStatus="status">	
 							<div class="photoWrap">
 								<a href="reviewRead?no=${item.NO}&category=3">
-									<img src="http://localhost:8088/img/${item.FILENAME}" alt="" class="photo_img">
+									<img src="http://192.168.8.13:8088/img/${item.FILENAME}" alt="" class="photo_img">
 								</a>
 								<h3>
 									<a href="reviewRead?no=${item.NO}&category=3">

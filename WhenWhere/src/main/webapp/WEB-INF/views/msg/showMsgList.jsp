@@ -27,7 +27,6 @@
 						<i class="fa fa-trash-o"></i>
 					</button>
 				</div>
-				</c:if>
 				<!-- /.btn-group -->
 				<div class="box-tools pull-right">
 					<div class="has-feedback">
@@ -36,6 +35,7 @@
 							class="glyphicon glyphicon-search form-control-feedback"></span>
 					</div>
 				</div>
+				</c:if>
 			</div>
 			<div class="table-responsive mailbox-messages">
 				<table class="table table-hover table-striped">

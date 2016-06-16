@@ -621,7 +621,7 @@ function getWeather(locName) {
 		data:{locName:locName},
 		success:function(data){
 			if(data.ok){
-				weathers = ['CH','S','S'];
+				weathers = ['DR','S','S'];
 				
 				for(var i=0; i<data.wf.length; i++){
 					weathers.push(data.wf[i]);
@@ -641,7 +641,7 @@ function getWeather(locName) {
 			
 		},
 		error:function(){
-			alert('error');
+			alert('weather error');
 		}
 	});
 }
@@ -690,13 +690,13 @@ function getEventList(){
 			var carouselDiv = carousel1.children('.carousel-inner');
 
 			for(var j=0; j<data.searchEventList.length; j++){
-
+  
 				var itemDiv = carouselDiv.children('.item:last-child'),
 				thumbnailsUl = itemDiv.children('.thumbnails'),
 				colLi = $('<li/>').attr('class','col-sm-3'),
 				fDiv = $('<div/>').attr('class','fff'),
 				thumbnailDiv = $('<div/>').attr('class','thumbnail'),
-				img = $('<img/>').attr('src','../resources/img/'+data.searchEventList[j].imgName+'.jpg').attr('width','200px'),
+				img = $('<img/>').attr('src','http://192.168.8.13:8088/img/'+data.searchEventList[j].imgName+'').attr('width','200px'),
 				imgA = $('<a href="#" class="searchImgA" data-toggle="modal" data-target="#basicModal"></a>'),
 				captionDiv = $('<div/>').attr('class','caption'),
 				nav = $('<nav/>'),
@@ -719,11 +719,11 @@ function getEventList(){
 				captionDiv.append($('<span class="recommend glyphicon glyphicon-thumbs-up">' +data.searchEventList[j].bRecommend+ '</span>'));
 				captionDiv.append(title);
 				captionDiv.append(content);
-				captionDiv.append($('<input type="hidden" value="#?bNo='+data.searchEventList[j].bNo+'">'));
-				imgA.append($('<input type="hidden" value='+data.searchEventList[j].eSDate+'~'+data.searchEventList[j].eEDate+'>'));
-				imgA.append($('<input type="hidden" value='+data.searchEventList[j].locName+'>'));
-				imgA.append($('<input type="hidden" value='+data.searchEventList[j].bRecommend+'>'));
-				imgA.append($('<input type="hidden" value='+data.searchEventList[j].bContent+'>'));
+				captionDiv.append($('<input type="hidden" value="../board/eventRead?no='+data.searchEventList[j].bNo+'&category=4">'));
+				imgA.append($('<input type="hidden" value="'+data.searchEventList[j].eSDate+'~'+data.searchEventList[j].eEDate+'">'));
+				imgA.append($('<input type="hidden" value="'+data.searchEventList[j].locName+'">'));
+				imgA.append($('<input type="hidden" value="'+data.searchEventList[j].bRecommend+'">'));
+				imgA.append($('<input type="hidden" value="'+data.searchEventList[j].bContent+'">'));
 				imgA.append(img);
 				thumbnailDiv.append(imgA);
 				fDiv.append(thumbnailDiv);
@@ -771,7 +771,7 @@ function getDetailContent(){
 			detail[k] = $(this).val();
 		});
 		
-		for(var i=0; i<detail.length; i++){
+		for(var i=0; i<detail.length-1; i++){
 			var spanSub = $('<span/>').attr('class','spanSub').text(detailSub[i]),
 			spanVal = $('<span/>').attr('class','spanVal').text(detail[i]);
 			
@@ -781,6 +781,13 @@ function getDetailContent(){
 			div.append(spanVal);
 			$('.detail2').append(div);
 		}
+		var spanSub = $('<span/>').attr('class','spanSub').text(detailSub[detail.length-1]),
+		spanVal = $('<span/>').attr('class','spanVal').html(detail[detail.length-1]);
+		$('.detail2').append($('<hr>'));
+		var div = $('<div/>').attr('class','justifyDiv');
+		div.append(spanSub);
+		div.append(spanVal);
+		$('.detail2').append(div);
 		
 	});
 	
