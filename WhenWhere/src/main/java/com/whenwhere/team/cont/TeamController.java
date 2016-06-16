@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.whenwhere.team.service.TeamService;
@@ -35,4 +36,24 @@ public class TeamController {
 	public String getTeamUserList(HttpServletRequest request, HttpSession session) {
 		return teamService.getTeamUserList(request, session,Integer.parseInt(request.getParameter("teamNum")));
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getApplyTeamUserList")
+	public String getApplyTeamUserList(@RequestParam String tNo) {
+		return teamService.getApplyTeamUserList(tNo);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/applyUserDelete")
+	public String applyUserDelete(HttpServletRequest request) {
+		return teamService.applyUserDelete(request);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/applyUser")
+	public String applyUser(HttpServletRequest request) {
+		return teamService.applyUser(request);
+	}
+	
+	
 }

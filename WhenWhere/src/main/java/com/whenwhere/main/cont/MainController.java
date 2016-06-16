@@ -68,7 +68,7 @@ public class MainController {
 	}
 
 	@RequestMapping(value = "/chat")
-	public String chat() {
+	public String chat() { 
 		return "chat/main";
 	}
 
@@ -80,6 +80,6 @@ public class MainController {
 	@RequestMapping(value = "/team")
 	public String team(Model model) {
 		model.addAttribute("locationSubList", searchService.getSubLocationList());
-		return "team/teamMain";
+		return "team/teamMain2";
 	}
 }

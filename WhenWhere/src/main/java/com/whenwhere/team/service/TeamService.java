@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Service;
 import com.whenwhere.team.dao.TeamDAO;
 import com.whenwhere.team.vo.TeamVO;
 import com.whenwhere.user.vo.MemberVO;
+
 
 @Service("teamService")
 public class TeamService {
@@ -132,6 +135,67 @@ public class TeamService {
 		}
 		System.out.println(jsonArr.toJSONString());
 		return jsonArr.toJSONString();
+	}
+
+	public String getApplyTeamUserList(String tNo) {
+		TeamDAO dao = sqlSessionTemplate.getMapper(TeamDAO.class);
+		List<TeamVO>list = dao.getApplyTeamUserList(tNo);
+		JSONArray jsonArray = new JSONArray();
+		
+		for(int i=0; i<list.size(); i++){
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("tNo", list.get(i).getNo());
+			jsonObject.put("nickname", list.get(i).getNickName());
+			jsonObject.put("status", list.get(i).getStatus());
+			jsonArray.add(jsonObject);
+		}
+		
+		return jsonArray.toJSONString();
+	}
+
+	public String applyUserDelete(HttpServletRequest request) {
+		TeamDAO dao = sqlSessionTemplate.getMapper(TeamDAO.class);
+		JSONObject jsonObject = new JSONObject();
+		JSONArray jArr = new JSONArray();
+		JSONParser parser = new JSONParser();
+		try {
+			jArr = (JSONArray) parser.parse(request.getParameter("deleteUser"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		for(int i = 0; i< jArr.size();i++){
+			Map<String, Object> map = new HashMap<>();
+			int tNo = Integer.parseInt((String) ((JSONObject) jArr.get(i)).get("tNo"));
+			String nickname = (String) ((JSONObject) jArr.get(i)).get("nickname");
+			map.put("tNo", tNo);
+			map.put("nickname", nickname);
+			System.out.println(tNo+nickname);
+			dao.applyUserDelete(map);
+		}
+		jsonObject.put("ok", true);
+		return jsonObject.toJSONString();
+		
+	}
+
+	public String applyUser(HttpServletRequest request) {
+		TeamDAO dao = sqlSessionTemplate.getMapper(TeamDAO.class);
+		int tNo = Integer.parseInt(request.getParameter("tNo"));
+		String nickname = request.getParameter("nickname");
+		System.out.println(nickname);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("tNo", tNo);
+		map.put("nickname", nickname);
+		
+		JSONObject jsonObject = new JSONObject();
+		if(dao.applyUser(map) != 0){
+			jsonObject.put("ok", true);
+		}else{
+			jsonObject.put("ok", false);
+		}
+		
+		return jsonObject.toJSONString();
 	}
 }
  

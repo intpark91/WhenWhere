@@ -21,4 +21,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select nickname from JOINTEAM where t_no = #{teamNum}
 	</select>
 	
+	<select id="getApplyTeamUserList" resultType="com.whenwhere.team.vo.TeamVO">
+		select t_no as no, nickname, t_status as status
+  		from jointeam
+ 		where t_no = #{tNo}
+		order by DECODE(T_status, 2, 1, 3, 2, 1, 3, 4)
+	</select>
+	
+	<delete id="applyUserDelete" parameterType="java.util.HashMap">
+		delete from jointeam where t_no = #{tNo} and nickname = #{nickname}
+	</delete>
+	
+	<update id="applyUser" parameterType="java.util.HashMap">
+		update jointeam set t_status = '3' where t_no = #{tNo} and nickname = #{nickname}
+	</update>
+	
 </mapper> 
