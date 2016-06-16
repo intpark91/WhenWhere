@@ -11,80 +11,86 @@
     <link rel="stylesheet" href="../css/daterangepicker-bs3.css">
   	<link rel="stylesheet" href="../css/datepicker3.css">
   	<link rel="stylesheet" href="../css/bootstrap-timepicker.min.css">
-	<style type="text/css">
-		.row.chatTable {
-			margin: 1px;
-		}
-		
-		.box-footer {
-			border-top: 0px solid #f4f4f4;
-			padding: 10px;
-			background-color: #ffffff;
-		}
-		
-		table {
-			text-align: center;
-		}
-		
-		table th {
-			text-align: center;
-		}
-		
-		input.form-control.pull-right {
-			width: 150px;
-		}
-		
-		.chat .item>.message {
-			margin-left: 15px;
-			margin-top: 0px;
-			*/
-		}
-		
-		input#reservation {
-			width: 95%;
-			margin-right: 5%;
-		}
-		
-		.label-col-sm-2 {
-			text-align: right;
-			padding-top: 7px;
-		}
-		
-		.input-group[class*=col-] {
-			margin-left: 4%;
-		}
-		
-		.list-group-unbordered > .list-group-item {
-		    text-overflow: ellipsis;
-		    overflow: hidden;
-		    word-break: break-word;
-		}
-		
-		b#a_url {
-		    color: #E91E63;
-		}
-		
-		.box.box-primary {
-		    padding: 5%;
-		}
-		
-		.list-group {
-		    padding: 5px 30px;
-		}
-		
-		.col-sm-6.join-btn {
-    		margin-bottom: 10px;
-		}
-		
-		.direct-chat-img {
-     border-radius: 0%; 
+<style type="text/css">
+.row.chatTable {
+	margin: 1px;
 }
+
+.box-footer {
+	border-top: 0px solid #f4f4f4;
+	padding: 10px;
+	background-color: #ffffff;
+}
+
+table {
+	text-align: center;
+}
+
+table th {
+	text-align: center;
+}
+
+input.form-control.pull-right {
+	width: 150px;
+}
+
+.chat .item>.message {
+	margin-left: 15px;
+	margin-top: 0px;
+	*/
+}
+
+input#reservation {
+	width: 95%;
+	margin-right: 5%;
+}
+
+.label-col-sm-2 {
+	text-align: right;
+	padding-top: 7px;
+}
+
+.input-group[class*=col-] {
+	margin-left: 4%;
+}
+
+.list-group-unbordered>.list-group-item {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	word-break: break-word;
+}
+
+b#a_url {
+	color: #E91E63;
+}
+
+.box.box-primary {
+	padding: 5%;
+}
+
+.list-group {
+	padding: 5px 30px;
+}
+
+.col-sm-6.join-btn {
+	margin-bottom: 10px;
+}
+
+.direct-chat-img {
+	border-radius: 0%;
+}
+
 div#chat-box {
-    height: 600px;
-} 
+	height: 600px;
+}
+
 span#roomTitle {
-    font-size: 20px;
-    color: darkblue;
+	font-size: 20px;
+	color: darkblue;
+}
+
+.non-applyBtn {
+	display: none;
 }
 </style>
 </head>
@@ -257,7 +263,7 @@ span#roomTitle {
 									<a href="#" class="btn btn-primary btn-block btn-type"><b> 선택된 팀 없음 </b></a>
 								</div>
 								<div class="col-sm-6">
-									<a href="#" class="btn btn-primary btn-block"><b>팀원 관리하기</b></a>
+									<a href="#" class="btn btn-primary btn-block applyUserListBtn" data-toggle="modal" data-target="#basicModal"><b>팀원 관리하기</b></a>
 								</div>
 							</div>
 						</div>
@@ -339,6 +345,59 @@ span#roomTitle {
 			</div>
 			<!-- include -->
 		</div>
+		
+		<!-- modal contents -->
+		<div class="modal fade" id="basicModal" tabindex="-1" role="dialog"
+			aria-labelledby="basicModal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title label" id="myModalLabel">제목</h4>
+					</div>
+					<div class="modal-body">
+
+						<div class="teamList">
+							<div id="roomListDiv" class="box box-default">
+								<div class="box-header">
+									<h3 class="box-title">
+										<span> 팀원을 확인.
+										</span>
+									</h3>
+								</div>
+								<!-- /.box-header -->
+								<div class="box-body table-responsive no-padding">
+									<table class="table table-hover applyUserTable">
+											<tr>
+												<th style="max-width: 30px;">체크</th>
+												<th style="max-width: 80px;">닉네임</th>
+												<th style="width: 80px;" class="hidden-xs">상태</th>
+											</tr>
+										<tbody>
+										</tbody>
+									</table>
+									<div class="box-footer clearfix">
+										<a href="#" class="btn btn-primary applyUserDeleteBtn">선택 삭제</a>
+									</div>
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /.box -->
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<p>
+							<!-- <a class="btn btn-mini readMore" href="#">» Read More</a> -->
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
 	</div>
 	<jsp:include page="../component/footer.jsp" />
 	<jsp:include page="../component/controlSidebar.jsp" />
@@ -354,7 +413,7 @@ span#roomTitle {
 	
 	var teamList = new Array();
 	var sessionNick = '';
-	
+	var teamNum = 0;
 	$(function() {
 		/* ************ 팀 리스트에 대한 정보를 불러옴 ******************/
 		getTeamList();
@@ -367,6 +426,9 @@ span#roomTitle {
 	    });
 	    
 	    clickTr();
+	    applyUserList();
+	    applyUserDelete();
+	    applyUser(); 
 	    
 	    $('.btn-type').click(function(){
 	    	var teamSts = $('#a_sts').text()
@@ -674,6 +736,125 @@ span#roomTitle {
 				});
 			}
 		}
+		
+		
+		
+		function applyUserList() {
+			$('.applyUserListBtn').on('click',function(){
+				getApplyUserList(teamNum);
+			});
+			
+		}
+		
+		function applyUserDelete() {
+			var deleteUser = [];
+			$('.applyUserDeleteBtn').on('click',function(){
+				$('.applyCheck:checked').each(function (k, v) {
+					deleteUser[k] = {};
+					deleteUser[k].tNo=$(this).val();
+					deleteUser[k].nickname=$(this).parent().next('#nickname').text();
+				});
+				
+				
+				$.ajax({
+					type : "POST",
+					url : "../team/applyUserDelete",
+					dataType : "JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+					data : {deleteUser:JSON.stringify(deleteUser)},
+					success : function(data) {
+						if(data.ok){
+							alert("삭제완료");
+							getApplyUserList(deleteUser[0].tNo);
+						}
+					},
+					complete : function(data) {
+					},
+					error : function(request, status, error) {
+						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					}
+				});
+				
+			});
+		}
+		
+		function applyUser() {
+			var nickname, tNo;
+			$(document).on('click','.applyBtn',function(){
+				nickname = $(this).parent().siblings('#nickname').text();
+				tNo = $(this).parent().siblings('#check').children().val();
+				$.ajax({
+					type : "POST",
+					url : "../team/applyUser",
+					dataType : "JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+					data : {nickname:nickname, tNo:tNo},
+					success : function(data) {
+						if(data.ok){
+							alert("승인 완료");
+							getApplyUserList(tNo);
+						}
+					},
+					complete : function(data) {
+					},
+					error : function(request, status, error) {
+						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					}
+				});
+				
+			});
+		}
+		
+		function getApplyUserList(tNo) {
+			var str='';
+			$.ajax({
+				type : "POST",
+				url : "../team/getApplyTeamUserList",
+				dataType : "JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+				data : {tNo:tNo},
+				success : function(data) {
+					
+					$('.applyUserTable').empty();
+					str = '<tr>'
+						+'<th style="max-width: 30px;">체크</th>'
+						+'<th style="max-width: 80px;">닉네임</th>'
+						+'<th style="width: 80px;" class="">상태</th>'
+						+'<th style="width: 80px;" class="">승인</th>'
+						+'</tr>'
+					$('.applyUserTable').append(str);
+					
+					for(var i=0; i<data.length; i++){
+						var status, applybtnClass = '';
+						switch (data[i].status) {
+						case 1:
+							status = "승인 대기중"; break;
+						case 2:
+							status = "팀장"; 
+							applybtnClass = "non-applyBtn";
+							break;
+						case 3:
+							status = "팀원"; 
+							applybtnClass = "non-applyBtn";
+							break;
+						default:
+							break;
+						}
+						
+						str = '<tr role="row" class="">'
+							+ '<td id="check" style="max-width:20px;"><input type="checkbox" class="applyCheck" value="'+ data[i].tNo+'"></td>'
+							+ '<td id="nickname" style="max-width: 40px;">'+ data[i].nickname + '</td>'
+							+ '<td id="status" style="width: 100px;">' + status + '</td>'
+							+ '<td id="applyBtn" style="width: 80px;"><a href="#" class="applyBtn btn '+applybtnClass+'" >승인</a></td></tr>';
+						$('.applyUserTable').append(str);
+					}
+					
+				},
+				complete : function(data) {
+				},
+				error : function(request, status, error) {
+					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				}
+			});
+		}
+		
 	</script>
 </body>
 </html>
