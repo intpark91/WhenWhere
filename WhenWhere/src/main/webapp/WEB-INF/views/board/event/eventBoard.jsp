@@ -28,6 +28,9 @@ margin-bottom : -35px;
 		$('.eventwrite').on('click',function(){
 			location.href="eventWrite?category=4";
 		});
+		$('.eventContent').find('img').each(function() {
+			$(this).css('display','none');
+		})
 	});
 </script>
 </head>
@@ -35,19 +38,15 @@ margin-bottom : -35px;
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
 
 	<div class="wrapper">
-		<!-- include -->
+
 		<jsp:include page="../../component/header.jsp" />
 		<jsp:include page="../../component/linkSidebar.jsp" />
-		<!-- Content Wrapper. Contains page content -->
-
+		
 		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
 
-			<!-- Main content -->
-			<!-- /.content -->
 			<div class="container">
 			<div class="row">
-				<div
+				<div 
 					class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2 text-center">
 					<div class="con_area">
 						<div class="board_box">
@@ -83,8 +82,7 @@ margin-bottom : -35px;
 											<button type="submit" class="searchBtn">검색</button>
 										</form>
 									</div>
-							</div>
-							
+							</div>							
 							<div class="bbs_list">
 								<h2 class="eventtitle">행사 리스트</h2>							
 								<section class="board_photo">
@@ -97,18 +95,16 @@ margin-bottom : -35px;
 												<a href="eventRead?no=${item.NO}&category=4" alt="" class="thum_photo"> 
 													<img src="http://192.168.8.13:8088/img/${item.FILENAME}" alt="null">
 												</a>
-												<figcaption>
+												<figcaption class="img">
 													<h3>													
 														<a href="eventRead?no=${item.NO}&category=4" >${item.TITLE}</a>
 													</h3>
-													<h4>
-														${item.CONTENT}												
+													<h4 class="eventContent">
+														${item.CONTENT}
 													</h4>
 													<p>
 													${item.SDATE} ~ ${item.EDATE}
-													</p>
-					
-													
+													</p>		
 													<p>
 													<span class="jb_area">[${item.LOC}] &nbsp&nbsp&nbsp 추천 : ${item.RECOMMEND}</span>
 													
@@ -131,7 +127,7 @@ margin-bottom : -35px;
 														<a href="eventRead?no=${item.NO}&category=4">${item.TITLE}</a>
 													</h3>
 													<h4>
-														${item.CONTENT}												
+														${item.CONTENT}										
 													</h4>
 													<p>
 													${item.SDATE} ~ ${item.EDATE}
@@ -177,9 +173,7 @@ margin-bottom : -35px;
 											<li><a href="review?page=${pagenation.totalPage}&category=3">[>>]</a></li>
 										</c:when>
 									</c:choose>
-							</c:when>
-						
-						
+							</c:when>																				
 							<c:otherwise>
 									<c:choose>
 										<c:when test="${searchpagenation.currPage>10}">
@@ -214,13 +208,10 @@ margin-bottom : -35px;
 			</div>
 		</div>
 		</div>
-
-		<!-- /.content-wrapper -->
-		<!-- include -->
 		<jsp:include page="../../component/footer.jsp" />
 		<jsp:include page="../../component/controlSidebar.jsp" />
 	</div>
-	<!-- scripts -->
+	
 	<jsp:include page="../../component/core_js.jsp" />
 
 </body>

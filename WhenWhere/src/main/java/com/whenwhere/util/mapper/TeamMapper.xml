@@ -11,4 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      	select * from dual
 	</insert>
 	
+	<select id="getTeamList" resultType="com.whenwhere.team.vo.JoinTeamVO">
+		select t_no as no, nickname, t_status as status from JOINTEAM where NICKNAME = #{nickName}
+	</select>
 </mapper> 

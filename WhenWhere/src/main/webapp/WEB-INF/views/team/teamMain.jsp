@@ -55,7 +55,53 @@
 		
 	</style>
 	<script type="text/javascript">
-	
+		
+		$(function(){
+			/* ************ 팀 리스트에 대한 정보를 불러옴 ******************/
+			getTeamList();
+			setInterval(function() {
+				getTeamList();
+			}, 10000);
+		});
+		
+		function getTeamList(){
+			$.ajax({
+		           type:"POST",
+		           url:"../team/getTeamList",
+		           dataType:"JSON",
+		           data : { "page": 1 },
+		           success : function(data) {
+		        	   console.log(data);
+		        	   if(data[0].ok){
+		        		   console.log(data)
+		        		   $('.mainTr').html('');
+		        		   for(var i=1; i<data.length;i++){
+		        			   var json_param = new Array();
+		        			   json_param.push(data[i].num);
+		        			   json_param.push(data[i].title);
+		        			   json_param.push(data[i].wTime);
+		        			   json_param.push(data[i].type);
+		        			   json_param.push(data[i].userNum);
+		        			   json_param.push(data[i].userNumInRoom);
+		        			   json_param.push(data[i].pwdCheck);
+		        			   
+		        			   room = new roomObj(json_param);
+		        			   str_Txt = room.room_format();
+		        			   
+		        			   $('.mainTr').append(str_Txt);
+		        			   console.log(str_Txt);
+		        		   }
+		        	   }
+		           },
+		           complete : function(data) {
+		        	   
+		           },
+		           error : function(xhr, status, error) {
+		                 console.log(error);
+		           }
+		    });
+		}
+		
 		function makeTeam() {
 			var date = $('#reservation').val();
 			var formData = $('form').serialize() 
@@ -78,23 +124,19 @@
 					success : function(data) {
 						console.log(data);
 
-						/*  if (data.ok) {
-							$('input[name=title]').val('');
+						if (data.ok) {
+							alert('팀이 만들어졌어요 ^^');
+							
+							$('input[name=teamname]').val('');
+							$('input[name=text]').val('');
+							$('input[name=userNum]').val('');
+							$('input[name=subject]').val('');
+							$('input[name=loc_code]').val('');
+							
 							$('#roomMakeDiv').addClass('collapsed-box');
-							//$('#roomMakeDiv .box-body').css('display','none'); 
-							$('#roomListDiv').addClass('collapsed-box');
 							$('#chattingRoom').removeClass('collapsed-box');
 
-							title = data.title;
-							user = data.name; 
-
-							$('#roomTitle').text('방제목:');
-							$('.room-title').text(title);
-
-							websocket(); //websocket연결
-							sendMsg(); //msg 출력
-						}  */
-						
+						}  
 					},
 					complete : function(data) {
 
@@ -150,7 +192,7 @@
 										<div class="input-group-addon">
 											<i class="fa fa-calendar"></i>
 										</div>
-										<input type="text" class="form-control pull-right col-sm-10" id="reservation">
+										<input type="text" name="text" class="form-control pull-right col-sm-10" id="reservation">
 									</div>
 								</div>
 								<div class="form-group">
