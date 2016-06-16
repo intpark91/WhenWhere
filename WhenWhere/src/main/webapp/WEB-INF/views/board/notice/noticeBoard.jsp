@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>공지사항 게시판</title>
+<title>WhenWhere</title>
 <jsp:include page="../../component/core_head.jsp" />
 <style>
 		.noticewrite { float: right; width: 100px;}

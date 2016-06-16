@@ -5,7 +5,7 @@
 <html>
 <head>
 	<jsp:include page="../../component/core_head.jsp" />
-	<title>WhenWhereTest</title>
+	<title>WhenWhere</title>
 	<link rel="stylesheet" href="../css/board/eventboard.css" type="text/css">
 	<style>
 h1,h2,h3,h4 {

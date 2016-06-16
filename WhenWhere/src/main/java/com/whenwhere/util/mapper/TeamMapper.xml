@@ -17,5 +17,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where join.T_NO = t.T_NO and nickname = #{nickName}
 	</select>
 	
+	<select id="getTeamUserList" resultType="String">
+		select nickname from JOINTEAM where t_no = #{teamNum}
+	</select>
 	
 </mapper> 

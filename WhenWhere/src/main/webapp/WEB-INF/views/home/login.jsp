@@ -4,7 +4,7 @@
 <html>
 <head>
 	<jsp:include page="../component/core_head.jsp" />
-	<title>WhenWhereTest</title>
+	<title>WhenWhere</title>
 	<!-- <link rel="stylesheet" href="../css/home/login.css" />  -->
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 </head>
