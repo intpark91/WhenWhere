@@ -52,6 +52,7 @@ public class MainController {
 	public String searchForm(Model model) {
 		model.addAttribute("locationList", searchService.getAllLocationList());
 		model.addAttribute("locationSubList", searchService.getSubLocationList());
+		model.addAttribute("path", "0");
 		return "home/search";
 	}
 
@@ -68,18 +69,21 @@ public class MainController {
 	}
 
 	@RequestMapping(value = "/chat")
-	public String chat() {
+	public String chat(Model model) {
+		model.addAttribute("path", "3");
 		return "chat/main";
 	}
 
 	@RequestMapping(value = "/admin")
-	public String admin() {
+	public String admin(Model model) {
+		model.addAttribute("path", "5");
 		return "manage/adminHome";
 	}
 	
 	@RequestMapping(value = "/team")
 	public String team(Model model) {
 		model.addAttribute("locationSubList", searchService.getSubLocationList());
+		model.addAttribute("path", "3");
 		return "team/teamMain";
 	}
 }

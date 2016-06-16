@@ -154,6 +154,5 @@ desired effect
 	<script src="../js/jquery-ui-slider-pips.js"></script>
 	<script src="../js/slider.js"></script>
 	<script src='../js/loadingSpinner.js'></script>
-	
 </body>
 </html>
