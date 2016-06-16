@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../css/daterangepicker-bs3.css">
   	<link rel="stylesheet" href="../css/datepicker3.css">
   	<link rel="stylesheet" href="../css/bootstrap-timepicker.min.css">
+  	<link rel="stylesheet" href="../css/iCheck/flat/blue.css">
 <style type="text/css">
 .row.chatTable {
 	margin: 1px;
@@ -92,6 +93,38 @@ span#roomTitle {
 .non-applyBtn {
 	display: none;
 }
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    /* line-height: 1.42857143; */
+    vertical-align: top;
+    /* border-top: 1px solid #ddd; */
+    /* border-bottom: 1px solid #ddd; */
+}
+
+.applyBtn{
+	padding-top: 0px;
+    position: relative;
+    bottom: 1px;
+    animation: recommend 0.6s infinite alternate;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes recommend { 
+	0% {
+	/* background-color: rgb(54, 127, 169); */
+	color: rgba(255, 255, 255, 0.41);
+	}
+
+}
+
+/* Standard syntax */
+@-keyframes myfirst recommend { 0% {
+	/* background-color: rgb(54, 127, 169); */
+	color: rgba(255, 255, 255, 0.41);
+}
+}
+
 </style>
 </head>
 
@@ -362,7 +395,7 @@ span#roomTitle {
 							<div id="roomListDiv" class="box box-default">
 								<div class="box-header">
 									<h3 class="box-title">
-										<span> 팀원을 확인.
+										<span class=""> 팀원 관리 페이지
 										</span>
 									</h3>
 								</div>
@@ -553,9 +586,20 @@ span#roomTitle {
 		           }
 		   		}); 
 			}else if(teamSts == 0){
-				alert('팀 구성원이 아닙니다');
+				$.bootstrapGrowl("팀 구성원이 아닙니다.", {
+					type: 'danger',
+					align: 'center',
+					width: 'auto',
+					allow_dismiss: false
+				});
+
 			}else{
-				alert('팀 승낙 대기상태입니다.');
+				$.bootstrapGrowl("팀 승낙 대기상태입니다.", {
+					type: 'danger',
+					align: 'center',
+					width: 'auto',
+					allow_dismiss: false
+				});
 			}
 		});
 	}
@@ -755,22 +799,37 @@ span#roomTitle {
 					deleteUser[k].nickname=$(this).parent().next('#nickname').text();
 				});
 				
-				
-				$.ajax({
-					type : "POST",
-					url : "../team/applyUserDelete",
-					dataType : "JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
-					data : {deleteUser:JSON.stringify(deleteUser)},
-					success : function(data) {
-						if(data.ok){
-							alert("삭제완료");
-							getApplyUserList(deleteUser[0].tNo);
+				bootbox.dialog({
+					message : "정말 삭제 하시겠습니까?",
+					buttons : {
+						success : {
+							label : "네",
+							className : "btn-success",
+							callback : function() {
+								$.ajax({
+									type : "POST",
+									url : "../team/applyUserDelete",
+									dataType : "JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+									data : {deleteUser:JSON.stringify(deleteUser)},
+									success : function(data) {
+										if(data.ok){
+											bootbox.alert("삭제 완료.", function() {
+												getApplyUserList(deleteUser[0].tNo);
+											});
+										}
+									},
+									complete : function(data) {
+									},
+									error : function(request, status, error) {
+										alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+									}
+								});
+							}
+						},
+						danger : {
+							label : "아니요",
+							className : "btn-danger",
 						}
-					},
-					complete : function(data) {
-					},
-					error : function(request, status, error) {
-						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 					}
 				});
 				
@@ -789,8 +848,9 @@ span#roomTitle {
 					data : {nickname:nickname, tNo:tNo},
 					success : function(data) {
 						if(data.ok){
-							alert("승인 완료");
-							getApplyUserList(tNo);
+							bootbox.alert("승인 완료.", function() {
+								getApplyUserList(tNo);
+							});
 						}
 					},
 					complete : function(data) {
@@ -814,7 +874,7 @@ span#roomTitle {
 					
 					$('.applyUserTable').empty();
 					str = '<tr>'
-						+'<th style="max-width: 30px;">체크</th>'
+						+'<th style="max-width: 30px;"></th>'
 						+'<th style="max-width: 80px;">닉네임</th>'
 						+'<th style="width: 80px;" class="">상태</th>'
 						+'<th style="width: 80px;" class="">승인</th>'
@@ -822,13 +882,14 @@ span#roomTitle {
 					$('.applyUserTable').append(str);
 					
 					for(var i=0; i<data.length; i++){
-						var status, applybtnClass = '';
+						var status, applyCheckClass = '', applybtnClass = '';
 						switch (data[i].status) {
 						case 1:
 							status = "승인 대기중"; break;
 						case 2:
 							status = "팀장"; 
 							applybtnClass = "non-applyBtn";
+							applyCheckClass = "non-applyBtn";
 							break;
 						case 3:
 							status = "팀원"; 
@@ -839,7 +900,7 @@ span#roomTitle {
 						}
 						
 						str = '<tr role="row" class="">'
-							+ '<td id="check" style="max-width:20px;"><input type="checkbox" class="applyCheck" value="'+ data[i].tNo+'"></td>'
+							+ '<td id="check" style="max-width:20px;"><input type="checkbox" class="icheckbox_flat-blue applyCheck '+applyCheckClass+'" value="'+ data[i].tNo+'"></td>'
 							+ '<td id="nickname" style="max-width: 40px;">'+ data[i].nickname + '</td>'
 							+ '<td id="status" style="width: 100px;">' + status + '</td>'
 							+ '<td id="applyBtn" style="width: 80px;"><a href="#" class="applyBtn btn '+applybtnClass+'" >승인</a></td></tr>';
