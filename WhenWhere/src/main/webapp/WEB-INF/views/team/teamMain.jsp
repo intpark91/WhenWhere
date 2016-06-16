@@ -63,6 +63,18 @@
 		b#a_url {
 		    color: #E91E63;
 		}
+		
+		.box.box-primary {
+		    padding: 5%;
+		}
+		
+		.list-group {
+		    padding: 5px 30px;
+		}
+		
+		.col-sm-6.join-btn {
+    		margin-bottom: 10px;
+		}
 </style>
 </head>
 
@@ -157,7 +169,46 @@
 						<!-- /.box-body -->
 					</div>
 				</div>
-				<div class="col-sm-3 ">
+				<div class="col-sm-6">
+					<div class="col-sm-12 teamList">
+						<div id="roomListDiv" class="box box-default">
+							<div class="box-header">
+								<h3 class="box-title">
+									<span> 팀 목록을 선택하면 <b style="color : red;">상세보기</b>를 할 수 있어요 </span>
+								</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body table-responsive no-padding">
+								<table class="table table-hover mainTr">
+									<thead>	
+										<tr>
+											<th style="width: 80px;" >팀 이름</th>
+											<th style="max-width: 20px;">시작 일</th>
+											<th style="max-width: 20px;">종료 일</th>
+											<th style="width: 80px;" class="hidden-xs">팀 상태</th>
+											<th style="width: 80px;" class="hidden-xs">팀 유형</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+								<div class="box-footer clearfix">
+									<ul class="pagination pagination-sm no-margin pull-right">
+										<li><a href="#">&laquo;</a></li>
+										<li><a href="#">1</a></li>
+										<li><a href="#">2</a></li>
+										<li><a href="#">3</a></li>
+										<li><a href="#">4</a></li>
+										<li><a href="#">5</a></li>
+										<li><a href="#">&raquo;</a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- /.box-body -->
+						</div>
+						<!-- /.box -->
+					</div>
+					<div class="col-sm-12 ">
 					<!-- Profile Image -->
 					<div class="box box-primary">
 						<div class="box-body box-profile">
@@ -175,7 +226,9 @@
 								</li> -->
 								<li class="list-group-item">
 									<b>팀 URL</b> 
-									<b id="a_url"> </b> 
+									<a>
+										<b class="pull-right" id="a_url"></b>
+									</a>
 								</li>
 								<li class="list-group-item"><b>팀 상태</b>
 								 	<a id="a_sts" class="pull-right">  </a>
@@ -183,52 +236,25 @@
 								<li class="list-group-item"><b>팀원 목록</b>
 								 	<a id="a_list" class="pull-right">  </a>
 								</li>
+								<li class="list-group-item"><b>팀 유형</b>
+								 	<a id="a_type" class="pull-right">  </a>
+								</li>
 							</ul>
-
-							<a href="#" class="btn btn-primary btn-block"><b>팀 가입하기 ♡</b></a>
-						</div>
-						<!-- /.box-body -->
-					</div>
-				</div>
-				<div class="col-sm-9 teamList">
-					<div id="roomListDiv" class="box box-default">
-						<div class="box-header">
-							<h3 class="box-title">
-								<span> 팀 목록을 선택하면 <b style="color : red;">상세보기</b>를 할 수 있어요 </span>
-							</h3>
-						</div>
-						<!-- /.box-header -->
-						<div class="box-body table-responsive no-padding">
-							<table class="table table-hover mainTr">
-								<thead>	
-									<tr>
-										<th style="width: 80px;" >팀 이름</th>
-										<th style="max-width: 20px;">시작 일</th>
-										<th style="max-width: 20px;">종료 일</th>
-										<th style="width: 80px;" class="hidden-xs">팀 상태</th>
-										<th style="width: 80px;" class="hidden-xs">팀 유형</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
-							<div class="box-footer clearfix">
-								<ul class="pagination pagination-sm no-margin pull-right">
-									<li><a href="#">&laquo;</a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">&raquo;</a></li>
-								</ul>
+							
+							<div class="col-sm-12 ">
+								<div class="col-sm-6 join-btn">
+									<a href="#" class="btn btn-primary btn-block"><b>팀 가입하기 ♡</b></a>
+								</div>
+								<div class="col-sm-6">
+									<a href="#" class="btn btn-primary btn-block"><b>팀원 관리하기</b></a>
+								</div>
 							</div>
 						</div>
 						<!-- /.box-body -->
 					</div>
-					<!-- /.box -->
 				</div>
-				<div class="col-sm-12">
+				</div>
+				<div class="col-sm-6">
 					<div id="chattingRoom" class="box box-success collapsed-box">
 						<div class="box-header">
 							<i class="fa fa-comments-o"></i> <span id="roomTitle">선택된
@@ -299,13 +325,17 @@
 			
 			teamNum = trInfo.split(' ')[0].split('_no_')[1];
 			teamName = trInfo.split(' ')[1].split('_name_')[1];
+			teamSts = trInfo.split(' ')[2].split('_sts_')[1];
 			dataVal = '';
 			teamurl = 'http://192.168.8.31:8088/WhenWhere/home/team?teanNum='+teamNum+'&teamname='+teamName;
 			console.log(teamurl);
 			
+			var span = $(this).find('#spanTag span').clone();
+			
 			$('#a_sts').text($(this).find('#status').text());
 			$('#a_no').text();
 			$('#a_url').text(teamurl);
+			$('#a_type').html(span);
 			$('h3.profile-username').text($(this).find('#teamname').text());
 			
 			$.ajax({
@@ -339,40 +369,41 @@
 		                 console.log(error + "return : " + xhr.responseText);
 		           }
 		    	});
+			
+			$.ajax({
+	           type:"POST",
+	           url:"../chat/enterRoom",
+	           dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+	           data : { "roomNum": click_num },
+	           success : function(data) {
+	        	   console.log(data);
+	        	  
+	        	   if(data.ok){
+	        		   $('input[name=title]').val('');
+	        	   	   $('#roomMakeDiv').addClass('collapsed-box');
+	        	   	    $('#roomMakeDiv .box-body').css('display','none'); 
+	        		   $('#roomListDiv').addClass('collapsed-box');
+	        		   $('#chattingRoom').removeClass('collapsed-box');
+	        		 
+	        		   title=data.title;
+	        		   user=data.name;
+	        		   
+	        		   $('#roomTitle').text('방제목:');
+	        		   $('.room-title').text(title);
+	        		   
+	        		   websocket(); //websocket연결
+	        		   sendMsg(); //msg 출력
+	        	   }
+	           },
+	           complete : function(data) {
+	        	   
+	           },
+	           error : function(xhr, status, error) {
+	                 console.log(error);
+	           }
+	    }); 
 		});
 			
-			/* $.ajax({
-		           type:"POST",
-		           url:"../chat/enterRoom",
-		           dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
-		           data : { "roomNum": click_num },
-		           success : function(data) {
-		        	   console.log(data);
-		        	  
-		        	   if(data.ok){
-		        		   $('input[name=title]').val('');
-		        	   	   $('#roomMakeDiv').addClass('collapsed-box');
-		        	   	   /* $('#roomMakeDiv .box-body').css('display','none'); 
-		        		   $('#roomListDiv').addClass('collapsed-box');
-		        		   $('#chattingRoom').removeClass('collapsed-box');
-		        		 
-		        		   title=data.title;
-		        		   user=data.name;
-		        		   
-		        		   $('#roomTitle').text('방제목:');
-		        		   $('.room-title').text(title);
-		        		   
-		        		   websocket(); //websocket연결
-		        		   sendMsg(); //msg 출력
-		        	   }
-		           },
-		           complete : function(data) {
-		        	   
-		           },
-		           error : function(xhr, status, error) {
-		                 console.log(error);
-		           }
-		    }); */
 	}
 	
 	function getTeamList() {
@@ -429,7 +460,8 @@
 			var str='';
 			var class_no = 'team_no_'+this.no;
 			var class_team = 'team_name_'+this.teamname;
-			var selectArr = new Array("가입가능", "승낙대기중", "팀 방장");
+			var class_sts = 'team_sts_'+this.status;
+			var selectArr = new Array("가입가능", "승낙대기중", "팀 방장", "팀원");
 			/*  a_sts a_no a_url  */
 			switch (this.status) {
 				case 0:
@@ -461,12 +493,12 @@
 	    	             break;
 	    	}
 
-			str += '<tr role="row" class="'+ class_no + ' ' + class_team +'">'
+			str += '<tr role="row" class="'+ class_no + ' ' + class_team + ' ' + class_sts + '\">'
 					+ '<td id="teamname" style="width: 80px;">' + this.teamname + '</td>'
-					+ '<td id="sdate" style="max-width: 20px;" class="hidden-xs">'	+ this.sdate + '</td>'
+					+ '<td id="sdate" style="max-width: 20px;">'	+ this.sdate + '</td>'
 					+ '<td id="edate" style="max-width: 20px;">'+ this.edate + '</td>'
-					+ '<td style="width: 80px;" class="hidden-xs">' + className + typeName +'</span></td>'
-					+'<td id="status" style="width: 80px;" class="hidden-xs">' + status + '</td></tr>';
+					+ '<td id="status" style="width: 80px;" class="hidden-xs">' + status + '</td>'
+					+ '<td id="spanTag" style="width: 80px;" class="hidden-xs">' + className + typeName +'</span></td></tr>';
 			return str;
 			}
 		}
