@@ -6,7 +6,6 @@
 <head>
 	<jsp:include page="../../component/core_head.jsp" />
 	<title>WhenWhereTest</title>
-	<link rel="stylesheet" href="../css/slider.css" />
 	<link rel="stylesheet" href="../css/board/noticeBoardRead.css" type="text/css">  
 	<link rel="stylesheet" href="../css/board/comment.css" />
 	<style>

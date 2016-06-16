@@ -696,7 +696,7 @@ function getEventList(){
 				colLi = $('<li/>').attr('class','col-sm-3'),
 				fDiv = $('<div/>').attr('class','fff'),
 				thumbnailDiv = $('<div/>').attr('class','thumbnail'),
-				img = $('<img/>').attr('src','http://192.168.8.13:8088/img/'+data.searchEventList[j].imgName+'.jpg').attr('width','200px'),
+				img = $('<img/>').attr('src','http://192.168.8.13:8088/img/'+data.searchEventList[j].imgName+'').attr('width','200px'),
 				imgA = $('<a href="#" class="searchImgA" data-toggle="modal" data-target="#basicModal"></a>'),
 				captionDiv = $('<div/>').attr('class','caption'),
 				nav = $('<nav/>'),
