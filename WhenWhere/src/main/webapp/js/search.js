@@ -26,13 +26,14 @@ $(document).ready(function() {
 		run_wait('#myCarousel1');
 		run_wait('#myCarousel2');
 		run_wait('#myCarousel3');
+		run_wait('#myCarousel4');
 		run_waitBtn('.loadingBtn');
 		setTimeout(function() {
 			$('.loadingBtn').waitMe('hide');
 		}, 1000);
 		
 
-		//start, end Date 가져오기
+		//start, end Date 가져오기 
 		var startDate = $('#start').val(), 
 		endDate = $('#end').val(),
 		locations = [];
@@ -389,6 +390,7 @@ $(document).ready(function() {
 			$('.modal-footer').css('display','none');
 			$('.detail2').parent().remove();
 		}else if($(this).parents('.carousel').attr('id') == 'myCarousel3'){
+			$('.readMore').text('예약하기');
 			$('.modal-footer').css('display','block');
 			$('.detail2').parent().remove();
 			$('.carousel-indicators').append('<li data-target="#detailCarousel" data-slide-to="1" class="active"></li>');
@@ -413,6 +415,7 @@ $(document).ready(function() {
 			 
 			
 		}else if($(this).parents('.carousel').attr('id') == 'myCarousel4'){
+			$('.readMore').text('팀 참가하기');
 			$('.modal-footer').css('display','block');
 			$('.detail2').parent().remove();
 			$('.carousel-indicators').append('<li data-target="#detailCarousel" data-slide-to="1" class="active"></li>');
@@ -437,6 +440,7 @@ $(document).ready(function() {
 			 
 			
 		}else{
+			$('.readMore').text('Read more...');
 			$('.modal-footer').css('display','block');
 			$('.detail2').parent().remove();
 			$('.carousel-indicators').append('<li data-target="#detailCarousel" data-slide-to="1" class="active"></li>');
