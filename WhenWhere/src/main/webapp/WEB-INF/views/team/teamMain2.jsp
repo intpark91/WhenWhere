@@ -54,6 +54,10 @@
 			margin-left: 4%;
 		}
 		
+		.non-applyBtn{
+			display: none;
+		}
+		
 		/* div#roomListDiv {
 			min-height: 335px;
 		}
@@ -183,7 +187,7 @@
 								</li>
 							</ul>
 
-							<a href="#" class="btn btn-primary btn-block"><b>팀을 선택하세요!</b></a>
+							<a href="#" class="btn btn-primary btn-block applyUserListBtn" data-toggle="modal" data-target="#basicModal"><b>팀을 선택하세요!</b></a>
 						</div>
 						<!-- /.box-body -->
 					</div>
@@ -256,6 +260,59 @@
 			</div>
 			<!-- include -->
 		</div>
+		
+		
+		<!-- modal contents -->
+		<div class="modal fade" id="basicModal" tabindex="-1" role="dialog"
+			aria-labelledby="basicModal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title label" id="myModalLabel">제목</h4>
+					</div>
+					<div class="modal-body">
+
+						<div class="teamList">
+							<div id="roomListDiv" class="box box-default">
+								<div class="box-header">
+									<h3 class="box-title">
+										<span> 팀원을 확인.
+										</span>
+									</h3>
+								</div>
+								<!-- /.box-header -->
+								<div class="box-body table-responsive no-padding">
+									<table class="table table-hover applyUserTable">
+											<tr>
+												<th style="max-width: 30px;">체크</th>
+												<th style="max-width: 80px;">닉네임</th>
+												<th style="width: 80px;" class="hidden-xs">상태</th>
+											</tr>
+										<tbody>
+										</tbody>
+									</table>
+									<div class="box-footer clearfix">
+										<a href="#" class="btn btn-primary applyUserDeleteBtn">선택 삭제</a>
+									</div>
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /.box -->
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<p>
+							<!-- <a class="btn btn-mini readMore" href="#">» Read More</a> -->
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
 	</div>
 	<jsp:include page="../component/footer.jsp" />
 	<jsp:include page="../component/controlSidebar.jsp" />
@@ -283,6 +340,10 @@
 	    });
 	    
 	    clickTr();
+	    applyUserList();
+	    applyUserDelete();
+	    applyUser(); 
+	   
 	});
 
 	function clickTr(){
@@ -500,6 +561,124 @@
 					}
 				});
 			}
+		}
+		
+		
+		function applyUserList() {
+			var tNo = '9';
+			$('.applyUserListBtn').on('click',function(){
+				getApplyUserList(tNo);
+			});
+			
+		}
+		
+		function applyUserDelete() {
+			var deleteUser = [];
+			$('.applyUserDeleteBtn').on('click',function(){
+				$('.applyCheck:checked').each(function (k, v) {
+					deleteUser[k] = {};
+					deleteUser[k].tNo=$(this).val();
+					deleteUser[k].nickname=$(this).parent().next('#nickname').text();
+				});
+				
+				
+				$.ajax({
+					type : "POST",
+					url : "../team/applyUserDelete",
+					dataType : "JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+					data : {deleteUser:JSON.stringify(deleteUser)},
+					success : function(data) {
+						if(data.ok){
+							alert("삭제완료");
+							getApplyUserList(deleteUser[0].tNo);
+						}
+					},
+					complete : function(data) {
+					},
+					error : function(request, status, error) {
+						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					}
+				});
+				
+			});
+		}
+		
+		function applyUser() {
+			var nickname, tNo;
+			$(document).on('click','.applyBtn',function(){
+				nickname = $(this).parent().siblings('#nickname').text();
+				tNo = $(this).parent().siblings('#check').children().val();
+				$.ajax({
+					type : "POST",
+					url : "../team/applyUser",
+					dataType : "JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+					data : {nickname:nickname, tNo:tNo},
+					success : function(data) {
+						if(data.ok){
+							alert("승인 완료");
+							getApplyUserList(tNo);
+						}
+					},
+					complete : function(data) {
+					},
+					error : function(request, status, error) {
+						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					}
+				});
+				
+			});
+		}
+		
+		function getApplyUserList(tNo) {
+			var str='';
+			$.ajax({
+				type : "POST",
+				url : "../team/getApplyTeamUserList",
+				dataType : "JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+				data : {tNo:tNo},
+				success : function(data) {
+					
+					$('.applyUserTable').empty();
+					str = '<tr>'
+						+'<th style="max-width: 30px;">체크</th>'
+						+'<th style="max-width: 80px;">닉네임</th>'
+						+'<th style="width: 80px;" class="">상태</th>'
+						+'<th style="width: 80px;" class="">승인</th>'
+						+'</tr>'
+					$('.applyUserTable').append(str);
+					
+					for(var i=0; i<data.length; i++){
+						var status, applybtnClass = '';
+						switch (data[i].status) {
+						case 1:
+							status = "승인 대기중"; break;
+						case 2:
+							status = "방장"; 
+							applybtnClass = "non-applyBtn";
+							break;
+						case 3:
+							status = "팀원"; 
+							applybtnClass = "non-applyBtn";
+							break;
+						default:
+							break;
+						}
+						
+						str = '<tr role="row" class="">'
+							+ '<td id="check" style="max-width:20px;"><input type="checkbox" class="applyCheck" value="'+ data[i].tNo+'"></td>'
+							+ '<td id="nickname" style="max-width: 40px;">'+ data[i].nickname + '</td>'
+							+ '<td id="status" style="width: 100px;">' + status + '</td>'
+							+ '<td id="applyBtn" style="width: 80px;"><a href="#" class="applyBtn btn '+applybtnClass+'" >승인</a></td></tr>';
+						$('.applyUserTable').append(str);
+					}
+					
+				},
+				complete : function(data) {
+				},
+				error : function(request, status, error) {
+					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				}
+			});
 		}
 	</script>
 </body>
