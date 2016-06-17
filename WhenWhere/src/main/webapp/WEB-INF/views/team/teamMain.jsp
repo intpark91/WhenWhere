@@ -61,7 +61,7 @@ input#reservation {
 	overflow: hidden;
 	word-break: break-word;
 }
-
+ 
 b#a_url {
 	color: #E91E63;
 }
