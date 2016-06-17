@@ -279,7 +279,9 @@ span#roomTitle {
 									<b>팀 URL</b> 
 									<a>
 										<b class="pull-right" id="a_url">
+										    <c:if test="${teamInfo.no > 0}">
 											http://192.168.8.31:8088/WhenWhere/home/team?teamNum=${teamInfo.no}&teamname=${teamInfo.teamname}
+											</c:if>
 										</b>
 									</a>
 								</li>
@@ -491,7 +493,8 @@ span#roomTitle {
 	
 	var teamList = new Array();
 	var sessionNick = '';
-	var teamNum = ${teamInfo.no} ;
+	/* var teamNum = ${teamInfo.no} ; */
+	var teamNum = 0; 
 	var teamName = '';
 	var lastMsgNo = 0;
 	var chatinterval ;
@@ -651,6 +654,7 @@ span#roomTitle {
 		        			   str_Txt = msgObject.msg_format();
 		        			   $('.item.chat_main_body').append(str_Txt);
 		        			   console.log(str_Txt);
+		        			   
 		        		   }
 		        		   chatinterval = setInterval(function() {
 		       					getChatSec(teamNum);
