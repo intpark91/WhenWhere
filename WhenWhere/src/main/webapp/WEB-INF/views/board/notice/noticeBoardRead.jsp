@@ -263,9 +263,8 @@ function delectAjax(no){
 													<a href="notice?category=${ReadBoard.category}"><h4
 															align="center">목록</h4></a>
 												</p>
-											</div>
 										</div>
-
+										</div>
 									</div>
 									<div id="btnWrap">
 										<c:set value="${ReadBoard.auth}" var="nickName" />

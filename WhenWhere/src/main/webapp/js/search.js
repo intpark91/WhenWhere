@@ -26,13 +26,14 @@ $(document).ready(function() {
 		run_wait('#myCarousel1');
 		run_wait('#myCarousel2');
 		run_wait('#myCarousel3');
+		run_wait('#myCarousel4');
 		run_waitBtn('.loadingBtn');
 		setTimeout(function() {
 			$('.loadingBtn').waitMe('hide');
 		}, 1000);
 		
 
-		//start, end Date 가져오기
+		//start, end Date 가져오기 
 		var startDate = $('#start').val(), 
 		endDate = $('#end').val(),
 		locations = [];
@@ -108,24 +109,29 @@ $(document).ready(function() {
 						var carouselDiv = carousel4.children('.carousel-inner');
 
 						for(var j=0; j<data.searchTeamList.length; j++){
-							var imgName, subject, teamUrl;
+							var imgName, subject, teamUrm, label;
 							teamUrl = 'http://192.168.8.31:8088/WhenWhere/home/team?teamNum='+data.searchTeamList[j].tNo+'&teamname='+data.searchTeamList[j].teamName;
 							switch (data.searchTeamList[j].subject) {
 							case '0':
-								subject = '동행'
+								subject = '동행';
+								label = 'label label-success';
 								imgName = 'partnership.png'; break;
 							case '1':
-								subject = '숙박'
-								imgName = 'partnership.png'; break;
+								subject = '숙박';
+								label = 'label label-warning';
+								imgName = 'hotel.png'; break;
 							case '2':
-								subject = '예약'
-								imgName = 'partnership.png'; break;
+								subject = '예약';
+								label = 'label label-primary';
+								imgName = 'reservation.png'; break;
 							case '3':
-								subject = '단체'
-								imgName = 'partnership.png'; break;
+								subject = '단체';
+								label = 'label label-info';
+								imgName = 'together.png'; break;
 							case '4':
-								subject = '기타'
-								imgName = 'partnership.png'; break;
+								subject = '기타';
+								label = 'label label-danger';
+								imgName = 'etc.png'; break; 
 							}
 							
 							var itemDiv = carouselDiv.children('.item:last-child'),
@@ -133,7 +139,7 @@ $(document).ready(function() {
 							colLi = $('<li/>').attr('class','col-sm-3'),
 							fDiv = $('<div/>').attr('class','fff'),
 							thumbnailDiv = $('<div/>').attr('class','thumbnail'),
-							img = $('<img/>').attr('src','../resources/img/partnership.png').attr('width','200px'),
+							img = $('<img/>').attr('src','../resources/img/'+imgName+'').attr('width','200px'),
 							/*img = $('<img/>').attr('src','http://192.168.8.13:8088/'+imgName+'').attr('width','200px'),*/
 							imgA = $('<a href="#" class="searchImgA" data-toggle="modal" data-target="#basicModal"></a>'),
 							captionDiv = $('<div/>').attr('class','caption'),
@@ -154,9 +160,9 @@ $(document).ready(function() {
 							}
 
 							captionDiv.append(title);
-							captionDiv.append($('<span class="subName glyphicon">' +subject+ '</span>').attr('id','subName'+data.searchTeamList[j].subject));
+							captionDiv.append($('<span class="subName glyphicon '+label+'">' +subject+ '</span>').attr('id','subName'+data.searchTeamList[j].subject));
 							captionDiv.append(content);
-							captionDiv.append($('<input type="hidden" value='+teamUrl+'">'));
+							captionDiv.append($('<input type="hidden" value='+teamUrl+'>'));
 							imgA.append($('<input type="hidden" value="'+data.searchTeamList[j].teamName+'">'));
 							imgA.append($('<input type="hidden" value="'+data.searchTeamList[j].tSDate+'~'+data.searchTeamList[j].tEDate+'">'));
 							imgA.append($('<input type="hidden" value="'+data.searchTeamList[j].locName+'">'));
@@ -384,6 +390,7 @@ $(document).ready(function() {
 			$('.modal-footer').css('display','none');
 			$('.detail2').parent().remove();
 		}else if($(this).parents('.carousel').attr('id') == 'myCarousel3'){
+			$('.readMore').text('예약하기');
 			$('.modal-footer').css('display','block');
 			$('.detail2').parent().remove();
 			$('.carousel-indicators').append('<li data-target="#detailCarousel" data-slide-to="1" class="active"></li>');
@@ -408,6 +415,7 @@ $(document).ready(function() {
 			 
 			
 		}else if($(this).parents('.carousel').attr('id') == 'myCarousel4'){
+			$('.readMore').text('팀 참가하기');
 			$('.modal-footer').css('display','block');
 			$('.detail2').parent().remove();
 			$('.carousel-indicators').append('<li data-target="#detailCarousel" data-slide-to="1" class="active"></li>');
@@ -432,6 +440,7 @@ $(document).ready(function() {
 			 
 			
 		}else{
+			$('.readMore').text('Read more...');
 			$('.modal-footer').css('display','block');
 			$('.detail2').parent().remove();
 			$('.carousel-indicators').append('<li data-target="#detailCarousel" data-slide-to="1" class="active"></li>');

@@ -158,16 +158,6 @@
 		<div id="scrollDiv demo" class="scrollDiv">
 			<div class="container scrollDown">
 				
-				<!-- #myCarousel4 -->
-				<div class="carousel slide" id="myCarousel4">
-					<h1 class="slideLabel">
-						<span class="label">※ 팀</span>
-					</h1>
-					<div class="carousel-inner"></div>
-
-				</div>
-				<!-- /#myCarousel4 -->
-				
 				<!-- #myCarousel -->
 				<div class="carousel slide" id="myCarousel1">
 					<h1 class="slideLabel">
@@ -197,6 +187,16 @@
 
 				</div>
 				<!-- /#myCarousel3 -->
+				
+				<!-- #myCarousel4 -->
+				<div class="carousel slide" id="myCarousel4">
+					<h1 class="slideLabel">
+						<span class="label">※ 팀</span>
+					</h1>
+					<div class="carousel-inner"></div>
+
+				</div>
+				<!-- /#myCarousel4 -->
 
 			</div>
 		</div>

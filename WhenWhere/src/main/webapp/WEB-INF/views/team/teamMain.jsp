@@ -11,81 +11,120 @@
     <link rel="stylesheet" href="../css/daterangepicker-bs3.css">
   	<link rel="stylesheet" href="../css/datepicker3.css">
   	<link rel="stylesheet" href="../css/bootstrap-timepicker.min.css">
-	<style type="text/css">
-		.row.chatTable {
-			margin: 1px;
-		}
-		
-		.box-footer {
-			border-top: 0px solid #f4f4f4;
-			padding: 10px;
-			background-color: #ffffff;
-		}
-		
-		table {
-			text-align: center;
-		}
-		
-		table th {
-			text-align: center;
-		}
-		
-		input.form-control.pull-right {
-			width: 150px;
-		}
-		
-		.chat .item>.message {
-			margin-left: 15px;
-			margin-top: 0px;
-			*/
-		}
-		
-		input#reservation {
-			width: 95%;
-			margin-right: 5%;
-		}
-		
-		.label-col-sm-2 {
-			text-align: right;
-			padding-top: 7px;
-		}
-		
-		.input-group[class*=col-] {
-			margin-left: 4%;
-		}
-		
-		.list-group-unbordered > .list-group-item {
-		    text-overflow: ellipsis;
-		    overflow: hidden;
-		    word-break: break-word;
-		}
-		
-		b#a_url {
-		    color: #E91E63;
-		}
-		
-		.box.box-primary {
-		    padding: 5%;
-		}
-		
-		.list-group {
-		    padding: 5px 30px;
-		}
-		
-		.col-sm-6.join-btn {
-    		margin-bottom: 10px;
-		}
-		
-		.direct-chat-img {
-     border-radius: 0%; 
+  	<link rel="stylesheet" href="../css/iCheck/flat/blue.css">
+<style type="text/css">
+.row.chatTable {
+	margin: 1px;
 }
+
+.box-footer {
+	border-top: 0px solid #f4f4f4;
+	padding: 10px;
+	background-color: #ffffff;
+}
+
+table {
+	text-align: center;
+}
+
+table th {
+	text-align: center;
+}
+
+input.form-control.pull-right {
+	width: 150px;
+}
+
+.chat .item>.message {
+	margin-left: 15px;
+	margin-top: 0px;
+	*/
+}
+
+input#reservation {
+	width: 95%;
+	margin-right: 5%;
+}
+
+.label-col-sm-2 {
+	text-align: right;
+	padding-top: 7px;
+}
+
+.input-group[class*=col-] {
+	margin-left: 4%;
+}
+
+.list-group-unbordered>.list-group-item {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	word-break: break-word;
+}
+
+b#a_url {
+	color: #E91E63;
+}
+
+.box.box-primary {
+	padding: 5%;
+}
+
+.list-group {
+	padding: 5px 30px;
+}
+
+.col-sm-6.join-btn {
+	margin-bottom: 10px;
+}
+
+.direct-chat-img {
+	border-radius: 0%;
+}
+
 div#chat-box {
-    height: 600px;
-} 
-span#roomTitle {
-    font-size: 20px;
-    color: darkblue;
+	height: 600px;
 }
+
+span#roomTitle {
+	font-size: 20px;
+	color: darkblue;
+}
+
+.non-applyBtn {
+	display: none;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    /* line-height: 1.42857143; */
+    vertical-align: top;
+    /* border-top: 1px solid #ddd; */
+    /* border-bottom: 1px solid #ddd; */
+}
+
+.applyBtn{
+	padding-top: 0px;
+    position: relative;
+    bottom: 1px;
+    animation: recommend 0.6s infinite alternate;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes recommend { 
+	0% {
+	/* background-color: rgb(54, 127, 169); */
+	color: rgba(255, 255, 255, 0.41);
+	}
+
+}
+
+/* Standard syntax */
+@-keyframes myfirst recommend { 0% {
+	/* background-color: rgb(54, 127, 169); */
+	color: rgba(255, 255, 255, 0.41);
+}
+}
+
 </style>
 </head>
 
@@ -257,7 +296,7 @@ span#roomTitle {
 									<a href="#" class="btn btn-primary btn-block btn-type"><b> 선택된 팀 없음 </b></a>
 								</div>
 								<div class="col-sm-6">
-									<a href="#" class="btn btn-primary btn-block"><b>팀원 관리하기</b></a>
+									<a href="#" class="btn btn-primary btn-block applyUserListBtn" data-toggle="modal" data-target="#basicModal"><b>팀원 관리하기</b></a>
 								</div>
 							</div>
 						</div>
@@ -288,7 +327,7 @@ span#roomTitle {
 								<!-- chat item -->
 								<div class="item chat_main_body">
 									
-									<div class="direct-chat-msg">
+								<!-- 	<div class="direct-chat-msg">
 										<div class="direct-chat-info clearfix">
 											<span class="direct-chat-name pull-left">
 												Alexander Pierce
@@ -304,7 +343,7 @@ span#roomTitle {
 										</div>
 									</div>
 
-									<!-- Message to the right -->
+									Message to the right
 									<div class="direct-chat-msg right">
 										<div class="direct-chat-info clearfix">
 											<span class="direct-chat-name pull-right">
@@ -318,17 +357,16 @@ span#roomTitle {
 										<img class="direct-chat-img" src="../images/team/team1.PNG" alt="Message User Image">
 										<div class="direct-chat-text">You better believe it!</div>
 									</div>
-									
+									 -->
 								</div>
 							</div>
 							<!-- /.item -->
 							<div class="box-footer">
 								<form action="#" method="post">
 									<div class="input-group">
-										<input type="text" name="message"
-											placeholder="Type Message ..." class="form-control">
+										<input id="sendMsg" type="text" name="message" placeholder="Type Message ..." class="form-control">
 										<span class="input-group-btn">
-											<button type="submit" class="btn btn-primary btn-flat">Send</button>
+											<button type="button" onclick="sendMsg();" class="btn btn-primary btn-flat">메세지 보내기</button>
 										</span>
 									</div>
 								</form>
@@ -339,6 +377,59 @@ span#roomTitle {
 			</div>
 			<!-- include -->
 		</div>
+		
+		<!-- modal contents -->
+		<div class="modal fade" id="basicModal" tabindex="-1" role="dialog"
+			aria-labelledby="basicModal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title label" id="myModalLabel">제목</h4>
+					</div>
+					<div class="modal-body">
+
+						<div class="teamList">
+							<div id="roomListDiv" class="box box-default">
+								<div class="box-header">
+									<h3 class="box-title">
+										<span class=""> 팀원 관리 페이지
+										</span>
+									</h3>
+								</div>
+								<!-- /.box-header -->
+								<div class="box-body table-responsive no-padding">
+									<table class="table table-hover applyUserTable">
+											<tr>
+												<th style="max-width: 30px;">체크</th>
+												<th style="max-width: 80px;">닉네임</th>
+												<th style="width: 80px;" class="hidden-xs">상태</th>
+											</tr>
+										<tbody>
+										</tbody>
+									</table>
+									<div class="box-footer clearfix">
+										<a href="#" class="btn btn-primary applyUserDeleteBtn">선택 삭제</a>
+									</div>
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /.box -->
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<p>
+							<!-- <a class="btn btn-mini readMore" href="#">» Read More</a> -->
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
 	</div>
 	<jsp:include page="../component/footer.jsp" />
 	<jsp:include page="../component/controlSidebar.jsp" />
@@ -354,6 +445,8 @@ span#roomTitle {
 	
 	var teamList = new Array();
 	var sessionNick = '';
+	var teamNum = 0;
+	var teamName = '';
 	
 	$(function() {
 		/* ************ 팀 리스트에 대한 정보를 불러옴 ******************/
@@ -367,6 +460,9 @@ span#roomTitle {
 	    });
 	    
 	    clickTr();
+	    applyUserList();
+	    applyUserDelete();
+	    applyUser(); 
 	    
 	    $('.btn-type').click(function(){
 	    	var teamSts = $('#a_sts').text()
@@ -476,10 +572,19 @@ span#roomTitle {
 		        		   $('input[name=title]').val('');
 		        		   $('.ddo-chat').removeClass('collapsed-box');
 		        		 
+		        		   for(var i=1; i<data.length;i++){
+		        			   var json_param = new Array();
+		        			   json_param.push(data[i].nickName);
+		        			   json_param.push(data[i].content);
+		        			   
+		        			   var msgObject = new msgObj(json_param);
+		        			   str_Txt = msgObject.msg_format();
+		        			   $('.item.chat_main_body').append(str_Txt);
+		        			   console.log(str_Txt);
+		        		   }
+		        		   
 		        		   $('#roomTitle').text('팀이름:');
 		        		   $('.room-title').text(teamName);
-		        		   
-		        		   
 		        		   
 		        	   }
 		           },
@@ -491,13 +596,69 @@ span#roomTitle {
 		           }
 		   		}); 
 			}else if(teamSts == 0){
-				alert('팀 구성원이 아닙니다');
+				$.bootstrapGrowl("팀 구성원이 아닙니다.", {
+					type: 'danger',
+					align: 'center',
+					width: 'auto',
+					allow_dismiss: false
+				});
+
 			}else{
-				alert('팀 승낙 대기상태입니다.');
+				$.bootstrapGrowl("팀 승낙 대기상태입니다.", {
+					type: 'danger',
+					align: 'center',
+					width: 'auto',
+					allow_dismiss: false
+				});
 			}
 		});
 	}
 	
+	function sendMsg(){
+		if($('#sendMsg').text() == ''){
+			alert('메세지가 입력되지 않았습니다');
+			return;
+		}	
+		
+		$.ajax({
+	           type:"POST",
+	           url:"../team/sendMsg",
+	           dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+	           data : { "teamNum": teamNum , "nickName":sessionNick , "msg" : $('#sendMsg').text()},
+	           success : function(data) {
+	        	   console.log(data);
+	        	  
+	        	   if(data.ok){
+	        		  /*  $('input[name=title]').val('');
+	        		   $('.ddo-chat').removeClass('collapsed-box');
+	        		 
+	        		   for(var i=1; i<data.length;i++){
+	        			   var json_param = new Array();
+	        			   json_param.push(data[i].nickName);
+	        			   json_param.push(data[i].content);
+	        			   
+	        			   var msgObject = new msgObj(json_param);
+	        			   str_Txt = msgObject.msg_format();
+	        			   $('.item.chat_main_body').append(str_Txt);
+	        			   console.log(str_Txt);
+	        		   }
+	        		   
+	        		   $('#roomTitle').text('팀이름:');
+	        		   $('.room-title').text(teamName); */
+	        		   alert(' 메세지저장성공');
+	        		   
+	        	   }
+	           },
+	           complete : function(data) {
+	        	   
+	           },
+	           error : function(xhr, status, error) {
+	                 console.log(error);
+	           }
+	   		}); 
+		//nickname content tno 
+	}
+		
 	function getTeamList() {
 		$.ajax({
 			type : "POST",
@@ -571,16 +732,16 @@ span#roomTitle {
 			} 
 			
 			switch (this.subject) {
-	    	  case '0' :  typeName = '전체';
+	    	  case '0' : typeName = '전체';
 	    	 			 className = '<span class="label label-danger">';
 	    	  			 break;
-	    	  case '1' :  typeName = '동행';
+	    	  case '1' : typeName = '동행';
 		 	 			 className = '<span class="label label-success">';
 		 	  			 break;
-	    	  case '2'  :  typeName = '숙박';
+	    	  case '2'  :typeName = '숙박';
 	 			 		 className = '<span class="label label-warning">';
 	 			 		 break;
-	    	  case '3'  :  typeName = '예약';
+	    	  case '3'  :typeName = '예약';
 				 		 className = '<span class="label label-primary">';
 				 		 break;
 	    	  default :  typeName = '기타';
@@ -604,9 +765,25 @@ span#roomTitle {
 		this.content = param[1];
 
 		this.msg_format = function() {
-			
 			//내가쓴글이면 오른쪽배치 아닐시 왼쪽 배치 
-			switch (this.subject) {
+			if(this.nickName != sessionNick){
+				str ='';
+				str += '<div class="direct-chat-msg">'
+					+ '<div class="direct-chat-info clearfix">'
+					+ '<span class="direct-chat-name pull-left">' + this.nickName + '</span> '
+					+ '<span class="direct-chat-timestamp pull-right">' + '23 Jan 2:00 pm' + '</span></div> '
+					+ '<img class="direct-chat-img" src="../images/team/team2.PNG" alt="Message User Image">'
+					+ '<div class="direct-chat-text">' + this.content + '</div></div>';
+			}else{
+				str ='';
+				str += '<div class="direct-chat-msg right">'
+					+ '<div class="direct-chat-info clearfix">'
+					+ '<span class="direct-chat-name pull-right">' + this.nickName + '</span> '
+					+ '<span class="direct-chat-timestamp pull-left">' + '23 Jan 2:00 pm' + '</span></div> '
+					+ '<img class="direct-chat-img" src="../images/team/team1.PNG" alt="Message User Image">'
+					+ '<div class="direct-chat-text">' + this.content + '</div></div>';
+			}
+			/* switch (this.subject) {
 	    	  case '0' :  typeName = '전체';
 	    	 			 className = '<span class="label label-danger">';
 	    	  			 break;
@@ -622,14 +799,8 @@ span#roomTitle {
 	    	  default :  typeName = '기타';
 	    	  			 className = '<span class="label label-danger">';
 	    	             break;
-	    	}
+	    	} */
 
-			str += '<tr role="row" class="'+ class_no + ' ' + class_team + ' ' + class_sts + '\">'
-					+ '<td id="teamname" style="width: 80px;">' + this.teamname + '</td>'
-					+ '<td id="sdate" style="max-width: 20px;">'	+ this.sdate + '</td>'
-					+ '<td id="edate" style="max-width: 20px;">'+ this.edate + '</td>'
-					+ '<td id="status" style="width: 80px;" class="hidden-xs">' + status + '</td>'
-					+ '<td id="spanTag" style="width: 80px;" class="hidden-xs">' + className + typeName +'</span></td></tr>';
 			return str;
 			}
 		}
@@ -674,6 +845,142 @@ span#roomTitle {
 				});
 			}
 		}
+		
+		
+		
+		function applyUserList() {
+			$('.applyUserListBtn').on('click',function(){
+				getApplyUserList(teamNum);
+			});
+			
+		}
+		
+		function applyUserDelete() {
+			var deleteUser = [];
+			$('.applyUserDeleteBtn').on('click',function(){
+				$('.applyCheck:checked').each(function (k, v) {
+					deleteUser[k] = {};
+					deleteUser[k].tNo=$(this).val();
+					deleteUser[k].nickname=$(this).parent().next('#nickname').text();
+				});
+				
+				bootbox.dialog({
+					message : "정말 삭제 하시겠습니까?",
+					buttons : {
+						success : {
+							label : "네",
+							className : "btn-success",
+							callback : function() {
+								$.ajax({
+									type : "POST",
+									url : "../team/applyUserDelete",
+									dataType : "JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+									data : {deleteUser:JSON.stringify(deleteUser)},
+									success : function(data) {
+										if(data.ok){
+											bootbox.alert("삭제 완료.", function() {
+												getApplyUserList(deleteUser[0].tNo);
+											});
+										}
+									},
+									complete : function(data) {
+									},
+									error : function(request, status, error) {
+										alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+									}
+								});
+							}
+						},
+						danger : {
+							label : "아니요",
+							className : "btn-danger",
+						}
+					}
+				});
+				
+			});
+		}
+		
+		function applyUser() {
+			var nickname, tNo;
+			$(document).on('click','.applyBtn',function(){
+				nickname = $(this).parent().siblings('#nickname').text();
+				tNo = $(this).parent().siblings('#check').children().val();
+				$.ajax({
+					type : "POST",
+					url : "../team/applyUser",
+					dataType : "JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+					data : {nickname:nickname, tNo:tNo},
+					success : function(data) {
+						if(data.ok){
+							bootbox.alert("승인 완료.", function() {
+								getApplyUserList(tNo);
+							});
+						}
+					},
+					complete : function(data) {
+					},
+					error : function(request, status, error) {
+						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					}
+				});
+				
+			});
+		}
+		
+		function getApplyUserList(tNo) {
+			var str='';
+			$.ajax({
+				type : "POST",
+				url : "../team/getApplyTeamUserList",
+				dataType : "JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+				data : {tNo:tNo},
+				success : function(data) {
+					
+					$('.applyUserTable').empty();
+					str = '<tr>'
+						+'<th style="max-width: 30px;"></th>'
+						+'<th style="max-width: 80px;">닉네임</th>'
+						+'<th style="width: 80px;" class="">상태</th>'
+						+'<th style="width: 80px;" class="">승인</th>'
+						+'</tr>'
+					$('.applyUserTable').append(str);
+					
+					for(var i=0; i<data.length; i++){
+						var status, applyCheckClass = '', applybtnClass = '';
+						switch (data[i].status) {
+						case 1:
+							status = "승인 대기중"; break;
+						case 2:
+							status = "팀장"; 
+							applybtnClass = "non-applyBtn";
+							applyCheckClass = "non-applyBtn";
+							break;
+						case 3:
+							status = "팀원";  
+							applybtnClass = "non-applyBtn";
+							break;
+						default:
+							break;
+						}
+						
+						str = '<tr role="row" class="">'
+							+ '<td id="check" style="max-width:20px;"><input type="checkbox" class="icheckbox_flat-blue applyCheck '+applyCheckClass+'" value="'+ data[i].tNo+'"></td>'
+							+ '<td id="nickname" style="max-width: 40px;">'+ data[i].nickname + '</td>'
+							+ '<td id="status" style="width: 100px;">' + status + '</td>'
+							+ '<td id="applyBtn" style="width: 80px;"><a href="#" class="applyBtn btn '+applybtnClass+'" >승인</a></td></tr>';
+						$('.applyUserTable').append(str);
+					}
+					
+				},
+				complete : function(data) {
+				},
+				error : function(request, status, error) {
+					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				}
+			});
+		}
+		
 	</script>
 </body>
 </html>

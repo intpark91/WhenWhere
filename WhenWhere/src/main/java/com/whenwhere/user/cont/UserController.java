@@ -42,13 +42,13 @@ public class UserController {
 		ServletContext application = request.getServletContext();
 		if (application.getAttribute(sessid) == null) {
 			model.addAttribute("error", true);
-			return "home/join";
+			return "home/register";
 		}
 		HttpSession sess = (HttpSession) application.getAttribute(sessid);
 		application.removeAttribute(sessid);
 		model.addAttribute("email", sess.getAttribute("receiver"));
 		model.addAttribute("status", true);
-		return "home/join";
+		return "home/register";
 	}
 
 	/**********************************
@@ -66,9 +66,9 @@ public class UserController {
 		return userService.emailCk(email);
 	}
 
-	@RequestMapping("/join")
+	@RequestMapping("/register")
 	@ResponseBody
-	public String join(MemberVO member) {
+	public String register(MemberVO member) {
 		return userService.joinMember(member);
 	}
 
@@ -140,13 +140,4 @@ public class UserController {
 		return msgService.updateMsgStauts(arr, type);
 	}
 	
-	/**********************************
-	 * Validators
-	 **********************************/
-	@RequestMapping("/emailValidator")
-	@ResponseBody
-	public String emailValidator(@RequestParam String email) {
-		System.out.println("email : " + email);
-		return "{\"400\" : \"aa\"}";
-	}
 }

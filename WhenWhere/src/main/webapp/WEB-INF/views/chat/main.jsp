@@ -10,6 +10,10 @@
 	<!-- Select2 -->
     <link rel="stylesheet" href="../../plugins/select2/select2.min.css">
 	<style type="text/css">
+		body{
+			background : url(http://192.168.8.13:8088/img/background/chatBg.jpg);
+			background-size : cover;
+		}
 		.row.chatTable {
 			margin: 1px;
 		}
