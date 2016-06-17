@@ -288,9 +288,7 @@ span#roomTitle {
 								<li class="list-group-item"><b>팀 상태</b>
 								 	<a id="a_sts" class="pull-right">
 								 		<c:choose>
-												<c:when	test="${teamInfo.status == 0 }">
-													가입가능
-												</c:when>
+												<c:when	test="${teamInfo.status == 0 }">가입가능</c:when>
 
 												<c:when test="${teamInfo.status == 1 }">
 													승낙대기
@@ -343,7 +341,11 @@ span#roomTitle {
 							
 							<div class="col-sm-12 ">
 								<div class="col-sm-6 join-btn">
-									<a href="#" class="btn btn-primary btn-block btn-type"><b> 선택된 팀 없음 </b></a>
+									<a href="#" class="btn btn-primary btn-block btn-type" onclick="joinTeam();"><b> 
+										<c:if test="${teamInfo.no > 0}">
+											팀 가입하기
+										</c:if>
+									 </b></a>
 								</div>
 								<div class="col-sm-6">
 									<a href="#" class="btn btn-primary btn-block applyUserListBtn" data-toggle="modal" data-target="#basicModal"><b>팀원 관리하기</b></a>
@@ -942,7 +944,36 @@ span#roomTitle {
 			}
 		}
 		
-		
+		function joinTeam() {
+			alert($('#a_sts').text().trim());
+			if ($('#a_sts').text().trim() == '가입가능') {
+				alert($('h3.profile-username').attr('class'));
+				var nonono = $('h3.profile-username').attr('class').split('team-no-')[1];
+				alert(nonono);
+				
+				$.ajax({
+					type : "POST",
+					url : "../team/joinTeam",
+					dataType : "JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+					data : {"teamNum": nonono, "nickName":sessionNick },
+					success : function(data) {
+						if (data.ok) {
+
+							alert('가입성공');
+							$('#a_sts').text('승낙 대기');
+
+						}else{
+							alert('가입');
+						}
+					},
+					complete : function(data) {
+					},
+					error : function(xhr, status, error) {
+						console.log(error);
+					}
+				});
+			}
+		}
 		
 		function applyUserList() {
 			$('.applyUserListBtn').on('click',function(){

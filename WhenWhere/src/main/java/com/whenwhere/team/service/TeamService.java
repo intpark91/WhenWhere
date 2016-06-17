@@ -305,5 +305,26 @@ public class TeamService {
 		}
 		return jsonArr.toJSONString();
 	}
+
+	public String joinTeam(HttpServletRequest request, HttpSession session, String teamNum, String nickName) {
+		TeamDAO dao = sqlSessionTemplate.getMapper(TeamDAO.class);
+		JSONObject obj = new JSONObject();
+		JSONArray jsonArr = new JSONArray();
+		
+		obj.put("ok", true);
+		jsonArr.add(obj);
+		
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		
+		if (member != null){
+			String sessionNick = member.getNickname();
+			
+			int row  = dao.joinTeam(Integer.parseInt(teamNum),nickName);
+			
+		}else{
+			System.out.println("로그인해");
+		}
+		return jsonArr.toJSONString();
+	}
 }
  

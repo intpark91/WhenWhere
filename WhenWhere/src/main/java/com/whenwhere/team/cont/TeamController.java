@@ -72,4 +72,10 @@ public class TeamController {
 	public String chatTeamAfterNum(HttpServletRequest request, HttpSession session) {
 		return teamService.chatTeamAfterNum(request, session, request.getParameter("lastMsgNo"),request.getParameter("teamNum"));
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/joinTeam")
+	public String joinTeam(HttpServletRequest request, HttpSession session) {
+		return teamService.joinTeam(request, session, request.getParameter("teamNum"),request.getParameter("nickName"));
+	}
 }
