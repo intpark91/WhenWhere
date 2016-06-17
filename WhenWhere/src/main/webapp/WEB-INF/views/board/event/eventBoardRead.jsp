@@ -86,9 +86,12 @@ function recommend(no){
 		dataType : "json",
 		success : function(recommend){
 			 if(recommend.recommend==true){			 	
-					bootbox.alert("해당 글 삭제 완료.", function() {
-						location.href="event?category="+${ReadBoard.category}+"";
-					});
+				 $.bootstrapGrowl("추천 완료", {
+						type: 'success',
+						align: 'center',
+						width: 'auto',
+						allow_dismiss: false
+				});
 			  }
 			 else{
 				 $.bootstrapGrowl("이미 추천한 행사입니다!", {
