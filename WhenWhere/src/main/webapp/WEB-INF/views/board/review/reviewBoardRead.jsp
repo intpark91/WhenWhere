@@ -303,7 +303,7 @@ function recommend(no){
 										<c:set value="${ReadBoard.auth}" var="nickName" />
 								 		<c:if test="${sessionScope.member.nickname != null}">
 										<button class="btn btn-info pull-right" id="reviewwrite" type="button"
-											onclick="recommend(${ReadBoard.no});">${ReadBoard.auth}dasd추천하기</button>
+											onclick="recommend(${ReadBoard.no});">추천하기</button>
 										</c:if>
 										<c:if test="${sessionScope.member.nickname == nickName}">			
 											<c:if test="${sessionScope.member.authority != null}">
