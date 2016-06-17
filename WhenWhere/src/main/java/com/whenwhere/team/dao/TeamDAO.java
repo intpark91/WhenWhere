@@ -19,6 +19,7 @@ public interface TeamDAO {
 	public int applyUserDelete(Map<String, Object> map);
 	public int applyUser(Map<String, Object> map);
 	public List<TeamChatVO> getchatTeam(int teamNum);
+	public int sendMsg(@Param("teamNum") int teamNum,@Param("nickName") String nickName,@Param("msg") String msg);
 	public TeamVO getTeamInfo(int teamNum);
 
 }

@@ -11,6 +11,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      	select * from dual
 	</insert>
 	
+	<insert id="sendMsg">
+		 Insert into TEAMCHAT(CHAT_NO,NICKNAME,CONTENT,T_NO) values(SEQ_TEAM_CHAT.nextval,#{nickName},#{msg},#{teamNum})
+	</insert>
+	
 	<select id="getTeamList" resultType="com.whenwhere.team.vo.TeamVO">
 		select join.NICKNAME as nickName, join.T_STATUS as status, t.LOC_CODE, t.T_SDATE as sdate, t.T_EDATE as edate,t.SUBJECT,t.TEAMNAME, t.T_NO as no 
 		from JOINTEAM join,TEAM t
