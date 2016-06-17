@@ -146,13 +146,15 @@ function recommend(no){
 	   }
 	});
 	
-	function commentmodify(no){
-			$('#'+no+' .comm_comment').html('');			
-			$('<p><form><textarea id="comment2" name="comment_rp" cols="45" rows="8"></textarea </form></p>').appendTo('#'+no+'');
-			$('#'+no+' #commentdelete').html('수정 취소');
-			$('#'+no+' #commentdelete').attr('onclick','read();');
-			$('#'+no+' #commentmodify').html('수정 확인');
-			$('#'+no+' #commentmodify').attr('onclick','updatecomment('+no+');');
+	function commentmodify(no,commentcontent){
+				
+		
+		$('<p><form><textarea id="comment4" name="comment_rp" cols="45" rows="8"  placeholder="'+commentcontent+'"></textarea </form></p>').appendTo('#'+no+'');
+		$('.comm_comment').html('');
+		$(' #commentdelete').html('수정 취소');
+		$(' #commentdelete').attr('onclick','read();');
+		$(' #commentmodify').html('수정 확인');
+		$(' #commentmodify').attr('onclick','updatecomment('+no+');');
 	}
 	
 	function read(){
@@ -294,14 +296,23 @@ function recommend(no){
 										</div>
 
 									</div>
+									
 									<div id="btnWrap">
+										<c:set value="${ReadBoard.auth}" var="nickName" />
+								 		<c:if test="${sessionScope.member.nickname != null}">
 										<button class="btn btn-info pull-right" id="reviewwrite" type="button"
 											onclick="recommend(${ReadBoard.no});">추천하기</button>
+										</c:if>
+										<c:if test="${sessionScope.member.nickname == nickName}">			
+											<c:if test="${sessionScope.member.authority eq 'admin'}">
 										<button class="btn btn-info pull-right" id="reviewwrite" type="button"
 											onclick="delectAjax(${ReadBoard.no});">삭제하기</button>
 										<button class="btn btn-info pull-right" id="reviewwrite" type="button"
 											onclick="modifyForm(${ReadBoard.no});">수정하기</button>
+											</c:if>
+										</c:if>
 									</div>
+								
 								</div>
 							</div>
 							<div class="comment_wrap">
@@ -327,7 +338,7 @@ function recommend(no){
 																				<img src="../images/eventimg/user.JPG">
 																			</div>
 																			<div class="comment-guts-pads">
-																				<div class="says">${item.auth}</div>
+																				<div id="${item.no}" class="says">${item.auth}</div>
 																				<p class="comm_comment">${item.content}</p>
 																			</div>
 																		</div>
@@ -338,10 +349,14 @@ function recommend(no){
 																		</div>	 -->
 																	<!-- END postcontentreply -->																	
 																</div>
-																<button class="commentdelete" id="commentdelete"
-																		onclick="commentdelete(${item.no});">댓글 삭제</button>
-																	<button class="commentdelete" id="commentmodify"
-																		onclick="commentmodify(${item.no});">댓글 수정</button>
+																<c:set value="${ReadBoard.auth}" var="nickName" />
+																		<c:if test="${sessionScope.member.nickname == nickName}">
+																			<c:if test="${sessionScope.member.authority eq 'admin'}">
+																<button class="commentdelete" id="commentdelete" onclick="commentdelete(${item.no});">댓글 삭제</button>
+																<button class="commentdelete" id="commentmodify" onclick="commentmodify(${item.no},'${item.content}');">댓글 수정</button>
+																	</c:if>
+																		</c:if>
+																
 															</c:forEach>
 
 
@@ -378,10 +393,12 @@ function recommend(no){
 															aria-required="true" required="required"
 															placeholder="댓글을 입력해 주세요"></textarea>
 													</p>
+													<c:if test="${sessionScope.member.nickname != null}">
 													<p class="form-submit">
 
 														<button id="commentinset" type="button" class="btn btn-block btn-danger btn-right" value="댓글 쓰기">댓글 쓰기</button>
 													</p>
+													</c:if>
 
 												</form>
 											</div>

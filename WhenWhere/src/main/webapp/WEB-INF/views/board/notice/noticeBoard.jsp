@@ -70,7 +70,7 @@
 
 <script type="text/javascript">
 	$(function() {
-		$('.noticewrite').on('click', function() {
+		$('#noticewrite').on('click', function() {
 			var category = ""+${category}+"";
 			
 			 location.href = "noticewriteform?category=" + category+""; 
@@ -250,9 +250,21 @@
 									</c:choose>
 								</ul>
 							</div>
-							<div id="btnWrap">
-								<button class="noticewrite" id="noticewrite">글쓰기</button>
-							</div>
+							<c:set value="${boardList[0].category}" var="boardCode" />
+							<c:if test="${boardCode == 1}">
+								<c:if test="${sessionScope.member.authority eq 'admin'}">							
+							<div id="btnWrap">							
+								<button class="btn btn-info btn-right" id="noticewrite" style="float: right;">글쓰기</button>
+							</div>	
+								</c:if>					
+							</c:if>
+							
+							<c:if test="${boardCode == 2}">
+								<button class="btn btn-info btn-right" id="noticewrite" style="float: right;">글쓰기</button>	
+							</c:if>
+							
+							
+							
 						</div>
 						<!-- /.box -->
 					</div>

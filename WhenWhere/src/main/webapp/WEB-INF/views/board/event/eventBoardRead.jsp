@@ -114,7 +114,7 @@ function recommend(no){
 
 
 	$(function(){		
-		$('#submit').on('click',function(){
+		$('#commentinset').on('click',function(){
 			var serData = $('#commentform').serialize();
 			jQuery.ajax({
 				type: "post", 
@@ -153,13 +153,14 @@ function recommend(no){
 	});
 	
 	function commentmodify(no){
-			$('#'+no+' .comm_comment').html('');			
-			$('<p><form><textarea id="comment2" name="comment_rp" cols="45" rows="8"></textarea </form></p>').appendTo('#'+no+'');
-			$('#'+no+' #commentdelete').html('수정 취소');
-			$('#'+no+' #commentdelete').attr('onclick','read();');
-			$('#'+no+' #commentmodify').html('수정 확인');
-			$('#'+no+' #commentmodify').attr('onclick','updatecomment('+no+');');
-	}
+		$('.comm_comment').html('');
+		$('<p><form><textarea id="comment4" name="comment_rp" cols="45" rows="8"></textarea </form></p>').appendTo('#'+no+'');
+		$('#'+no+' #commentdelete').html('수정 취소');
+		$('#'+no+' #commentdelete').attr('onclick','read();');
+		$('#'+no+' #commentmodify').html('수정 확인');
+		$('#'+no+' #commentmodify').attr('onclick','updatecomment('+no+');');
+}
+
 	
 	function read(){
 		location.href="eventRead?no="+${ReadBoard.no}+"";
@@ -265,7 +266,7 @@ function recommend(no){
 											<input type="hidden" name="no" value="${ReadBoard.no}"> --%>
 											<table class="view_1"
 												summary="토론마당 제목, 토론기간, 진행상태와 조회를 표시하고 있다.">
-												<h2>${ReadBoard.boardName}상세보기</h2>
+												<h2 align="center">${ReadBoard.boardName}상세보기</h2>
 												<colgroup>
 													<col width="15%">
 													<col width="20%">
@@ -312,19 +313,26 @@ function recommend(no){
 											<!-- 	</form> -->
 											<div class="bbs_btn">
 												<p class="fl">
-													<a href="event?category=${ReadBoard.category}"><h4>목록</h4></a>
+													<a href="event?category=${ReadBoard.category}"><h4 align="center">목록</h4></a>
 												</p>
 											</div>
 										</div>
 
 									</div>
 									<div id="btnWrap">
-										<button class="noticeboard" id="reviewwrite" type="button"
-											onclick="delectAjax(${ReadBoard.no});">삭제하기</button>
-										<button class="noticeboard" id="reviewwrite" type="button"
-											onclick="modifyForm(${ReadBoard.no});">수정하기</button>
-										<button class="noticeboard" id="reviewwrite" type="button"
+								<c:set value="${ReadBoard.auth}" var="nickName" />
+								 <c:if test="${sessionScope.member.nickname != null}">									
+										<button class="btn btn-info pull-right" id="reviewwrite" type="button"
 											onclick="recommend(${ReadBoard.no});">추천하기</button>
+								</c:if>			
+								<c:if test="${sessionScope.member.nickname == nickName}">			
+									<c:if test="${sessionScope.member.authority eq 'admin'}">		
+										<button class="btn btn-info pull-right" id="reviewwrite" type="button"
+											onclick="delectAjax(${ReadBoard.no});">삭제하기</button>
+										<button class="btn btn-info pull-right" id="reviewwrite" type="button"
+											onclick="modifyForm(${ReadBoard.no});">수정하기</button>
+									</c:if>
+								</c:if>
 									</div>
 								</div>
 							</div>
@@ -361,11 +369,15 @@ function recommend(no){
 																		<input type="checkbox" name="reply">		
 																		</div>	 -->
 																	<!-- END postcontentreply -->
+																	<c:set value="${ReadBoard.auth}" var="nickName" />
+																		<c:if test="${sessionScope.member.nickname == nickName}">
+																			<c:if test="${sessionScope.member.authority eq 'admin'}">
 																	<button class="commentdelete" id="commentdelete"
 																		onclick="commentdelete(${item.no});">댓글 삭제</button>
 																	<button class="commentdelete" id="commentmodify"
 																		onclick="commentmodify(${item.no});">댓글 수정</button>
-
+																			</c:if>
+																		</c:if>
 																</div>
 															</c:forEach>
 
@@ -400,11 +412,12 @@ function recommend(no){
 															aria-required="true" required="required"
 															placeholder="댓글을 입력해 주세요"></textarea>
 													</p>
+													<c:if test="${sessionScope.member.authority != null}">
 													<p class="form-submit">
-
-														<input name="submit" type="button" id="submit"
-															class="submit" value="댓글 쓰기">
+														
+														<button id="commentinset" type="button" class="btn btn-block btn-danger btn-right" value="댓글 쓰기">댓글 쓰기</button>
 													</p>
+													</c:if>
 
 												</form>
 											</div>

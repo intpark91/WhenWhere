@@ -315,8 +315,7 @@ ul, ol, dl {list-style:none;}
 		.bbs_btn p.fr {float:right;}
 		.bbs_btn p.fr .fr_m{float:left;}
 		.bbs_btn p.fr .fr_d{float:left;}
-		.bbs_btn p a {display:inline-block; border-top:#dbdada solid 1px; border-left:#dbdada solid 1px; border-bottom:#dbdada solid 1px; border-right:#dbdada solid 1px; background-color:#fcfcfc; padding:8px 16px; box-shadow:inset -1px -1px 1px #fff;margin-left:10px;}
-		.bbs_paging {text-align:center;}
+		
 		.bbs_paging a {margin:0px 3px; display:inline-block; padding:2px 4px;}
 		.bbs_paging a.on {color:#ef0010; border:#ef0010 solid 1px; }
 		

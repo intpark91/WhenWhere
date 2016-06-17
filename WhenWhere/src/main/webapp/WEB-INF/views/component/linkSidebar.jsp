@@ -39,9 +39,11 @@
 					<li><a href="../board/commuity?category=2"> <i
 							class="fa fa-book" aria-hidden="true"></i>Board
 					</a></li>
+					<c:if test="${sessionScope.member.nickname != null}">
 					<li><a href="../home/chat"> <i class="fa fa-comments"
 							aria-hidden="true"></i>Chat
 					</a></li>
+					</c:if>
 					<li><a href="../board/review?category=3"> <i
 							class="fa fa-pencil-square-o" aria-hidden="true"></i>Review
 					</a></li>
