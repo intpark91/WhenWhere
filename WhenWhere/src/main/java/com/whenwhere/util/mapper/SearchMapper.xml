@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getLocationList" resultType="String">
 		select loc_name from location where LOC_SUBJECT=#{sub_loc}
 	</select>
-	
+	 
 	<select id="getSubLocationList" resultMap="eventResultMap">
 		select loc_subject, MIN(LOC_CODE) as loc_code
 			 from location 
