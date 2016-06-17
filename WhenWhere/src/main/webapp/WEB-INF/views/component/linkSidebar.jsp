@@ -39,9 +39,11 @@
 					<li><a href="../board/commuity?category=2"> <i
 							class="fa fa-book" aria-hidden="true"></i>Board
 					</a></li>
+					<c:if test="${sessionScope.member.nickname != null}">
 					<li><a href="../home/chat"> <i class="fa fa-comments"
 							aria-hidden="true"></i>Chat
 					</a></li>
+					</c:if>
 					<li><a href="../board/review?category=3"> <i
 							class="fa fa-pencil-square-o" aria-hidden="true"></i>Review
 					</a></li>
@@ -49,9 +51,8 @@
 					class="fa fa-user-plus" aria-hidden="true"></i>Team
 					</a></li>
 				</ul></li>
-			
-			
-			<c:if test="${sessionScope.member.getAuthority() != 'admin' }">
+			 
+			<c:if test="${sessionScope.member.getAuthority() == 'admin' }">
 				<li><a href="../home/admin"> <i class="fa fa-database"
 						aria-hidden="true"></i><span>Admin</span>
 				</a></li>

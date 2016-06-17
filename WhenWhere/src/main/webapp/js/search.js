@@ -110,7 +110,7 @@ $(document).ready(function() {
 
 						for(var j=0; j<data.searchTeamList.length; j++){
 							var imgName, subject, teamUrm, label;
-							teamUrl = 'http://192.168.8.31:8088/WhenWhere/home/team?teamNum='+data.searchTeamList[j].tNo+'&teamname='+data.searchTeamList[j].teamName;
+							teamUrl = 'http://192.168.8.13:8088/WhenWhere/home/team?teamNum='+data.searchTeamList[j].tNo+'&teamname='+data.searchTeamList[j].teamName;
 							switch (data.searchTeamList[j].subject) {
 							case '0':
 								subject = '동행';

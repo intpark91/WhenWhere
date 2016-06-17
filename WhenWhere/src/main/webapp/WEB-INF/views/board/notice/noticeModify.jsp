@@ -11,17 +11,15 @@
 <script src="../ckEditor/ckeditor.js"></script>
 <script type="text/javascript">
 	
-
 </script>
 
 <script type="text/javascript">
-var no = '${sessionScope.no}';
-var category='${sessionScope.category}';
+	var no = '${sessionScope.no}';
+	var category = '${sessionScope.category}';
 	var result = '${modify}';
 	if (result == 'true') {
-		location.href = "noticeRead?no="+no+"&category="+category+"";
-	}
-	else if(result =='false'){
+		location.href = "noticeRead?no=" + no + "&category=" + category + "";
+	} else if (result == 'false') {
 		alert('글 수정 실패');
 	}
 </script>
@@ -31,19 +29,19 @@ var category='${sessionScope.category}';
 	function modify() {
 		if ($("#dataTitle").val() == '') {
 			$.bootstrapGrowl("제목을 입력하세요!", {
-				type: 'danger',
-				align: 'center',
-				width: 'auto',
-				allow_dismiss: false
+				type : 'danger',
+				align : 'center',
+				width : 'auto',
+				allow_dismiss : false
 			});
 			return;
 		}
 		if ($("#dataContent").val() == '') {
 			$.bootstrapGrowl("내용을 입력하세요!", {
-				type: 'danger',
-				align: 'center',
-				width: 'auto',
-				allow_dismiss: false
+				type : 'danger',
+				align : 'center',
+				width : 'auto',
+				allow_dismiss : false
 			});
 			oEditors.getById["dataContent"].exec("FOCUS", []);
 			return;
@@ -81,7 +79,8 @@ var category='${sessionScope.category}';
 								<!--//-->
 								<form id="inForm" name="inForm" method="post"
 									action="noticemodify" enctype="multipart/form-data">
-									<input type="hidden" name="no" id="no" value="${updateBoard.no}">
+									<input type="hidden" name="no" id="no"
+										value="${updateBoard.no}">
 									<div class="con_area">
 										<div class="board_box">
 											<div class="bbs_write">
@@ -105,7 +104,7 @@ var category='${sessionScope.category}';
 
 														<tr>
 															<td colspan="2" class="bbs_write">
-																<div class="bbs_write_wrap">																
+																<div class="bbs_write_wrap">
 																	<textarea name="content" id="editor"
 																		style="width: 100%; height: 800px;" rows="10"
 																		cols="20">
@@ -130,8 +129,12 @@ var category='${sessionScope.category}';
 											<div class="bbs_btn">
 												<p class="fl">&nbsp;</p>
 												<p class="fr">
-													<a href="#" onclick="modify();">수정</a> 
-													<a href="../board/noticeRead?category=1&no=${sessionScope.no}">취소</a>
+													<a
+														href="../board/noticeRead?category=1&no=${sessionScope.no}"
+														class="btn btn-info pull-right">취소</a>
+
+													<button class="btn btn-info pull-right" onclick="modify();">수정</button>
+	
 												</p>
 											</div>
 										</div>

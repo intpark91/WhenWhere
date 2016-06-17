@@ -776,29 +776,24 @@ span#roomTitle {
 					status = selectArr[3];
 					break;
 				}
-
-				switch (this.subject) {
-				case '0':
-					typeName = '전체';
-					className = '<span class="label label-danger">';
-					break;
-				case '1':
-					typeName = '동행';
-					className = '<span class="label label-success">';
-					break;
-				case '2':
-					typeName = '숙박';
-					className = '<span class="label label-warning">';
-					break;
-				case '3':
-					typeName = '예약';
-					className = '<span class="label label-primary">';
-					break;
-				default:
-					typeName = '기타';
-					className = '<span class="label label-danger">';
-					break;
-				}
+			
+			switch (this.subject) {
+	    	  case '0' : typeName = '전체';
+	    	 			 className = '<span class="label label-danger">';
+	    	  			 break;
+	    	  case '1' : typeName = '동행';
+		 	 			 className = '<span class="label label-success">';
+		 	  			 break;
+	    	  case '2'  :typeName = '숙박';
+	 			 		 className = '<span class="label label-warning">';
+	 			 		 break;
+	    	  case '3'  :typeName = '예약';
+				 		 className = '<span class="label label-primary">';
+				 		 break;
+	    	  default :  typeName = '기타';
+	    	  			 className = '<span class="label label-danger">';
+	    	             break;
+	    	} 
 
 				str += '<tr role="row" class="'+ class_no + ' ' + class_team + ' ' + class_sts + '\">'
 						+ '<td id="teamname" style="width: 80px;">'
