@@ -303,7 +303,6 @@ public class TeamService {
 		}else{
 			System.out.println("로그인해");
 		}
-		System.out.println(jsonArr.toJSONString());
 		return jsonArr.toJSONString();
 	}
 }
