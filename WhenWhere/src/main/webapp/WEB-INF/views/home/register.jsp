@@ -4,12 +4,13 @@
 <html>
 <head>
 <jsp:include page="../component/core_head.jsp" />
+<link rel="stylesheet" href="../css/loadingSpinner.css">
 <title>WhenWhere</title>
 </head>
 
 <!-- user/join -->
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
-	<div class="wrapper">
+	<div class="wrapper loadingDiv">
 		<!-- include -->
 		<jsp:include page="../component/header.jsp" />
 		<jsp:include page="../component/linkSidebar.jsp" />
@@ -37,7 +38,7 @@
 							</div>
 							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 							<div class="help-block with-errors"></div>
-							<a href="javascript:checkEmail();" class="btn btn-primary">이메일 인증</a>
+							<a href="javascript:checkEmail();" class="btn btn-primary emailCheckBtn">이메일 인증</a>
 						</div>
 
 						<div class="form-group has-feedback">
@@ -112,6 +113,7 @@
 	<!-- scripts -->
 	<jsp:include page="../component/core_js.jsp" />
 	<script src="../js/validator.js"></script>
+	<script src="../js/loadingSpinner.js"></script>
 	<script type="text/javascript">
 		var error = "${error}";
 		var status = "${status}";
@@ -143,6 +145,7 @@
 			})
 		}
 		function sendEmail(dup){
+			run_wait('.loadingDiv');
 			if(!dup){
 				var email = new Object();
 				email.receiver = $('#inputEmail').val();
@@ -152,10 +155,21 @@
 					data : email,
 					dataType: "json",
 					success : function(check) {
+						$('.loadingDiv').waitMe('hide');
 						if (check.ok) {
-							alert('이메일 인증을 위한 메일보내기 성공');
+							$.bootstrapGrowl("이메일 인증을 위한 메일보내기 성공", {
+								type: 'success',
+								align: 'center',
+								width: 'auto',
+								allow_dismiss: false
+							});
 						} else {
-							alert('이메일 인증을 위한 메일보내기 실패');
+							$.bootstrapGrowl("이메일 인증을 위한 메일보내기 실패", {
+								type: 'danger',
+								align: 'center',
+								width: 'auto',
+								allow_dismiss: false
+							});
 						}
 					},
 					error : function(hxr, data, error) {
@@ -227,6 +241,18 @@
 		        });
 			}
 		}
+		
+		function run_wait(location){
+			$(location).waitMe({
+				effect: 'bounce',
+				text: '검색 중...',
+				bg: 'rgba(126,126,126,0.4)',
+				color: 'white',
+				maxSize: '10px',
+				onClose: function() {}
+			});
+		}
+		
 	</script> 
 </body> 
 </html>

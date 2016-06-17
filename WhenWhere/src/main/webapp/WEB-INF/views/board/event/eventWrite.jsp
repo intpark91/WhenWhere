@@ -134,7 +134,6 @@ jQuery.browser = {};
 
 									return;
 								}
-								alert($("#content").val());
 								if ($("#content").val() == '') {
 									$.bootstrapGrowl("내용을 입력하세요.", {
 										type: 'danger',
