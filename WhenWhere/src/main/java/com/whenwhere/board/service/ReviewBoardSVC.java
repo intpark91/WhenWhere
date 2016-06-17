@@ -72,7 +72,7 @@ public class ReviewBoardSVC {
                     + callback
                     + ",'"
                     + fileUrl
-                    + "','이미지가 성공적으로 업데이트 되었습니다.'"
+                    + "','�씠誘몄�媛� �꽦怨듭쟻�쑝濡� �뾽�뜲�씠�듃 �릺�뿀�뒿�땲�떎.'"
                     + ")</script>");
             
             printWriter.flush();
@@ -105,7 +105,7 @@ public class ReviewBoardSVC {
 		String loc = request.getParameter("location");
 		String fileurl = (String)request.getSession().getAttribute("fileUrl");
 		String fileSaveName = (String)request.getSession().getAttribute("fileSaveName");
-		System.out.println(content);
+		
 		if(content.equals("")){
 			return false;
 		}
