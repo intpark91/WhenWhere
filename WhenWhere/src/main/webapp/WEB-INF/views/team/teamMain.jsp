@@ -446,7 +446,8 @@ span#roomTitle {
 	var sessionNick = '';
 	var teamNum = 0;
 	var teamName = '';
-	
+	var lastMsgNo = 0;
+	var chatinterval ;
 	$(function() {
 		/* ************ 팀 리스트에 대한 정보를 불러옴 ******************/
 		getTeamList();
@@ -506,6 +507,9 @@ span#roomTitle {
 		
 		/* ************방접속위해 tr 클릭시 동작******************/
 		$(".mainTr").on("click",'tr',function(){
+			
+			clearInterval(chatinterval);
+			
 			trInfo = $(this).attr('class');
 			console.log($(this).find('#sdate').text());
 			console.log($(this).find('#teamname').text());
@@ -601,8 +605,8 @@ span#roomTitle {
 		        			   $('.item.chat_main_body').append(str_Txt);
 		        			   console.log(str_Txt);
 		        		   }
-		        		   setInterval(function() {
-		       					getChatSec(teamNum,lastMsgNo);
+		        		   chatinterval = setInterval(function() {
+		       					getChatSec(teamNum);
 		       			   }, 1000);
 		        		   
 		        		   $('#roomTitle').text('팀이름:');
@@ -636,7 +640,7 @@ span#roomTitle {
 		});
 	}
 	
-	function getChatSec(teamNumInterval,lastMsgNo){
+	function getChatSec(teamNumInterval){
 		$.ajax({
 	           type:"POST",
 	           url:"../team/chatTeamAfterNum",
@@ -644,13 +648,15 @@ span#roomTitle {
 	           data : { "teamNum": teamNumInterval, "lastMsgNo" : lastMsgNo},
 	           success : function(data) {
 	        	   console.log(data);
-	        	  
+	        	   console.log(lastMsgNo);
 	        	   if(data[0].ok){
 	        		   for(var i=1; i<data.length;i++){
 	        			   var json_param = new Array();
 	        			   json_param.push(data[i].nickName);
 	        			   json_param.push(data[i].content);
 	        			   
+	        			   lastMsgNo = data[i].msgNo;
+	        			   console.log(data[i].msgNo);
 	        			   var msgObject = new msgObj(json_param);
 	        			   str_Txt = msgObject.msg_format();
 	        			   $('.item.chat_main_body').append(str_Txt);
@@ -680,9 +686,12 @@ span#roomTitle {
 	           success : function(data) {
 	        	   console.log(data);
 	        	  
-	        	   if(data.ok){
+	        	   if(data[0].ok){
 	        		   $('#sendMsg').val('')
 	        		   $('input[name=title]').val('');
+	        		   
+	        		  /*  var objDiv = document.getElementById("#ddo-chat");
+	        		   objDiv.scrollTop = objDiv.scrollHeight; */
 	        	   }
 	           },
 	           complete : function(data) {
