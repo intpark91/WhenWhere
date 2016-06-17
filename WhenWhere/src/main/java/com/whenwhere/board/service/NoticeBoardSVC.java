@@ -17,7 +17,8 @@ import com.whenwhere.util.PaginationVO;
 @Transactional
 @Service("noticeBoardService")
 public class NoticeBoardSVC implements BoardService {
-	private static final int ROWCNT = 12;
+	private static final int ROWCNT = 5;
+	private static final int LINKSCREEN = 5;
 
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
@@ -160,12 +161,12 @@ public class NoticeBoardSVC implements BoardService {
 		boardvo.setTitle(searchType);
 		boardvo.setContent(keyword);
 		model.addAttribute("searchboardList", boardDAO.noticeSearchList(boardvo));
-		final int linkSceen = 10;
+		
 		PaginationVO paginationVO = new PaginationVO();
 		int resultpage = this.serachgetTotalPageCnt(boardvo, model);
-		int linkGroup = (pageNum - 1) / linkSceen + 1;
-		int linkEnd = linkGroup * linkSceen;
-		int lineBegin = linkEnd - linkSceen + 1;
+		int linkGroup = (pageNum - 1) / LINKSCREEN + 1;
+		int linkEnd = linkGroup * LINKSCREEN;
+		int lineBegin = linkEnd - LINKSCREEN + 1;
 		if (linkEnd > resultpage)
 			linkEnd = resultpage;
 		paginationVO.setTotalPage(resultpage);
