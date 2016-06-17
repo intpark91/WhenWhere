@@ -103,7 +103,7 @@ span#roomTitle {
     /* border-bottom: 1px solid #ddd; */
 }
 
-.applyBtn{
+.userApplyBtn{
 	padding-top: 0px;
     position: relative;
     bottom: 1px;
@@ -948,7 +948,7 @@ span#roomTitle {
 		
 		function applyUser() {
 			var nickname, tNo;
-			$(document).on('click','.applyBtn',function(){
+			$(document).on('click','.userApplyBtn',function(){
 				nickname = $(this).parent().siblings('#nickname').text();
 				tNo = $(this).parent().siblings('#check').children().val();
 				$.ajax({
@@ -1013,7 +1013,7 @@ span#roomTitle {
 							+ '<td id="check" style="max-width:20px;"><input type="checkbox" class="icheckbox_flat-blue applyCheck '+applyCheckClass+'" value="'+ data[i].tNo+'"></td>'
 							+ '<td id="nickname" style="max-width: 40px;">'+ data[i].nickname + '</td>'
 							+ '<td id="status" style="width: 100px;">' + status + '</td>'
-							+ '<td id="applyBtn" style="width: 80px;"><a href="#" class="applyBtn btn '+applybtnClass+'" >승인</a></td></tr>';
+							+ '<td id="userApplyBtn" style="width: 80px;"><a href="#" class="userApplyBtn btn '+applybtnClass+'" >승인</a></td></tr>';
 						$('.applyUserTable').append(str);
 					}
 					
