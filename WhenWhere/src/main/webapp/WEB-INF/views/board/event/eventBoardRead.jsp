@@ -326,7 +326,7 @@ function recommend(no){
 											onclick="recommend(${ReadBoard.no});">추천하기</button>
 								</c:if>			
 								<c:if test="${sessionScope.member.nickname == nickName}">			
-									<c:if test="${sessionScope.member.authority eq 'admin'}">		
+									<c:if test="${sessionScope.member.authority eq 'admin'or sessionScope.member.authority eq 'manager'}">		
 										<button class="btn btn-info pull-right" id="reviewwrite" type="button"
 											onclick="delectAjax(${ReadBoard.no});">삭제하기</button>
 										<button class="btn btn-info pull-right" id="reviewwrite" type="button"
