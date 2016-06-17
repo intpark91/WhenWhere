@@ -272,5 +272,39 @@ public class TeamService {
 		
 		return team;
 	}
+
+	public String chatTeamAfterNum(HttpServletRequest request, HttpSession session, String lastMsgNo,
+			String teamNum) {
+		
+		TeamDAO dao = sqlSessionTemplate.getMapper(TeamDAO.class);
+		JSONObject obj = new JSONObject();
+		JSONArray jsonArr = new JSONArray();
+		
+		obj.put("ok", true);
+		jsonArr.add(obj);
+		
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		
+		if (member != null){
+			String sessionNick = member.getNickname();
+			
+			List<TeamChatVO> teamList = new ArrayList<TeamChatVO>();
+			teamList = dao.chatTeamAfterNum(Integer.parseInt(teamNum),Integer.parseInt(lastMsgNo));
+			
+			for(int i=0;i<teamList.size();i++){
+				obj = new JSONObject();
+				
+				obj.put("nickName", teamList.get(i).getNickName());
+				obj.put("msgNo", teamList.get(i).getMsgNo());
+				obj.put("content", teamList.get(i).getContent());
+				
+				jsonArr.add(obj);
+			}
+		}else{
+			System.out.println("로그인해");
+		}
+		System.out.println(jsonArr.toJSONString());
+		return jsonArr.toJSONString();
+	}
 }
  

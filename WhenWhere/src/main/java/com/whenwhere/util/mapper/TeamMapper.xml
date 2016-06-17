@@ -47,6 +47,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<select id="getchatTeam" resultType="com.whenwhere.team.vo.TeamChatVO">
-		select CHAT_NO as msgNo, nickname, content, T_NO as teamNo from TEAMCHAT where t_no = #{teamNum}
+		select CHAT_NO as msgNo, nickname, content, T_NO as teamNo from TEAMCHAT where t_no = #{teamNum} order by CHAT_NO ASC
+	</select>
+	
+	<select id="chatTeamAfterNum" resultType="com.whenwhere.team.vo.TeamChatVO">
+		select CHAT_NO as msgNo, nickname, content, T_NO as teamNo from TEAMCHAT
+		where t_no = #{teamNum} and CHAT_NO <![CDATA[>]]> #{lastMsgNo} order by CHAT_NO ASC
 	</select>
 </mapper> 
