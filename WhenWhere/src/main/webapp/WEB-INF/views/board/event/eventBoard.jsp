@@ -26,7 +26,7 @@ margin-bottom : -35px;
 
 <script type="text/javascript">
 	$(function(){
-		$('.eventwrite').on('click',function(){
+		$('#eventwrite').on('click',function(){
 			location.href="eventWrite?category=4";
 		});
 		$('.eventContent').find('img').each(function() {
@@ -200,10 +200,14 @@ margin-bottom : -35px;
 						</c:choose>	
 									</ul>
 								</div>
-								
-							<div id="btnWrap">
-							<button class="eventwrite" id="eventwrite">글쓰기</button>
+								${sessionScope.member.nickname}
+								${sessionScope.member.authority}
+							
+							<c:if test="${sessionScope.member.authority eq 'admin' || sessionScope.member.authority == 'manager'}">
+							<div id="btnWrap">							
+							<button class="btn btn-info btn-right" id="eventwrite" style="float: right;">글쓰기</button>
 							</div>
+							</c:if> 
 					</div>
 				</div>
 			</div>

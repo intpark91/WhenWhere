@@ -134,7 +134,6 @@ jQuery.browser = {};
 
 									return;
 								}
-								alert($("#content").val());
 								if ($("#content").val() == '') {
 									$.bootstrapGrowl("내용을 입력하세요.", {
 										type: 'danger',
@@ -237,8 +236,11 @@ jQuery.browser = {};
 										<div class="bbs_btn">
 											<p class="fl">&nbsp;</p>
 											<p class="fr">
-												<a href="#" onclick="formSubmit();">등록</a> 
-												<a href="../board/event?category=4">취소</a>
+											<c:if test="${sessionScope.member.authority eq 'admin' || sessionScope.member.authority == 'manager'}">
+											<a href="../board/event?category=4" class="btn btn-info pull-right">취소</a>											
+											<button class="btn btn-info pull-right"
+												onclick="formSubmit();">등록</button>
+											</c:if>	
 											</p>
 										</div>
 								</div>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -362,12 +363,12 @@ span#roomTitle {
 							</div>
 							<!-- /.item -->
 							<div class="box-footer">
-									<div class="input-group">
-										<input id="sendMsg" type="text" name="message" placeholder="Type Message ..." class="form-control">
-										<span class="input-group-btn">
-											<button onclick="sendMsg();" type="button" class="btn btn-primary btn-flat">메세지 보내기</button>
-										</span>
-									</div>
+								<div class="input-group">
+									<input id="sendMsg" type="text" name="message" placeholder="Type Message ..." class="form-control">
+									<span class="input-group-btn">
+										<button type="button" onclick="sendMsg();" class="btn btn-primary btn-flat">메세지 보내기</button>
+									</span>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -483,6 +484,22 @@ span#roomTitle {
 					break;
 			} 
 	    });
+	    
+	    var nickName = '${sessionScope.member.nickname}';
+        if(nickName==''){
+           bootbox.dialog({
+              message : "로그인 후 사용 가능 합니다.",
+              buttons : {
+                 success : {
+                    label : "네",
+                    className : "btn-success",
+                    callback : function() {
+                       location.href="../home/loginForm"
+                    }
+                 },
+              }
+           });
+        }
 	});
 
 	function clickTr(){
@@ -555,9 +572,10 @@ span#roomTitle {
 		           error : function(xhr, status, error) {
 		                 console.log(error + "return : " + xhr.responseText);
 		           }
-		    });
+		    	});
 			
 			if(teamSts == 2 || teamSts == 3){
+				alert('팀 메세지를 불러옵니다.');
 				$.ajax({
 		           type:"POST",
 		           url:"../team/chatTeam",
@@ -613,37 +631,22 @@ span#roomTitle {
 	}
 	
 	function sendMsg(){
-		if($('#sendMsg').text() == ''){
+		if($('#sendMsg').val() == ''){
 			alert('메세지가 입력되지 않았습니다');
+			return;
 		}	
 		
 		$.ajax({
 	           type:"POST",
 	           url:"../team/sendMsg",
 	           dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
-	           data : { "teamNum": teamNum , "nickName":sessionNick , "msg" : $('#sendMsg').text()},
+	           data : { "teamNum": teamNum , "nickName":sessionNick , "msg" : $('#sendMsg').val()},
 	           success : function(data) {
 	        	   console.log(data);
 	        	  
 	        	   if(data.ok){
-	        		  /*  $('input[name=title]').val('');
-	        		   $('.ddo-chat').removeClass('collapsed-box');
-	        		 
-	        		   for(var i=1; i<data.length;i++){
-	        			   var json_param = new Array();
-	        			   json_param.push(data[i].nickName);
-	        			   json_param.push(data[i].content);
-	        			   
-	        			   var msgObject = new msgObj(json_param);
-	        			   str_Txt = msgObject.msg_format();
-	        			   $('.item.chat_main_body').append(str_Txt);
-	        			   console.log(str_Txt);
-	        		   }
-	        		   
-	        		   $('#roomTitle').text('팀이름:');
-	        		   $('.room-title').text(teamName); */
-	        		   alert(' 메세지저장성공');
-	        		   
+	        		   $('#sendMsg').val('')
+	        		   $('input[name=title]').val('');
 	        	   }
 	           },
 	           complete : function(data) {
@@ -653,6 +656,7 @@ span#roomTitle {
 	                 console.log(error);
 	           }
 	   		}); 
+		//nickname content tno 
 	}
 		
 	function getTeamList() {
@@ -975,7 +979,8 @@ span#roomTitle {
 					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				}
 			});
-	}
+		}
+		
 	</script>
 </body>
 </html>
