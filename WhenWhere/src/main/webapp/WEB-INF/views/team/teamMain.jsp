@@ -593,11 +593,17 @@ span#roomTitle {
 		        			   json_param.push(data[i].nickName);
 		        			   json_param.push(data[i].content);
 		        			   
+		        			   lastMsgNo = 0;
+		        			   lastMsgNo = data[i].msgNo;
+		        			   
 		        			   var msgObject = new msgObj(json_param);
 		        			   str_Txt = msgObject.msg_format();
 		        			   $('.item.chat_main_body').append(str_Txt);
 		        			   console.log(str_Txt);
 		        		   }
+		        		   setInterval(function() {
+		       					getChatSec(teamNum,lastMsgNo);
+		       			   }, 1000);
 		        		   
 		        		   $('#roomTitle').text('팀이름:');
 		        		   $('.room-title').text(teamName);
@@ -628,6 +634,37 @@ span#roomTitle {
 				});
 			}
 		});
+	}
+	
+	function getChatSec(teamNumInterval,lastMsgNo){
+		$.ajax({
+	           type:"POST",
+	           url:"../team/chatTeamAfterNum",
+	           dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+	           data : { "teamNum": teamNumInterval, "lastMsgNo" : lastMsgNo},
+	           success : function(data) {
+	        	   console.log(data);
+	        	  
+	        	   if(data[0].ok){
+	        		   for(var i=1; i<data.length;i++){
+	        			   var json_param = new Array();
+	        			   json_param.push(data[i].nickName);
+	        			   json_param.push(data[i].content);
+	        			   
+	        			   var msgObject = new msgObj(json_param);
+	        			   str_Txt = msgObject.msg_format();
+	        			   $('.item.chat_main_body').append(str_Txt);
+	        			   console.log(str_Txt);
+	        		   }
+	        	   }
+	           },
+	           complete : function(data) {
+	        	   
+	           },
+	           error : function(xhr, status, error) {
+	                 console.log(error);
+	           }
+	   		}); 
 	}
 	
 	function sendMsg(){

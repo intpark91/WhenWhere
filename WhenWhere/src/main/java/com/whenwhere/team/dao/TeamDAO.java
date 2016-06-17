@@ -21,5 +21,6 @@ public interface TeamDAO {
 	public List<TeamChatVO> getchatTeam(int teamNum);
 	public int sendMsg(@Param("teamNum") int teamNum,@Param("nickName") String nickName,@Param("msg") String msg);
 	public TeamVO getTeamInfo(int teamNum);
+	public List<TeamChatVO> chatTeamAfterNum(@Param("teamNum") int teamNum, @Param("lastMsgNo") int lastMsgNo);
 
 }
