@@ -267,9 +267,9 @@ span#roomTitle {
 								src="../images/team/profile.png"
 								alt="User profile picture">
 
-							<h3 class="profile-username text-center">팀을 선택후 상세정보를 확인</h3>
+							<h3 class="profile-username text-center team-no-${teamInfo.no}"> 초대받은 팀 : ${teamInfo.teamname} </h3>
 
-							<p class="text-muted text-center">[ 선택된 팀 없음 ]</p>
+							<p class="text-muted text-center">[ ${teamInfo.teamname} ]</p>
 
 							<ul class="list-group list-group-unbordered">
 								<!-- <li class="list-group-item"><b>팀 인원</b> 
@@ -278,17 +278,64 @@ span#roomTitle {
 								<li class="list-group-item">
 									<b>팀 URL</b> 
 									<a>
-										<b class="pull-right" id="a_url"></b>
+										<b class="pull-right" id="a_url">
+											http://192.168.8.31:8088/WhenWhere/home/team?teamNum=${teamInfo.no}&teamname=${teamInfo.teamname}
+										</b>
 									</a>
 								</li>
 								<li class="list-group-item"><b>팀 상태</b>
-								 	<a id="a_sts" class="pull-right">  </a>
+								 	<a id="a_sts" class="pull-right">
+								 		<c:choose>
+												<c:when	test="${teamInfo.status == 0 }">
+													가입가능
+												</c:when>
+
+												<c:when test="${teamInfo.status == 1 }">
+													승낙대기
+												</c:when>
+												
+												<c:when test="${teamInfo.status == 2 }">
+													팀장
+												</c:when>
+												
+												<c:when test="${teamInfo.status == 3 }">
+													팀원
+												</c:when>
+										</c:choose>
+									</a>
 								</li>
 								<li class="list-group-item"><b>팀원 목록</b>
-								 	<a id="a_list" class="pull-right">  </a>
+								 	<a id="a_list" class="pull-right">  
+								 		<c:forEach items="${teamList}" var="currentName" 
+												varStatus="status" begin="0" end="3" step="2">
+									        <c:out value="${currentName}" /> ,
+										</c:forEach>
+									</a>
 								</li>
 								<li class="list-group-item"><b>팀 유형</b>
-								 	<a id="a_type" class="pull-right">  </a>
+								 	<a id="a_type" class="pull-right">  
+								 		<c:choose>
+											<c:when	test="${teamInfo.subject == 0 }">
+												<span class="label label-danger">전체</span>
+											</c:when>
+
+											<c:when test="${teamInfo.subject == 1 }">
+												<span class="label label-danger">동행</span>
+											</c:when>
+											
+											<c:when test="${teamInfo.subject == 2 }">
+												<span class="label label-danger">숙박</span>
+											</c:when>
+											
+											<c:when test="${teamInfo.subject == 3 }">
+												<span class="label label-danger">예약</span>
+											</c:when>
+											
+											<c:when test="${teamInfo.subject == 3 }">
+												<span class="label label-danger">기타</span>
+											</c:when>
+										</c:choose>
+								 	</a>
 								</li>
 							</ul>
 							
@@ -444,7 +491,7 @@ span#roomTitle {
 	
 	var teamList = new Array();
 	var sessionNick = '';
-	var teamNum = 0;
+	var teamNum = ${teamInfo.no} ;
 	var teamName = '';
 	var lastMsgNo = 0;
 	var chatinterval ;
