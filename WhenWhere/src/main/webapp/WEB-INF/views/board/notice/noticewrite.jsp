@@ -26,6 +26,14 @@ $(function() {
 			allow_dismiss: false
 		});
 	}
+	
+	$(".ui-helper-hidden-accessible").css('display','none');
+	$(".ui-helper-hidden-accessible").html('');
+	
+	$(".ui-tooltip ui-widget ui-corner-all ui-widget-content").css('display','none');
+	$(".ui-tooltip ui-widget ui-corner-all ui-widget-content").html('');
+	
+	
 });
 </script>
 <script type="text/javascript">
@@ -124,8 +132,11 @@ $(function() {
 											<div class="bbs_btn">
 												
 												<p class="fr">
-													<a href="#" onclick="formSubmit();">등록</a>
-													<a href="../board/notice?category=1">취소</a>
+												<a href="../board/notice?category=1" class="btn btn-info pull-right">취소</a>
+											
+												<button class="btn btn-info pull-right"
+												onclick="formSubmit();">등록</button>
+
 												</p>
 											</div>
 									</div>

@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<link rel="stylesheet" href=../css/board/reviewCSS/board.css>
 	<link rel="stylesheet" href=../css/board/reviewCSS/body.css>
 	<link rel="stylesheet" href=../css/board/reviewCSS/common.css>
@@ -18,6 +19,8 @@
 	overflow: auto;
 }
 
+		
+
 .fesival_view .bandi a  {
 	width: 150px;
 	height: 45px;
@@ -28,10 +31,11 @@
 	margin: 30px 0 0 10px; 
 	padding: 5px 5px;
 }
+
 </style>
 <script type="text/javascript">
 	$(function(){
-		$('.reviewwrite').on('click',function(){
+		$('#reviewwrite').on('click',function(){
 			location.href="reviewwrite?category=3"					
 		});
 		$('.img p:has(img)').css('display','none');
@@ -196,10 +200,11 @@
 									</ul>
 
 								</div>	
-						
+						<c:if test="${sessionScope.member.nickname != null}">
 						<div id="btnWrap">
-							<button class="reviewwrite" id="reviewwrite">글쓰기</button>
-						</div>												
+							<button class="btn btn-info btn-right" id="reviewwrite" style="float: right;">글쓰기</button>
+						</div>			
+						</c:if>									
 					</div>					
 				</div>
 			<!-- </div> -->

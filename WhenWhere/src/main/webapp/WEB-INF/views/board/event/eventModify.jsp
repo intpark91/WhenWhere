@@ -183,7 +183,7 @@ var category='${sessionScope.category}';
 													<tr>
 														<th scope="row"><label for="userNick">등록자</label></th>
 														<td class="bbs_name"><input type="text"
-															name="auth" id="userNick" readonly="readonly" value="${sessionScope.member.nickname}"></td>
+															name="auth" id="userNick" readonly="readonly" value="${updateBoard.auth}"></td>
 													</tr>																										<tr>
 													<th scope="row"><label for="location">지역</label></th>
 														<td class="bbs_location">
@@ -221,11 +221,15 @@ var category='${sessionScope.category}';
 										</div>
 										<div class="bbs_btn">
 											<p class="fl">&nbsp;</p>
+											<c:set value="${updateBoard.auth}" var="nickName" />
+										<c:if test="${sessionScope.member.nickname == nickName}">
+											<c:if test="${sessionScope.member.authority eq 'admin' || sessionScope.member.authority == 'manager'}">
 											<p class="fr">
-												
-												<a href="#" onclick="modify();">수정</a> 
-												<a href="../board/eventRead?category=4&no=${sessionScope.no}">취소</a>
+											<a href="../board/eventRead?category=4&no=${sessionScope.no}" class="btn btn-info pull-right">취소</a>
+											<button class="btn btn-info pull-right" onclick="modify();">수정</button>												
 											</p>
+											</c:if>
+										</c:if>	
 										</div>
 									</div>
 								</div>

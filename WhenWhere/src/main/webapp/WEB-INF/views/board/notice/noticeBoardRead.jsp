@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<jsp:include page="../../component/core_head.jsp" />
-	<title>WhenWhere</title>
-	<link rel="stylesheet" href="../css/slider.css" />
-	<link rel="stylesheet" href="../css/board/noticeBoardRead.css" type="text/css">  
-	<link rel="stylesheet" href="../css/board/comment.css" />
-	<style>
+<jsp:include page="../../component/core_head.jsp" />
+<title>WhenWhere</title>
+<link rel="stylesheet" href="../css/slider.css" />
+<link rel="stylesheet" href="../css/board/noticeBoardRead.css"
+	type="text/css">
+<link rel="stylesheet" href="../css/board/comment.css" />
+<style>
 h2 {
 	padding-top: 10px;
 }
@@ -65,7 +66,7 @@ function delectAjax(no){
 
 	
 	$(function(){		
-		$('#submit').on('click',function(){
+		$('#commentinset').on('click',function(){
 			var serData = $('#commentform').serialize();
 			jQuery.ajax({
 				type: "post", 
@@ -188,9 +189,8 @@ function delectAjax(no){
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
-	<div id="main_bg" class="info_main_bg" >
-			<div class="mainWrap">
-			</div>
+	<div id="main_bg" class="info_main_bg">
+		<div class="mainWrap"></div>
 	</div>
 	<div class="wrapper">
 		<!-- include -->
@@ -200,14 +200,12 @@ function delectAjax(no){
 
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
-			<section class="content-header">
-			</section>
+			<section class="content-header"></section>
 			<div class="container">
-			<div class="row">
-				<div
-					class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2 text-center">
-					<div id="all" class="clearfix">
-						
+				<div class="row">
+					<div class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2">
+						<div id="all" class="clearfix">
+
 							<!--2015.12.07 수정-->
 
 							<!--//-->
@@ -221,7 +219,7 @@ function delectAjax(no){
 											<input type="hidden" name="no" value="${ReadBoard.no}"> --%>
 											<table class="view_1"
 												summary="토론마당 제목, 토론기간, 진행상태와 조회를 표시하고 있다.">
-												<h2>${ReadBoard.boardName} 상세 보기</h2>
+												<h2 align="center">${ReadBoard.boardName}상세 보기</h2>
 												<colgroup>
 													<col width="15%">
 													<col width="20%">
@@ -238,7 +236,7 @@ function delectAjax(no){
 														</td>
 													</tr>
 													<tr>
-														
+
 														<th scope="row">작 성 자</th>
 														<td>${ReadBoard.auth}</td>
 														<th scope="row">등록일</th>
@@ -247,151 +245,186 @@ function delectAjax(no){
 														<td>${ReadBoard.hit}</td>
 													</tr>
 
-	
+
 													<tr>
 														<td colspan="6" class="bbs_detail">
 
-															<div align="center" class="body_div"
+															<div class="body_div"
 																style="line-height: 160%; font-family: NanumG; font-size: 14px;">
-																${ReadBoard.content}
-																<br>
-															</div>															
+																${ReadBoard.content} <br>
+															</div>
 														</td>
 													</tr>
 												</tbody>
 											</table>
-										<!-- 	</form> -->
+											<!-- 	</form> -->
 											<div class="bbs_btn">
 												<p class="fl">
-													<a href="notice?category=${ReadBoard.category}"><h4>목록</h4></a>
+													<a href="notice?category=${ReadBoard.category}"><h4
+															align="center">목록</h4></a>
 												</p>
-											</div>		
 										</div>
-
-									</div>		
-									<c:if test="${sessionScope.member.getAuthority() != 'admin' }">							
-											<div id="btnWrap">
-												<button class="noticeboard" id="reviewwrite" type="button" onclick="delectAjax(${ReadBoard.no});">삭제하기</button>
-												<button class="noticeboard" id="reviewwrite" type="button" onclick="modifyForm(${ReadBoard.no});">수정하기</button>
-												
-											</div>
-										</c:if>
 										</div>
-										
 									</div>
-									<div class="comment_wrap">
-										<div class="con_area">
-											<div class="board_box">
-												<div class="bbs_view">
+									<div id="btnWrap">
+										<c:set value="${ReadBoard.auth}" var="nickName" />
+										<c:set value="${ReadBoard.category}" var="boardCode" />
+										<c:if test="${sessionScope.member.nickname != null}">
+											<c:if test="${boardCode == 1}">
+												<c:if test="${sessionScope.member.authority eq 'admin'}">
+													<button class="btn btn-info pull-right" id="reviewwrite"
+														type="button" onclick="delectAjax(${ReadBoard.no});">삭제하기</button>
+													<button class="btn btn-info pull-right" id="reviewwrite"
+														type="button" onclick="modifyForm(${ReadBoard.no});">수정하기</button>
+												</c:if>
+											</c:if>
+											<c:if test="${boardCode == 2}">
+												<button class="btn btn-info pull-right" id="reviewwrite"
+													type="button" onclick="delectAjax(${ReadBoard.no});">삭제하기</button>
+												<button class="btn btn-info pull-right" id="reviewwrite"
+													type="button" onclick="modifyForm(${ReadBoard.no});">수정하기</button>
+											</c:if>
+										</c:if>
+									</div>
+								</div>
+							</div>
+							<div class="comment_wrap">
+								<div class="con_area">
+									<div class="board_box">
+										<div class="bbs_view">
 
 
-													<div class="singlewrap pushpull">
-														전체 댓글
-														<ol class="commentlist">
-															<li class="comment odd alt thread-odd thread-alt depth-1"
-																id="li-comment-27">
-																<div id="comment-27">
-																
-																<c:forEach var="item" items="${Noticecomment}" varStatus="status">																
-																	<div class="post-wrap rel">
-																		<div class="reply_text"></div>
-																		<div class="postcontentreply">
-																			<div class="comment-guts">
-																				<div class="avatar-comments">
-																					<img src="../images/eventimg/user.JPG">
-																				</div>
-																				<div class="comment-guts-pads">																					
-																					<div id="${item.no}"  class="says">${item.auth}</div>
-																					<p class="comm_comment">${item.content}</p>
-																				</div>																																				
+											<div class="singlewrap pushpull">
+												전체 댓글
+												<ol class="commentlist">
+													<li class="comment odd alt thread-odd thread-alt depth-1"
+														id="li-comment-27">
+														<div id="comment-27">
+
+															<c:forEach var="item" items="${Noticecomment}"
+																varStatus="status">
+																<div class="post-wrap rel">
+																	<div class="reply_text"></div>
+																	<div class="postcontentreply">
+																		<div class="comment-guts">
+																			<div class="avatar-comments">
+																				<img src="../images/eventimg/user.JPG">
 																			</div>
-																		</div>	
-<!-- 																	<div class="reply">
+																			<div class="comment-guts-pads">
+																				<div id="${item.no}" class="says">${item.auth}</div>
+																				<p class="comm_comment">${item.content}</p>
+																			</div>
+																		</div>
+																	</div>
+																	<!-- 																	<div class="reply">
 																		<lable for="reply" >reply</lable>
 																		<input type="checkbox" name="reply">		
 																		</div>	 -->
-																		<!-- END postcontentreply -->	
-																		<button class="commentdelete" id="commentdelete" onclick="commentdelete(${item.no});">댓글 삭제</button>
-																		<button class="commentdelete" id="commentmodify" onclick="commentmodify(${item.no},'${item.content}');">댓글 수정</button>
-																																																				
-																	</div>
-																</c:forEach>	
-																	
-																	
-																	
-																	<!-- END comment -->
-																</div> <!--end entire post wrap-->
-															</li>
-															<!-- #comment-## -->
+																	<!-- END postcontentreply -->
+																	<c:set value="${ReadBoard.auth}" var="nickName" />
+																	<c:set value="${ReadBoard.category}" var="boardCode" />
+																	<c:if test="${sessionScope.member.nickname != null}">
+																		<c:if test="${boardCode == 1}">
+																			<c:if
+																				test="${sessionScope.member.authority eq 'admin'}">
+																				<button class="commentdelete" id="commentdelete"
+																					onclick="commentdelete(${item.no});">댓글 삭제</button>
+																				<button class="commentdelete" id="commentmodify"
+																					onclick="commentmodify(${item.no},'${item.content}');">댓글
+																					수정</button>
+																			</c:if>
+																		</c:if>
+																		<c:if test="${boardCode == 2}">
+																			<button class="commentdelete" id="commentdelete"
+																				onclick="commentdelete(${item.no});">댓글 삭제</button>
+																			<button class="commentdelete" id="commentmodify"
+																				onclick="commentmodify(${item.no},'${item.content}');">댓글
+																				수정</button>
+																		</c:if>
+																	</c:if>
+																</div>
+															</c:forEach>
 
-														</ol>
-													</div>
 
-													<div id="respond" class="comment-respond">
-<!-- 														<h3 id="reply-title" class="comment-reply-title">
+
+															<!-- END comment -->
+														</div> <!--end entire post wrap-->
+													</li>
+													<!-- #comment-## -->
+
+												</ol>
+											</div>
+
+											<div id="respond" class="comment-respond">
+												<!-- 														<h3 id="reply-title" class="comment-reply-title">
 															댓글 쓰기 <small> <a rel="nofollow"
 																id="cancel-comment-reply-link"
 																href="http://myforum.dothome.co.kr/my-favorite-model/#respond"
 																style="display: none;">댓글 취소</a>
 															</small>
 														</h3> -->
-														
-														
-														<form action="comment" method="post" id="commentform" class="comment-form">
-															<p class="comment-notes">
-																<input type="hidden" name="boardNo" value="${ReadBoard.no}">
-																<input type="hidden" name="category" value="${ReadBoard.category}">
-															<!-- 
+
+
+												<form action="comment" method="post" id="commentform"
+													class="comment-form">
+													<p class="comment-notes">
+														<input type="hidden" name="boardNo"
+															value="${ReadBoard.no}"> <input type="hidden"
+															name="category" value="${ReadBoard.category}">
+														<!-- 
 																<span id="email-notes">여러분의 생각을 댓글을 남겨 주세요! <span
 																	class="required">*</span>
 																</span> -->
-															</p>
-															<div>
-															<p class="comment-form-author">
-																<label for="author">이름<span class="required"></span></label>
-																<input id="author" name="auth" type="text"
-																	readonly="true" value="${sessionScope.member.nickname}" size="30"
-																	aria-required="true" required="required">
-															</p>
-															</div>
-															<p class="comment-form-comment">
-																<label for="comment">내용</label>
-																<textarea id="comment" name="content" cols="45" rows="8"
-																	aria-required="true" required="required" placeholder="댓글을 입력해 주세요"></textarea>
-															</p>
-															<p class="form-submit">
-																
-																<input name="submit" type="button" id="submit"
-																	class="submit" value="댓글 쓰기"> 															
-															</p>
-															
-														</form>
+													</p>
+													<div>
+														<p class="comment-form-author">
+															<label for="author">이름<span class="required"></span></label>
+															<input id="author" name="auth" type="text"
+																readonly="true" value="${sessionScope.member.nickname}"
+																size="30" aria-required="true" required="required">
+														</p>
 													</div>
-													<!-- #respond -->
-												</div>
+													<p class="comment-form-comment">
+														<label for="comment">내용</label>
+														<textarea id="comment" name="content" cols="45" rows="8"
+															aria-required="true" required="required"
+															placeholder="댓글을 입력해 주세요"></textarea>
+													</p>
+													<c:if test="${sessionScope.member.authority != null}">
+														<p class="form-submit">
+															<button id="commentinset" type="button"
+																class="btn btn-block btn-danger btn-right" value="댓글 쓰기">댓글
+																쓰기</button>
+														</p>
+													</c:if>
+
+												</form>
 											</div>
-											<!--end col8-->
-
-
+											<!-- #respond -->
 										</div>
 									</div>
+									<!--end col8-->
+
+
 								</div>
-
-
-
 							</div>
 						</div>
+
+
+
 					</div>
 				</div>
 			</div>
-		
-			
-
-		<!-- /.content-wrapper -->
-		<!-- include -->
-		<jsp:include page="../../component/footer.jsp" />
-		<jsp:include page="../../component/controlSidebar.jsp" />
+		</div>
 	</div>
+
+
+
+	<!-- /.content-wrapper -->
+	<!-- include -->
+	<jsp:include page="../../component/footer.jsp" />
+	<jsp:include page="../../component/controlSidebar.jsp" />
+
 	<!-- scripts -->
 	<jsp:include page="../../component/core_js.jsp" />
 </body>

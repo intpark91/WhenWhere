@@ -7,9 +7,8 @@
 <jsp:include page="../../component/core_head.jsp" />
 <title>WhenWhereTest</title>
 <link rel="stylesheet" href="../css/slider.css" />
-<link rel="stylesheet" href="../css/board/noticeBoardRead.css"
-	type="text/css">
-<link rel="stylesheet" href="../css/board/comment.css" />
+	<link rel="stylesheet" href="../css/board/noticeBoardRead.css" type="text/css">  
+	<link rel="stylesheet" href="../css/board/comment.css" />
 <style>
 h2 {
 	padding-top: 10px;
@@ -111,7 +110,7 @@ function recommend(no){
 
 }	
 	$(function(){		
-		$('#submit').on('click',function(){
+		$('#commentinset').on('click',function(){
 			var serData = $('#commentform').serialize();
 			jQuery.ajax({
 				type: "post", 
@@ -147,13 +146,15 @@ function recommend(no){
 	   }
 	});
 	
-	function commentmodify(no){
-			$('#'+no+' .comm_comment').html('');			
-			$('<p><form><textarea id="comment2" name="comment_rp" cols="45" rows="8"></textarea </form></p>').appendTo('#'+no+'');
-			$('#'+no+' #commentdelete').html('수정 취소');
-			$('#'+no+' #commentdelete').attr('onclick','read();');
-			$('#'+no+' #commentmodify').html('수정 확인');
-			$('#'+no+' #commentmodify').attr('onclick','updatecomment('+no+');');
+	function commentmodify(no,commentcontent){
+				
+		
+		$('<p><form><textarea id="comment4" name="comment_rp" cols="45" rows="8"  placeholder="'+commentcontent+'"></textarea </form></p>').appendTo('#'+no+'');
+		$('.comm_comment').html('');
+		$(' #commentdelete').html('수정 취소');
+		$(' #commentdelete').attr('onclick','read();');
+		$(' #commentmodify').html('수정 확인');
+		$(' #commentmodify').attr('onclick','updatecomment('+no+');');
 	}
 	
 	function read(){
@@ -226,7 +227,7 @@ function recommend(no){
 			<div class="container">
 				<div class="row">
 					<div
-						class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2 text-center">
+						class="col-lg-6 col-lg-offset-3 col--8 col-md-offset-2">
 						<div id="all" class="clearfix">
 
 							<!--2015.12.07 수정-->
@@ -255,7 +256,7 @@ function recommend(no){
 													<tr>
 														<th scope="row">제 목</th>
 														<td scope="col" colspan="6" class="bbs_tit">
-															<div>${ReadBoard.title}</div>
+															<div align="center">${ReadBoard.title}</div>
 														</td>
 													</tr>
 													<tr>
@@ -278,7 +279,7 @@ function recommend(no){
 													<tr>
 														<td colspan="6" class="bbs_detail">
 
-															<div align="center" class="body_div"
+															<div class="body_div"
 																style="line-height: 160%; font-family: NanumG; font-size: 14px;">
 																${ReadBoard.content} <br>
 															</div>
@@ -289,20 +290,29 @@ function recommend(no){
 											<!-- 	</form> -->
 											<div class="bbs_btn">
 												<p class="fl">
-													<a href="review?category=${ReadBoard.category}"><h4>목록</h4></a>
+													<a href="review?category=${ReadBoard.category}"><h4 align="center" >목록</h4></a>
 												</p>
 											</div>
 										</div>
 
 									</div>
+									
 									<div id="btnWrap">
-										<button class="noticeboard" id="reviewwrite" type="button"
+										<c:set value="${ReadBoard.auth}" var="nickName" />
+								 		<c:if test="${sessionScope.member.nickname != null}">
+										<button class="btn btn-info pull-right" id="reviewwrite" type="button"
 											onclick="recommend(${ReadBoard.no});">추천하기</button>
-										<button class="noticeboard" id="reviewwrite" type="button"
+										</c:if>
+										<c:if test="${sessionScope.member.nickname == nickName}">			
+											<c:if test="${sessionScope.member.authority eq 'admin'}">
+										<button class="btn btn-info pull-right" id="reviewwrite" type="button"
 											onclick="delectAjax(${ReadBoard.no});">삭제하기</button>
-										<button class="noticeboard" id="reviewwrite" type="button"
+										<button class="btn btn-info pull-right" id="reviewwrite" type="button"
 											onclick="modifyForm(${ReadBoard.no});">수정하기</button>
+											</c:if>
+										</c:if>
 									</div>
+								
 								</div>
 							</div>
 							<div class="comment_wrap">
@@ -328,7 +338,7 @@ function recommend(no){
 																				<img src="../images/eventimg/user.JPG">
 																			</div>
 																			<div class="comment-guts-pads">
-																				<div class="says">${item.auth}</div>
+																				<div id="${item.no}" class="says">${item.auth}</div>
 																				<p class="comm_comment">${item.content}</p>
 																			</div>
 																		</div>
@@ -337,13 +347,16 @@ function recommend(no){
 																		<lable for="reply" >reply</lable>
 																		<input type="checkbox" name="reply">		
 																		</div>	 -->
-																	<!-- END postcontentreply -->
-																	<button class="commentdelete" id="commentdelete"
-																		onclick="commentdelete(${item.no});">댓글 삭제</button>
-																	<button class="commentdelete" id="commentmodify"
-																		onclick="commentmodify(${item.no});">댓글 수정</button>
-
+																	<!-- END postcontentreply -->																	
 																</div>
+																<c:set value="${ReadBoard.auth}" var="nickName" />
+																		<c:if test="${sessionScope.member.nickname == nickName}">
+																			<c:if test="${sessionScope.member.authority eq 'admin'}">
+																<button class="commentdelete" id="commentdelete" onclick="commentdelete(${item.no});">댓글 삭제</button>
+																<button class="commentdelete" id="commentmodify" onclick="commentmodify(${item.no},'${item.content}');">댓글 수정</button>
+																	</c:if>
+																		</c:if>
+																
 															</c:forEach>
 
 
@@ -357,13 +370,7 @@ function recommend(no){
 											</div>
 
 											<div id="respond" class="comment-respond">
-												<h3 id="reply-title" class="comment-reply-title">
-													댓글 쓰기 <small> <a rel="nofollow"
-														id="cancel-comment-reply-link"
-														href="http://myforum.dothome.co.kr/my-favorite-model/#respond"
-														style="display: none;">댓글 취소</a>
-													</small>
-												</h3>
+
 
 
 												<form action="reviewcommend" method="post" id="commentform"
@@ -371,10 +378,8 @@ function recommend(no){
 													<p class="comment-notes">
 														<input type="hidden" name="boardNo"
 															value="${ReadBoard.no}"> <input type="hidden"
-															name="category" value="${ReadBoard.category}"> <span
-															id="email-notes">여러분의 생각을 댓글을 남겨 주세요! <span
-															class="required">*</span>
-														</span>
+															name="category" value="${ReadBoard.category}">
+														
 													</p>
 													<p class="comment-form-author">
 														<label for="author">이름<span class="required"></span></label>
@@ -388,11 +393,12 @@ function recommend(no){
 															aria-required="true" required="required"
 															placeholder="댓글을 입력해 주세요"></textarea>
 													</p>
+													<c:if test="${sessionScope.member.nickname != null}">
 													<p class="form-submit">
 
-														<input name="submit" type="button" id="submit"
-															class="submit" value="댓글 쓰기">
+														<button id="commentinset" type="button" class="btn btn-block btn-danger btn-right" value="댓글 쓰기">댓글 쓰기</button>
 													</p>
+													</c:if>
 
 												</form>
 											</div>
