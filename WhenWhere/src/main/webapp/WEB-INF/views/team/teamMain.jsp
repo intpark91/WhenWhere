@@ -362,14 +362,12 @@ span#roomTitle {
 							</div>
 							<!-- /.item -->
 							<div class="box-footer">
-								<form action="#" method="post">
 									<div class="input-group">
 										<input id="sendMsg" type="text" name="message" placeholder="Type Message ..." class="form-control">
 										<span class="input-group-btn">
-											<button type="button" onclick="sendMsg();" class="btn btn-primary btn-flat">메세지 보내기</button>
+											<button onclick="sendMsg();" type="button" class="btn btn-primary btn-flat">메세지 보내기</button>
 										</span>
 									</div>
-								</form>
 							</div>
 						</div>
 					</div>
@@ -557,7 +555,7 @@ span#roomTitle {
 		           error : function(xhr, status, error) {
 		                 console.log(error + "return : " + xhr.responseText);
 		           }
-		    	});
+		    });
 			
 			if(teamSts == 2 || teamSts == 3){
 				$.ajax({
@@ -617,7 +615,6 @@ span#roomTitle {
 	function sendMsg(){
 		if($('#sendMsg').text() == ''){
 			alert('메세지가 입력되지 않았습니다');
-			return;
 		}	
 		
 		$.ajax({
@@ -656,7 +653,6 @@ span#roomTitle {
 	                 console.log(error);
 	           }
 	   		}); 
-		//nickname content tno 
 	}
 		
 	function getTeamList() {
@@ -979,8 +975,7 @@ span#roomTitle {
 					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				}
 			});
-		}
-		
+	}
 	</script>
 </body>
 </html>
