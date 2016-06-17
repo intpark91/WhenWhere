@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="joinMember" parameterType="com.whenwhere.user.vo.MemberVO">
-		insert into member values(#{email}, #{nickname}, #{password}, #{phoneNumber}, 'member')
+		insert into member values(#{nickname}, #{email}, #{password}, #{phoneNumber}, 'member')
 	</insert>
 	
 	<select id="login" parameterType="com.whenwhere.user.vo.MemberVO" resultType="com.whenwhere.user.vo.MemberVO">
