@@ -250,7 +250,7 @@
 									</c:choose>
 								</ul>
 							</div>
-							<c:set value="${boardList[0].category}" var="boardCode" />
+							<c:set value="${category}" var="boardCode" />
 							<c:if test="${boardCode == 1}">
 								<c:if test="${sessionScope.member.authority eq 'admin'}">							
 							<div id="btnWrap">							
@@ -260,7 +260,9 @@
 							</c:if>
 							
 							<c:if test="${boardCode == 2}">
-								<button class="btn btn-info btn-right" id="noticewrite" style="float: right;">글쓰기</button>	
+								<c:if test="${sessionScope.member.authority != null}">			
+								<button class="btn btn-info btn-right" id="noticewrite" style="float: right;">글쓰기</button>
+								</c:if>	
 							</c:if>
 							
 							
