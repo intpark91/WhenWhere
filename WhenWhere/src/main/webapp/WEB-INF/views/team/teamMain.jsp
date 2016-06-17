@@ -654,7 +654,6 @@ span#roomTitle {
 	        			   var msgObject = new msgObj(json_param);
 	        			   str_Txt = msgObject.msg_format();
 	        			   $('.item.chat_main_body').append(str_Txt);
-	        			   console.log(str_Txt);
 	        		   }
 	        	   }
 	           },
